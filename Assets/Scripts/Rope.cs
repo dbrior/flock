@@ -65,17 +65,5 @@ public class Rope : MonoBehaviour
         distanceJoint.distance = 0f;
         distanceJoint.maxDistanceOnly = true;
         distanceJoint.connectedBody = player2.GetComponent<Rigidbody2D>();
-
-
-        // GameObject lastSegmentChild = new GameObject("LastSegmentJoint");
-        // lastSegmentChild.transform.parent = previousSegment.transform;
-        // lastSegmentChild.transform.localPosition = Vector3.zero;
-
-        // HingeJoint2D childJoint = lastSegmentChild.AddComponent<HingeJoint2D>();
-        // childJoint.connectedBody = player2.GetComponent<Rigidbody2D>();
-        // childJoint.autoConfigureConnectedAnchor = false;
-        // childJoint.anchor = Vector2.zero;
-        // childJoint.connectedAnchor = Vector2.zero;
-
     }
 }
