@@ -35,7 +35,7 @@ public class Wolf : MonoBehaviour
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("WildSheep"))
         {
-            Destroy(col.gameObject);
+            SheepManager.Instance.KillSheep(col.gameObject);
             hasTarget = false;
         }
     }

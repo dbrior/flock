@@ -18,7 +18,7 @@ public class PenGoal : MonoBehaviour
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("WildSheep"))
         {
-            col.gameObject.layer = LayerMask.NameToLayer("TameSheep");
+            SheepManager.Instance.TameSheep(col.gameObject);
         }
     }
 
