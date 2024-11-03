@@ -41,11 +41,22 @@ public class SheepManager : MonoBehaviour
         else {Destroy(gameObject);}
 
         sheepList = new List<GameObject>();
+        wildSheepCount = 0;
+        tameSheepCount = 0;
+        deadSheepCount = 0;
     }
 
-    void Start()
-    {
-        SpawnSheep();
+    public void Reset() {
+        DestroyAllSheep();
+        sheepList = new List<GameObject>();
+        wildSheepCount = 0;
+        tameSheepCount = 0;
+        deadSheepCount = 0;
+        UpdateUI();
+    }
+
+    public void SetSpawnCount(int count) {
+        spawnCount = count;
     }
 
     public void SpawnSheep() {
@@ -58,21 +69,21 @@ public class SheepManager : MonoBehaviour
             sheepList.Add(sheep);
             wildSheepCount += 1;
         }
-        UpdateUI();
+        OnSheepCountChange();
     }
 
     public void TameSheep(GameObject sheep) {
         sheep.layer = LayerMask.NameToLayer("TameSheep");
         wildSheepCount -= 1;
         tameSheepCount += 1;
-        UpdateUI();
+        OnSheepCountChange();
     }
 
     public void KillSheep(GameObject sheep) {
         wildSheepCount -= 1;
         deadSheepCount += 1;
         DestroySheep(sheep);
-        UpdateUI();
+        OnSheepCountChange();
     }
 
     private void DestroySheep(GameObject sheep) {
@@ -82,12 +93,21 @@ public class SheepManager : MonoBehaviour
 
     public void DestroyAllSheep() {
         for (int i=0; i<sheepList.Count; i++) {
-            Destroy(sheepList[i]);
+            GameObject sheep = sheepList[i];
+            sheepList.RemoveAt(i);
+            Destroy(sheep);
         }
         sheepList.Clear();
     }
 
     private void UpdateUI() {
         UIManager.Instance.UpdateSheepCountsUI(wildSheepCount, tameSheepCount, deadSheepCount);
+    }
+
+    private void OnSheepCountChange() {
+        UpdateUI();
+        if (wildSheepCount == 0) {
+            WaveManager.Instance.EndWave();
+        }
     }
 }

@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI deadSheepCount;
 
     void Awake() {
-        if (Instance == null){Instance = this;} 
+        if (Instance == null) {Instance = this;} 
         else {Destroy(gameObject);}
     }
 

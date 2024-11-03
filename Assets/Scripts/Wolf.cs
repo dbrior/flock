@@ -52,7 +52,7 @@ public class Wolf : MonoBehaviour
             } else {
                 hasTarget = false;
             }
-            yield return new WaitForSeconds(1f); // Wait 
+            yield return new WaitForSeconds(1f);
         }
     }
 }
