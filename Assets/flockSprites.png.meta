@@ -315,7 +315,7 @@ TextureImporter:
       name: flockSprites_9
       rect:
         serializedVersion: 2
-        x: 80
+        x: 48
         y: 868
         width: 16
         height: 16
@@ -336,7 +336,7 @@ TextureImporter:
       name: flockSprites_10
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 868
         width: 16
         height: 16
@@ -357,8 +357,8 @@ TextureImporter:
       name: flockSprites_11
       rect:
         serializedVersion: 2
-        x: 0
-        y: 852
+        x: 96
+        y: 868
         width: 16
         height: 16
       alignment: 0
@@ -378,7 +378,7 @@ TextureImporter:
       name: flockSprites_12
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 852
         width: 16
         height: 16
@@ -399,8 +399,8 @@ TextureImporter:
       name: flockSprites_13
       rect:
         serializedVersion: 2
-        x: 0
-        y: 836
+        x: 16
+        y: 852
         width: 16
         height: 16
       alignment: 0
@@ -420,7 +420,7 @@ TextureImporter:
       name: flockSprites_14
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 836
         width: 16
         height: 16
@@ -441,8 +441,8 @@ TextureImporter:
       name: flockSprites_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 820
+        x: 16
+        y: 836
         width: 16
         height: 16
       alignment: 0
@@ -462,7 +462,7 @@ TextureImporter:
       name: flockSprites_16
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 820
         width: 16
         height: 16
@@ -483,8 +483,8 @@ TextureImporter:
       name: flockSprites_17
       rect:
         serializedVersion: 2
-        x: 0
-        y: 804
+        x: 16
+        y: 820
         width: 16
         height: 16
       alignment: 0
@@ -504,7 +504,7 @@ TextureImporter:
       name: flockSprites_18
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 804
         width: 16
         height: 16
@@ -525,8 +525,8 @@ TextureImporter:
       name: flockSprites_19
       rect:
         serializedVersion: 2
-        x: 0
-        y: 788
+        x: 16
+        y: 804
         width: 16
         height: 16
       alignment: 0
@@ -546,7 +546,7 @@ TextureImporter:
       name: flockSprites_20
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 788
         width: 16
         height: 16
@@ -567,8 +567,8 @@ TextureImporter:
       name: flockSprites_21
       rect:
         serializedVersion: 2
-        x: 0
-        y: 772
+        x: 16
+        y: 788
         width: 16
         height: 16
       alignment: 0
@@ -588,7 +588,7 @@ TextureImporter:
       name: flockSprites_22
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 772
         width: 16
         height: 16
@@ -609,8 +609,8 @@ TextureImporter:
       name: flockSprites_23
       rect:
         serializedVersion: 2
-        x: 0
-        y: 756
+        x: 16
+        y: 772
         width: 16
         height: 16
       alignment: 0
@@ -630,7 +630,7 @@ TextureImporter:
       name: flockSprites_24
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 756
         width: 16
         height: 16
@@ -651,8 +651,8 @@ TextureImporter:
       name: flockSprites_25
       rect:
         serializedVersion: 2
-        x: 400
-        y: 612
+        x: 16
+        y: 756
         width: 16
         height: 16
       alignment: 0
@@ -672,8 +672,8 @@ TextureImporter:
       name: flockSprites_26
       rect:
         serializedVersion: 2
-        x: 416
-        y: 612
+        x: 0
+        y: 740
         width: 16
         height: 16
       alignment: 0
@@ -693,8 +693,8 @@ TextureImporter:
       name: flockSprites_27
       rect:
         serializedVersion: 2
-        x: 432
-        y: 612
+        x: 16
+        y: 740
         width: 16
         height: 16
       alignment: 0
@@ -714,8 +714,8 @@ TextureImporter:
       name: flockSprites_28
       rect:
         serializedVersion: 2
-        x: 400
-        y: 596
+        x: 32
+        y: 740
         width: 16
         height: 16
       alignment: 0
@@ -735,195 +735,6 @@ TextureImporter:
       name: flockSprites_29
       rect:
         serializedVersion: 2
-        x: 416
-        y: 596
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 81a943e9c85004e95a82f860133d90e1
-      internalID: -1598869956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flockSprites_30
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 596
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e2c357c7060a54f1fb737e9b9fe5e3ad
-      internalID: -84827020
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flockSprites_31
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 580
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00e60f7e9483a4ade9c385c1099b3fd0
-      internalID: 2130604479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flockSprites_32
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 580
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 79674e08945894e0c8cdcda0b39d05b2
-      internalID: 176479173
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flockSprites_33
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 580
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0abdf0882e5df443db6b204c7c7d965b
-      internalID: 1861081212
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flockSprites_34
-      rect:
-        serializedVersion: 2
-        x: 368
-        y: 580
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 710a6e9886c1249ba9219d4e135032e0
-      internalID: -1853785496
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flockSprites_35
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 580
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c21292240e835491192ca757f6e0c65e
-      internalID: 162644854
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flockSprites_36
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 580
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 72b6cc6e88fe24e9eaff451e13dd9816
-      internalID: -1077121132
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flockSprites_37
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 580
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37141e96b5e624cdc9bf7f90db1aecd0
-      internalID: -1525668419
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flockSprites_38
-      rect:
-        serializedVersion: 2
         x: 1072
         y: 580
         width: 16
@@ -935,8 +746,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33a921e0581cc4e31831a3f832e90af3
-      internalID: 1238013772
+      spriteID: 81a943e9c85004e95a82f860133d90e1
+      internalID: -1598869956
       vertices: []
       indices: 
       edges: []
@@ -976,15 +787,6 @@ TextureImporter:
       flockSprites_28: 2060975447
       flockSprites_29: -1598869956
       flockSprites_3: -1055269430
-      flockSprites_30: -84827020
-      flockSprites_31: 2130604479
-      flockSprites_32: 176479173
-      flockSprites_33: 1861081212
-      flockSprites_34: -1853785496
-      flockSprites_35: 162644854
-      flockSprites_36: -1077121132
-      flockSprites_37: -1525668419
-      flockSprites_38: 1238013772
       flockSprites_4: 1352832392
       flockSprites_5: -1439967400
       flockSprites_6: -126843435
