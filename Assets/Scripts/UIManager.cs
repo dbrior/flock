@@ -18,9 +18,9 @@ public class UIManager : MonoBehaviour
     }
 
     public void UpdateSheepCountsUI(int wildCount, int tameCount, int deadCount) {
-        wildSheepCount.text = wildCount.ToString() + " wild";
-        tameSheepCount.text = tameCount.ToString() + " tame";
-        deadSheepCount.text = deadCount.ToString() + " dead";
+        wildSheepCount.text = wildCount.ToString() + "    WILD";
+        tameSheepCount.text = tameCount.ToString() + "    TAME";
+        deadSheepCount.text = deadCount.ToString() + "    DEAD";
 
     }
 }
