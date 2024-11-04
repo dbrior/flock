@@ -64,15 +64,18 @@ public class Sheep : MonoBehaviour
             float moveTime = UnityEngine.Random.Range(minMoveTime, maxMoveTime);
             moving = true;
             heading = UnityEngine.Random.insideUnitCircle.normalized;
-            if (heading.y < 0) {
-                animator.SetTrigger("MoveDown");
-            } else if (heading.y > 0) {
-                animator.SetTrigger("MoveUp");
-            }
-            if (heading.x < 0) {
+            if (heading.y >= heading.x) {
+                if (heading.y < 0) {
+                    animator.SetTrigger("MoveDown");
+                } else if (heading.y > 0) {
+                    animator.SetTrigger("MoveUp");
+                }
+            } else {
+                if (heading.x < 0) {
                 animator.SetTrigger("MoveLeft");
-            } else if (heading.x > 0) {
-                animator.SetTrigger("MoveRight");
+                } else if (heading.x > 0) {
+                    animator.SetTrigger("MoveRight");
+                }
             }
             yield return new WaitForSeconds(moveTime);
             moving = false;
