@@ -9,11 +9,12 @@ public class Sheep : MonoBehaviour
     private AudioSource audioSource;
     private Rigidbody2D rb;
     private Animator animator;
+    public bool isDying;
 
     // Wander
-    private bool moving;
     private Vector2 heading;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float maxAcceleration;
     [SerializeField] private float minMoveTime;
     [SerializeField] private float maxMoveTime;
     [SerializeField] private float minWaitTime;
@@ -24,8 +25,8 @@ public class Sheep : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        moving = false;
         heading = Vector2.zero;
+        isDying = false;
     }
 
     void Start() {
@@ -33,12 +34,15 @@ public class Sheep : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (moving) {
-            rb.MovePosition((Vector2) transform.position + heading * moveSpeed * Time.fixedDeltaTime);
-        }
+        Vector2 targetVel = heading * moveSpeed;
+        Vector2 velDelta = targetVel - rb.velocity;
+        Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
+        rb.AddForce(requiredAccel * rb.mass);
+        // rb.MovePosition((Vector2) transform.position + heading * moveSpeed * Time.fixedDeltaTime);
     }
 
     public void Kill() {
+        isDying = true;
         audioSource.PlayOneShot(deathSound);
         StartCoroutine(WaitThenExecute(deathSound.length, Death));
     }
@@ -62,7 +66,6 @@ public class Sheep : MonoBehaviour
             float waitTime = UnityEngine.Random.Range(minWaitTime, maxWaitTime);
             yield return new WaitForSeconds(waitTime);
             float moveTime = UnityEngine.Random.Range(minMoveTime, maxMoveTime);
-            moving = true;
             heading = UnityEngine.Random.insideUnitCircle.normalized;
             if (heading.y >= heading.x) {
                 if (heading.y < 0) {
@@ -78,7 +81,7 @@ public class Sheep : MonoBehaviour
                 }
             }
             yield return new WaitForSeconds(moveTime);
-            moving = false;
+            heading = Vector2.zero;
             animator.SetTrigger("Idle");
         }
     }

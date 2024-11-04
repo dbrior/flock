@@ -16,6 +16,10 @@ public class Rope : MonoBehaviour
         GenerateRope();
     }
 
+    void FixedUpdate() {
+        // Debug.Log(ropeSegments[2].GetComponent<HingeJoint2D>().reactionForce);
+    }
+
     void GenerateRope()
     {
         Vector3 ropeStartPoint = player1.position;
@@ -41,6 +45,7 @@ public class Rope : MonoBehaviour
             Rigidbody2D rb = segment.GetComponent<Rigidbody2D>();
             joint.autoConfigureConnectedAnchor = false;
             joint.anchor = new Vector2(0, 0);
+            // joint.breakForce = 100f;
 
             if (previousSegment == null)
             {

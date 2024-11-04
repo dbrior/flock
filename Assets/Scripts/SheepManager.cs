@@ -61,10 +61,14 @@ public class SheepManager : MonoBehaviour
         OnSheepCountChange();
     }
 
-    public void KillSheep(GameObject sheep) {
+    public void KillSheep(GameObject sheepObj) {
+        Sheep sheep = sheepObj.GetComponent<Sheep>();
+        if (sheep.isDying) {
+            return;
+        }
         wildSheepCount -= 1;
         deadSheepCount += 1;
-        sheep.GetComponent<Sheep>().Kill();
+        sheep.Kill();
         OnSheepCountChange();
     }
 

@@ -14,7 +14,11 @@ public class Player : MonoBehaviour
     }
 
     void FixedUpdate() {
-        rb.MovePosition(rb.position + moveVec * moveSpeed * Time.fixedDeltaTime);
+        Vector2 targetVel = moveVec * moveSpeed;
+        Vector2 velDelta = targetVel - rb.velocity;
+        Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
+        rb.AddForce(requiredAccel * rb.mass);
+        // rb.MovePosition(rb.position + moveVec * moveSpeed * Time.fixedDeltaTime);
     }
 
     public void OnMove(InputValue inputValue) {

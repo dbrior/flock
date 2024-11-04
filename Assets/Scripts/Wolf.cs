@@ -6,17 +6,15 @@ public class Wolf : MonoBehaviour
 {
     [SerializeField]
     private LayerMask sheepLayer;
-    private GameObject targetSheep;
     [SerializeField]
     private float moveSpeed;
+    private Vector2 heading;
     [SerializeField]
     private float detectionRadius;
-    private bool hasTarget;
     private Rigidbody2D rb;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
-        hasTarget = false;
     }
 
     void Start()
@@ -25,10 +23,10 @@ public class Wolf : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (hasTarget) {
-            Vector2 moveDirection = (targetSheep.transform.position - transform.position).normalized;
-            rb.MovePosition((Vector2)transform.position + (moveDirection * moveSpeed) * Time.fixedDeltaTime);
-        }
+        Vector2 targetVel = heading * moveSpeed;
+        Vector2 velDelta = targetVel - rb.velocity;
+        Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
+        rb.AddForce(requiredAccel * rb.mass);
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -36,7 +34,6 @@ public class Wolf : MonoBehaviour
         if (col.gameObject.layer == LayerMask.NameToLayer("WildSheep"))
         {
             SheepManager.Instance.KillSheep(col.gameObject);
-            hasTarget = false;
         }
     }
 
@@ -47,10 +44,9 @@ public class Wolf : MonoBehaviour
             if (sheepInRange.Length > 0)
             {
                 Collider2D closestSheep = sheepInRange.OrderBy(sheep => Vector2.Distance(transform.position, sheep.transform.position)).First();
-                targetSheep = closestSheep.gameObject;
-                hasTarget = true;
+                heading = (closestSheep.transform.position - transform.position).normalized;
             } else {
-                hasTarget = false;
+                heading =  Random.insideUnitCircle.normalized;
             }
             yield return new WaitForSeconds(1f);
         }
