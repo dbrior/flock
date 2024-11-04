@@ -21,6 +21,5 @@ public class UIManager : MonoBehaviour
         wildSheepCount.text = wildCount.ToString() + "    WILD";
         tameSheepCount.text = tameCount.ToString() + "    TAME";
         deadSheepCount.text = deadCount.ToString() + "    DEAD";
-
     }
 }
