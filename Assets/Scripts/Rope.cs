@@ -40,7 +40,7 @@ public class Rope : MonoBehaviour
             HingeJoint2D joint = segment.GetComponent<HingeJoint2D>();
             Rigidbody2D rb = segment.GetComponent<Rigidbody2D>();
             joint.autoConfigureConnectedAnchor = false;
-            joint.anchor = new Vector2(-segmentLength/2, 0);
+            joint.anchor = new Vector2(0, 0);
 
             if (previousSegment == null)
             {
@@ -50,20 +50,17 @@ public class Rope : MonoBehaviour
             else
             {
                 joint.connectedBody = previousSegment.GetComponent<Rigidbody2D>();
-                joint.connectedAnchor = new Vector2(segmentLength/2, 0);
+                joint.connectedAnchor = new Vector2(segmentLength, 0);
             }
 
             previousSegment = segment;
             segmentPosition += direction * segmentLength;
         }
 
-        DistanceJoint2D distanceJoint = previousSegment.AddComponent<DistanceJoint2D>();
-        distanceJoint.autoConfigureConnectedAnchor = false;
-        distanceJoint.autoConfigureDistance = false;
-        distanceJoint.anchor = new Vector2(segmentLength/2, 0);
-        distanceJoint.connectedAnchor = new Vector2(0, 0);
-        distanceJoint.distance = 0f;
-        distanceJoint.maxDistanceOnly = true;
-        distanceJoint.connectedBody = player2.GetComponent<Rigidbody2D>();
+        HingeJoint2D lastHingeJoint = previousSegment.AddComponent<HingeJoint2D>();
+        lastHingeJoint.connectedBody = player2.GetComponent<Rigidbody2D>();
+        lastHingeJoint.autoConfigureConnectedAnchor = false;
+        lastHingeJoint.anchor = new Vector2(segmentLength, 0);
+        lastHingeJoint.connectedAnchor = new Vector2(0, 0);
     }
 }
