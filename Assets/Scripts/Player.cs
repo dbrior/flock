@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     private Vector2 moveVec;
     private Rigidbody2D rb;
     private Animator animator;
+    [SerializeField] private LayerMask interactionLayer;
+    [SerializeField] private float interactionRadius;
     void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -36,6 +38,18 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("MoveLeft");
             } else if (moveVec.x > 0) {
                 animator.SetTrigger("MoveRight");
+            }
+        }
+    }
+
+    public void OnInteract() {
+        Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, interactionRadius, interactionLayer);
+        if (objectsInRange.Length > 0) {
+            foreach (Collider2D obj in objectsInRange) {
+                Interactable interactable = obj.GetComponent<Interactable>();
+                if (interactable != null) {
+                    interactable.Interact();
+                }
             }
         }
     }

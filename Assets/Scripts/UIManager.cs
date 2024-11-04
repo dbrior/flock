@@ -8,9 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     // UI Elements
-    [SerializeField] private TextMeshProUGUI wildSheepCount;
     [SerializeField] private TextMeshProUGUI tameSheepCount;
-    [SerializeField] private TextMeshProUGUI deadSheepCount;
 
     void Awake() {
         if (Instance == null) {Instance = this;} 

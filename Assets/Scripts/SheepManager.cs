@@ -88,8 +88,8 @@ public class SheepManager : MonoBehaviour
 
     private void OnSheepCountChange() {
         UpdateUI();
-        if (wildSheepCount == 0) {
-            WaveManager.Instance.EndWave();
-        }
+        // if (wildSheepCount == 0) {
+        //     WaveManager.Instance.EndWave();
+        // }
     }
 }
