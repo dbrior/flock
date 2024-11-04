@@ -13,14 +13,14 @@ public class SheepManager : MonoBehaviour
     private int tameSheepCount;
     [SerializeField]
     private GameObject sheepPrefab;
-    private List<GameObject> sheepList;
+    private List<Sheep> sheepList;
 
     void Awake() {
         // Singleton management
         if (Instance == null){Instance = this;} 
         else {Destroy(gameObject);}
 
-        sheepList = new List<GameObject>();
+        sheepList = new List<Sheep>();
         wildSheepCount = 0;
         tameSheepCount = 0;
         deadSheepCount = 0;
@@ -28,7 +28,7 @@ public class SheepManager : MonoBehaviour
 
     public void Reset() {
         DestroyAllSheep();
-        sheepList = new List<GameObject>();
+        sheepList = new List<Sheep>();
         wildSheepCount = 0;
         tameSheepCount = 0;
         deadSheepCount = 0;
@@ -41,7 +41,7 @@ public class SheepManager : MonoBehaviour
 
     public void SpawnSheep() {
         for (int i=0; i<spawnCount; i++) {
-            GameObject sheep = SpawnManager.Instance.SpawnObject(sheepPrefab);
+            Sheep sheep = SpawnManager.Instance.SpawnObject(sheepPrefab).GetComponent<Sheep>();
             sheepList.Add(sheep);
             wildSheepCount += 1;
         }
@@ -52,24 +52,20 @@ public class SheepManager : MonoBehaviour
         sheep.layer = LayerMask.NameToLayer("TameSheep");
         wildSheepCount -= 1;
         tameSheepCount += 1;
+        sheep.GetComponent<Sheep>().Capture();
         OnSheepCountChange();
     }
 
     public void KillSheep(GameObject sheep) {
         wildSheepCount -= 1;
         deadSheepCount += 1;
-        DestroySheep(sheep);
+        sheep.GetComponent<Sheep>().Kill();
         OnSheepCountChange();
-    }
-
-    private void DestroySheep(GameObject sheep) {
-        sheepList.Remove(sheep);
-        Destroy(sheep);
     }
 
     public void DestroyAllSheep() {
         for (int i=0; i<sheepList.Count; i++) {
-            GameObject sheep = sheepList[i];
+            Sheep sheep = sheepList[i];
             Destroy(sheep);
         }
         sheepList.Clear();
