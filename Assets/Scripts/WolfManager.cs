@@ -17,6 +17,10 @@ public class WolfManager : MonoBehaviour
         wolves = new List<GameObject>();
     }
 
+    public void Reset() {
+        DestroyAllWovles();
+    }
+
     public void SetSpawnCount(int count) {
         spawnCount = count;
     }

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1726316206085997860}
   - component: {fileID: 8451958248618949041}
   - component: {fileID: 3277222298863305030}
-  - component: {fileID: 1642900689304788512}
   - component: {fileID: 8059462698365605338}
   - component: {fileID: 8966190200895820358}
   - component: {fileID: 5661782791882580762}
+  - component: {fileID: 3775543476517921725}
   m_Layer: 6
   m_Name: Sheep
   m_TagString: Untagged
@@ -103,22 +103,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   captureSound: {fileID: 8300000, guid: a9584a770c05e46939be5190f5e26003, type: 3}
   deathSound: {fileID: 8300000, guid: 2a9f3745618c546788d067cfee127a72, type: 3}
---- !u!114 &1642900689304788512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6663090896650471145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 174b9a6d0557846818221c7dd81662b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1
-  minWaitTime: 0.5
-  maxWaitTime: 2
-  moveRadius: 350
+  moveSpeed: 0.2
+  minMoveTime: 1
+  maxMoveTime: 2
+  minWaitTime: 2
+  maxWaitTime: 5
 --- !u!50 &8059462698365605338
 Rigidbody2D:
   serializedVersion: 4
@@ -131,7 +120,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 20
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -287,3 +276,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &3775543476517921725
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6663090896650471145}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f0b6715a2e4114ddcaecd81af21c661b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

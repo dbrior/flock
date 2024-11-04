@@ -13,24 +13,25 @@ public class SheepManager : MonoBehaviour
     private int tameSheepCount;
     [SerializeField]
     private GameObject sheepPrefab;
-    private List<Sheep> sheepList;
+    private List<Sheep> tameSheepList;
+    private List<Sheep> wildSheepList;
 
     void Awake() {
         // Singleton management
         if (Instance == null){Instance = this;} 
         else {Destroy(gameObject);}
 
-        sheepList = new List<Sheep>();
+        wildSheepList = new List<Sheep>();
+        tameSheepList = new List<Sheep>();
         wildSheepCount = 0;
         tameSheepCount = 0;
         deadSheepCount = 0;
     }
 
     public void Reset() {
-        DestroyAllSheep();
-        sheepList = new List<Sheep>();
+        DestroyWildSheep();
+        wildSheepList = new List<Sheep>();
         wildSheepCount = 0;
-        tameSheepCount = 0;
         deadSheepCount = 0;
         UpdateUI();
     }
@@ -42,17 +43,21 @@ public class SheepManager : MonoBehaviour
     public void SpawnSheep() {
         for (int i=0; i<spawnCount; i++) {
             Sheep sheep = SpawnManager.Instance.SpawnObject(sheepPrefab).GetComponent<Sheep>();
-            sheepList.Add(sheep);
+            wildSheepList.Add(sheep);
             wildSheepCount += 1;
         }
         OnSheepCountChange();
     }
 
-    public void TameSheep(GameObject sheep) {
-        sheep.layer = LayerMask.NameToLayer("TameSheep");
+    public void TameSheep(GameObject sheepObj) {
+        sheepObj.layer = LayerMask.NameToLayer("TameSheep");
+
+        Sheep sheep = sheepObj.GetComponent<Sheep>();
         wildSheepCount -= 1;
         tameSheepCount += 1;
-        sheep.GetComponent<Sheep>().Capture();
+        sheep.Capture();
+        tameSheepList.Add(sheep);
+        wildSheepList.Remove(sheep);
         OnSheepCountChange();
     }
 
@@ -63,14 +68,14 @@ public class SheepManager : MonoBehaviour
         OnSheepCountChange();
     }
 
-    public void DestroyAllSheep() {
-        for (int i=0; i<sheepList.Count; i++) {
-            Sheep sheep = sheepList[i];
+    public void DestroyWildSheep() {
+        for (int i=0; i<wildSheepList.Count; i++) {
+            Sheep sheep = wildSheepList[i];
             if (sheep != null) {
                 Destroy(sheep.gameObject);
             }
         }
-        sheepList.Clear();
+        wildSheepList.Clear();
     }
 
     private void UpdateUI() {

@@ -10,7 +10,8 @@ public class WaveManager : MonoBehaviour
         (3, 0),
         (5, 1),
         (10, 3),
-        (10, 5)
+        (10, 5),
+        (20, 8)
     };
     [SerializeField] private int currentWave;
     void Awake() {
@@ -34,6 +35,7 @@ public class WaveManager : MonoBehaviour
 
     public void EndWave() {
         SheepManager.Instance.Reset();
+        WolfManager.Instance.Reset();
         currentWave += 1;
         StartWave();
     }
