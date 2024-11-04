@@ -66,7 +66,7 @@ public class SheepManager : MonoBehaviour
     public void DestroyAllSheep() {
         for (int i=0; i<sheepList.Count; i++) {
             Sheep sheep = sheepList[i];
-            Destroy(sheep);
+            Destroy(sheep.gameObject);
         }
         sheepList.Clear();
     }
