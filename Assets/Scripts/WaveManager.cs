@@ -24,8 +24,12 @@ public class WaveManager : MonoBehaviour
 
     public void StartWave() {
         (int sheepCount, int wolfCount) = waves[currentWave];
+
         SheepManager.Instance.SetSpawnCount(sheepCount);
         SheepManager.Instance.SpawnSheep();
+
+        WolfManager.Instance.SetSpawnCount(wolfCount);
+        WolfManager.Instance.SpawnWolves();
     }
 
     public void EndWave() {

@@ -2,28 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public struct Range
-{
-    public float min;
-    public float max;
-
-    public Range(float min, float max)
-    {
-        this.min = min;
-        this.max = max;
-    }
-}
-
 public class SheepManager : MonoBehaviour
 {
     public static SheepManager Instance { get; private set; }
 
-    // Serializable Fields
-    [SerializeField]
-    private Range spawnRangeX;
-    [SerializeField]
-    private Range spawnRangeY;
     [SerializeField]
     private int spawnCount;
     private int deadSheepCount;
@@ -31,8 +13,6 @@ public class SheepManager : MonoBehaviour
     private int tameSheepCount;
     [SerializeField]
     private GameObject sheepPrefab;
-
-    // Hidden Fields
     private List<GameObject> sheepList;
 
     void Awake() {
@@ -61,11 +41,7 @@ public class SheepManager : MonoBehaviour
 
     public void SpawnSheep() {
         for (int i=0; i<spawnCount; i++) {
-            Vector2 spawnPosition = new Vector2(
-                Random.Range(spawnRangeX.min, spawnRangeX.max),
-                Random.Range(spawnRangeY.min, spawnRangeY.max)
-            );
-            GameObject sheep = Instantiate(sheepPrefab, spawnPosition, Quaternion.identity);
+            GameObject sheep = SpawnManager.Instance.SpawnObject(sheepPrefab);
             sheepList.Add(sheep);
             wildSheepCount += 1;
         }
@@ -94,7 +70,6 @@ public class SheepManager : MonoBehaviour
     public void DestroyAllSheep() {
         for (int i=0; i<sheepList.Count; i++) {
             GameObject sheep = sheepList[i];
-            sheepList.RemoveAt(i);
             Destroy(sheep);
         }
         sheepList.Clear();
