@@ -87,7 +87,7 @@ public class Sheep : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
             float moveTime = UnityEngine.Random.Range(minMoveTime, maxMoveTime);
             heading = UnityEngine.Random.insideUnitCircle.normalized;
-            if (heading.y >= heading.x) {
+            if (Mathf.Abs(heading.y) >= Mathf.Abs(heading.x)) {
                 if (heading.y < 0) {
                     animator.SetTrigger("MoveDown");
                 } else if (heading.y > 0) {
