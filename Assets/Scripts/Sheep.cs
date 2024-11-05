@@ -65,8 +65,17 @@ public class Sheep : MonoBehaviour
     public void Shear() {
         if (!isSheared) {
             SpawnWool();
+            animator.SetLayerWeight(0, 0);
             animator.SetLayerWeight(1, 1.0f);
             isSheared = true;
+        }
+    }
+
+    public void Regrow() {
+        if (isSheared) {
+            animator.SetLayerWeight(0, 1.0f);
+            animator.SetLayerWeight(1, 0);
+            isSheared = false;
         }
     }
 

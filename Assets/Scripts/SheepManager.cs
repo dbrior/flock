@@ -33,6 +33,12 @@ public class SheepManager : MonoBehaviour
         wildSheepList = new List<Sheep>();
         wildSheepCount = 0;
         deadSheepCount = 0;
+
+        // Refresh sheared sheep
+        foreach (Sheep sheep in tameSheepList) {
+            sheep.Regrow();
+        }
+
         UpdateUI();
     }
 
