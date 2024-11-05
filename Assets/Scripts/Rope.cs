@@ -60,6 +60,12 @@ public class Rope : MonoBehaviour
 
             previousSegment = segment;
             segmentPosition += direction * segmentLength;
+
+            // if (i == Mathf.Ceil(segmentCount/2)) {
+            //     rb.mass = 50f;
+            //     rb.drag = 10f;
+            //     rb.angularDrag = 10f;
+            // }
         }
 
         HingeJoint2D lastHingeJoint = previousSegment.AddComponent<HingeJoint2D>();

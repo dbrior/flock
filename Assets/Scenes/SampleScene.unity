@@ -157,7 +157,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -1359,7 +1359,7 @@ MonoBehaviour:
   pelletSpeed: 5
   interactionLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 2240
   interactionRadius: 0.1
 --- !u!50 &808316034
 Rigidbody2D:
@@ -1373,7 +1373,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -21057,8 +21057,8 @@ MonoBehaviour:
   player1: {fileID: 808316032}
   player2: {fileID: 73706474}
   ropeSegmentPrefab: {fileID: 9066338411974766890, guid: 9d69f2eba3d0b4a7aa83ba5552a047ca, type: 3}
-  segmentCount: 4
-  segmentLength: 0.15
+  segmentCount: 3
+  segmentLength: 0.16
 --- !u!4 &1731573496
 Transform:
   m_ObjectHideFlags: 0
@@ -21074,6 +21074,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1753899929
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1726316206085997860, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.6200958
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726316206085997860, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.16394305
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726316206085997860, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726316206085997860, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726316206085997860, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726316206085997860, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726316206085997860, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726316206085997860, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726316206085997860, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726316206085997860, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6663090896650471145, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
+      propertyPath: m_Name
+      value: Sheep
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
 --- !u!1001 &1795852425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22205,3 +22262,4 @@ SceneRoots:
   - {fileID: 2080434641}
   - {fileID: 1937962092}
   - {fileID: 1490952855}
+  - {fileID: 1753899929}

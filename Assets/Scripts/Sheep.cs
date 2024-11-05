@@ -11,6 +11,10 @@ public class Sheep : MonoBehaviour
     private Animator animator;
     public bool isDying;
 
+    // Wool
+    private bool isSheared;
+    [SerializeField] private GameObject woolPrefab;
+
     // Wander
     private Vector2 heading;
     [SerializeField] private float moveSpeed;
@@ -27,10 +31,12 @@ public class Sheep : MonoBehaviour
         animator = GetComponent<Animator>();
         heading = Vector2.zero;
         isDying = false;
+        isSheared = false;
     }
 
     void Start() {
         StartCoroutine(Wander());
+        GetComponent<Interactable>().onInteract.AddListener(Shear);
     }
 
     void FixedUpdate() {
@@ -53,6 +59,20 @@ public class Sheep : MonoBehaviour
 
     private void Death() {
         Destroy(gameObject);
+    }
+
+    public void Shear() {
+        SpawnWool();
+        animator.SetLayerWeight(1, 1.0f);
+    }
+
+    private void SpawnWool() {
+        int woolAmount = UnityEngine.Random.Range(1, 3);
+        Debug.Log("Spawn " + woolAmount.ToString() + " wool");
+        for (int i=0; i<woolAmount; i++) {
+            Vector2 spawnLocation = (Vector2) transform.position + (UnityEngine.Random.insideUnitCircle.normalized * 0.1f);
+            Instantiate(woolPrefab, spawnLocation, Quaternion.identity);
+        }
     }
 
     private IEnumerator WaitThenExecute(float duration, Action action)

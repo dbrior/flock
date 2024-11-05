@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8966190200895820358}
   - component: {fileID: 5661782791882580762}
   - component: {fileID: 3775543476517921725}
+  - component: {fileID: 411428217109979760}
   m_Layer: 6
   m_Name: Sheep
   m_TagString: Untagged
@@ -103,6 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   captureSound: {fileID: 8300000, guid: a9584a770c05e46939be5190f5e26003, type: 3}
   deathSound: {fileID: 8300000, guid: 2a9f3745618c546788d067cfee127a72, type: 3}
+  isDying: 0
+  woolPrefab: {fileID: 4465506323250089622, guid: 3259a041dd2ac4574abbdf5d477fad31, type: 3}
   moveSpeed: 0.2
   maxAcceleration: 0
   minMoveTime: 1
@@ -298,3 +301,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &411428217109979760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6663090896650471145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b566f8e96caed47ad8e2a8f227cc1eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
