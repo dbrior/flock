@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private AudioSource audioSource;
+    private int woolCount;
     [SerializeField] private AudioClip collectSound;
     [SerializeField] private GameObject pelletPrefab;
     [SerializeField] private float pelletSpeed;
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        woolCount = 0;
     }
 
     void FixedUpdate() {
@@ -68,6 +70,8 @@ public class Player : MonoBehaviour
 
     public void CollectItem(ItemDrop item) {
         audioSource.PlayOneShot(collectSound);
+        woolCount += 1;
+        UIManager.Instance.UpdateWoolCount(woolCount);
         Destroy(item.gameObject);
     }
 }

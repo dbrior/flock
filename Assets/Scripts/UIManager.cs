@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     // UI Elements
-    [SerializeField] private TextMeshProUGUI tameSheepCount;
+    [SerializeField] private TextMeshProUGUI tameSheepCounter;
+    [SerializeField] private TextMeshProUGUI woolCounter;
 
     void Awake() {
         if (Instance == null) {Instance = this;} 
@@ -16,8 +17,12 @@ public class UIManager : MonoBehaviour
     }
 
     public void UpdateSheepCountsUI(int wildCount, int tameCount, int deadCount) {
-        tameSheepCount.text = tameCount.ToString();
+        tameSheepCounter.text = tameCount.ToString();
         // wildSheepCount.text = wildCount.ToString();
         // deadSheepCount.text = deadCount.ToString();
+    }
+
+    public void UpdateWoolCount(int woolCount) {
+        woolCounter.text = woolCount.ToString();
     }
 }
