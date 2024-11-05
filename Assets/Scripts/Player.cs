@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     private Vector2 moveVec;
     private Rigidbody2D rb;
     private Animator animator;
+    [SerializeField] private GameObject pelletPrefab;
+    [SerializeField] private float pelletSpeed;
     [SerializeField] private LayerMask interactionLayer;
     [SerializeField] private float interactionRadius;
     void Awake()
@@ -52,5 +54,12 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void OnUseItem() {
+        GameObject pellet = Instantiate(pelletPrefab, transform.position, Quaternion.identity);
+        Rigidbody2D pelletRb = pellet.GetComponent<Rigidbody2D>();
+        pelletRb.velocity = moveVec * pelletSpeed;
+        Destroy(pellet, 2f);
     }
 }

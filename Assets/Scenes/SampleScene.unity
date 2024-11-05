@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+  pelletPrefab: {fileID: 0}
+  pelletSpeed: 0
   interactionLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -1223,6 +1225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+  pelletPrefab: {fileID: 6302693463734982198, guid: 8bdbbbcc8fc7944d0ab90eb1d4cbb3ce, type: 3}
+  pelletSpeed: 5
   interactionLayer:
     serializedVersion: 2
     m_Bits: 2048
