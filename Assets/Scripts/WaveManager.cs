@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-class IntRange {
+public class IntRange {
     public int min;
     public int max;
 

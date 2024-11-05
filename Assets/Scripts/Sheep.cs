@@ -9,6 +9,7 @@ public class Sheep : MonoBehaviour
     private AudioSource audioSource;
     private Rigidbody2D rb;
     private Animator animator;
+    private ItemDropper itemDropper;
     public bool isDying;
 
     // Wool
@@ -29,6 +30,7 @@ public class Sheep : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        itemDropper = GetComponent<ItemDropper>();
         heading = Vector2.zero;
         isDying = false;
         isSheared = false;
@@ -36,7 +38,6 @@ public class Sheep : MonoBehaviour
 
     void Start() {
         StartCoroutine(Wander());
-        GetComponent<Interactable>().onInteract.AddListener(Shear);
     }
 
     void FixedUpdate() {
@@ -62,17 +63,15 @@ public class Sheep : MonoBehaviour
     }
 
     public void Shear() {
-        SpawnWool();
-        animator.SetLayerWeight(1, 1.0f);
+        if (!isSheared) {
+            SpawnWool();
+            animator.SetLayerWeight(1, 1.0f);
+            isSheared = true;
+        }
     }
 
     private void SpawnWool() {
-        int woolAmount = UnityEngine.Random.Range(1, 3);
-        Debug.Log("Spawn " + woolAmount.ToString() + " wool");
-        for (int i=0; i<woolAmount; i++) {
-            Vector2 spawnLocation = (Vector2) transform.position + (UnityEngine.Random.insideUnitCircle.normalized * 0.1f);
-            Instantiate(woolPrefab, spawnLocation, Quaternion.identity);
-        }
+        itemDropper.SpawnItems();
     }
 
     private IEnumerator WaitThenExecute(float duration, Action action)
