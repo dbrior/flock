@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+class IntRange {
+    public int min;
+    public int max;
+
+    void Range(int min, int max) {
+        this.min = min;
+        this.max = max;
+    }
+}
+
 public class WaveManager : MonoBehaviour
 {
     public static WaveManager Instance { get; private set; }
 
-    private List<(int, int)> waves = new List<(int, int)>{
-        (3, 0),
-        (5, 1),
-        (10, 3),
-        (10, 5),
-        (20, 8)
-    };
-    [SerializeField] private int currentWave;
+    [SerializeField] private IntRange wolfSpawnRange;
+    [SerializeField] private IntRange sheepSpawnRange;
     void Awake() {
         if (Instance == null) {Instance = this;} 
         else {Destroy(gameObject);}
@@ -24,19 +29,16 @@ public class WaveManager : MonoBehaviour
     }
 
     public void StartWave() {
-        (int sheepCount, int wolfCount) = waves[currentWave];
-
-        SheepManager.Instance.SetSpawnCount(sheepCount);
+        SheepManager.Instance.SetSpawnCount(Random.Range(sheepSpawnRange.min, sheepSpawnRange.max));
         SheepManager.Instance.SpawnSheep();
 
-        WolfManager.Instance.SetSpawnCount(wolfCount);
+        WolfManager.Instance.SetSpawnCount(Random.Range(wolfSpawnRange.min, wolfSpawnRange.max));
         WolfManager.Instance.SpawnWolves();
     }
 
     public void EndWave() {
         SheepManager.Instance.Reset();
         WolfManager.Instance.Reset();
-        currentWave += 1;
         StartWave();
     }
 }

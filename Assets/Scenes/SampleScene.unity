@@ -996,7 +996,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4438bb84bd342437a99d48240936bf6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWave: 0
+  wolfSpawnRange:
+    min: 0
+    max: 3
+  sheepSpawnRange:
+    min: 1
+    max: 10
 --- !u!1 &749139940
 GameObject:
   m_ObjectHideFlags: 0
