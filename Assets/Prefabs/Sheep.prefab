@@ -155,7 +155,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 4465506323250089622, guid: 3259a041dd2ac4574abbdf5d477fad31, type: 3}
   spawnAmounts:
     min: 1
-    max: 3
+    max: 6
 --- !u!50 &8059462698365605338
 Rigidbody2D:
   serializedVersion: 4

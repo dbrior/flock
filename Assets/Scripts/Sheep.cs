@@ -9,7 +9,7 @@ public class Sheep : MonoBehaviour
     private AudioSource audioSource;
     private Rigidbody2D rb;
     private Animator animator;
-    private ItemDropper itemDropper;
+    private ItemSpawner itemSpawner;
     public bool isDying;
 
     // Wool
@@ -30,7 +30,7 @@ public class Sheep : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        itemDropper = GetComponent<ItemDropper>();
+        itemSpawner = GetComponent<ItemSpawner>();
         heading = Vector2.zero;
         isDying = false;
         isSheared = false;
@@ -71,7 +71,7 @@ public class Sheep : MonoBehaviour
     }
 
     private void SpawnWool() {
-        itemDropper.SpawnItems();
+        itemSpawner.SpawnItems();
     }
 
     private IEnumerator WaitThenExecute(float duration, Action action)

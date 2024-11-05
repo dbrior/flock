@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDropper : MonoBehaviour
+public class ItemSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject itemPrefab;
     [SerializeField] private IntRange spawnAmounts;

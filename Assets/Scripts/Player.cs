@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     private Vector2 moveVec;
     private Rigidbody2D rb;
     private Animator animator;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip collectSound;
     [SerializeField] private GameObject pelletPrefab;
     [SerializeField] private float pelletSpeed;
     [SerializeField] private LayerMask interactionLayer;
@@ -15,6 +17,7 @@ public class Player : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate() {
@@ -61,5 +64,10 @@ public class Player : MonoBehaviour
         Rigidbody2D pelletRb = pellet.GetComponent<Rigidbody2D>();
         pelletRb.velocity = moveVec * pelletSpeed;
         Destroy(pellet, 2f);
+    }
+
+    public void CollectItem(ItemDrop item) {
+        audioSource.PlayOneShot(collectSound);
+        Destroy(item.gameObject);
     }
 }
