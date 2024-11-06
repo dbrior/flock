@@ -2,22 +2,39 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
+[System.Serializable]
+public enum Tool : int {
+    Shears = 0,
+    Slingshot = 1
+}
+
 public class Player : MonoBehaviour
 {
     [SerializeField] private int playerId;
-    public float moveSpeed;
-    private Vector2 moveVec;
-    private Vector2 heading;
     private Rigidbody2D rb;
     private Animator animator;
-    private AudioSource audioSource;
-    private int woolCount;
+
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed;
+    private Vector2 moveVec;
+    private Vector2 moveCardinal;
+    private Vector2 heading;
+
+    [Header("Interaction")]
+    [SerializeField] private float interactRange;
+    [SerializeField] private LayerMask interactionLayer;
+
+    [Header("Audio")]
     [SerializeField] private AudioClip collectSound;
+    private AudioSource audioSource;
+    
+    [Header("Misc")]    // Anything here should probably not be here
+    private Tool currentTool;
+    [SerializeField] private float shearRadius;
     [SerializeField] private GameObject pelletPrefab;
     [SerializeField] private float pelletSpeed;
-    [SerializeField] private LayerMask interactionLayer;
-    [SerializeField] private float interactionRadius;
-
+    private int woolCount;
+    
     void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -25,6 +42,7 @@ public class Player : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         woolCount = 0;
         heading = Vector2.down;
+        currentTool = Tool.Shears;
     }
 
     void Start() {
@@ -42,18 +60,21 @@ public class Player : MonoBehaviour
         { Vector2.left, 4 }
     };
     void Update() {
-        Vector2 newHeading;
+        Vector2 newMoveCardinal;
         if (moveVec == Vector2.zero) {
-            newHeading = Vector2.zero;
+            newMoveCardinal = Vector2.zero;
         } else if (Mathf.Abs(moveVec.x) > Mathf.Abs(moveVec.y)) {
-            newHeading = moveVec.x > 0 ? Vector2.right : Vector2.left;
+            newMoveCardinal = moveVec.x > 0 ? Vector2.right : Vector2.left;
         } else {
-            newHeading = moveVec.y > 0 ? Vector2.up : Vector2.down;
+            newMoveCardinal = moveVec.y > 0 ? Vector2.up : Vector2.down;
         }
 
-        if (newHeading != heading) {
-            heading = newHeading;
-            animator.SetInteger("Direction", cardinalIntMappings[heading]);
+        if (newMoveCardinal != moveCardinal) {
+            moveCardinal = newMoveCardinal;
+            animator.SetInteger("Direction", cardinalIntMappings[moveCardinal]);
+        }
+        if (moveCardinal != Vector2.zero) {
+            heading = moveCardinal;
         }
     }
 
@@ -68,23 +89,42 @@ public class Player : MonoBehaviour
         moveVec = inputValue.Get<Vector2>();
     }
 
+    // void OnDrawGizmos()
+    // {
+    //     Gizmos.DrawLine((Vector2) transform.position + (heading), (Vector2) transform.position + (heading * interactRange));
+    // }
+
     public void OnInteract() {
-        Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, interactionRadius, interactionLayer);
-        if (objectsInRange.Length > 0) {
-            foreach (Collider2D obj in objectsInRange) {
-                Interactable interactable = obj.GetComponent<Interactable>();
-                if (interactable != null) {
-                    interactable.Interact();
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, heading, interactRange, interactionLayer);
+        if (hit) {
+            Debug.Log(hit.transform.gameObject.name);
+        }
+        if (hit && hit.transform.gameObject.TryGetComponent<Interactable>(out Interactable interactable)) {
+            interactable.Interact();
+        }
+    }
+
+    public void OnUseItem() {
+        Debug.Log("Tool used " + currentTool);
+        if (currentTool == Tool.Slingshot) {
+            GameObject pellet = Instantiate(pelletPrefab, (Vector2) transform.position + (heading * 0.1f), Quaternion.identity);
+            Rigidbody2D pelletRb = pellet.GetComponent<Rigidbody2D>();
+            pelletRb.velocity = heading * pelletSpeed;
+            Destroy(pellet, 2f);
+        } else if (currentTool == Tool.Shears) {
+            Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, shearRadius, interactionLayer);
+            if (objectsInRange.Length > 0) {
+                foreach (Collider2D obj in objectsInRange) {
+                    if (obj.TryGetComponent<ToolInteraction>(out ToolInteraction toolInteraction)) {
+                        toolInteraction.UseTool(currentTool);
+                    }
                 }
             }
         }
     }
 
-    public void OnUseItem() {
-        GameObject pellet = Instantiate(pelletPrefab, (Vector2) transform.position + (heading * 0.1f), Quaternion.identity);
-        Rigidbody2D pelletRb = pellet.GetComponent<Rigidbody2D>();
-        pelletRb.velocity = heading * pelletSpeed;
-        Destroy(pellet, 2f);
+    public void OnChangeTool() {
+        currentTool = (Tool) (((int) currentTool + 1) % 2);
     }
 
     public void CollectItem(ItemDrop item) {

@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeTool",
+                    "type": "Button",
+                    "id": "af7eb5f5-3649-49b1-abfa-8141c7498f56",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -132,6 +141,17 @@
                     "action": "UseItem",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ffa925b5-fce1-42f4-ace5-4ac357c7aa38",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -161,6 +181,15 @@
                     "name": "UseItem",
                     "type": "Button",
                     "id": "0473d1d1-5008-424f-a9b7-c8da34a3413f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeTool",
+                    "type": "Button",
+                    "id": "bc0a2bbd-268f-4dd1-9afb-dc7c1c85cfa2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -264,6 +293,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "UseItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ef3c88a-8e15-4aa1-a14a-105e059bf2ee",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeTool",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

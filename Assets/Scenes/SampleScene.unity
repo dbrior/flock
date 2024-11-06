@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_DefaultActionMap
       value: 291524df-c5e7-4199-9d3d-bceb6e48ddd9
       objectReference: {fileID: 0}
+    - target: {fileID: 1844621011028464499, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.24
+      objectReference: {fileID: 0}
     - target: {fileID: 2777728608378045438, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -187,6 +191,14 @@ PrefabInstance:
       propertyPath: playerId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8084549005287282610, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: shearRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084549005287282610, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: interactRange
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -238,7 +250,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 275950051}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SpawnZones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1486,7 +1498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1073536585}
   - component: {fileID: 1073536586}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawn1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1621,7 +1633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1107293532}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: backupSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21475,6 +21487,14 @@ PrefabInstance:
     - target: {fileID: 2817175635976004154, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084549005287282610, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: shearRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084549005287282610, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: interactRange
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

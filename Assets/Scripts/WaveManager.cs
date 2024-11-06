@@ -7,7 +7,7 @@ public class IntRange {
     public int min;
     public int max;
 
-    void Range(int min, int max) {
+    void Init(int min, int max) {
         this.min = min;
         this.max = max;
     }

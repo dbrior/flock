@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1726316206085997860}
   - component: {fileID: 8451958248618949041}
   - component: {fileID: 3277222298863305030}
-  - component: {fileID: 411428217109979760}
+  - component: {fileID: -386509838923392108}
   - component: {fileID: 906520996850341237}
   - component: {fileID: 8059462698365605338}
   - component: {fileID: 8966190200895820358}
@@ -113,7 +113,7 @@ MonoBehaviour:
   maxMoveTime: 2
   minWaitTime: 2
   maxWaitTime: 5
---- !u!114 &411428217109979760
+--- !u!114 &-386509838923392108
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,24 +122,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 6663090896650471145}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b566f8e96caed47ad8e2a8f227cc1eed, type: 3}
+  m_Script: {fileID: 11500000, guid: 9dfc53712e9504f9e9a0639ffcc228e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3277222298863305030}
-        m_TargetAssemblyTypeName: Sheep, Assembly-CSharp
-        m_MethodName: Shear
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  toolInteractions:
+  - tool: 0
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3277222298863305030}
+          m_TargetAssemblyTypeName: Sheep, Assembly-CSharp
+          m_MethodName: Shear
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &906520996850341237
 MonoBehaviour:
   m_ObjectHideFlags: 0
