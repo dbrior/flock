@@ -36,8 +36,10 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip collectSound;
     private AudioSource audioSource;
     
-    [Header("Misc")]    // Anything here should probably not be here
+    [Header("Misc")]
+    // Anything here should probably not be here
     private Tool currentTool;
+    [SerializeField] private ToolUI toolUI;
     [SerializeField] private float shearRadius;
     [SerializeField] private GameObject pelletPrefab;
     [SerializeField] private float pelletSpeed;
@@ -140,7 +142,9 @@ public class Player : MonoBehaviour
     }
 
     public void OnChangeTool() {
-        currentTool = (Tool) (((int) currentTool + 1) % 2);
+        int toolIdx = ((int) currentTool + 1) % 2;
+        currentTool = (Tool) toolIdx;
+        toolUI.SetActiveTool(toolIdx);
     }
 
     public void CollectItem(ItemDrop item) {
