@@ -39,6 +39,7 @@ public class WaveManager : MonoBehaviour
     public void EndWave() {
         SheepManager.Instance.Reset();
         WolfManager.Instance.Reset();
+        CropManager.Instance.AdvanceCrops();
         StartWave();
     }
 }

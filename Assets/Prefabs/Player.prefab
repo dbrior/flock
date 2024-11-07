@@ -295,8 +295,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2241
   collectSound: {fileID: 8300000, guid: 2665dea3f1c554e9a8aa7bcf292a627e, type: 3}
+  toolUI: {fileID: 0}
   shearRadius: 0.5
   pelletPrefab: {fileID: 6302693463734982198, guid: 8bdbbbcc8fc7944d0ab90eb1d4cbb3ce, type: 3}
+  seedMoundPrefab: {fileID: 4984600077904589487, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
   pelletSpeed: 5
 --- !u!50 &2362330277033630554
 Rigidbody2D:

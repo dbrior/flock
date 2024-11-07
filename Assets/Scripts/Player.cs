@@ -5,7 +5,9 @@ using System.Collections.Generic;
 [System.Serializable]
 public enum Tool : int {
     Shears = 0,
-    Slingshot = 1
+    Slingshot = 1,
+    SeedBag = 2,
+    WateringCan = 3
 }
 
 [System.Serializable]
@@ -39,8 +41,10 @@ public class Player : MonoBehaviour
     [Header("Misc")]
     // Anything here should probably not be here
     private Tool currentTool;
+    private int totalToolCount;
     [SerializeField] private ToolUI toolUI;
     [SerializeField] private float shearRadius;
+    [SerializeField] private float wateringRadius;
     [SerializeField] private GameObject pelletPrefab;
     [SerializeField] private float pelletSpeed;
     private int woolCount;
@@ -54,6 +58,7 @@ public class Player : MonoBehaviour
         woolCount = 0;
         heading = Vector2.down;
         currentTool = Tool.Shears;
+        totalToolCount = System.Enum.GetNames(typeof(Tool)).Length;
     }
 
     void Start() {
@@ -138,11 +143,22 @@ public class Player : MonoBehaviour
                     }
                 }
             }
+        } else if (currentTool == Tool.SeedBag) {
+            CropManager.Instance.PlantCrop(transform.position);
+        } else if (currentTool == Tool.WateringCan) {
+            Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, wateringRadius);
+            if (objectsInRange.Length > 0) {
+                foreach (Collider2D obj in objectsInRange) {
+                    if (obj.TryGetComponent<ToolInteraction>(out ToolInteraction toolInteraction)) {
+                        toolInteraction.UseTool(currentTool);
+                    }
+                }
+            }
         }
     }
 
     public void OnChangeTool() {
-        int toolIdx = ((int) currentTool + 1) % 2;
+        int toolIdx = ((int) currentTool + 1) % totalToolCount;
         currentTool = (Tool) toolIdx;
         toolUI.SetActiveTool(toolIdx);
     }
