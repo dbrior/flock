@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     // UI Elements
     [SerializeField] private TextMeshProUGUI tameSheepCounter;
     [SerializeField] private TextMeshProUGUI woolCounter;
+    [SerializeField] private TextMeshProUGUI worldTime;
 
     void Awake() {
         if (Instance == null) {Instance = this;} 
@@ -24,5 +25,15 @@ public class UIManager : MonoBehaviour
 
     public void UpdateWoolCount(int woolCount) {
         woolCounter.text = woolCount.ToString();
+    }
+
+    public void UpdateTime(int currentTimeSeconds, int dayLengthSeconds) {
+        float hourValue = dayLengthSeconds / 24f;
+        float minuteValue = hourValue / 60f;
+
+        int currentHour = (int) Mathf.Floor(currentTimeSeconds / hourValue);
+        int currentMinute = (int) Mathf.Floor((currentTimeSeconds - (currentHour * hourValue)) / minuteValue);
+
+        worldTime.text = currentHour.ToString("00") + ":" + currentMinute.ToString("00");
     }
 }

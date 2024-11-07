@@ -19,6 +19,8 @@ public class WaveManager : MonoBehaviour
 
     [SerializeField] private IntRange wolfSpawnRange;
     [SerializeField] private IntRange sheepSpawnRange;
+    [SerializeField] private int dayLengthSeconds;
+    private int currentTimeSeconds;
     void Awake() {
         if (Instance == null) {Instance = this;} 
         else {Destroy(gameObject);}
@@ -36,6 +38,8 @@ public class WaveManager : MonoBehaviour
         WolfManager.Instance.SpawnWolves();
 
         CropManager.Instance.SpawnRandomCrops();
+        currentTimeSeconds = 0;
+        StartCoroutine(DayCycle());
     }
 
     public void EndWave() {
@@ -43,5 +47,14 @@ public class WaveManager : MonoBehaviour
         WolfManager.Instance.Reset();
         CropManager.Instance.AdvanceCrops();
         StartWave();
+    }
+
+    private IEnumerator DayCycle() {
+        while (currentTimeSeconds < dayLengthSeconds) {
+            yield return new WaitForSeconds(1f);
+            currentTimeSeconds += 1;
+            UIManager.Instance.UpdateTime(currentTimeSeconds, dayLengthSeconds);
+        }
+        EndWave();
     }
 }
