@@ -8,6 +8,13 @@ public enum Tool : int {
     Slingshot = 1
 }
 
+[System.Serializable]
+public enum UpgradeType : int {
+    ShearRadius = 0,
+    RopeLength = 1,
+    Strength = 2
+}
+
 public class Player : MonoBehaviour
 {
     [SerializeField] private int playerId;
@@ -97,10 +104,10 @@ public class Player : MonoBehaviour
     public void OnInteract() {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, heading, interactRange, interactionLayer);
         if (hit) {
-            Debug.Log(hit.transform.gameObject.name);
+            Debug.Log("Player " + playerId + ": Interact with " + hit.transform.gameObject.name);
         }
         if (hit && hit.transform.gameObject.TryGetComponent<Interactable>(out Interactable interactable)) {
-            interactable.Interact();
+            interactable.Interact(this);
         }
     }
 
@@ -129,8 +136,24 @@ public class Player : MonoBehaviour
 
     public void CollectItem(ItemDrop item) {
         audioSource.PlayOneShot(collectSound);
-        woolCount += 1;
-        UIManager.Instance.UpdateWoolCount(woolCount);
+        AdjustWoolCount(1);
         Destroy(item.gameObject);
+    }
+
+    public void AdjustWoolCount(int delta) {
+        woolCount += delta;
+        UIManager.Instance.UpdateWoolCount(woolCount);
+    }
+
+    public int GetWoolCount() {
+        return woolCount;
+    }
+
+    public void AddUpgrade(UpgradeType upgradeType) {
+        if (upgradeType == UpgradeType.ShearRadius) {
+            shearRadius += 0.1f;
+        } else if (upgradeType == UpgradeType.Strength) {
+            rb.mass += 1;
+        }
     }
 }
