@@ -135,6 +135,14 @@ PrefabInstance:
       propertyPath: m_DefaultActionMap
       value: 291524df-c5e7-4199-9d3d-bceb6e48ddd9
       objectReference: {fileID: 0}
+    - target: {fileID: 1169048194555680731, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: m_Distance
+      value: 0.048699975
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217486628430895443, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1844621011028464499, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.24
@@ -206,6 +214,10 @@ PrefabInstance:
     - target: {fileID: 8084549005287282610, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: wateringRadius
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471698477589283678, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1095,10 +1107,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wolfPrefab: {fileID: 1297718032968050557, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
   spawnCount: 0
---- !u!4 &808316032 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2817175635976004154, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-  m_PrefabInstance: {fileID: 2412200792051566398}
+--- !u!50 &852527519 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7092996649854858045, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+  m_PrefabInstance: {fileID: 80048236}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &922456896
 PrefabInstance:
@@ -1313,11 +1325,6 @@ Canvas:
   m_SortingLayerID: 1984405675
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!4 &987973836 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2817175635976004154, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-  m_PrefabInstance: {fileID: 80048236}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1013141124
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,6 +2279,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!50 &1432902380 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7092996649854858045, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+  m_PrefabInstance: {fileID: 2412200792051566398}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1461956900
 GameObject:
   m_ObjectHideFlags: 0
@@ -20565,11 +20577,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe06b30684844602a852461c24d49f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 808316032}
-  player2: {fileID: 987973836}
+  player1AnchorPoint: {fileID: 1432902380}
+  player2AnchorPoint: {fileID: 852527519}
   ropeSegmentPrefab: {fileID: 9066338411974766890, guid: 9d69f2eba3d0b4a7aa83ba5552a047ca, type: 3}
   maxSegmentCount: 3
   segmentLength: 0.16
+  ropeSlideSpeed: 1
 --- !u!4 &1731573496
 Transform:
   m_ObjectHideFlags: 0
