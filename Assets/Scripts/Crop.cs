@@ -23,7 +23,7 @@ public class Crop : MonoBehaviour
     [SerializeField] private Sprite deadSprite;
     private Dictionary<CropState, Sprite> sprites;
 
-    void Start() {
+    void Awake() {
         state = CropState.Dry;
         totalStates = System.Enum.GetValues(typeof(CropState)).Length;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -36,6 +36,11 @@ public class Crop : MonoBehaviour
             {CropState.Dead, deadSprite}
         };
 
+        spriteRenderer.sprite = sprites[state];
+    }
+
+    public void SetState(CropState newState) {
+        state = newState;
         spriteRenderer.sprite = sprites[state];
     }
 

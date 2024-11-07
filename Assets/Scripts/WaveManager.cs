@@ -34,6 +34,8 @@ public class WaveManager : MonoBehaviour
 
         WolfManager.Instance.SetSpawnCount(Random.Range(wolfSpawnRange.min, wolfSpawnRange.max));
         WolfManager.Instance.SpawnWolves();
+
+        CropManager.Instance.SpawnRandomCrops();
     }
 
     public void EndWave() {

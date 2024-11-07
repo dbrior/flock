@@ -6,7 +6,7 @@ public class CropManager : MonoBehaviour
 {
     public static CropManager Instance { get; private set;}
     [SerializeField] private GameObject cropPrefab;
-
+    [SerializeField] private IntRange dailySpawnAmount;
     private List<Crop> crops;
     private List<Crop> cropsToRemove;
 
@@ -36,5 +36,14 @@ public class CropManager : MonoBehaviour
 
     public void RemoveCrop(Crop crop) {
         cropsToRemove.Add(crop);
+    }
+
+    public void SpawnRandomCrops() {
+        int spawnAmount = Random.Range(dailySpawnAmount.min, dailySpawnAmount.max);
+        for (int i=0; i<spawnAmount; i++) {
+            Crop crop = SpawnManager.Instance.SpawnObject(cropPrefab).GetComponent<Crop>();
+            crop.SetState(CropState.Ready);
+            crops.Add(crop);
+        }
     }
 }

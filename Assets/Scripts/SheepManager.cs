@@ -6,8 +6,10 @@ public class SheepManager : MonoBehaviour
 {
     public static SheepManager Instance { get; private set; }
 
-    [SerializeField]
-    private int spawnCount;
+    [SerializeField] private int spawnCount;
+    [SerializeField] private Transform releasePoint;
+    [SerializeField] private float exitSpeed;
+    private bool isReleasing;
     private int deadSheepCount;
     private int wildSheepCount;
     private int tameSheepCount;
@@ -15,6 +17,7 @@ public class SheepManager : MonoBehaviour
     private GameObject sheepPrefab;
     private List<Sheep> tameSheepList;
     private List<Sheep> wildSheepList;
+    private List<Sheep> releaseSheepList;
 
     void Awake() {
         // Singleton management
@@ -23,9 +26,21 @@ public class SheepManager : MonoBehaviour
 
         wildSheepList = new List<Sheep>();
         tameSheepList = new List<Sheep>();
+        releaseSheepList = new List<Sheep>();
         wildSheepCount = 0;
         tameSheepCount = 0;
         deadSheepCount = 0;
+    }
+
+    void FixedUpdate() {
+        foreach (Sheep sheep in releaseSheepList) {
+            Rigidbody2D rb = sheep.GetComponent<Rigidbody2D>();
+            Vector2 heading = (Vector2) (releasePoint.position - sheep.transform.position).normalized;
+            Vector2 targetVel = heading * exitSpeed;
+            Vector2 velDelta = targetVel - rb.velocity;
+            Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
+            rb.AddForce(requiredAccel * rb.mass);
+        }
     }
 
     public void Reset() {
@@ -64,6 +79,28 @@ public class SheepManager : MonoBehaviour
         sheep.Capture();
         tameSheepList.Add(sheep);
         wildSheepList.Remove(sheep);
+        OnSheepCountChange();
+    }
+
+    public void ReleaseAllSheep() {
+        releaseSheepList = new List<Sheep>(tameSheepList);
+        foreach (Sheep sheep in tameSheepList) {
+            BoxCollider2D collider = sheep.GetComponent<BoxCollider2D>();
+            collider.isTrigger = true;
+        }
+        tameSheepList.Clear();
+    }
+
+    public void ReleaseSheep(GameObject sheepObj) {
+        sheepObj.layer = LayerMask.NameToLayer("WildSheep");
+
+        Sheep sheep = sheepObj.GetComponent<Sheep>();
+        BoxCollider2D collider = sheepObj.GetComponent<BoxCollider2D>();
+        collider.isTrigger = false;
+        wildSheepCount += 1;
+        tameSheepCount -= 1;
+        releaseSheepList.Remove(sheep);
+        wildSheepList.Add(sheep);
         OnSheepCountChange();
     }
 
