@@ -127,6 +127,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    private Vector2 GetGridLocation(Vector2 position)
+    {
+        float x = Mathf.Round((position.x - 0.08f) / 0.16f) * 0.16f + 0.08f;
+        float y = Mathf.Round((position.y - 0.08f) / 0.16f) * 0.16f + 0.08f;
+
+        return new Vector2(x, y);
+    }
+
     public void OnUseItem() {
         Debug.Log("Tool used " + currentTool);
         if (currentTool == Tool.Slingshot) {
@@ -144,7 +152,19 @@ public class Player : MonoBehaviour
                 }
             }
         } else if (currentTool == Tool.SeedBag) {
-            CropManager.Instance.PlantCrop(transform.position);
+            Vector2 spawnLocation = GetGridLocation(transform.position);
+
+            Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, 0.16f);
+            if (objectsInRange.Length > 0) {
+                foreach (Collider2D obj in objectsInRange) {
+                    if (obj.TryGetComponent<Crop>(out Crop crop)) {
+                        if ((Vector2) crop.transform.position == spawnLocation) {
+                            return;
+                        }
+                    }
+                }
+            }
+            CropManager.Instance.PlantCrop(spawnLocation);
         } else if (currentTool == Tool.WateringCan) {
             Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, wateringRadius);
             if (objectsInRange.Length > 0) {
