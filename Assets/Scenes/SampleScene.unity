@@ -1242,11 +1242,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wolfPrefab: {fileID: 1297718032968050557, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
   spawnCount: 0
---- !u!50 &852527519 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 7092996649854858045, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-  m_PrefabInstance: {fileID: 80048236}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &912804062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,6 +1491,11 @@ Canvas:
   m_SortingLayerID: 1984405675
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!50 &987973837 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 2362330277033630554, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+  m_PrefabInstance: {fileID: 80048236}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1013141124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,6 +1571,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013141124}
   m_CullTransparentMesh: 1
+--- !u!50 &1019494104 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 2362330277033630554, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+  m_PrefabInstance: {fileID: 2412200792051566398}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1060199750
 GameObject:
   m_ObjectHideFlags: 0
@@ -2452,11 +2457,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!50 &1432902380 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 7092996649854858045, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-  m_PrefabInstance: {fileID: 2412200792051566398}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1461956900
 GameObject:
   m_ObjectHideFlags: 0
@@ -20750,8 +20750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe06b30684844602a852461c24d49f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1AnchorPoint: {fileID: 1432902380}
-  player2AnchorPoint: {fileID: 852527519}
+  player1AnchorPoint: {fileID: 1019494104}
+  player2AnchorPoint: {fileID: 987973837}
   ropeSegmentPrefab: {fileID: 9066338411974766890, guid: 9d69f2eba3d0b4a7aa83ba5552a047ca, type: 3}
   maxSegmentCount: 3
   segmentLength: 0.16

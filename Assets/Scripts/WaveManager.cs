@@ -21,6 +21,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private IntRange sheepSpawnRange;
     [SerializeField] private int dayLengthSeconds;
     private int currentTimeSeconds;
+    private Coroutine dayTimer;
     void Awake() {
         if (Instance == null) {Instance = this;} 
         else {Destroy(gameObject);}
@@ -39,10 +40,14 @@ public class WaveManager : MonoBehaviour
 
         CropManager.Instance.SpawnRandomCrops();
         currentTimeSeconds = 0;
-        StartCoroutine(DayCycle());
+        dayTimer = StartCoroutine(DayCycle());
     }
 
     public void EndWave() {
+        if (dayTimer != null) {
+            StopCoroutine(dayTimer);
+            dayTimer = null;
+        }
         SheepManager.Instance.Reset();
         WolfManager.Instance.Reset();
         CropManager.Instance.AdvanceCrops();

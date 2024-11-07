@@ -10,8 +10,8 @@ public class Rope : MonoBehaviour
     [SerializeField] private int maxSegmentCount;
     [SerializeField] private float segmentLength;
 
-    private DistanceJoint2D player1Segment;
-    private DistanceJoint2D player2Segment;
+    private HingeJoint2D player1Segment;
+    private HingeJoint2D player2Segment;
 
     private float currentSegmentCount;
     private List<GameObject> ropeSegments = new List<GameObject>();
@@ -68,10 +68,8 @@ public class Rope : MonoBehaviour
 
         if (currentSegmentCount > 0) {
             GameObject segment = Instantiate(ropeSegmentPrefab, spawnPosition, player1Segment.transform.rotation, transform);
-            // Replace distance joint with hinge joint
-            player1Segment.gameObject.AddComponent<HingeJoint2D>();
+            // player1Segment.gameObject.AddComponent<HingeJoint2D>();
             AttatchToSegment(segment, player1Segment.gameObject);
-            Destroy(player1Segment);
             ropeSegments.Insert(0, segment);
             AttachToPlayer1(segment);
             player1Segment.anchor = new Vector2(segmentLength, 0);
@@ -113,25 +111,20 @@ public class Rope : MonoBehaviour
     }
 
     void AttachToPlayer1(GameObject segment) {
-        Destroy(segment.GetComponent<HingeJoint2D>());
-        DistanceJoint2D joint = segment.AddComponent<DistanceJoint2D>();
+        HingeJoint2D joint = segment.GetComponent<HingeJoint2D>();
         joint.autoConfigureConnectedAnchor = false;
         joint.anchor = new Vector2(0, 0);
         joint.connectedBody = player1AnchorPoint;
         joint.connectedAnchor = new Vector2(0, 0);
-        joint.autoConfigureDistance = false;
-        joint.distance = 0;
         player1Segment = joint;
     }
 
     void AttachToPlayer2(GameObject segment) {
-        DistanceJoint2D lastJoint = segment.AddComponent<DistanceJoint2D>();
+        HingeJoint2D lastJoint = segment.AddComponent<HingeJoint2D>();
         lastJoint.connectedBody = player2AnchorPoint;
         lastJoint.autoConfigureConnectedAnchor = false;
         lastJoint.anchor = new Vector2(segmentLength, 0);
         lastJoint.connectedAnchor = new Vector2(0, 0);
-        lastJoint.autoConfigureDistance = false;
-        lastJoint.distance = 0;
         player2Segment = lastJoint;
     }
 

@@ -23,9 +23,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
-    [Header("Rope")]
-    [SerializeField] public GameObject ropeAnchor;
-
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
     private Vector2 moveVec;
