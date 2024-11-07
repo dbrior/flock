@@ -20539,7 +20539,7 @@ MonoBehaviour:
   player1: {fileID: 808316032}
   player2: {fileID: 987973836}
   ropeSegmentPrefab: {fileID: 9066338411974766890, guid: 9d69f2eba3d0b4a7aa83ba5552a047ca, type: 3}
-  segmentCount: 3
+  maxSegmentCount: 3
   segmentLength: 0.16
 --- !u!4 &1731573496
 Transform:
@@ -21312,9 +21312,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onInteractWithPlayer:
+  onPlayerInteract:
     m_PersistentCalls:
       m_Calls: []
+  interactionText: 
 --- !u!1001 &215852525930900663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21754,6 +21755,10 @@ PrefabInstance:
     - target: {fileID: 1473040889941493624, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
       propertyPath: m_Name
       value: Tent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932525190580538576, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
+      propertyPath: interactionText
+      value: SLEEP
       objectReference: {fileID: 0}
     - target: {fileID: 3932525190580538576, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target

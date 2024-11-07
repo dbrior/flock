@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     [Header("Interaction")]
     [SerializeField] private float interactRange;
     [SerializeField] private LayerMask interactionLayer;
+    private InteractionHints interactionHints;
 
     [Header("Audio")]
     [SerializeField] private AudioClip collectSound;
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        interactionHints = GetComponent<InteractionHints>();
         woolCount = 0;
         heading = Vector2.down;
         currentTool = Tool.Shears;
@@ -155,8 +157,27 @@ public class Player : MonoBehaviour
         } else if (upgradeType == UpgradeType.Strength) {
             rb.mass += 1;
         } else if (upgradeType == UpgradeType.RopeLength) {
-            Rope.Instance.segmentCount += 1;
-            Rope.Instance.Reset();
+            Rope.Instance.AdjustMaxSegments(1);
+        }
+    }
+
+    public void OnIncreaseRope() {
+        Rope.Instance.AddSegment();
+    }
+
+    public void OnDecreaseRope() {
+        Rope.Instance.RemoveSegment();
+    }
+
+    void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.TryGetComponent<Interactable>(out Interactable interactable)) {
+            interactionHints.ShowHint(interactable.interactionText);
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col) {
+        if (col.gameObject.TryGetComponent<Interactable>(out Interactable interactable)) {
+            interactionHints.HideHint();
         }
     }
 }

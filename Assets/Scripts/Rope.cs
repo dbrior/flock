@@ -4,12 +4,13 @@ using System.Collections.Generic;
 public class Rope : MonoBehaviour
 {
     public static Rope Instance { get; private set; }
-    public Transform player1;
-    public Transform player2;
-    public GameObject ropeSegmentPrefab;
-    public int segmentCount = 35;
-    public float segmentLength = 0.15f;
+    [SerializeField] private Transform player1;
+    [SerializeField] private Transform player2;
+    [SerializeField] private GameObject ropeSegmentPrefab;
+    [SerializeField] private int maxSegmentCount;
+    [SerializeField] private float segmentLength;
 
+    private float currentSegmentCount;
     private List<GameObject> ropeSegments = new List<GameObject>();
 
     void Awake() {
@@ -19,17 +20,41 @@ public class Rope : MonoBehaviour
 
     void Start()
     {
+        currentSegmentCount = maxSegmentCount;
         GenerateRope();
     }
 
-    public void Reset() {
+    public void AddSegment() {
+        if (currentSegmentCount < maxSegmentCount) {
+            currentSegmentCount += 1;
+            RedrawRope();
+        }
+    }
+
+    public void RemoveSegment() {
+        if (currentSegmentCount >= 0) {
+            currentSegmentCount -= 1;
+            RedrawRope();
+        } 
+    }
+
+    public void AdjustMaxSegments(int delta) {
+        maxSegmentCount += delta;
+    }
+
+    public void RedrawRope() {
         DestroyRope();
-        GenerateRope();
+        if (currentSegmentCount > 0) {
+            GenerateRope();
+        }
     }
 
-    // void FixedUpdate() {
-    //     // Debug.Log(ropeSegments[2].GetComponent<HingeJoint2D>().reactionForce);
-    // }
+    void DestroyRope() {
+        for (int i=0; i<ropeSegments.Count; i++) {
+            Destroy(ropeSegments[i]);
+        }
+        ropeSegments.Clear();
+    }
 
     void GenerateRope()
     {
@@ -47,7 +72,7 @@ public class Rope : MonoBehaviour
 
         GameObject previousSegment = null;
 
-        for (int i = 0; i < segmentCount; i++)
+        for (int i = 0; i < currentSegmentCount; i++)
         {
             GameObject segment = Instantiate(ropeSegmentPrefab, segmentPosition, Quaternion.identity, transform);
             ropeSegments.Add(segment);
@@ -86,10 +111,7 @@ public class Rope : MonoBehaviour
         lastHingeJoint.connectedAnchor = new Vector2(0, 0);
     }
 
-    void DestroyRope() {
-        for (int i=0; i<ropeSegments.Count; i++) {
-            Destroy(ropeSegments[i]);
-        }
-        ropeSegments.Clear();
-    }
+    // void FixedUpdate() {
+    //     // Debug.Log(ropeSegments[2].GetComponent<HingeJoint2D>().reactionForce);
+    // }
 }

@@ -5,6 +5,7 @@ public class Interactable : MonoBehaviour
 {
     [SerializeField] public UnityEvent onInteract;
     [SerializeField] public UnityEvent<GameObject> onPlayerInteract;
+    [SerializeField] public string interactionText;
 
     public void Interact(Player player)
     {

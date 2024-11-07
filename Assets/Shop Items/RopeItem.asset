@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a2cb9ab89274e5fb4561599af01299, type: 3}
   m_Name: RopeItem
   m_EditorClassIdentifier: 
-  itemName: Rope
+  itemName: Rope    Length
   price: 10
   sprite: {fileID: 21300000, guid: 1fe18dd1c1ecb457c9b9a766b8bb4b91, type: 3}
   upgradeType: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a2cb9ab89274e5fb4561599af01299, type: 3}
   m_Name: ShearingItem
   m_EditorClassIdentifier: 
-  itemName: ElectricShears
+  itemName: Shear    Radius
   price: 5
   sprite: {fileID: 21300000, guid: 9b9397f7add1d451085a4440cfb0e842, type: 3}
   upgradeType: 0
