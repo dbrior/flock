@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class Rope : MonoBehaviour
 {
+    public static Rope Instance { get; private set; }
     public Transform player1;
     public Transform player2;
     public GameObject ropeSegmentPrefab;
@@ -11,14 +12,24 @@ public class Rope : MonoBehaviour
 
     private List<GameObject> ropeSegments = new List<GameObject>();
 
+    void Awake() {
+        if (Instance == null){Instance = this;} 
+        else {Destroy(gameObject);}
+    }
+
     void Start()
     {
         GenerateRope();
     }
 
-    void FixedUpdate() {
-        // Debug.Log(ropeSegments[2].GetComponent<HingeJoint2D>().reactionForce);
+    public void Reset() {
+        DestroyRope();
+        GenerateRope();
     }
+
+    // void FixedUpdate() {
+    //     // Debug.Log(ropeSegments[2].GetComponent<HingeJoint2D>().reactionForce);
+    // }
 
     void GenerateRope()
     {
@@ -73,5 +84,12 @@ public class Rope : MonoBehaviour
         lastHingeJoint.autoConfigureConnectedAnchor = false;
         lastHingeJoint.anchor = new Vector2(segmentLength, 0);
         lastHingeJoint.connectedAnchor = new Vector2(0, 0);
+    }
+
+    void DestroyRope() {
+        for (int i=0; i<ropeSegments.Count; i++) {
+            Destroy(ropeSegments[i]);
+        }
+        ropeSegments.Clear();
     }
 }

@@ -154,6 +154,9 @@ public class Player : MonoBehaviour
             shearRadius += 0.1f;
         } else if (upgradeType == UpgradeType.Strength) {
             rb.mass += 1;
+        } else if (upgradeType == UpgradeType.RopeLength) {
+            Rope.Instance.segmentCount += 1;
+            Rope.Instance.Reset();
         }
     }
 }
