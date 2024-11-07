@@ -96,6 +96,13 @@ public class Player : MonoBehaviour
 
     public void OnMove(InputValue inputValue) {
         moveVec = inputValue.Get<Vector2>();
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, heading, interactRange, interactionLayer);
+        if (hit && hit.transform.gameObject.TryGetComponent<Interactable>(out Interactable interactable)) {
+            interactionHints.ShowHint(interactable.interactionText);
+        } else {
+            interactionHints.HideHint();
+        }
     }
 
     // void OnDrawGizmos()
@@ -169,15 +176,15 @@ public class Player : MonoBehaviour
         Rope.Instance.RemoveSegment();
     }
 
-    void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.TryGetComponent<Interactable>(out Interactable interactable)) {
-            interactionHints.ShowHint(interactable.interactionText);
-        }
-    }
+    // void OnCollisionEnter2D(Collision2D col) {
+    //     if (col.gameObject.TryGetComponent<Interactable>(out Interactable interactable)) {
+    //         interactionHints.ShowHint(interactable.interactionText);
+    //     }
+    // }
 
-    void OnCollisionExit2D(Collision2D col) {
-        if (col.gameObject.TryGetComponent<Interactable>(out Interactable interactable)) {
-            interactionHints.HideHint();
-        }
-    }
+    // void OnCollisionExit2D(Collision2D col) {
+    //     if (col.gameObject.TryGetComponent<Interactable>(out Interactable interactable)) {
+    //         interactionHints.HideHint();
+    //     }
+    // }
 }

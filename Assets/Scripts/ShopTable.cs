@@ -16,7 +16,7 @@ public class ShopTable : MonoBehaviour
 
     void Start() {
         interactable = GetComponent<Interactable>();
-        interactable.interactionText = item.itemName.ToUpper() + "    " + item.price.ToString();
+        interactable.interactionText = item.itemName.ToUpper() + "\n" + item.price.ToString() + "    WOOL";
     }
 
     public void Purchase(GameObject playerGameObject)
