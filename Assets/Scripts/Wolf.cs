@@ -12,14 +12,19 @@ public class Wolf : MonoBehaviour
     [SerializeField]
     private float detectionRadius;
     private Rigidbody2D rb;
+    private Animator animator;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Start()
     {
         StartCoroutine(ScanForSheep());
+        animator.SetLayerWeight(0, 0);
+        animator.SetLayerWeight(1, 0);
+        animator.SetLayerWeight(2, 1f);
     }
 
     void FixedUpdate() {
@@ -47,6 +52,20 @@ public class Wolf : MonoBehaviour
                 heading = (closestSheep.transform.position - transform.position).normalized;
             } else {
                 heading =  Random.insideUnitCircle.normalized;
+            }
+
+            if (Mathf.Abs(heading.y) >= Mathf.Abs(heading.x)) {
+                if (heading.y < 0) {
+                    animator.SetTrigger("MoveDown");
+                } else if (heading.y > 0) {
+                    animator.SetTrigger("MoveUp");
+                }
+            } else {
+                if (heading.x < 0) {
+                animator.SetTrigger("MoveLeft");
+                } else if (heading.x > 0) {
+                    animator.SetTrigger("MoveRight");
+                }
             }
             yield return new WaitForSeconds(1f);
         }
