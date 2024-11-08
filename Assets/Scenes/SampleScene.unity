@@ -22415,6 +22415,10 @@ PrefabInstance:
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 629052711}
+    - target: {fileID: 3932525190580538576, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Sleep
+      objectReference: {fileID: 0}
     - target: {fileID: 6173852697786888710, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.888

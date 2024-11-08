@@ -31,6 +31,12 @@ public class WaveManager : MonoBehaviour
         StartWave();
     }
 
+    public void Sleep() {
+        if (currentTimeSeconds / dayLengthSeconds > 0.66f) {
+            EndWave();
+        }
+    }
+
     public void StartWave() {
         SheepManager.Instance.SetSpawnCount(Random.Range(sheepSpawnRange.min, sheepSpawnRange.max));
         SheepManager.Instance.SpawnSheep();
