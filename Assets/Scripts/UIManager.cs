@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour
         woolCounter.text = woolCount.ToString();
     }
 
-    public void UpdateTime(int currentTimeSeconds, int dayLengthSeconds) {
+    public void UpdateTime(float currentTimeSeconds, float dayLengthSeconds) {
         float hourValue = dayLengthSeconds / 24f;
         float minuteValue = hourValue / 60f;
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [System.Serializable]
 public class IntRange {
@@ -19,12 +20,16 @@ public class WaveManager : MonoBehaviour
 
     [SerializeField] private IntRange wolfSpawnRange;
     [SerializeField] private IntRange sheepSpawnRange;
-    [SerializeField] private int dayLengthSeconds;
-    private int currentTimeSeconds;
+    [SerializeField] private float dayLengthSeconds;
+    [SerializeField] private List<Color> lightingColors;
+    [SerializeField] private Light2D sceneLight;
+
+    private float currentTimeSeconds;
     private Coroutine dayTimer;
+
     void Awake() {
-        if (Instance == null) {Instance = this;} 
-        else {Destroy(gameObject);}
+        if (Instance == null) { Instance = this; } 
+        else { Destroy(gameObject); }
     }
 
     void Start() {
@@ -62,10 +67,27 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator DayCycle() {
         while (currentTimeSeconds < dayLengthSeconds) {
-            yield return new WaitForSeconds(1f);
-            currentTimeSeconds += 1;
+            yield return new WaitForSeconds(0.1f);
+            currentTimeSeconds += 0.1f;
+
+            // Interpolate color based on time
+            float timeNormalized = currentTimeSeconds / dayLengthSeconds;
+            Color currentColor = GetInterpolatedColor(timeNormalized);
+            sceneLight.color = currentColor;
+
             UIManager.Instance.UpdateTime(currentTimeSeconds, dayLengthSeconds);
         }
         EndWave();
+    }
+
+    private Color GetInterpolatedColor(float normalizedTime) {
+        if (lightingColors.Count < 2) return Color.white;
+
+        int colorIndex = Mathf.FloorToInt(normalizedTime * (lightingColors.Count - 1));
+        float lerpFactor = (normalizedTime * (lightingColors.Count - 1)) - colorIndex;
+
+        if (colorIndex >= lightingColors.Count - 1) return lightingColors[lightingColors.Count - 1];
+
+        return Color.Lerp(lightingColors[colorIndex], lightingColors[colorIndex + 1], lerpFactor);
     }
 }
