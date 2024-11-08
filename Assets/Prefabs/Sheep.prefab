@@ -108,6 +108,7 @@ MonoBehaviour:
   isDying: 0
   woolPrefab: {fileID: 4465506323250089622, guid: 3259a041dd2ac4574abbdf5d477fad31, type: 3}
   moveSpeed: 0.2
+  detectionRadius: 2
   maxAcceleration: 0
   minMoveTime: 1
   maxMoveTime: 2

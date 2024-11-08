@@ -49,10 +49,10 @@ public class SheepManager : MonoBehaviour
         wildSheepCount = 0;
         deadSheepCount = 0;
 
-        // Refresh sheared sheep
-        foreach (Sheep sheep in tameSheepList) {
-            sheep.Regrow();
-        }
+        // // Refresh sheared sheep
+        // foreach (Sheep sheep in tameSheepList) {
+        //     sheep.Regrow();
+        // }
 
         UpdateUI();
     }
@@ -95,6 +95,7 @@ public class SheepManager : MonoBehaviour
         sheepObj.layer = LayerMask.NameToLayer("WildSheep");
 
         Sheep sheep = sheepObj.GetComponent<Sheep>();
+        sheep.Release();
         BoxCollider2D collider = sheepObj.GetComponent<BoxCollider2D>();
         collider.isTrigger = false;
         wildSheepCount += 1;

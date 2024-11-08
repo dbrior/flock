@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using UnityEngine;
 
@@ -14,11 +15,13 @@ public class Sheep : MonoBehaviour
 
     // Wool
     private bool isSheared;
+    private bool isCaptured;
     [SerializeField] private GameObject woolPrefab;
 
     // Wander
     private Vector2 heading;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float detectionRadius;
     [SerializeField] private float maxAcceleration;
     [SerializeField] private float minMoveTime;
     [SerializeField] private float maxMoveTime;
@@ -56,6 +59,11 @@ public class Sheep : MonoBehaviour
 
     public void Capture() {
         audioSource.PlayOneShot(captureSound);
+        isCaptured = true;
+    }
+
+    public void Release() {
+        isCaptured = false;
     }
 
     private void Death() {
@@ -83,6 +91,16 @@ public class Sheep : MonoBehaviour
         itemSpawner.SpawnItems();
     }
 
+    public void OnTriggerEnter2D(Collider2D col) {
+        // Sheared sheep can eat crops
+        if (isSheared && col.gameObject.TryGetComponent<Crop>(out Crop crop)) {
+            if (crop.state == CropState.Ready) {
+                Regrow();
+                CropManager.Instance.RemoveCropImmediately(crop);
+            }
+        }
+    }
+
     private IEnumerator WaitThenExecute(float duration, Action action)
     {
         yield return new WaitForSeconds(duration);
@@ -94,7 +112,25 @@ public class Sheep : MonoBehaviour
             float waitTime = UnityEngine.Random.Range(minWaitTime, maxWaitTime);
             yield return new WaitForSeconds(waitTime);
             float moveTime = UnityEngine.Random.Range(minMoveTime, maxMoveTime);
-            heading = UnityEngine.Random.insideUnitCircle.normalized;
+
+            // Search for crops
+            if (isSheared && !isCaptured) {
+                Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
+                Crop[] cropsInRange = collidersInRange.Select(
+                                        collider => collider.GetComponent<Crop>()
+                                    ).Where(
+                                        crop => crop != null && crop.state == CropState.Ready
+                                    ).ToArray();
+                if (cropsInRange.Length > 0) {
+                    Crop targetCrop = cropsInRange[UnityEngine.Random.Range(0, cropsInRange.Length)];
+                    heading = (targetCrop.transform.position - transform.position).normalized;
+                } else {
+                    heading = UnityEngine.Random.insideUnitCircle.normalized;
+                }
+            } else {
+                heading = UnityEngine.Random.insideUnitCircle.normalized;
+            }
+
             if (Mathf.Abs(heading.y) >= Mathf.Abs(heading.x)) {
                 if (heading.y < 0) {
                     animator.SetTrigger("MoveDown");

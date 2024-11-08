@@ -38,6 +38,11 @@ public class CropManager : MonoBehaviour
         cropsToRemove.Add(crop);
     }
 
+    public void RemoveCropImmediately(Crop crop) {
+        crops.Remove(crop);
+        Destroy(crop.gameObject);
+    }
+
     public void SpawnRandomCrops() {
         int spawnAmount = Random.Range(dailySpawnAmount.min, dailySpawnAmount.max);
         for (int i=0; i<spawnAmount; i++) {

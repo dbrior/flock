@@ -12,7 +12,7 @@ public enum CropState {
 }
 public class Crop : MonoBehaviour
 {
-    private CropState state;
+    public CropState state;
     private int totalStates;
     private SpriteRenderer spriteRenderer;
 
