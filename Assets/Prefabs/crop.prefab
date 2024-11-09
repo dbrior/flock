@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1dfc0e40e4c4bcbb0b2d58cfcc6cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   drySprite: {fileID: 402534162, guid: 43e6cf3a2db1d4e5b992fe1d2c50381a, type: 3}
   wateredSprite: {fileID: 1248158510, guid: 43e6cf3a2db1d4e5b992fe1d2c50381a, type: 3}
   growingSprite: {fileID: -2012402354, guid: 43e6cf3a2db1d4e5b992fe1d2c50381a, type: 3}
