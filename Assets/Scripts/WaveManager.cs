@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Unity.Netcode;
 
 [System.Serializable]
 public class IntRange {
@@ -24,7 +25,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private List<Color> lightingColors;
     [SerializeField] private Light2D sceneLight;
 
-    private float currentTimeSeconds;
+    private NetworkVariable<float> currentTimeSeconds = new NetworkVariable<float>(0f);
     private Coroutine dayTimer;
 
     void Awake() {
@@ -32,12 +33,8 @@ public class WaveManager : MonoBehaviour
         else { Destroy(gameObject); }
     }
 
-    void Start() {
-        StartWave();
-    }
-
     public void Sleep() {
-        if (currentTimeSeconds / dayLengthSeconds > 0.66f) {
+        if (currentTimeSeconds.Value / dayLengthSeconds > 0.66f) {
             EndWave();
         }
     }
@@ -50,7 +47,7 @@ public class WaveManager : MonoBehaviour
         WolfManager.Instance.SpawnWolves();
 
         CropManager.Instance.SpawnRandomCrops();
-        currentTimeSeconds = 0;
+        currentTimeSeconds.Value = 0;
         dayTimer = StartCoroutine(DayCycle());
     }
 
@@ -66,16 +63,16 @@ public class WaveManager : MonoBehaviour
     }
 
     private IEnumerator DayCycle() {
-        while (currentTimeSeconds < dayLengthSeconds) {
+        while (currentTimeSeconds.Value < dayLengthSeconds) {
             yield return new WaitForSeconds(0.1f);
-            currentTimeSeconds += 0.1f;
+            currentTimeSeconds.Value += 0.1f;
 
             // Interpolate color based on time
-            float timeNormalized = currentTimeSeconds / dayLengthSeconds;
+            float timeNormalized = currentTimeSeconds.Value / dayLengthSeconds;
             Color currentColor = GetInterpolatedColor(timeNormalized);
             sceneLight.color = currentColor;
 
-            UIManager.Instance.UpdateTime(currentTimeSeconds, dayLengthSeconds);
+            UIManager.Instance.UpdateTime(currentTimeSeconds.Value, dayLengthSeconds);
         }
         EndWave();
     }

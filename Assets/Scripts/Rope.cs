@@ -31,76 +31,23 @@ public class Rope : NetworkBehaviour
     private bool shrinking;
     private bool expanding;
 
-    // void Awake() {
-    //     if (Instance == null){Instance = this;} 
-    //     else {Destroy(gameObject);}
-    // }
-
-    // void Start()
-    // {
-    //     currentSegmentCount.Value = maxSegmentCount.Value;
-    //     GenerateRope();
-    // }
-
-    public override void OnNetworkSpawn() {
+    void Awake() {
         if (Instance == null){Instance = this;} 
         else {Destroy(gameObject);}
-
-        maxSegmentCount.Value = 5;
-        currentSegmentCount.Value = maxSegmentCount.Value;
-        NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
-    }
-
-    private void OnClientConnected(ulong clientId) {
-        Debug.Log("Client " + clientId.ToString() + " connected");
-        int clientCount = NetworkManager.Singleton.ConnectedClients.Count;
-
-        if (clientCount == 2)
-        {
-            Debug.Log("Second player has joined!");
-            // InitRopeServerRpc();
-            InitRope();
-        }
-    }
-
-    public void SetPlayer1(Rigidbody2D input) {
-        player1AnchorPoint = input;
-    }
-
-    public void SetPlayer2(Rigidbody2D input) {
-        player2AnchorPoint = input;
     }
 
     [ServerRpc]
-    private void InitRopeServerRpc() {
-        foreach (var client in NetworkManager.Singleton.ConnectedClients) {
-            ulong clientId = client.Key;
-            Rigidbody2D rb = client.Value.PlayerObject.gameObject.GetComponent<Rigidbody2D>();
+    public void InitRopeServerRpc(NetworkObjectReference player1Ref, NetworkObjectReference player2Ref) {
+        if (
+            player1Ref.TryGet(out NetworkObject player1NetworkObj)
+            && 
+            player2Ref.TryGet(out NetworkObject player2NetworkObj)
+        ) {
+            player1AnchorPoint = player1NetworkObj.gameObject.GetComponent<Rigidbody2D>();
+            player2AnchorPoint = player2NetworkObj.gameObject.GetComponent<Rigidbody2D>();
 
-            if (clientId == NetworkManager.ServerClientId) {
-                SetPlayer1(rb);
-            } else {
-                SetPlayer2(rb);
-            }
+            GenerateRope();
         }
-        Debug.Log("Set Rbs");
-        GenerateRope();
-        Debug.Log("Generated Rope");
-    }
-    public void InitRope() {
-        foreach (var client in NetworkManager.Singleton.ConnectedClients) {
-            ulong clientId = client.Key;
-            Rigidbody2D rb = client.Value.PlayerObject.gameObject.GetComponent<Rigidbody2D>();
-
-            if (clientId == NetworkManager.ServerClientId) {
-                SetPlayer2(rb);
-            } else {
-                SetPlayer1(rb);
-            }
-        }
-        Debug.Log("Set Rbs");
-        GenerateRope();
-        Debug.Log("Generated Rope");
     }
 
     void FixedUpdate() {
@@ -140,6 +87,7 @@ public class Rope : NetworkBehaviour
 
         if (currentSegmentCount.Value > 0) {
             GameObject segment = Instantiate(ropeSegmentPrefab, spawnPosition, player1Segment.transform.rotation, transform);
+            segment.GetComponent<NetworkObject>().Spawn();
             // player1Segment.gameObject.AddComponent<HingeJoint2D>();
             AttatchToSegment(segment, player1Segment.gameObject);
             ropeSegments.Insert(0, segment);
@@ -147,6 +95,7 @@ public class Rope : NetworkBehaviour
             player1Segment.anchor = new Vector2(segmentLength, 0);
         } else {
             GameObject segment = Instantiate(ropeSegmentPrefab, spawnPosition, Quaternion.identity, transform);
+            segment.GetComponent<NetworkObject>().Spawn();
             ropeSegments.Insert(0, segment);
             AttachToPlayer1(segment);
             AttachToPlayer2(segment);

@@ -47,7 +47,6 @@ public class Player : NetworkBehaviour
     // Anything here should probably not be here
     private Tool currentTool;
     private int totalToolCount;
-    [SerializeField] private ToolUI toolUI;
     [SerializeField] private float shearRadius;
     [SerializeField] private float wateringRadius;
     [SerializeField] private GameObject pelletPrefab;
@@ -72,10 +71,6 @@ public class Player : NetworkBehaviour
 
         for (int i=0; i<animator.layerCount; i++) {
             animator.SetLayerWeight(i, i == playerId ? 1f : 0f);
-        }
-
-        if (!IsServer && IsClient) {
-            Rope.Instance.InitRope();
         }
     }
 
@@ -212,7 +207,7 @@ public class Player : NetworkBehaviour
         if (!IsOwner) return;
         int toolIdx = ((int) currentTool + 1) % totalToolCount;
         currentTool = (Tool) toolIdx;
-        toolUI.SetActiveTool(toolIdx);
+        ToolUI.Instance.SetActiveTool(toolIdx);
     }
 
     public void CollectItem(ItemDrop item) {

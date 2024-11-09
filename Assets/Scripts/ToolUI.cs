@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class ToolUI : MonoBehaviour
 {
+    public static ToolUI Instance { get; private set;}
     private ToolSlot[] toolSlots;
     private int currToolIdx;
+
+    void Awake() {
+        if (Instance == null){Instance = this;} 
+        else {Destroy(gameObject);}
+    }
 
     void Start() {
         toolSlots = gameObject.GetComponentsInChildren<ToolSlot>();

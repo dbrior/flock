@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -18,9 +19,13 @@ public class SpawnManager : MonoBehaviour
     public GameObject SpawnObject(GameObject obj) {
         Vector2 spawnPoint = GetSpawnPoint();
         if (spawnPoint != Vector2.zero) {
-            return Instantiate(obj, spawnPoint, Quaternion.identity);
+            GameObject spawnedObject = Instantiate(obj, spawnPoint, Quaternion.identity);
+            spawnedObject.GetComponent<NetworkObject>().Spawn();
+            return spawnedObject;
         } else {
-            return Instantiate(obj, backupSpawnPoint.position, Quaternion.identity);
+            GameObject spawnedObject = Instantiate(obj, backupSpawnPoint.position, Quaternion.identity);
+            spawnedObject.GetComponent<NetworkObject>().Spawn();
+            return spawnedObject;
         }
     }
 

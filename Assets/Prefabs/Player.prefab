@@ -515,10 +515,10 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
+  AutoObjectParentSync: 0
 --- !u!114 &8084549005287282610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,7 +537,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2241
   collectSound: {fileID: 8300000, guid: 2665dea3f1c554e9a8aa7bcf292a627e, type: 3}
-  toolUI: {fileID: 0}
   shearRadius: 0.1
   wateringRadius: 0.1
   pelletPrefab: {fileID: 6302693463734982198, guid: 8bdbbbcc8fc7944d0ab90eb1d4cbb3ce, type: 3}
