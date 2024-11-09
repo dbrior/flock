@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using Unity.Netcode;
 
 [System.Serializable]
 public enum Tool : int {
@@ -17,15 +18,19 @@ public enum UpgradeType : int {
     Strength = 2
 }
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
-    [SerializeField] private int playerId;
+    private int playerId;
     private Rigidbody2D rb;
     private Animator animator;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
-    private Vector2 moveVec;
+    private NetworkVariable<Vector2> moveVec = new NetworkVariable<Vector2>(
+        Vector2.zero,
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Owner
+    );
     private Vector2 moveCardinal;
     private Vector2 heading;
 
@@ -61,12 +66,25 @@ public class Player : MonoBehaviour
         totalToolCount = System.Enum.GetNames(typeof(Tool)).Length;
     }
 
-    void Start() {
-        // Set Player Skin
+    public override void OnNetworkSpawn() {
+        GetComponent<PlayerInput>().enabled = IsOwner;
+        playerId = IsOwner ? 0 : 1;
+
         for (int i=0; i<animator.layerCount; i++) {
             animator.SetLayerWeight(i, i == playerId ? 1f : 0f);
         }
+
+        if (!IsServer && IsClient) {
+            Rope.Instance.InitRope();
+        }
     }
+
+    // void Start() {
+    //     if (!IsOwner) return;
+    //     if (!IsServer && IsClient) {
+    //         Rope.Instance.InitRope();
+    //     }
+    // }
 
     private Dictionary<Vector2, int> cardinalIntMappings = new Dictionary<Vector2, int>{
         { Vector2.zero, 0 },
@@ -77,12 +95,12 @@ public class Player : MonoBehaviour
     };
     void Update() {
         Vector2 newMoveCardinal;
-        if (moveVec == Vector2.zero) {
+        if (moveVec.Value == Vector2.zero) {
             newMoveCardinal = Vector2.zero;
-        } else if (Mathf.Abs(moveVec.x) > Mathf.Abs(moveVec.y)) {
-            newMoveCardinal = moveVec.x > 0 ? Vector2.right : Vector2.left;
+        } else if (Mathf.Abs(moveVec.Value.x) > Mathf.Abs(moveVec.Value.y)) {
+            newMoveCardinal = moveVec.Value.x > 0 ? Vector2.right : Vector2.left;
         } else {
-            newMoveCardinal = moveVec.y > 0 ? Vector2.up : Vector2.down;
+            newMoveCardinal = moveVec.Value.y > 0 ? Vector2.up : Vector2.down;
         }
 
         if (newMoveCardinal != moveCardinal) {
@@ -95,14 +113,25 @@ public class Player : MonoBehaviour
     }
 
     void FixedUpdate() {
-        Vector2 targetVel = moveVec * moveSpeed;
-        Vector2 velDelta = targetVel - rb.velocity;
-        Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
-        rb.AddForce(requiredAccel * rb.mass);
+        // if (!IsOwner) return;
+        if (IsOwner || IsServer) {
+            Vector2 targetVel = moveVec.Value * moveSpeed;
+            Vector2 velDelta = targetVel - rb.velocity;
+            Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
+            Vector2 outputForce = requiredAccel * rb.mass;
+            rb.AddForce(outputForce);   
+        }
+        // if (!IsOwner) return;
+        // if (IsServer) {
+        //     Vector2 targetVel = moveVec.Value * moveSpeed;
+        //     Vector2 velDelta = targetVel - rb.velocity;
+        //     Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
+        //     rb.AddForce(requiredAccel * rb.mass);
+        // }
     }
-
     public void OnMove(InputValue inputValue) {
-        moveVec = inputValue.Get<Vector2>();
+        if (!IsOwner) return;
+        moveVec.Value = inputValue.Get<Vector2>();
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, heading, interactRange, interactionLayer);
         if (hit && hit.transform.gameObject.TryGetComponent<Interactable>(out Interactable interactable)) {
@@ -118,6 +147,7 @@ public class Player : MonoBehaviour
     // }
 
     public void OnInteract() {
+        if (!IsOwner) return;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, heading, interactRange, interactionLayer);
         if (hit) {
             Debug.Log("Player " + playerId + ": Interact with " + hit.transform.gameObject.name);
@@ -136,6 +166,7 @@ public class Player : MonoBehaviour
     }
 
     public void OnUseItem() {
+        if (!IsOwner) return;
         Debug.Log("Tool used " + currentTool);
         if (currentTool == Tool.Slingshot) {
             GameObject pellet = Instantiate(pelletPrefab, (Vector2) transform.position + (heading * 0.1f), Quaternion.identity);
@@ -178,18 +209,21 @@ public class Player : MonoBehaviour
     }
 
     public void OnChangeTool() {
+        if (!IsOwner) return;
         int toolIdx = ((int) currentTool + 1) % totalToolCount;
         currentTool = (Tool) toolIdx;
         toolUI.SetActiveTool(toolIdx);
     }
 
     public void CollectItem(ItemDrop item) {
+        if (!IsOwner) return;
         audioSource.PlayOneShot(collectSound);
         AdjustWoolCount(1);
         Destroy(item.gameObject);
     }
 
     public void AdjustWoolCount(int delta) {
+        if (!IsOwner) return;
         woolCount += delta;
         UIManager.Instance.UpdateWoolCount(woolCount);
     }
@@ -199,6 +233,7 @@ public class Player : MonoBehaviour
     }
 
     public void AddUpgrade(UpgradeType upgradeType) {
+        if (!IsOwner) return;
         if (upgradeType == UpgradeType.ShearRadius) {
             shearRadius += 0.1f;
         } else if (upgradeType == UpgradeType.Strength) {
@@ -209,10 +244,12 @@ public class Player : MonoBehaviour
     }
 
     public void OnIncreaseRope() {
+        if (!IsOwner) return;
         Rope.Instance.AddSegment();
     }
 
     public void OnDecreaseRope() {
+        if (!IsOwner) return;
         Rope.Instance.RemoveSegment();
     }
 
