@@ -1978,7 +1978,7 @@ MonoBehaviour:
   sheepSpawnRange:
     min: 1
     max: 10
-  dayLengthSeconds: 300
+  dayLengthSeconds: 120
   lightingColors:
   - {r: 0.028301895, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 1}
