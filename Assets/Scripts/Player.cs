@@ -183,6 +183,10 @@ public class Player : MonoBehaviour
         toolUI.SetActiveTool(toolIdx);
     }
 
+    public void OnAttack() {
+        animator.SetTrigger("Attack");
+    }
+
     public void CollectItem(ItemDrop item) {
         audioSource.PlayOneShot(collectSound);
         AdjustWoolCount(1);
