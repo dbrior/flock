@@ -68,6 +68,10 @@ public class Wolf : MonoBehaviour
         }
     }
 
+    public void Hit() {
+        
+    }
+
     IEnumerator ScanForSheep() {
         while (true)
         {

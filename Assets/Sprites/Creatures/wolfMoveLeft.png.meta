@@ -123,85 +123,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite-0020_0
+      name: wolfMoveLeft_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.26, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7292c435ae08c764591a6be8c55cec39
-      internalID: -2728204
+      spriteID: 0e1fd82402e08488485a8c21af485d90
+      internalID: -978942194
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0020_1
+      name: wolfMoveLeft_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.26, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29467ff2e4908f74fa528783d15ebdd1
-      internalID: -2119670622
+      spriteID: 12f81bf7536524263a2afd6e7d686335
+      internalID: -214127224
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0020_2
+      name: wolfMoveLeft_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.26, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eee825bc0fc90cc4fb273986f69027bd
-      internalID: -377029070
+      spriteID: 4ee6495b90edc42da9d164ab53605afd
+      internalID: -1219463374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0020_3
+      name: wolfMoveLeft_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.26, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7274ff15129be44c820c3c11c8fffad
-      internalID: 40117883
+      spriteID: 7891bd7c1a3dd4cc38d4c8406ad05976
+      internalID: -1386869413
       vertices: []
       indices: 
       edges: []
@@ -217,10 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite-0020_0: -2728204
-      Sprite-0020_1: -2119670622
-      Sprite-0020_2: -377029070
-      Sprite-0020_3: 40117883
+      wolfMoveLeft_0: -978942194
+      wolfMoveLeft_1: -214127224
+      wolfMoveLeft_2: -1219463374
+      wolfMoveLeft_3: -1386869413
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
