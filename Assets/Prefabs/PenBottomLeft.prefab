@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8124678205749519283}
   - component: {fileID: 950613606882349868}
-  - component: {fileID: 102198093271755898}
+  - component: {fileID: -6816528594238425600}
   m_Layer: 0
   m_Name: PenBottomLeft
   m_TagString: Untagged
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 1918353767
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1932152532, guid: 72c214caa32ea4f05aff040b037acd80, type: 3}
+  m_Sprite: {fileID: -807381215, guid: e9108fe3ef2876447ad6c6a7421aa3bd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &102198093271755898
+--- !u!61 &-6816528594238425600
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,7 +117,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01964274, y: 0}
+  m_Offset: {x: -0.005, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -128,5 +128,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.11793858, y: 0.16}
+  m_Size: {x: 0.15012974, y: 0.16}
   m_EdgeRadius: 0
