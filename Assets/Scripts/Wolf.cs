@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -13,6 +14,9 @@ public class Wolf : MonoBehaviour
     private float detectionRadius;
     private Rigidbody2D rb;
     private Animator animator;
+    private Vector2 animationDirection;
+    [SerializeField] private float waitMin;
+    [SerializeField] private float waitMax;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -25,6 +29,28 @@ public class Wolf : MonoBehaviour
         animator.SetLayerWeight(0, 0);
         animator.SetLayerWeight(1, 0);
         animator.SetLayerWeight(2, 1f);
+    }
+    private Dictionary<Vector2, int> cardinalIntMappings = new Dictionary<Vector2, int>{
+        { Vector2.zero, 0 },
+        { Vector2.up, 1 },
+        { Vector2.right, 2 },
+        { Vector2.down, 3 },
+        { Vector2.left, 4 }
+    };
+    void Update() {
+        Vector2 newAnimationDirection;
+        if (heading == Vector2.zero) {
+            newAnimationDirection = Vector2.zero;
+        } else if (Mathf.Abs(heading.x) > Mathf.Abs(heading.y)) {
+            newAnimationDirection = heading.x > 0 ? Vector2.right : Vector2.left;
+        } else {
+            newAnimationDirection = heading.y > 0 ? Vector2.up : Vector2.down;
+        }
+
+        if (newAnimationDirection != animationDirection) {
+            animationDirection = newAnimationDirection;
+            animator.SetInteger("Direction", cardinalIntMappings[animationDirection]);
+        }
     }
 
     void FixedUpdate() {
@@ -53,21 +79,7 @@ public class Wolf : MonoBehaviour
             } else {
                 heading =  Random.insideUnitCircle.normalized;
             }
-
-            if (Mathf.Abs(heading.y) >= Mathf.Abs(heading.x)) {
-                if (heading.y < 0) {
-                    animator.SetTrigger("MoveDown");
-                } else if (heading.y > 0) {
-                    animator.SetTrigger("MoveUp");
-                }
-            } else {
-                if (heading.x < 0) {
-                animator.SetTrigger("MoveLeft");
-                } else if (heading.x > 0) {
-                    animator.SetTrigger("MoveRight");
-                }
-            }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(Random.Range(waitMin, waitMax));
         }
     }
 }
