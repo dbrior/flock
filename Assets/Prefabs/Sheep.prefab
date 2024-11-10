@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe1f2cad814042b181556928df508ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxForce: 2.5
+  maxForce: 3
   captureSound: {fileID: 8300000, guid: a9584a770c05e46939be5190f5e26003, type: 3}
   deathSound: {fileID: 8300000, guid: 2a9f3745618c546788d067cfee127a72, type: 3}
   isDying: 0

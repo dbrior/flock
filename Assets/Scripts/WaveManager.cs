@@ -34,6 +34,7 @@ public class WaveManager : MonoBehaviour
 
     void Start() {
         StartWave();
+        currentTimeSeconds = (dayLengthSeconds / 24f) * 7;
     }
 
     public void Sleep() {
