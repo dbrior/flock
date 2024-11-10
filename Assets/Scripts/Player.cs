@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float attackRadius;
     [SerializeField] private GameObject pelletPrefab;
     [SerializeField] private float pelletSpeed;
+    public bool allowedPlanting = true;
     private int woolCount;
     
     void Awake()
@@ -152,7 +153,7 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-        } else if (currentTool == Tool.SeedBag) {
+        } else if (allowedPlanting && currentTool == Tool.SeedBag) {
             Vector2 spawnLocation = GetGridLocation(transform.position);
 
             Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, 0.16f);
@@ -162,6 +163,7 @@ public class Player : MonoBehaviour
                         if ((Vector2) crop.transform.position == spawnLocation) {
                             return;
                         }
+                        Debug.Log(crop.transform.localPosition);
                     }
                 }
             }

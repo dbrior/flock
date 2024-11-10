@@ -38,7 +38,9 @@ public class WaveManager : MonoBehaviour
     }
 
     public void Sleep() {
-        if (currentTimeSeconds / dayLengthSeconds > 0.66f) {
+        float dayPct = 0.66f;
+        dayPct = 0.01f;
+        if (currentTimeSeconds / dayLengthSeconds > dayPct) {
             EndWave();
         }
     }

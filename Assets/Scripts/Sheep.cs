@@ -3,6 +3,14 @@ using System.Linq;
 using System.Collections;
 using UnityEngine;
 
+[System.Serializable]
+public enum SheepState : int {
+    Healthy = 0,
+    Hungry1 = 1,
+    Hungry2 = 2,
+    Dead = 4
+}
+
 public class Sheep : MonoBehaviour
 {
     [SerializeField] private float maxForce;
@@ -13,6 +21,8 @@ public class Sheep : MonoBehaviour
     private Animator animator;
     private ItemSpawner itemSpawner;
     public bool isDying;
+    private SheepState state;
+    private Damagable damagable;
 
     // Wool
     private bool isSheared;
@@ -35,6 +45,7 @@ public class Sheep : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         itemSpawner = GetComponent<ItemSpawner>();
+        damagable = GetComponent<Damagable>();
         heading = Vector2.zero;
         isDying = false;
         isSheared = false;
@@ -42,6 +53,21 @@ public class Sheep : MonoBehaviour
 
     void Start() {
         StartCoroutine(Wander());
+        SetState(SheepState.Healthy);
+    }
+
+    private void SetState(SheepState newState) {
+        state = newState;
+        if (state == SheepState.Dead) {
+            SheepManager.Instance.KillSheep(gameObject);
+        } else if ((int) state >= 1) {
+            float hungerDamage = 20f;
+            damagable.Hit(Vector2.zero, hungerDamage, 0f);
+        }
+    }
+
+    public void AdvanceState() {
+        SetState((SheepState) ((int) state + 1));
     }
 
     void FixedUpdate() {

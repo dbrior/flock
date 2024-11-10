@@ -19,15 +19,16 @@ public class Crop : MonoBehaviour
 
     void Awake() {
         totalStates = System.Enum.GetValues(typeof(CropState)).Length;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        TryGetComponent<Animator>(out Animator animator);
 
         SetState(CropState.Dry);
     }
 
     public void SetState(CropState newState) {
         state = newState;
-        animator.SetInteger("State", (int) state);
+        if (animator != null) {
+            animator.SetInteger("State", (int) state);
+        }
     }
 
     public void Water() {

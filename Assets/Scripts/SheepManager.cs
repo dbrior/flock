@@ -49,10 +49,9 @@ public class SheepManager : MonoBehaviour
         wildSheepCount = 0;
         deadSheepCount = 0;
 
-        // // Refresh sheared sheep
-        // foreach (Sheep sheep in tameSheepList) {
-        //     sheep.Regrow();
-        // }
+        foreach(Sheep sheep in tameSheepList) {
+            sheep.AdvanceState();
+        }
 
         UpdateUI();
     }
