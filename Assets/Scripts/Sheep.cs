@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Sheep : MonoBehaviour
 {
+    [SerializeField] private float maxForce;
     [SerializeField] private AudioClip captureSound;
     [SerializeField] private AudioClip deathSound;
     private AudioSource audioSource;
@@ -47,7 +48,7 @@ public class Sheep : MonoBehaviour
         Vector2 targetVel = heading * moveSpeed;
         Vector2 velDelta = targetVel - rb.velocity;
         Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
-        rb.AddForce(requiredAccel * rb.mass);
+        rb.AddForce(Vector2.ClampMagnitude(requiredAccel * rb.mass, maxForce));
         // rb.MovePosition((Vector2) transform.position + heading * moveSpeed * Time.fixedDeltaTime);
     }
 

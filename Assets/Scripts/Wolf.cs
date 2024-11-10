@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.UI;
 using UnityEngine;
 
 public class Wolf : MonoBehaviour
@@ -20,14 +19,11 @@ public class Wolf : MonoBehaviour
     [SerializeField] private float waitMin;
     [SerializeField] private float waitMax;
 
-    [SerializeField] private float maxHealth;
-    private float currHealth;
-    [SerializeField] private Image healthUI;
+    private Damagable damagable;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        currHealth = maxHealth;
     }
 
     void Start()
@@ -73,20 +69,6 @@ public class Wolf : MonoBehaviour
         {
             SheepManager.Instance.KillSheep(col.gameObject);
         }
-    }
-
-    private void ChangeHealth(float delta) {
-        currHealth += delta;
-        healthUI.fillAmount = currHealth / maxHealth;
-    }
-
-    public void Hit(Vector2 damagePos, float damage, float knockback) {
-        ChangeHealth(-damage);
-        if(currHealth <= 0) {
-            Destroy(gameObject);
-        }
-        Vector3 damageVector = ((Vector2) transform.position - damagePos).normalized * knockback;
-        rb.AddForce(damageVector);
     }
 
     IEnumerator ScanForSheep() {

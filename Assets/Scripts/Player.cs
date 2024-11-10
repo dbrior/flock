@@ -188,8 +188,8 @@ public class Player : MonoBehaviour
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, attackRadius);
         if (objectsInRange.Length > 0) {
             foreach (Collider2D obj in objectsInRange) {
-                if (obj.TryGetComponent<Wolf>(out Wolf wolf)) {
-                    wolf.Hit(transform.position, 20f, 100f);
+                if (obj.TryGetComponent<Damagable>(out Damagable damagable)) {
+                    damagable.Hit(transform.position, 20f, 100f);
                 }
             }
         }
