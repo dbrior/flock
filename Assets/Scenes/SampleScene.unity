@@ -1243,7 +1243,7 @@ MonoBehaviour:
   onPlayerInteract:
     m_PersistentCalls:
       m_Calls: []
-  interactionText: WELCOME    YOUNG    NIG
+  interactionText: WELCOME    YOUNG    SHEPARD
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Wolf : MonoBehaviour
@@ -9,6 +10,7 @@ public class Wolf : MonoBehaviour
     private LayerMask sheepLayer;
     [SerializeField]
     private float moveSpeed;
+    [SerializeField] private float maxForce;
     private Vector2 heading;
     [SerializeField]
     private float detectionRadius;
@@ -18,9 +20,14 @@ public class Wolf : MonoBehaviour
     [SerializeField] private float waitMin;
     [SerializeField] private float waitMax;
 
+    [SerializeField] private float maxHealth;
+    private float currHealth;
+    [SerializeField] private Image healthUI;
+
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        currHealth = maxHealth;
     }
 
     void Start()
@@ -57,7 +64,7 @@ public class Wolf : MonoBehaviour
         Vector2 targetVel = heading * moveSpeed;
         Vector2 velDelta = targetVel - rb.velocity;
         Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
-        rb.AddForce(requiredAccel * rb.mass);
+        rb.AddForce(Vector2.ClampMagnitude(requiredAccel * rb.mass, maxForce));
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -68,8 +75,18 @@ public class Wolf : MonoBehaviour
         }
     }
 
-    public void Hit() {
-        
+    private void ChangeHealth(float delta) {
+        currHealth += delta;
+        healthUI.fillAmount = currHealth / maxHealth;
+    }
+
+    public void Hit(Vector2 damagePos, float damage, float knockback) {
+        ChangeHealth(-damage);
+        if(currHealth <= 0) {
+            Destroy(gameObject);
+        }
+        Vector3 damageVector = ((Vector2) transform.position - damagePos).normalized * knockback;
+        rb.AddForce(damageVector);
     }
 
     IEnumerator ScanForSheep() {

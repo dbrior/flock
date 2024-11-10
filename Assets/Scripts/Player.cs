@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     [SerializeField] private ToolUI toolUI;
     [SerializeField] private float shearRadius;
     [SerializeField] private float wateringRadius;
+    [SerializeField] private float attackRadius;
     [SerializeField] private GameObject pelletPrefab;
     [SerializeField] private float pelletSpeed;
     private int woolCount;
@@ -184,6 +185,14 @@ public class Player : MonoBehaviour
     }
 
     public void OnAttack() {
+        Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, attackRadius);
+        if (objectsInRange.Length > 0) {
+            foreach (Collider2D obj in objectsInRange) {
+                if (obj.TryGetComponent<Wolf>(out Wolf wolf)) {
+                    wolf.Hit(transform.position, 20f, 100f);
+                }
+            }
+        }
         animator.SetTrigger("Attack");
     }
 

@@ -299,6 +299,7 @@ MonoBehaviour:
   toolUI: {fileID: 0}
   shearRadius: 0.1
   wateringRadius: 0.1
+  attackRadius: 0.2
   pelletPrefab: {fileID: 6302693463734982198, guid: 8bdbbbcc8fc7944d0ab90eb1d4cbb3ce, type: 3}
   pelletSpeed: 5
 --- !u!50 &2362330277033630554
