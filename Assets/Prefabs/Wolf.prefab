@@ -126,6 +126,8 @@ MonoBehaviour:
     m_Bits: 64
   moveSpeed: 0.25
   detectionRadius: 1
+  waitMin: 0.5
+  waitMax: 1
 --- !u!50 &1642303859757627988
 Rigidbody2D:
   serializedVersion: 4

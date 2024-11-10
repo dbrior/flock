@@ -15,39 +15,24 @@ public class Crop : MonoBehaviour
     public CropState state;
     private int totalStates;
     private SpriteRenderer spriteRenderer;
-
-    [SerializeField] private Sprite drySprite;
-    [SerializeField] private Sprite wateredSprite;
-    [SerializeField] private Sprite growingSprite;
-    [SerializeField] private Sprite readySprite;
-    [SerializeField] private Sprite deadSprite;
-    private Dictionary<CropState, Sprite> sprites;
+    private Animator animator;
 
     void Awake() {
-        state = CropState.Dry;
         totalStates = System.Enum.GetValues(typeof(CropState)).Length;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
 
-        sprites = new Dictionary<CropState,Sprite>{
-            {CropState.Dry, drySprite},
-            {CropState.Watered, wateredSprite},
-            {CropState.Growing, growingSprite},
-            {CropState.Ready, readySprite},
-            {CropState.Dead, deadSprite}
-        };
-
-        spriteRenderer.sprite = sprites[state];
+        SetState(CropState.Dry);
     }
 
     public void SetState(CropState newState) {
         state = newState;
-        spriteRenderer.sprite = sprites[state];
+        animator.SetInteger("State", (int) state);
     }
 
     public void Water() {
         if (state == CropState.Dry) {
-            state = CropState.Watered;
-            spriteRenderer.sprite = sprites[state];
+            SetState(CropState.Watered);
         }
     }
 
@@ -55,11 +40,9 @@ public class Crop : MonoBehaviour
         if (state == CropState.Dry || state == CropState.Ready) {
             CropManager.Instance.RemoveCrop(this);
         } else if (state == CropState.Watered) {
-            state = CropState.Growing;
-            spriteRenderer.sprite = sprites[state];
+            SetState(CropState.Growing);
         } else if (state == CropState.Growing) {
-            state = CropState.Ready;
-            spriteRenderer.sprite = sprites[state];
+            SetState(CropState.Ready);
         }
     }
 }
