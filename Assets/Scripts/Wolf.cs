@@ -60,15 +60,20 @@ public class Wolf : MonoBehaviour
         Vector2 targetVel = heading * moveSpeed;
         Vector2 velDelta = targetVel - rb.velocity;
         Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
+
+        float maxForce = rb.mass * 9.81f;
         rb.AddForce(Vector2.ClampMagnitude(requiredAccel * rb.mass, maxForce));
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.layer == LayerMask.NameToLayer("WildSheep"))
-        {
-            SheepManager.Instance.KillSheep(col.gameObject);
+        if (col.gameObject.TryGetComponent<Damagable>(out Damagable targetDamagable)) {
+            targetDamagable.Hit(transform.position, 25f, 100f);
         }
+        // if (col.gameObject.layer == LayerMask.NameToLayer("WildSheep"))
+        // {
+        //     SheepManager.Instance.KillSheep(col.gameObject);
+        // }
     }
 
     IEnumerator ScanForSheep() {

@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float attackRadius;
     [SerializeField] private GameObject pelletPrefab;
     [SerializeField] private float pelletSpeed;
+    [SerializeField] private GameObject flashlight;
+    private bool flashlightEnabled;
     public bool allowedPlanting = true;
     private int woolCount;
     
@@ -90,10 +92,29 @@ public class Player : MonoBehaviour
         if (newMoveCardinal != moveCardinal) {
             moveCardinal = newMoveCardinal;
             animator.SetInteger("Direction", cardinalIntMappings[moveCardinal]);
+
+            if (moveCardinal != Vector2.zero) {
+                SetHeading(moveCardinal);
+            }
         }
-        if (moveCardinal != Vector2.zero) {
-            heading = moveCardinal;
+    }
+
+    private void SetHeading(Vector2 newHeading) {
+        heading = newHeading;
+
+        // Rotate flashlight
+        float zRotation = 0;
+        if (heading == Vector2.up) {
+            zRotation = 0;
+        } else if (heading == Vector2.right) {
+            zRotation = -90f;
+        } else if (heading == Vector2.down) {
+            zRotation = 180f;
+        } else if (heading == Vector2.left) {
+            zRotation = 90f;
         }
+
+        flashlight.transform.rotation = Quaternion.Euler(0, 0, zRotation);
     }
 
     void FixedUpdate() {
@@ -191,7 +212,8 @@ public class Player : MonoBehaviour
         if (objectsInRange.Length > 0) {
             foreach (Collider2D obj in objectsInRange) {
                 if (obj.TryGetComponent<Damagable>(out Damagable damagable)) {
-                    damagable.Hit(transform.position, 20f, 100f);
+                    float knockbackForce = 200f;
+                    damagable.Hit(transform.position, 20f, knockbackForce);
                 }
             }
         }

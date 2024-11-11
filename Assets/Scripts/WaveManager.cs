@@ -23,18 +23,51 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float dayLengthSeconds;
     [SerializeField] private List<Color> lightingColors;
     [SerializeField] private Light2D sceneLight;
+    [SerializeField] private float lightsTurnOffTime;
+    [SerializeField] private float lightsTurnOnTime;
+
+    private bool lightsOn;
+    private List<Light2D> toggleableLights;
 
     private float currentTimeSeconds;
+    private float wakeTime;
     private Coroutine dayTimer;
 
     void Awake() {
         if (Instance == null) { Instance = this; } 
         else { Destroy(gameObject); }
+
+        lightsOn = false;
+        toggleableLights = new List<Light2D>();
     }
 
     void Start() {
+        wakeTime = (dayLengthSeconds / 24f) * 7; // 7 AM
         StartWave();
-        currentTimeSeconds = (dayLengthSeconds / 24f) * 7;
+
+        currentTimeSeconds = wakeTime;
+    }
+
+    public void AddToggleableLight(Light2D light) {
+        toggleableLights.Add(light);
+    }
+
+    private void TurnOffLights() {
+        foreach (Light2D light in toggleableLights) {
+            light.enabled = false;
+        }
+        lightsOn = false;
+    }
+
+    private void TurnOnLights() {
+        foreach (Light2D light in toggleableLights) {
+            light.enabled = true;
+        }
+        lightsOn = true;
+    }
+
+    public float getCurrentTime() {
+        return (currentTimeSeconds / dayLengthSeconds) * 24f; // 17.5 is 5:30PM
     }
 
     public void Sleep() {
@@ -43,6 +76,8 @@ public class WaveManager : MonoBehaviour
         if (currentTimeSeconds / dayLengthSeconds > dayPct) {
             EndWave();
         }
+
+        currentTimeSeconds = wakeTime;
     }
 
     public void StartWave() {
@@ -79,6 +114,14 @@ public class WaveManager : MonoBehaviour
             sceneLight.color = currentColor;
 
             UIManager.Instance.UpdateTime(currentTimeSeconds, dayLengthSeconds);
+
+            // Set toggleable lights
+            float currentTime = getCurrentTime();
+            if (!lightsOn && currentTime < lightsTurnOffTime || currentTime >= lightsTurnOnTime) {
+                TurnOnLights();
+            } else if (lightsOn && currentTime >= lightsTurnOffTime && currentTime < lightsTurnOnTime) {
+                TurnOffLights();
+            }
         }
         EndWave();
     }

@@ -244,6 +244,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.24
       objectReference: {fileID: 0}
+    - target: {fileID: 2362330277033630554, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2777728608378045438, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -1980,11 +1984,14 @@ MonoBehaviour:
     max: 10
   dayLengthSeconds: 120
   lightingColors:
-  - {r: 0.028301895, g: 0, b: 0, a: 0}
+  - {r: 0.028301895, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.19215687, b: 1, a: 1}
+  - {r: 0, g: 0.19215687, b: 1, a: 1}
   - {r: 1, g: 0.5176471, b: 0, a: 1}
-  - {r: 1, g: 1, b: 1, a: 0}
+  - {r: 1, g: 0.5176471, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -1993,11 +2000,17 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.5176471, b: 0, a: 1}
   - {r: 1, g: 0.5176471, b: 0, a: 1}
   - {r: 0, g: 0.19215687, b: 1, a: 1}
+  - {r: 0, g: 0.19215687, b: 1, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
   sceneLight: {fileID: 619394801}
+  lightsTurnOffTime: 5.5
+  lightsTurnOnTime: 18
 --- !u!1 &641961553
 GameObject:
   m_ObjectHideFlags: 0
@@ -24409,81 +24422,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 31030197331447087, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 31030197331447087, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 31030197331447087, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 31030197331447087, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 31030197331447087, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 31030197331447087, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 31030197331447087, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 246240789673061362, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_LightType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 246240789673061362, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_FalloffIntensity
-      value: 0.466
-      objectReference: {fileID: 0}
-    - target: {fileID: 246240789673061362, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_PointLightInnerAngle
-      value: 49.283142
-      objectReference: {fileID: 0}
-    - target: {fileID: 246240789673061362, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_PointLightOuterAngle
-      value: 94.16446
-      objectReference: {fileID: 0}
-    - target: {fileID: 246240789673061362, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 246240789673061362, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 246240789673061362, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_LocalBounds.m_Center.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 246240789673061362, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_LocalBounds.m_Center.y
-      value: -0.00000011920929
-      objectReference: {fileID: 0}
-    - target: {fileID: 246240789673061362, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_LocalBounds.m_Extent.x
-      value: 0.9985302
-      objectReference: {fileID: 0}
-    - target: {fileID: 246240789673061362, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_LocalBounds.m_Extent.y
-      value: 0.99853027
-      objectReference: {fileID: 0}
     - target: {fileID: 2777728608378045438, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: m_Name
       value: Player1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2777728608378045438, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2817175635976004154, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24524,22 +24465,6 @@ PrefabInstance:
     - target: {fileID: 2817175635976004154, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5139351866995693967, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6430743548529471557, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6430743548529471557, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6430743548529471557, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8084549005287282610, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: toolUI

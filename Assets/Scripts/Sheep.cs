@@ -13,9 +13,8 @@ public enum SheepState : int {
 
 public class Sheep : MonoBehaviour
 {
-    [SerializeField] private float maxForce;
+    // [SerializeField] private float maxForce;
     [SerializeField] private AudioClip captureSound;
-    [SerializeField] private AudioClip deathSound;
     private AudioSource audioSource;
     private Rigidbody2D rb;
     private Animator animator;
@@ -74,14 +73,16 @@ public class Sheep : MonoBehaviour
         Vector2 targetVel = heading * moveSpeed;
         Vector2 velDelta = targetVel - rb.velocity;
         Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
+
+        float maxForce = rb.mass * 9.81f;
         rb.AddForce(Vector2.ClampMagnitude(requiredAccel * rb.mass, maxForce));
         // rb.MovePosition((Vector2) transform.position + heading * moveSpeed * Time.fixedDeltaTime);
     }
 
     public void Kill() {
         isDying = true;
-        audioSource.PlayOneShot(deathSound);
-        StartCoroutine(WaitThenExecute(deathSound.length, Death));
+        // audioSource.PlayOneShot(deathSound);
+        // StartCoroutine(WaitThenExecute(deathSound.length, Death));
     }
 
     public void Capture() {
