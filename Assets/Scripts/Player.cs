@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
 
     void Start() {
         // Set Player Skin
-        for (int i=0; i<animator.layerCount; i++) {
+        for (int i=0; i<2; i++) {
             animator.SetLayerWeight(i, i == playerId ? 1f : 0f);
         }
     }
