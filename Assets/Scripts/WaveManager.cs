@@ -42,7 +42,7 @@ public class WaveManager : MonoBehaviour
     }
 
     void Start() {
-        wakeTime = (dayLengthSeconds / 24f) * 7; // 7 AM
+        wakeTime = (dayLengthSeconds / 24f) * 9; // 9 AM
         StartWave();
 
         currentTimeSeconds = wakeTime;

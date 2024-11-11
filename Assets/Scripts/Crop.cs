@@ -19,7 +19,8 @@ public class Crop : MonoBehaviour
 
     void Awake() {
         totalStates = System.Enum.GetValues(typeof(CropState)).Length;
-        TryGetComponent<Animator>(out Animator animator);
+        TryGetComponent<Animator>(out Animator animatorComp);
+        animator = animatorComp;
 
         SetState(CropState.Dry);
     }
