@@ -5356,6 +5356,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopCaravan
       objectReference: {fileID: 0}
+    - target: {fileID: 6447985110422788551, guid: 745766e1567a27e49b041feddafaece8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587082341154968594, guid: 745766e1567a27e49b041feddafaece8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6772103489784380239, guid: 745766e1567a27e49b041feddafaece8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.53

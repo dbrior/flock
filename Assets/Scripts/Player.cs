@@ -135,11 +135,13 @@ public class Player : MonoBehaviour
     public void OpenMenu() {
         inMenu = true;
         moveVec = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
     public void CloseMenu() {
         inMenu = false;
         moveVec = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
     public void OnMove(InputValue inputValue) {
