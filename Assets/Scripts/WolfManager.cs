@@ -52,7 +52,13 @@ public class WolfManager : MonoBehaviour
         while (true) {
             Debug.Log("Spawn wolves");
             SpawnWolves();
-            yield return new WaitForSeconds(Random.Range(spawnInterval.min, spawnInterval.max));
+            float waitTime = 0f;
+            if (WaveManager.Instance.getCurrentTime() < 5 || WaveManager.Instance.getCurrentTime() >= 21) {
+                waitTime = Random.Range(spawnInterval.min/2f, spawnInterval.max/2f);
+            } else {
+                waitTime = Random.Range(spawnInterval.min, spawnInterval.max);
+            }
+            yield return new WaitForSeconds(waitTime);
         }
     }
 }

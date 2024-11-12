@@ -106,6 +106,8 @@ public class WaveManager : MonoBehaviour
         // CropManager.Instance.SpawnRandomCrops();
         currentTimeSeconds = 0;
         dayTimer = StartCoroutine(DayCycle());
+
+        UIManager.Instance.UpdateDay(currDay);
     }
 
     public void EndWave() {
@@ -114,6 +116,8 @@ public class WaveManager : MonoBehaviour
             dayTimer = null;
         }
         currDay += 1;
+        wolfSpawnFrequency.min *= 0.95f;
+        wolfSpawnFrequency.max *= 0.95f;
         // SheepManager.Instance.Reset();
         // WolfManager.Instance.Reset();
         CropManager.Instance.AdvanceCrops();

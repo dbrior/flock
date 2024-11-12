@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tameSheepCounter;
     [SerializeField] private TextMeshProUGUI woolCounter;
     [SerializeField] private TextMeshProUGUI worldTime;
+    [SerializeField] private TextMeshProUGUI day;
 
     void Awake() {
         if (Instance == null) {Instance = this;} 
@@ -35,5 +36,9 @@ public class UIManager : MonoBehaviour
         int currentMinute = (int) Mathf.Floor((currentTimeSeconds - (currentHour * hourValue)) / minuteValue);
 
         worldTime.text = currentHour.ToString("00") + ":" + currentMinute.ToString("00");
+    }
+
+    public void UpdateDay(int dayValue) {
+        day.text = "DAY    " + dayValue.ToString("");
     }
 }
