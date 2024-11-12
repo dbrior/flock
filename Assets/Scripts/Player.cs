@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
     private int woolCount;
 
     private bool inMenu;
+    private bool isAttacking;
     
     void Awake()
     {
@@ -231,7 +232,16 @@ public class Player : MonoBehaviour
         toolUI.SetActiveTool(toolIdx);
     }
 
+    public void FinishAttack() {
+        isAttacking = false;
+    }
+
+    public void StartAttack() {
+        isAttacking = true;
+    }
+
     public void OnAttack() {
+        if (isAttacking) return;
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, attackRadius);
         if (objectsInRange.Length > 0) {
             foreach (Collider2D obj in objectsInRange) {
@@ -242,6 +252,7 @@ public class Player : MonoBehaviour
             }
         }
         animator.SetTrigger("Attack");
+        isAttacking = true;
     }
 
     public void CollectItem(ItemDrop item) {

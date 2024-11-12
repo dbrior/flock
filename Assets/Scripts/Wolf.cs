@@ -67,7 +67,7 @@ public class Wolf : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.TryGetComponent<Damagable>(out Damagable targetDamagable)) {
+        if (col.gameObject.TryGetComponent<Damagable>(out Damagable targetDamagable) && col.gameObject.GetComponent<Wolf>() == null) {
             targetDamagable.Hit(transform.position, 25f, 100f);
         }
         // if (col.gameObject.layer == LayerMask.NameToLayer("WildSheep"))

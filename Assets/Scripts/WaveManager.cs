@@ -117,7 +117,7 @@ public class WaveManager : MonoBehaviour
         // SheepManager.Instance.Reset();
         // WolfManager.Instance.Reset();
         CropManager.Instance.AdvanceCrops();
-        // StartWave();
+        StartWave();
     }
 
     private IEnumerator DayCycle() {
