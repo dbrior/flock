@@ -7,7 +7,8 @@ public class WolfManager : MonoBehaviour
     public static WolfManager Instance { get; private set; }
 
     [SerializeField] private GameObject wolfPrefab;
-    [SerializeField] private int spawnCount;
+    private IntRange spawnCount;
+    private FloatRange spawnInterval;
     private List<GameObject> wolves;
 
     void Awake() {
@@ -17,16 +18,24 @@ public class WolfManager : MonoBehaviour
         wolves = new List<GameObject>();
     }
 
+    void Start() {
+        StartCoroutine(WolfSpawner());
+    }
+
     public void Reset() {
         DestroyAllWovles();
     }
 
-    public void SetSpawnCount(int count) {
-        spawnCount = count;
+    public void SetSpawnCount(IntRange newRange) {
+        spawnCount = newRange;
+    }
+
+    public void SetSpawnInterval(FloatRange newInterval) {
+        spawnInterval = newInterval;
     }
 
     public void SpawnWolves() {
-        for (int i = 0; i < spawnCount; i++) {
+        for (int i = 0; i < Random.Range(spawnCount.min, spawnCount.max); i++) {
             GameObject wolf = SpawnManager.Instance.SpawnObject(wolfPrefab);
             wolves.Add(wolf);
         }
@@ -37,5 +46,13 @@ public class WolfManager : MonoBehaviour
             Destroy(wolves[i]);
         }
         wolves.Clear();
+    }
+
+    private IEnumerator WolfSpawner() {
+        while (true) {
+            Debug.Log("Spawn wolves");
+            SpawnWolves();
+            yield return new WaitForSeconds(Random.Range(spawnInterval.min, spawnInterval.max));
+        }
     }
 }

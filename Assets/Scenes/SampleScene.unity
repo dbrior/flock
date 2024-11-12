@@ -3421,9 +3421,15 @@ MonoBehaviour:
   wolfSpawnRange:
     min: 0
     max: 3
+  wolfSpawnFrequency:
+    min: 1
+    max: 5
   sheepSpawnRange:
     min: 1
     max: 10
+  sheepSpawnFrequency:
+    min: 0
+    max: 0
   dayLengthSeconds: 120
   lightingColors:
   - {r: 0.028301895, g: 0, b: 0, a: 1}
@@ -115840,7 +115846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1778122118678370564, guid: 6f36305c41b4a4db9a273f9579b9adb4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2065889685672078656, guid: 6f36305c41b4a4db9a273f9579b9adb4, type: 3}
       propertyPath: m_Size.x

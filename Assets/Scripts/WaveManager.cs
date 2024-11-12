@@ -14,12 +14,25 @@ public class IntRange {
     }
 }
 
+[System.Serializable]
+public class FloatRange {
+    public float min;
+    public float max;
+
+    void Init(float min, float max) {
+        this.min = min;
+        this.max = max;
+    }
+}
+
 public class WaveManager : MonoBehaviour
 {
     public static WaveManager Instance { get; private set; }
 
     [SerializeField] private IntRange wolfSpawnRange;
+    [SerializeField] private FloatRange wolfSpawnFrequency;
     [SerializeField] private IntRange sheepSpawnRange;
+    [SerializeField] private FloatRange sheepSpawnFrequency;
     [SerializeField] private float dayLengthSeconds;
     [SerializeField] private List<Color> lightingColors;
     [SerializeField] private Light2D sceneLight;
@@ -33,6 +46,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float wakeTime;
     private Coroutine dayTimer;
 
+    private int currDay;
+
     void Awake() {
         if (Instance == null) { Instance = this; } 
         else { Destroy(gameObject); }
@@ -42,6 +57,7 @@ public class WaveManager : MonoBehaviour
     }
 
     void Start() {
+        currDay = 1;
         StartWave();
 
         currentTimeSeconds = wakeTime * (dayLengthSeconds / 24f);
@@ -83,10 +99,11 @@ public class WaveManager : MonoBehaviour
         SheepManager.Instance.SetSpawnCount(Random.Range(sheepSpawnRange.min, sheepSpawnRange.max));
         SheepManager.Instance.SpawnSheep();
 
-        WolfManager.Instance.SetSpawnCount(Random.Range(wolfSpawnRange.min, wolfSpawnRange.max));
-        WolfManager.Instance.SpawnWolves();
+        WolfManager.Instance.SetSpawnCount(wolfSpawnRange);
+        WolfManager.Instance.SetSpawnInterval(wolfSpawnFrequency);
+        // WolfManager.Instance.SpawnWolves();
 
-        CropManager.Instance.SpawnRandomCrops();
+        // CropManager.Instance.SpawnRandomCrops();
         currentTimeSeconds = 0;
         dayTimer = StartCoroutine(DayCycle());
     }
@@ -96,10 +113,11 @@ public class WaveManager : MonoBehaviour
             StopCoroutine(dayTimer);
             dayTimer = null;
         }
-        SheepManager.Instance.Reset();
-        WolfManager.Instance.Reset();
+        currDay += 1;
+        // SheepManager.Instance.Reset();
+        // WolfManager.Instance.Reset();
         CropManager.Instance.AdvanceCrops();
-        StartWave();
+        // StartWave();
     }
 
     private IEnumerator DayCycle() {

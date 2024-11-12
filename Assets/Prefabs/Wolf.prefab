@@ -125,10 +125,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sheepLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
   moveSpeed: 0.25
   maxForce: 5
-  detectionRadius: 1
+  detectionRadius: 3
   waitMin: 0.5
   waitMax: 1
 --- !u!50 &1642303859757627988

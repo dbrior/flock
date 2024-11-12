@@ -235,7 +235,7 @@ public class Player : MonoBehaviour
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, attackRadius);
         if (objectsInRange.Length > 0) {
             foreach (Collider2D obj in objectsInRange) {
-                if (obj.TryGetComponent<Damagable>(out Damagable damagable)) {
+                if (obj.gameObject != gameObject && obj.TryGetComponent<Damagable>(out Damagable damagable)) {
                     float knockbackForce = 200f;
                     damagable.Hit(transform.position, 20f, knockbackForce);
                 }
