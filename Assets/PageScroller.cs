@@ -11,7 +11,11 @@ public class PageScroller : MonoBehaviour
     [SerializeField] private TextMeshProUGUI pageCounter;
     private int currentPage = 0;
 
-    private void SetActivePage(int pageNum) {
+    void OnEnable() {
+        SetActivePage(0);
+    }
+
+    public void SetActivePage(int pageNum) {
         for (int i=0; i<pages.Count; i++) {
             pages[i].SetActive(i == pageNum);
         }
