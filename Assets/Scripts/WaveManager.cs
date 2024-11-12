@@ -30,7 +30,7 @@ public class WaveManager : MonoBehaviour
     private List<Light2D> toggleableLights;
 
     private float currentTimeSeconds;
-    private float wakeTime;
+    [SerializeField] private float wakeTime;
     private Coroutine dayTimer;
 
     void Awake() {
@@ -42,10 +42,9 @@ public class WaveManager : MonoBehaviour
     }
 
     void Start() {
-        wakeTime = (dayLengthSeconds / 24f) * 9; // 9 AM
         StartWave();
 
-        currentTimeSeconds = wakeTime;
+        currentTimeSeconds = wakeTime * (dayLengthSeconds / 24f);
     }
 
     public void AddToggleableLight(Light2D light) {

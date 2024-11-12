@@ -25,6 +25,11 @@ public class Damagable : MonoBehaviour
         healthUI.fillAmount = currHealth / maxHealth;
     }
 
+    public void RestoreHealth() {
+        currHealth = maxHealth;
+        healthUI.fillAmount = currHealth / maxHealth;
+    }
+
     public void Hit(Vector2 damagePos, float damage, float knockback) {
         ChangeHealth(-damage);
         if(currHealth <= 0) {

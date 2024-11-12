@@ -5,7 +5,7 @@ public class CameraWithBounds : MonoBehaviour
     public Transform player1; // First Player Transform to follow
     public Transform player2; // Second Player Transform to follow
     public Vector2 toleranceBounds = new Vector2(2f, 2f); // The tolerance bounds around the camera's center
-    public Vector2 maxBounds = new Vector2(10f, 10f); // Maximum allowed camera offset
+    public Vector2 maxDistanceFromOrigin = new Vector2(10f, 10f); // Maximum allowed distance from origin (0,0) on each axis
 
     private Vector3 offset;
 
@@ -47,9 +47,9 @@ public class CameraWithBounds : MonoBehaviour
             targetPos.y = player2.position.y - Mathf.Sign(player2Diff.y) * toleranceBounds.y;
         }
 
-        // Constrain the target position to the maximum bounds
-        targetPos.x = Mathf.Clamp(targetPos.x, midpoint.x - maxBounds.x, midpoint.x + maxBounds.x);
-        targetPos.y = Mathf.Clamp(targetPos.y, midpoint.y - maxBounds.y, midpoint.y + maxBounds.y);
+        // Constrain the target position to the maximum distance from the origin (0,0) on each axis
+        targetPos.x = Mathf.Clamp(targetPos.x, -maxDistanceFromOrigin.x, maxDistanceFromOrigin.x);
+        targetPos.y = Mathf.Clamp(targetPos.y, -maxDistanceFromOrigin.y, maxDistanceFromOrigin.y);
 
         // Update the camera position smoothly to follow the target
         transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 3f);

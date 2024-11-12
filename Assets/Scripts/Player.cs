@@ -12,9 +12,14 @@ public enum Tool : int {
 
 [System.Serializable]
 public enum UpgradeType : int {
-    ShearRadius = 0,
-    RopeLength = 1,
-    Strength = 2
+    RopeLength,
+    ShearRadius,
+    WateringRadius,
+    Strength,
+    Damage,
+    Knockback,
+    MoveSpeed,
+    PenCapactiy
 }
 
 public class Player : MonoBehaviour
@@ -52,6 +57,8 @@ public class Player : MonoBehaviour
     private bool flashlightEnabled;
     public bool allowedPlanting = true;
     private int woolCount;
+
+    private bool inMenu;
     
     void Awake()
     {
@@ -97,10 +104,6 @@ public class Player : MonoBehaviour
                 SetHeading(moveCardinal);
             }
         }
-    }
-
-    private void SetHeading(Vector2 newHeading) {
-        heading = newHeading;
 
         // Rotate flashlight
         float zRotation = 0;
@@ -114,7 +117,12 @@ public class Player : MonoBehaviour
             zRotation = 90f;
         }
 
-        flashlight.transform.rotation = Quaternion.Euler(0, 0, zRotation);
+        float rotateSpeed = 0.05f;
+        flashlight.transform.rotation = Quaternion.Lerp(flashlight.transform.rotation, Quaternion.Euler(0, 0, zRotation), rotateSpeed);
+    }
+
+    private void SetHeading(Vector2 newHeading) {
+        heading = newHeading;
     }
 
     void FixedUpdate() {
@@ -124,7 +132,19 @@ public class Player : MonoBehaviour
         rb.AddForce(requiredAccel * rb.mass);
     }
 
+    public void OpenMenu() {
+        inMenu = true;
+        moveVec = Vector2.zero;
+    }
+
+    public void CloseMenu() {
+        inMenu = false;
+        moveVec = Vector2.zero;
+    }
+
     public void OnMove(InputValue inputValue) {
+        if (inMenu) return;
+
         moveVec = inputValue.Get<Vector2>();
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, heading, interactRange, interactionLayer);
@@ -141,6 +161,8 @@ public class Player : MonoBehaviour
     // }
 
     public void OnInteract() {
+        if (inMenu) return;
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, heading, interactRange, interactionLayer);
         if (hit) {
             Debug.Log("Player " + playerId + ": Interact with " + hit.transform.gameObject.name);

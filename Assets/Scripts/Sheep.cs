@@ -57,16 +57,18 @@ public class Sheep : MonoBehaviour
 
     private void SetState(SheepState newState) {
         state = newState;
-        if (state == SheepState.Dead) {
-            SheepManager.Instance.KillSheep(gameObject);
-        } else if ((int) state >= 1) {
-            float hungerDamage = 20f;
-            damagable.Hit(Vector2.zero, hungerDamage, 0f);
-        }
+        // if (state == SheepState.Dead) {
+        //     SheepManager.Instance.KillSheep(gameObject);
+        // } else if ((int) state >= 1) {
+        //     float hungerDamage = 20f;
+        //     damagable.Hit(Vector2.zero, hungerDamage, 0f);
+        // }
     }
 
     public void AdvanceState() {
-        SetState((SheepState) ((int) state + 1));
+        float hungerDamage = 20f;
+        damagable.Hit(Vector2.zero, hungerDamage, 0f);
+        // SetState((SheepState) ((int) state + 1));
     }
 
     void FixedUpdate() {
@@ -119,12 +121,17 @@ public class Sheep : MonoBehaviour
         itemSpawner.SpawnItems();
     }
 
+    private void Eat() {
+        Regrow();
+        damagable.RestoreHealth();
+    }
+
     public void OnTriggerEnter2D(Collider2D col) {
         // Sheared sheep can eat crops
         if (isSheared && col.gameObject.TryGetComponent<Crop>(out Crop crop)) {
             if (crop.state == CropState.Ready) {
-                Regrow();
                 CropManager.Instance.RemoveCropImmediately(crop);
+                Eat();
             }
         }
     }

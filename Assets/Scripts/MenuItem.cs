@@ -5,6 +5,7 @@ using UnityEngine;
 public class MenuItem : MonoBehaviour
 {
     [SerializeField] private UnityEvent onConfirm;
+    [SerializeField] private UnityEvent onBack;
     [SerializeField] private bool isDefaultSelected;
 
     void Start() {
@@ -14,6 +15,12 @@ public class MenuItem : MonoBehaviour
     }
 
     public void OnInteract() {
-        onConfirm?.Invoke();
+        if(EventSystem.current.currentSelectedGameObject == gameObject) {
+            onConfirm?.Invoke();
+        }
+    }
+
+    public void OnBack() {
+        onBack?.Invoke();
     }
 }
