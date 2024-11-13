@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     // UI Elements
     [SerializeField] private TextMeshProUGUI tameSheepCounter;
     [SerializeField] private TextMeshProUGUI woolCounter;
+    [SerializeField] private TextMeshProUGUI toothCounter;
     [SerializeField] private TextMeshProUGUI worldTime;
     [SerializeField] private TextMeshProUGUI day;
 
@@ -26,6 +27,10 @@ public class UIManager : MonoBehaviour
 
     public void UpdateWoolCount(int woolCount) {
         woolCounter.text = woolCount.ToString();
+    }
+
+    public void UpdateToothCount(int toothCount) {
+        toothCounter.text = toothCount.ToString();
     }
 
     public void UpdateTime(float currentTimeSeconds, float dayLengthSeconds) {

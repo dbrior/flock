@@ -19,4 +19,12 @@ public class Shop : MonoBehaviour
         lastActivePlayer.CloseMenu();
         shopWindow.SetActive(false);
     }
+
+    public void PurchaseHeal(int cost) {
+        lastActivePlayer.PurchaseHeal(cost);
+    }
+
+    public void PurchaseDamage(int cost) {
+        lastActivePlayer.PurchaseDamage(5f, cost);
+    }
 }

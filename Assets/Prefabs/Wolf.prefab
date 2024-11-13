@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1642303859757627988}
   - component: {fileID: 3623048314102020417}
   - component: {fileID: 5781063612898528675}
+  - component: {fileID: 8534154233674851778}
   m_Layer: 10
   m_Name: Wolf
   m_TagString: Untagged
@@ -217,7 +218,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthUI: {fileID: 3329699755350176024}
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8534154233674851778}
+        m_TargetAssemblyTypeName: ItemSpawner, Assembly-CSharp
+        m_MethodName: SpawnItems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hitSound: {fileID: 0}
+--- !u!114 &8534154233674851778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297718032968050557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a31e65072a3744b283a70bad33cd4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 4465506323250089622, guid: 2a9fcb711dc644260b8980cfda4e87d9, type: 3}
+  spawnAmounts:
+    min: 1
+    max: 3
 --- !u!1001 &7079103484468190596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -305,6 +337,10 @@ PrefabInstance:
     - target: {fileID: 2942780434551415796, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000885052806610659, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5461340269042030209, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
       propertyPath: m_Name

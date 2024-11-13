@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public enum ItemName {
+    Wool,
+    Tooth
+}
+
 public class ItemDrop : MonoBehaviour
 {
     private bool suckedIn;
     private float suckSpeed;
     private GameObject target;
     private Rigidbody2D rb;
+
+    [SerializeField] public ItemName itemName;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();

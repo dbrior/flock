@@ -57,9 +57,12 @@ public class Player : MonoBehaviour
     private bool flashlightEnabled;
     public bool allowedPlanting = true;
     private int woolCount;
+    private int toothCount;
 
     private bool inMenu;
     private bool isAttacking;
+    private Damagable playerHealth;
+    [SerializeField] private float attackDamange;
     
     void Awake()
     {
@@ -67,6 +70,7 @@ public class Player : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         interactionHints = GetComponent<InteractionHints>();
+        playerHealth = GetComponent<Damagable>();
         woolCount = 0;
         heading = Vector2.down;
         currentTool = Tool.Shears;
@@ -247,7 +251,7 @@ public class Player : MonoBehaviour
             foreach (Collider2D obj in objectsInRange) {
                 if (obj.gameObject != gameObject && obj.TryGetComponent<Damagable>(out Damagable damagable)) {
                     float knockbackForce = 200f;
-                    damagable.Hit(transform.position, 20f, knockbackForce);
+                    damagable.Hit(transform.position, attackDamange, knockbackForce);
                 }
             }
         }
@@ -257,13 +261,22 @@ public class Player : MonoBehaviour
 
     public void CollectItem(ItemDrop item) {
         audioSource.PlayOneShot(collectSound);
-        AdjustWoolCount(1);
+        if (item.itemName == ItemName.Wool) {
+            AdjustWoolCount(1);
+        } else if (item.itemName == ItemName.Tooth) {
+            AdjustToothCount(1);
+        }
         Destroy(item.gameObject);
     }
 
     public void AdjustWoolCount(int delta) {
         woolCount += delta;
         UIManager.Instance.UpdateWoolCount(woolCount);
+    }
+
+    public void AdjustToothCount(int delta) {
+        toothCount += delta;
+        UIManager.Instance.UpdateToothCount(toothCount);
     }
 
     public int GetWoolCount() {
@@ -286,6 +299,20 @@ public class Player : MonoBehaviour
 
     public void OnDecreaseRope() {
         Rope.Instance.RemoveSegment();
+    }
+
+    public void PurchaseHeal(int toothCost) {
+        if (toothCount >= toothCost) {
+            playerHealth.RestoreHealth();
+            AdjustToothCount(-toothCost);
+        }
+    }
+
+    public void PurchaseDamage(float addedDamage, int toothCost) {
+        if (toothCount >= toothCost) {
+            attackDamange += addedDamage;
+            AdjustToothCount(-toothCost);
+        }
     }
 
     // void OnCollisionEnter2D(Collision2D col) {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Damagable : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class Damagable : MonoBehaviour
     private float currHealth;
     [SerializeField] private Image healthUI;
     private Rigidbody2D rb;
+    [SerializeField] private UnityEvent onDeath;
 
 
     [SerializeField] private AudioClip hitSound;
@@ -33,6 +35,7 @@ public class Damagable : MonoBehaviour
     public void Hit(Vector2 damagePos, float damage, float knockback) {
         ChangeHealth(-damage);
         if(currHealth <= 0) {
+            onDeath?.Invoke();
             Destroy(gameObject);
         }
         Vector3 damageVector = ((Vector2) transform.position - damagePos).normalized * knockback;

@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Strength
   price: 50
   sprite: {fileID: 21300000, guid: 69352ec5ada6e48bb9452b3553db0f22, type: 3}
-  upgradeType: 2
+  upgradeType: 3

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3919379588146199057}
   - component: {fileID: 7210781085964414645}
   m_Layer: 0
-  m_Name: Wool
+  m_Name: Tooth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 1918353767
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 95dc361a885c1401faa83028c0679cfd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c8d333115c86402988c7ca818423b5c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad4fc1419b324cc4aa11632b8f345b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: 1
 --- !u!50 &7210781085964414645
 Rigidbody2D:
   serializedVersion: 4
