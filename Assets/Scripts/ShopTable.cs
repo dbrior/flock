@@ -4,28 +4,25 @@ using UnityEngine;
 
 public class ShopTable : MonoBehaviour
 {
-    [SerializeField] private ShopItem item;
+    [SerializeField] private Item item;
+    [SerializeField] private Item currency;
+    [SerializeField] private int cost;
     [SerializeField] private SpriteRenderer spriteRenderer;
     private Interactable interactable;
 
-    // void OnValidate() {
-    //     if (spriteRenderer != null && item != null) {
-    //         spriteRenderer.sprite = item.sprite;
-    //     }
-    // }
-
     void Start() {
         interactable = GetComponent<Interactable>();
-        interactable.interactionText = item.itemName.ToUpper() + "\n" + item.price.ToString() + "    WOOL";
+        interactable.interactionText = item.itemName.ToUpper() + "\n" + cost.ToString() + "    " + currency.itemName.ToUpper();
     }
 
     public void Purchase(GameObject playerGameObject)
     {
         Player player = playerGameObject.GetComponent<Player>();
-        if (player != null && player.GetWoolCount() >= item.price)
-        {
-            player.AdjustWoolCount(-item.price);
-            player.AddUpgrade(item.upgradeType);
+        int currCurrency = PlayerInventory.inventory.GetItemCount(currency);
+
+        if (currCurrency >= cost) {
+            PlayerInventory.inventory.RemoveItem(currency, cost);
+            // player.AddUpgrade(item.upgradeType);
         }
     }
 }

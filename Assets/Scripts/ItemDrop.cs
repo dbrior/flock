@@ -2,12 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public enum ItemName {
-    Wool,
-    Tooth
-}
-
 public class ItemDrop : MonoBehaviour
 {
     private bool suckedIn;
@@ -15,7 +9,7 @@ public class ItemDrop : MonoBehaviour
     private GameObject target;
     private Rigidbody2D rb;
 
-    [SerializeField] public ItemName itemName;
+    [SerializeField] public Item item;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -34,7 +28,6 @@ public class ItemDrop : MonoBehaviour
         suckSpeed = speed;
         suckedIn = true;
     }
-
     public void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.TryGetComponent<Player>(out Player player)) {
             player.CollectItem(this);

@@ -56,9 +56,6 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject flashlight;
     private bool flashlightEnabled;
     public bool allowedPlanting = true;
-    private int woolCount;
-    private int toothCount;
-
     private bool inMenu;
     private bool isAttacking;
     private Damagable playerHealth;
@@ -71,7 +68,6 @@ public class Player : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         interactionHints = GetComponent<InteractionHints>();
         playerHealth = GetComponent<Damagable>();
-        woolCount = 0;
         heading = Vector2.down;
         currentTool = Tool.Shears;
         totalToolCount = System.Enum.GetNames(typeof(Tool)).Length;
@@ -259,28 +255,10 @@ public class Player : MonoBehaviour
         isAttacking = true;
     }
 
-    public void CollectItem(ItemDrop item) {
+    public void CollectItem(ItemDrop itemDrop) {
         audioSource.PlayOneShot(collectSound);
-        if (item.itemName == ItemName.Wool) {
-            AdjustWoolCount(1);
-        } else if (item.itemName == ItemName.Tooth) {
-            AdjustToothCount(1);
-        }
-        Destroy(item.gameObject);
-    }
-
-    public void AdjustWoolCount(int delta) {
-        woolCount += delta;
-        UIManager.Instance.UpdateWoolCount(woolCount);
-    }
-
-    public void AdjustToothCount(int delta) {
-        toothCount += delta;
-        UIManager.Instance.UpdateToothCount(toothCount);
-    }
-
-    public int GetWoolCount() {
-        return woolCount;
+        PlayerInventory.inventory.AddItem(itemDrop.item, 1);
+        Destroy(itemDrop.gameObject);
     }
 
     public void AddUpgrade(UpgradeType upgradeType) {
@@ -301,18 +279,12 @@ public class Player : MonoBehaviour
         Rope.Instance.RemoveSegment();
     }
 
-    public void PurchaseHeal(int toothCost) {
-        if (toothCount >= toothCost) {
-            playerHealth.RestoreHealth();
-            AdjustToothCount(-toothCost);
-        }
+    public void Heal() {
+        playerHealth.RestoreHealth();
     }
 
-    public void PurchaseDamage(float addedDamage, int toothCost) {
-        if (toothCount >= toothCost) {
-            attackDamange += addedDamage;
-            AdjustToothCount(-toothCost);
-        }
+    public void IncreaseDamage(float addedDamage) {
+        attackDamange += addedDamage;
     }
 
     // void OnCollisionEnter2D(Collision2D col) {

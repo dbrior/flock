@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class Farmhand : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    [SerializeField] private FarmPlot farmPlot;
+
+    private List<Vector2> targetPositions;
+
+    void Start() {
+        CheckCrops();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+        if (targetPositions.Count == 0) return;
+
+        if ((Vector2) transform.position == targetPositions[0]) {
+            // Debug.Log("Reached point");
+            targetPositions.RemoveAt(0);
+        } else {
+            transform.position = Vector2.Lerp((Vector2) transform.position, targetPositions[0], 0.01f);
+        }
+    }
+
+    public void CheckCrops() {
+        targetPositions = farmPlot.plotPoints;
     }
 }

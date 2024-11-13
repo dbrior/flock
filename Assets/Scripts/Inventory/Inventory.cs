@@ -1,0 +1,57 @@
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+
+public class Inventory : MonoBehaviour
+{
+    private Dictionary<Item, int> inventory = new Dictionary<Item, int>();
+
+    [SerializeField] private List<Item> items = new List<Item>();
+    [SerializeField] private List<TextMeshProUGUI> uiElements = new List<TextMeshProUGUI>();
+
+    private Dictionary<Item, TextMeshProUGUI> uiMappings = new Dictionary<Item, TextMeshProUGUI>();
+
+    private void Start()
+    {
+        for (int i = 0; i < items.Count && i < uiElements.Count; i++) {
+            uiMappings[items[i]] = uiElements[i];
+        }
+    }
+
+    private void UpdateItemUI(Item item, int count)
+    {
+        if (uiMappings.TryGetValue(item, out TextMeshProUGUI uiElement)) {
+            uiElement.text = count.ToString();
+        }
+    }
+
+    public void AddItem(Item item, int count)
+    {
+        int newCount = count;
+        if (inventory.TryGetValue(item, out int currCount)) {
+            newCount += inventory[item];
+        }
+        inventory[item] = newCount;
+        UpdateItemUI(item, newCount);
+    }
+
+    public void RemoveItem(Item item, int count)
+    {
+        if (inventory.TryGetValue(item, out int currCount))
+        {
+            int newCount = Mathf.Max(currCount - count, 0);
+
+            if (newCount == 0) {
+                inventory.Remove(item);
+            } else {
+                inventory[item] = newCount;
+            }
+            UpdateItemUI(item, newCount);
+        }
+    }
+
+    public int GetItemCount(Item item)
+    {
+        return inventory.TryGetValue(item, out int currCount) ? currCount : 0;
+    }
+}
