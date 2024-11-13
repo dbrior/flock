@@ -48,12 +48,13 @@ public class SheepManager : MonoBehaviour
         wildSheepList = new List<Sheep>();
         wildSheepCount = 0;
         deadSheepCount = 0;
+        UpdateUI();
+    }
 
+    public void AdvanceSheep() {
         foreach(Sheep sheep in tameSheepList) {
             sheep.AdvanceState();
         }
-
-        UpdateUI();
     }
 
     public void SetSpawnCount(int count) {
