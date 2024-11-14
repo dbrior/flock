@@ -240,6 +240,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1252419288893483841, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: toolUI
+      value: 
+      objectReference: {fileID: 1840686296}
     - target: {fileID: 1844621011028464499, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.24
@@ -116622,6 +116626,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1252419288893483841, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: toolUI
+      value: 
+      objectReference: {fileID: 380456176}
     - target: {fileID: 2777728608378045438, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: m_Name
       value: Player1

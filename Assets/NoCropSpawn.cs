@@ -6,15 +6,15 @@ public class NoCropSpawn : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.TryGetComponent<Player>(out Player player)) {
-            player.allowedPlanting = false;
+        if (col.gameObject.TryGetComponent<ToolBelt>(out ToolBelt toolBelt)) {
+            toolBelt.allowedPlanting = false;
         }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.TryGetComponent<Player>(out Player player)) {
-            player.allowedPlanting = true;
+        if (col.gameObject.TryGetComponent<ToolBelt>(out ToolBelt toolBelt)) {
+            toolBelt.allowedPlanting = true;
         }
     }
 }

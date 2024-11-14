@@ -3,14 +3,6 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
 [System.Serializable]
-public enum Tool : int {
-    Shears = 0,
-    Slingshot = 1,
-    SeedBag = 2,
-    WateringCan = 3
-}
-
-[System.Serializable]
 public enum UpgradeType : int {
     RopeLength,
     ShearRadius,
@@ -27,6 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int playerId;
     private Rigidbody2D rb;
     private Animator animator;
+    private ToolBelt toolBelt;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
@@ -45,17 +38,9 @@ public class Player : MonoBehaviour
     
     [Header("Misc")]
     // Anything here should probably not be here
-    private Tool currentTool;
-    private int totalToolCount;
-    [SerializeField] private ToolUI toolUI;
-    [SerializeField] private float shearRadius;
-    [SerializeField] private float wateringRadius;
     [SerializeField] private float attackRadius;
-    [SerializeField] private GameObject pelletPrefab;
-    [SerializeField] private float pelletSpeed;
     [SerializeField] private GameObject flashlight;
     private bool flashlightEnabled;
-    public bool allowedPlanting = true;
     private bool inMenu;
     private bool isAttacking;
     private Damagable playerHealth;
@@ -68,9 +53,8 @@ public class Player : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         interactionHints = GetComponent<InteractionHints>();
         playerHealth = GetComponent<Damagable>();
+        toolBelt = GetComponent<ToolBelt>();
         heading = Vector2.down;
-        currentTool = Tool.Shears;
-        totalToolCount = System.Enum.GetNames(typeof(Tool)).Length;
     }
 
     void Start() {
@@ -124,6 +108,7 @@ public class Player : MonoBehaviour
 
     private void SetHeading(Vector2 newHeading) {
         heading = newHeading;
+        toolBelt.heading = newHeading;
     }
 
     void FixedUpdate() {
@@ -183,55 +168,6 @@ public class Player : MonoBehaviour
         return new Vector2(x, y);
     }
 
-    public void OnUseItem() {
-        Debug.Log("Tool used " + currentTool);
-        if (currentTool == Tool.Slingshot) {
-            GameObject pellet = Instantiate(pelletPrefab, (Vector2) transform.position + (heading * 0.1f), Quaternion.identity);
-            Rigidbody2D pelletRb = pellet.GetComponent<Rigidbody2D>();
-            pelletRb.velocity = heading * pelletSpeed;
-            Destroy(pellet, 2f);
-        } else if (currentTool == Tool.Shears) {
-            Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, shearRadius, interactionLayer);
-            if (objectsInRange.Length > 0) {
-                foreach (Collider2D obj in objectsInRange) {
-                    if (obj.TryGetComponent<ToolInteraction>(out ToolInteraction toolInteraction)) {
-                        toolInteraction.UseTool(currentTool);
-                    }
-                }
-            }
-        } else if (allowedPlanting && currentTool == Tool.SeedBag) {
-            Vector2 spawnLocation = GetGridLocation(transform.position);
-
-            Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, 0.16f);
-            if (objectsInRange.Length > 0) {
-                foreach (Collider2D obj in objectsInRange) {
-                    if (obj.TryGetComponent<Crop>(out Crop crop)) {
-                        if ((Vector2) crop.transform.position == spawnLocation) {
-                            return;
-                        }
-                        Debug.Log(crop.transform.localPosition);
-                    }
-                }
-            }
-            CropManager.Instance.PlantCrop(spawnLocation);
-        } else if (currentTool == Tool.WateringCan) {
-            Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, wateringRadius);
-            if (objectsInRange.Length > 0) {
-                foreach (Collider2D obj in objectsInRange) {
-                    if (obj.TryGetComponent<ToolInteraction>(out ToolInteraction toolInteraction)) {
-                        toolInteraction.UseTool(currentTool);
-                    }
-                }
-            }
-        }
-    }
-
-    public void OnChangeTool() {
-        int toolIdx = ((int) currentTool + 1) % totalToolCount;
-        currentTool = (Tool) toolIdx;
-        toolUI.SetActiveTool(toolIdx);
-    }
-
     public void FinishAttack() {
         isAttacking = false;
     }
@@ -263,7 +199,7 @@ public class Player : MonoBehaviour
 
     public void AddUpgrade(UpgradeType upgradeType) {
         if (upgradeType == UpgradeType.ShearRadius) {
-            shearRadius += 0.1f;
+            toolBelt.shearRadius += 0.1f;
         } else if (upgradeType == UpgradeType.Strength) {
             rb.mass += 1;
         } else if (upgradeType == UpgradeType.RopeLength) {
