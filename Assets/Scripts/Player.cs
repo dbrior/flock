@@ -2,18 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
-[System.Serializable]
-public enum UpgradeType : int {
-    RopeLength,
-    ShearRadius,
-    WateringRadius,
-    Strength,
-    Damage,
-    Knockback,
-    MoveSpeed,
-    PenCapactiy
-}
-
 public class Player : MonoBehaviour
 {
     [SerializeField] private int playerId;
@@ -45,6 +33,7 @@ public class Player : MonoBehaviour
     private bool isAttacking;
     private Damagable playerHealth;
     [SerializeField] private float attackDamange;
+    [SerializeField] private float knockbackForce = 200f;
     
     void Awake()
     {
@@ -182,7 +171,6 @@ public class Player : MonoBehaviour
         if (objectsInRange.Length > 0) {
             foreach (Collider2D obj in objectsInRange) {
                 if (obj.gameObject != gameObject && obj.TryGetComponent<Damagable>(out Damagable damagable)) {
-                    float knockbackForce = 200f;
                     damagable.Hit(transform.position, attackDamange, knockbackForce);
                 }
             }
@@ -196,14 +184,23 @@ public class Player : MonoBehaviour
         PlayerInventory.inventory.AddItem(itemDrop.item, 1);
         Destroy(itemDrop.gameObject);
     }
-
-    public void AddUpgrade(UpgradeType upgradeType) {
+    // WateringRadius,
+    // Knockback,
+    // MoveSpeed,
+    // PenCapacity
+    public void AddUpgrade(UpgradeType upgradeType, float value) {
         if (upgradeType == UpgradeType.ShearRadius) {
-            toolBelt.shearRadius += 0.1f;
+            toolBelt.shearRadius += value;
         } else if (upgradeType == UpgradeType.Strength) {
-            rb.mass += 1;
+            rb.mass += value;
         } else if (upgradeType == UpgradeType.RopeLength) {
-            Rope.Instance.AdjustMaxSegments(1);
+            Rope.Instance.AdjustMaxSegments((int) value);
+        } else if (upgradeType == UpgradeType.MoveSpeed) {
+            moveSpeed += value;
+        } else if (upgradeType == UpgradeType.Damage) {
+            attackDamange += value;
+        } else if (upgradeType == UpgradeType.Knockback) {
+            knockbackForce += value;
         }
     }
 

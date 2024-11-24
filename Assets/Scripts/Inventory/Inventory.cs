@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour
     public void AddItem(Item item, int count)
     {
         if (item.itemName == "Chest") {
-            Time.timeScale = 0;
+            CardManager.Instance.ShowCards();
             return;
         }
 

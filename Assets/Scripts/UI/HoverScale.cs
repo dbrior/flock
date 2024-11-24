@@ -37,7 +37,7 @@ public class HoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         while (time < animationDuration)
         {
             transform.localScale = Vector3.Lerp(startScale, targetScale, time / animationDuration);
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             yield return null;
         }
 
