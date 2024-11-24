@@ -246,10 +246,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a31e65072a3744b283a70bad33cd4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 4465506323250089622, guid: 2a9fcb711dc644260b8980cfda4e87d9, type: 3}
-  spawnAmounts:
-    min: 1
-    max: 3
+  itemSpawns:
+  - itemPrefab: {fileID: 4465506323250089622, guid: db0aaee251e6b496f8798945d27175d9, type: 3}
+    probability: 1
+    maxAmount: 1
+  - itemPrefab: {fileID: 4465506323250089622, guid: 2a9fcb711dc644260b8980cfda4e87d9, type: 3}
+    probability: 0.33
+    maxAmount: 3
 --- !u!1001 &7079103484468190596
 PrefabInstance:
   m_ObjectHideFlags: 0

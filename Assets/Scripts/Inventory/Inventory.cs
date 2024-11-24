@@ -27,6 +27,11 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Item item, int count)
     {
+        if (item.itemName == "Chest") {
+            Time.timeScale = 0;
+            return;
+        }
+
         int newCount = count;
         if (inventory.TryGetValue(item, out int currCount)) {
             newCount += inventory[item];

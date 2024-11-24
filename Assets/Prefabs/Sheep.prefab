@@ -156,10 +156,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a31e65072a3744b283a70bad33cd4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 4465506323250089622, guid: 3259a041dd2ac4574abbdf5d477fad31, type: 3}
-  spawnAmounts:
-    min: 1
-    max: 6
+  itemSpawns:
+  - itemPrefab: {fileID: 4465506323250089622, guid: 3259a041dd2ac4574abbdf5d477fad31, type: 3}
+    probability: 0.5
+    maxAmount: 4
 --- !u!50 &8059462698365605338
 Rigidbody2D:
   serializedVersion: 4
@@ -363,6 +363,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   healthUI: {fileID: 5872268663222057303}
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
   hitSound: {fileID: 8300000, guid: 2a9f3745618c546788d067cfee127a72, type: 3}
 --- !u!1001 &2122605450991818187
 PrefabInstance:

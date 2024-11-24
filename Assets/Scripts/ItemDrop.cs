@@ -28,8 +28,9 @@ public class ItemDrop : MonoBehaviour
         suckSpeed = speed;
         suckedIn = true;
     }
-    public void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.TryGetComponent<Player>(out Player player)) {
+    public void OnTriggerStay2D(Collider2D col) {
+        float objDistance = (col.gameObject.transform.position - transform.position).magnitude;
+        if (objDistance <= 0.01 && col.gameObject.TryGetComponent<Player>(out Player player)) {
             player.CollectItem(this);
         }
     }
