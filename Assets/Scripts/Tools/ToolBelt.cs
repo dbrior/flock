@@ -13,6 +13,7 @@ public class ToolBelt : MonoBehaviour
     public bool allowedPlanting = true;
     [SerializeField] private GameObject pelletPrefab;
     [SerializeField] private float pelletSpeed;
+    [SerializeField] private bool useToolUI = false;
     [SerializeField] private ToolUI toolUI;
 
     void Start() {
@@ -33,10 +34,15 @@ public class ToolBelt : MonoBehaviour
         }
     }
 
+    public void UseTool(Tool tool) {
+        currentTool = tool;
+        OnUseItem();
+    }
+
     public void OnChangeTool() {
         int toolIdx = ((int) currentTool + 1) % totalToolCount;
         currentTool = (Tool) toolIdx;
-        toolUI.SetActiveTool(toolIdx);
+        if (useToolUI) toolUI.SetActiveTool(toolIdx);
     }
 
     private void UseSlingshot() {

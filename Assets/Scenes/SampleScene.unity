@@ -1094,6 +1094,7 @@ GameObject:
   - component: {fileID: 203120429}
   - component: {fileID: 203120428}
   - component: {fileID: 203120427}
+  - component: {fileID: 203120430}
   m_Layer: 0
   m_Name: FarmHand
   m_TagString: Untagged
@@ -1181,6 +1182,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &203120430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203120426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ebd2c5eef1c445a907bb14c3828560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heading: {x: 0, y: 0}
+  shearRadius: 0.1
+  wateringRadius: 0.1
+  allowedPlanting: 1
+  pelletPrefab: {fileID: 0}
+  pelletSpeed: 0
+  toolUI: {fileID: 0}
 --- !u!1 &243953998
 GameObject:
   m_ObjectHideFlags: 0

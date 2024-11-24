@@ -571,6 +571,7 @@ MonoBehaviour:
   allowedPlanting: 1
   pelletPrefab: {fileID: 6302693463734982198, guid: 8bdbbbcc8fc7944d0ab90eb1d4cbb3ce, type: 3}
   pelletSpeed: 3
+  useToolUI: 1
   toolUI: {fileID: 0}
 --- !u!1 &3017089052463150311
 GameObject:
