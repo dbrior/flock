@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSpawns:
   - itemPrefab: {fileID: 4465506323250089622, guid: db0aaee251e6b496f8798945d27175d9, type: 3}
-    probability: 0.2
+    probability: 0.4
     maxAmount: 1
   - itemPrefab: {fileID: 4465506323250089622, guid: 2a9fcb711dc644260b8980cfda4e87d9, type: 3}
     probability: 0.33

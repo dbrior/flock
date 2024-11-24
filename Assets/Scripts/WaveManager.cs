@@ -116,8 +116,8 @@ public class WaveManager : MonoBehaviour
             dayTimer = null;
         }
         currDay += 1;
-        wolfSpawnFrequency.min *= 0.95f;
-        wolfSpawnFrequency.max *= 0.95f;
+        wolfSpawnFrequency.min *= 0.80f;
+        wolfSpawnFrequency.max *= 0.80f;
         // SheepManager.Instance.Reset();
         // WolfManager.Instance.Reset();
         CropManager.Instance.AdvanceCrops();

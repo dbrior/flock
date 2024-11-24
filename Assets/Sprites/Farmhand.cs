@@ -16,6 +16,7 @@ public class Farmhand : MonoBehaviour
 
     void Start() {
         CheckCrops();
+        StartCoroutine(ContinuouslyScan());
     }
 
     void Update() {
