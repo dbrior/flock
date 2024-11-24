@@ -2256,6 +2256,13 @@ MonoBehaviour:
   - {fileID: 1853338814}
   - {fileID: 879053169}
   cardMenu: {fileID: 319234523}
+  cardRanks:
+  - rank: 0
+    color: {r: 1, g: 1, b: 1, a: 0}
+  - rank: 0.5
+    color: {r: 0.44705883, g: 0.77254903, b: 1, a: 1}
+  - rank: 0.9
+    color: {r: 0.92941177, g: 0.34509805, b: 1, a: 1}
 --- !u!1 &345659686
 GameObject:
   m_ObjectHideFlags: 0
