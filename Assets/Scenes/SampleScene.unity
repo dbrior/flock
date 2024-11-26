@@ -115414,6 +115414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   releasePoint: {fileID: 1874612512}
   exitSpeed: 0.5
+  sheepFood: {fileID: 11400000, guid: 69557dbb986374ee6a4a0ad397736a43, type: 2}
   sheepPrefab: {fileID: 6663090896650471145, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
 --- !u!4 &1696522709
 Transform:

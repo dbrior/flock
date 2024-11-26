@@ -18,10 +18,10 @@ public class ShopTable : MonoBehaviour
     public void Purchase(GameObject playerGameObject)
     {
         Player player = playerGameObject.GetComponent<Player>();
-        int currCurrency = PlayerInventory.inventory.GetItemCount(currency);
+        int currCurrency = PlayerInventory.Instance.GetItemCount(currency);
 
         if (currCurrency >= cost) {
-            PlayerInventory.inventory.RemoveItem(currency, cost);
+            PlayerInventory.Instance.RemoveItem(currency, cost);
             // player.AddUpgrade(item.upgradeType);
         }
     }

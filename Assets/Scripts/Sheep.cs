@@ -71,6 +71,10 @@ public class Sheep : MonoBehaviour
         // SetState((SheepState) ((int) state + 1));
     }
 
+    public void Hit(float damage) {
+        damagable.Hit(Vector2.zero, damage, 0f);
+    }
+
     void FixedUpdate() {
         Vector2 targetVel = heading * moveSpeed;
         Vector2 velDelta = targetVel - rb.velocity;
@@ -122,6 +126,11 @@ public class Sheep : MonoBehaviour
     }
 
     private void Eat() {
+        Regrow();
+        damagable.RestoreHealth();
+    }
+
+    public void Feed() {
         Regrow();
         damagable.RestoreHealth();
     }

@@ -10,6 +10,7 @@ public class SheepManager : MonoBehaviour
     private FloatRange spawnInterval;
     [SerializeField] private Transform releasePoint;
     [SerializeField] private float exitSpeed;
+    [SerializeField] private Item sheepFood;
     private bool isReleasing;
     private int deadSheepCount;
     private int wildSheepCount;
@@ -74,9 +75,22 @@ public class SheepManager : MonoBehaviour
     public void AdvanceSheep() {
         foreach(Sheep sheep in tameSheepList) {
             if (sheep == null) continue;
-            sheep.AdvanceState();
+            if (PlayerInventory.Instance.GetItemCount(sheepFood) > 0) {
+                PlayerInventory.Instance.RemoveItem(sheepFood, 1);
+                sheep.Feed();
+            } else {
+                sheep.Hit(20f);
+            }
+            // sheep.AdvanceState();
         }
     }
+
+    // public void FeedSheep() {
+    //     foreach(Sheep sheep in tameSheepList) {
+    //         if (sheep == null) continue;
+    //         sheep.AdvanceState();
+    //     }
+    // }
 
     public void SetSpawnCount(IntRange newRange) {
         spawnCount = newRange;

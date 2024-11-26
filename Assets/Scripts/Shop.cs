@@ -21,15 +21,15 @@ public class Shop : MonoBehaviour
     }
 
     private bool CanAfford(Item currency, int cost) {
-        return PlayerInventory.inventory.GetItemCount(currency) >= cost;
+        return PlayerInventory.Instance.GetItemCount(currency) >= cost;
     }
 
     private void RemoveCurrency(Item currency, int cost) {
-        PlayerInventory.inventory.RemoveItem(currency, cost);
+        PlayerInventory.Instance.RemoveItem(currency, cost);
     }
 
     private void GiveItem(Item item, int amount) {
-        PlayerInventory.inventory.AddItem(item, amount);
+        PlayerInventory.Instance.AddItem(item, amount);
     }
 
     public void AttemptPurchase(ShopEntry shopEntry) {

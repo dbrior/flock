@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PlayerInventory : Inventory
 {
-    public static PlayerInventory inventory { get; private set;}
+    public static PlayerInventory Instance { get; private set;}
 
     void Awake() {
-        if (inventory == null) {inventory = this;}
+        if (Instance == null) {Instance = this;}
         else {Destroy(gameObject);}
     }
 }

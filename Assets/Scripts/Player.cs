@@ -181,7 +181,7 @@ public class Player : MonoBehaviour
 
     public void CollectItem(ItemDrop itemDrop) {
         audioSource.PlayOneShot(collectSound);
-        PlayerInventory.inventory.AddItem(itemDrop.item, 1);
+        PlayerInventory.Instance.AddItem(itemDrop.item, 1);
         Destroy(itemDrop.gameObject);
     }
     // WateringRadius,
