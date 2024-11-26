@@ -40,8 +40,17 @@ public class FarmPlot : MonoBehaviour
         plotPoints = GetPoints();
     }
 
+    private Vector2 NormalizeVector2(Vector2 vector, int decimals = 2)
+    {
+        float factor = Mathf.Pow(10, decimals);
+        return new Vector2(
+            Mathf.Round(vector.x * factor) / factor,
+            Mathf.Round(vector.y * factor) / factor
+        );
+    }
+
     private void ScanCrops() {
-        List<Vector2> checklist = new List<Vector2>(plotPoints);
+        List<Vector2> checklist = new List<Vector2>(plotPoints).Select(pos => NormalizeVector2(pos)).ToList();
         // needsPlant.Clear();
         needsWater.Clear();
 
@@ -55,8 +64,17 @@ public class FarmPlot : MonoBehaviour
                 }
             }            
         }
+        cropLocations = cropLocations.Select(pos => NormalizeVector2(pos)).ToList();
 
         needsPlant = checklist.Except(cropLocations).ToList();
+        // Debug.Log("Checklist");
+        // foreach (var item in cropLocations) {
+        //     Debug.Log(item);
+        // }
+        // Debug.Log("plant");
+        // foreach (var item in needsPlant) {
+        //     Debug.Log(item);
+        // }
     }
 
     private IEnumerator ContinouslyScan() {

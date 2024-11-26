@@ -83,6 +83,7 @@ public class CardManager : MonoBehaviour
                 CardRank cardRank = cardRanks[i];
                 if (pctRank >= cardRank.rank) {
                     color = cardRank.color;
+                    break;
                 }
             }
 
