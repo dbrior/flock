@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Wheat
   m_EditorClassIdentifier: 
   itemName: Wheat
-  sprite: {fileID: 21300000, guid: 51b90842715f3434cb4e533344bcc054, type: 3}
+  sprite: {fileID: 21300000, guid: 8ec8931b3f8b9469287096472abc54b0, type: 3}
