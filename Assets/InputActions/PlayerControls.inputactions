@@ -308,6 +308,17 @@
                 },
                 {
                     "name": "",
+                    "id": "44ec0d02-5df3-4510-8eaf-9d9bc0327c35",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "fe97e41d-dbeb-4da1-a2b9-d7500a974dfd",
                     "path": "<Mouse>/position",
                     "interactions": "",

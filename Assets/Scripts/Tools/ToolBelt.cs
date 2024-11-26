@@ -22,7 +22,7 @@ public class ToolBelt : MonoBehaviour
     }
 
     public void OnUseItem() {
-        Debug.Log("Tool used " + currentTool);
+        // Debug.Log("Tool used " + currentTool);
         if (currentTool == Tool.Slingshot) {
             UseSlingshot();
         } else if (currentTool == Tool.Shears) {

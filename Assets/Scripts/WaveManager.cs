@@ -121,6 +121,7 @@ public class WaveManager : MonoBehaviour
         // SheepManager.Instance.Reset();
         // WolfManager.Instance.Reset();
         CropManager.Instance.AdvanceCrops();
+        SheepManager.Instance.CleanReferences();
         SheepManager.Instance.AdvanceSheep();
         StartWave();
     }

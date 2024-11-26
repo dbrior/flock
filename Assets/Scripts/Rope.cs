@@ -166,4 +166,70 @@ public class Rope : MonoBehaviour
 
         AttachToPlayer2(previousSegment);
     }
+
+    private bool isAttached = false;
+    private HingeJoint2D attachmentHingeJoint;
+    public void OnAttachRope() {
+        // Get the last segment
+        GameObject lastSegment = ropeSegments[ropeSegments.Count - 1];
+
+        if (!isAttached)
+        {
+            Collider2D lastSegmentCollider = lastSegment.GetComponent<Collider2D>();
+
+            // Create a ContactFilter2D to find overlaps with other rope segments
+            ContactFilter2D contactFilter = new ContactFilter2D();
+            contactFilter.SetLayerMask(LayerMask.GetMask("Rope")); // Ensure "Rope" layer exists and is assigned to rope segments
+            contactFilter.useTriggers = false;
+
+            // Create an array to store the results
+            Collider2D[] results = new Collider2D[10];
+            int overlapCount = lastSegmentCollider.OverlapCollider(contactFilter, results);
+
+            bool attached = false;
+
+            for (int i = 0; i < overlapCount; i++)
+            {
+                Collider2D otherCollider = results[i];
+                if (otherCollider.gameObject != lastSegment && otherCollider.gameObject != ropeSegments[ropeSegments.Count - 2])
+                {
+                    // Found an overlapping rope segment
+                    // Get the approximate overlap point
+                    Vector2 overlapPoint = (lastSegment.transform.position + otherCollider.transform.position) / 2;
+
+                    // Create a hinge joint at the overlap point
+                    HingeJoint2D hinge = lastSegment.AddComponent<HingeJoint2D>();
+                    hinge.connectedBody = otherCollider.attachedRigidbody;
+                    hinge.autoConfigureConnectedAnchor = false;
+                    // hinge.anchor = lastSegment.transform.InverseTransformPoint(overlapPoint);
+                    hinge.anchor = new Vector2(segmentLength, 0);
+                    hinge.connectedAnchor = otherCollider.transform.InverseTransformPoint(overlapPoint);
+
+                    isAttached = true;
+                    attachmentHingeJoint = hinge;
+                    attached = true;
+
+                    Debug.Log("Rope attached at overlap point.");
+
+                    break; // Exit the loop after attaching
+                }
+            }
+
+            if (!attached)
+            {
+                Debug.Log("No overlapping rope segments found to attach.");
+            }
+        }
+        else
+        {
+            // Remove the hinge joint from the last segment
+            if (attachmentHingeJoint != null)
+            {
+                Destroy(attachmentHingeJoint);
+                attachmentHingeJoint = null;
+                isAttached = false;
+                Debug.Log("Rope detached.");
+            }
+        }
+    }
 }

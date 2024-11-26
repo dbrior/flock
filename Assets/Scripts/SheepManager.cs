@@ -34,6 +34,7 @@ public class SheepManager : MonoBehaviour
 
     void FixedUpdate() {
         foreach (Sheep sheep in releaseSheepList) {
+            if (sheep == null) continue;
             Rigidbody2D rb = sheep.GetComponent<Rigidbody2D>();
             Vector2 heading = (Vector2) (releasePoint.position - sheep.transform.position).normalized;
             Vector2 targetVel = heading * exitSpeed;
@@ -51,8 +52,23 @@ public class SheepManager : MonoBehaviour
         UpdateUI();
     }
 
+    public void CleanReferences() {
+        for (int i=wildSheepList.Count-1; i>=0; --i) {
+            if (wildSheepList[i] == null) wildSheepList.RemoveAt(i);
+        }
+
+        for (int i=tameSheepList.Count-1; i>=0; --i) {
+            if (tameSheepList[i] == null) tameSheepList.RemoveAt(i);
+        }
+
+        for (int i=releaseSheepList.Count-1; i>=0; --i) {
+            if (releaseSheepList[i] == null) releaseSheepList.RemoveAt(i);
+        }
+    }
+
     public void AdvanceSheep() {
         foreach(Sheep sheep in tameSheepList) {
+            if (sheep == null) continue;
             sheep.AdvanceState();
         }
     }
@@ -85,6 +101,7 @@ public class SheepManager : MonoBehaviour
     public void ReleaseAllSheep() {
         releaseSheepList = new List<Sheep>(tameSheepList);
         foreach (Sheep sheep in tameSheepList) {
+            if (sheep == null) continue;
             BoxCollider2D collider = sheep.GetComponent<BoxCollider2D>();
             collider.isTrigger = true;
         }
