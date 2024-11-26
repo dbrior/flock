@@ -25,10 +25,20 @@ public class FarmPlot : MonoBehaviour
     private List<Vector2> GetPoints() {
         List<Vector2> points = new List<Vector2>();
 
-        for (float x=transform.position.x-(radius*gridStep); x<=transform.position.x+(radius*gridStep); x+=gridStep) {
-            for (float y=transform.position.y-(radius*gridStep); y<=transform.position.y+(radius*gridStep); y+=gridStep) {
+        float minX = transform.position.x-(radius*gridStep);
+        minX = Mathf.Round(minX*100f)/100f;
+        float maxX = transform.position.x+(radius*gridStep);
+        maxX = Mathf.Round(maxX*100f)/100f;
+
+        float minY = transform.position.y-(radius*gridStep);
+        minY = Mathf.Round(minY*100f)/100f;
+        float maxY = transform.position.y+(radius*gridStep);
+        maxY = Mathf.Round(maxY*100f)/100f;
+
+        for (float x=minX; x<=maxX; x+=gridStep) {
+            for (float y=minY; y<=maxY; y+=gridStep) {
                 if (x == transform.position.x && y == transform.position.y) continue;
-                points.Add(new Vector2(x, y));
+                points.Add(new Vector2(Mathf.Round(x*100f)/100f, Mathf.Round(y*100f)/100f));
             }
         }
 

@@ -36,10 +36,14 @@ public class Farmhand : MonoBehaviour
         if (((Vector2) transform.position - targetPosition).magnitude < 0.05) {
             if (state == FarmhandState.Plant) {
                 toolBelt.UseTool(Tool.SeedBag);
-                needsPlant.RemoveAt(0);
+                if (needsPlant.Count > 0) {
+                    needsPlant.RemoveAt(0);
+                }
             } else if (state == FarmhandState.Water) {
                 toolBelt.UseTool(Tool.WateringCan);
-                needsWater.RemoveAt(0);
+                if (needsWater.Count > 0) {
+                    needsWater.RemoveAt(0);
+                }
             }
 
             CheckCrops();
