@@ -6,7 +6,8 @@ public class SheepManager : MonoBehaviour
 {
     public static SheepManager Instance { get; private set; }
 
-    [SerializeField] private int spawnCount;
+    private IntRange spawnCount;
+    private FloatRange spawnInterval;
     [SerializeField] private Transform releasePoint;
     [SerializeField] private float exitSpeed;
     private bool isReleasing;
@@ -30,6 +31,10 @@ public class SheepManager : MonoBehaviour
         wildSheepCount = 0;
         tameSheepCount = 0;
         deadSheepCount = 0;
+    }
+
+    void Start() {
+        StartCoroutine(SheepSpawner());
     }
 
     void FixedUpdate() {
@@ -73,12 +78,15 @@ public class SheepManager : MonoBehaviour
         }
     }
 
-    public void SetSpawnCount(int count) {
-        spawnCount = count;
+    public void SetSpawnCount(IntRange newRange) {
+        spawnCount = newRange;
     }
 
+    public void SetSpawnInterval(FloatRange newInterval) {
+        spawnInterval = newInterval;
+    }
     public void SpawnSheep() {
-        for (int i=0; i<spawnCount; i++) {
+        for (int i=0; i<Random.Range(spawnCount.min, spawnCount.max); i++) {
             Sheep sheep = SpawnManager.Instance.SpawnObject(sheepPrefab).GetComponent<Sheep>();
             wildSheepList.Add(sheep);
             wildSheepCount += 1;
@@ -152,5 +160,19 @@ public class SheepManager : MonoBehaviour
         // if (wildSheepCount == 0) {
         //     WaveManager.Instance.EndWave();
         // }
+    }
+
+    private IEnumerator SheepSpawner() {
+        while (true) {
+            Debug.Log("Spawn sheep");
+            SpawnSheep();
+            float waitTime = 0f;
+            if (!(WaveManager.Instance.getCurrentTime() < 5 || WaveManager.Instance.getCurrentTime() >= 21)) {
+                waitTime = Random.Range(spawnInterval.min, spawnInterval.max);
+            } else {
+                waitTime = Random.Range(spawnInterval.min/2f, spawnInterval.max/2f);
+            }
+            yield return new WaitForSeconds(waitTime);
+        }
     }
 }

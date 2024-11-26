@@ -96,8 +96,10 @@ public class WaveManager : MonoBehaviour
     }
 
     public void StartWave() {
-        SheepManager.Instance.SetSpawnCount(Random.Range(sheepSpawnRange.min, sheepSpawnRange.max));
-        SheepManager.Instance.SpawnSheep();
+        // SheepManager.Instance.SetSpawnCount(Random.Range(sheepSpawnRange.min, sheepSpawnRange.max));
+        SheepManager.Instance.SetSpawnCount(sheepSpawnRange);
+        SheepManager.Instance.SetSpawnInterval(sheepSpawnFrequency);
+        // SheepManager.Instance.SpawnSheep();
 
         WolfManager.Instance.SetSpawnCount(wolfSpawnRange);
         WolfManager.Instance.SetSpawnInterval(wolfSpawnFrequency);

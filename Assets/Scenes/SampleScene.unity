@@ -4423,10 +4423,10 @@ MonoBehaviour:
     max: 30
   sheepSpawnRange:
     min: 1
-    max: 10
+    max: 3
   sheepSpawnFrequency:
-    min: 0
-    max: 0
+    min: 10
+    max: 30
   dayLengthSeconds: 120
   lightingColors:
   - {r: 0.028301895, g: 0, b: 0, a: 1}
@@ -114259,7 +114259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31d78ad68fed4e9493e848976ca324b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCount: 10
   releasePoint: {fileID: 1874612512}
   exitSpeed: 0.5
   sheepPrefab: {fileID: 6663090896650471145, guid: 2938b931cc5bd48598d208a55150c786, type: 3}
