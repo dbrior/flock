@@ -16,11 +16,13 @@ public class Crop : MonoBehaviour
     private int totalStates;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private ItemSpawner itemSpawner;
 
     void Awake() {
         totalStates = System.Enum.GetValues(typeof(CropState)).Length;
         TryGetComponent<Animator>(out Animator animatorComp);
         animator = animatorComp;
+        itemSpawner = GetComponent<ItemSpawner>();
 
         SetState(CropState.Dry);
     }
@@ -35,6 +37,13 @@ public class Crop : MonoBehaviour
     public void Water() {
         if (state == CropState.Dry) {
             SetState(CropState.Watered);
+        }
+    }
+
+    public void Harvest() {
+        if (state == CropState.Ready) {
+            itemSpawner.SpawnItems();
+            CropManager.Instance.RemoveCropImmediately(this);
         }
     }
 

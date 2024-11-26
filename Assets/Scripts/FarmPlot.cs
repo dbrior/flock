@@ -62,7 +62,7 @@ public class FarmPlot : MonoBehaviour
     private IEnumerator ContinouslyScan() {
         while (true) {
             ScanCrops();
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(30f);
         }
     }
 }
