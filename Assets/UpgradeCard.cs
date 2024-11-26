@@ -13,6 +13,7 @@ public enum UpgradeType : int {
     Damage,
     Knockback,
     MoveSpeed,
+    MaxHealth,
     PenCapacity
 }
 

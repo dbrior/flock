@@ -166,8 +166,4 @@ public class Rope : MonoBehaviour
 
         AttachToPlayer2(previousSegment);
     }
-
-    // void FixedUpdate() {
-    //     // Debug.Log(ropeSegments[2].GetComponent<HingeJoint2D>().reactionForce);
-    // }
 }

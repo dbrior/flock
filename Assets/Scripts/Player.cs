@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     private bool flashlightEnabled;
     private bool inMenu;
     private bool isAttacking;
-    private Damagable playerHealth;
+    private Damagable damagable;
     [SerializeField] private float attackDamange;
     [SerializeField] private float knockbackForce = 200f;
     
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         interactionHints = GetComponent<InteractionHints>();
-        playerHealth = GetComponent<Damagable>();
+        damagable = GetComponent<Damagable>();
         toolBelt = GetComponent<ToolBelt>();
         heading = Vector2.down;
     }
@@ -201,6 +201,8 @@ public class Player : MonoBehaviour
             attackDamange += value;
         } else if (upgradeType == UpgradeType.Knockback) {
             knockbackForce += value;
+        } else if (upgradeType == UpgradeType.MaxHealth) {
+            damagable.ChangeMaxHealth(value);
         }
     }
 
@@ -213,7 +215,7 @@ public class Player : MonoBehaviour
     }
 
     public void Heal() {
-        playerHealth.RestoreHealth();
+        damagable.RestoreHealth();
     }
 
     public void IncreaseDamage(float addedDamage) {

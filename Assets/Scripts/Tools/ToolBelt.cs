@@ -73,7 +73,6 @@ public class ToolBelt : MonoBehaviour
                     if ((Vector2) crop.transform.position == spawnLocation) {
                         return;
                     }
-                    Debug.Log(crop.transform.localPosition);
                 }
             }
         }

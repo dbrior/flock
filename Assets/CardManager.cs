@@ -27,6 +27,7 @@ public class CardManager : MonoBehaviour
         {UpgradeType.Damage, "DAMAGE"},
         {UpgradeType.Knockback, "KNOCKBACK"},
         {UpgradeType.MoveSpeed, "MOVE    SPEED"},
+        {UpgradeType.MaxHealth, "MAX    HEALTH"},
         {UpgradeType.PenCapacity, "PEN    CAPACITY"}
     };
 
@@ -38,6 +39,7 @@ public class CardManager : MonoBehaviour
         {UpgradeType.Damage, (2f, 20f)},
         {UpgradeType.Knockback, (20f, 200f)},
         {UpgradeType.MoveSpeed, (0.2f, 0.5f)},
+        {UpgradeType.MaxHealth, (2f, 10f)},
         {UpgradeType.PenCapacity, (1f, 10f)}
     };
 
