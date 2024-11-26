@@ -47,6 +47,9 @@ public class Shop : MonoBehaviour
             } else if (item.itemName == "Heal") {
                 Debug.Log("Heal");
                 lastActivePlayer.Heal();
+            } else if (item.itemName == "FarmRadius") {
+                Debug.Log("Farm increase");
+                GetComponent<FarmPlot>().IncreaseRadius(1);
             } else {
                 GiveItem(item, 1);
             }

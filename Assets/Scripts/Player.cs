@@ -196,7 +196,7 @@ public class Player : MonoBehaviour
         } else if (upgradeType == UpgradeType.RopeLength) {
             Rope.Instance.AdjustMaxSegments((int) value);
         } else if (upgradeType == UpgradeType.MoveSpeed) {
-            moveSpeed += value;
+            moveSpeed += value/10f;
         } else if (upgradeType == UpgradeType.Damage) {
             attackDamange += value;
         } else if (upgradeType == UpgradeType.Knockback) {

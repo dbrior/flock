@@ -35,6 +35,11 @@ public class FarmPlot : MonoBehaviour
         return points;
     }
 
+    public void IncreaseRadius(int delta) {
+        radius += delta;
+        plotPoints = GetPoints();
+    }
+
     private void ScanCrops() {
         List<Vector2> checklist = new List<Vector2>(plotPoints);
         // needsPlant.Clear();
