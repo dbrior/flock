@@ -66,6 +66,8 @@ public class CardManager : MonoBehaviour
     public void ShowCards() {
         Time.timeScale = 0;
         cardMenu.SetActive(true);
+        DeactivateButtons();
+        StartCoroutine(DelayActivateButtons());
     }
 
     public void HideCards() {
@@ -108,5 +110,22 @@ public class CardManager : MonoBehaviour
             card.upgradeType = type;
             card.description.text = "+" + value.ToString() + "    " + upgradeNames[type].ToString();
         }
+    }
+
+    private void DeactivateButtons() {
+        foreach (UpgradeCard card in cards) {
+            card.button.enabled = false;
+        }
+    }
+
+    private void ActivateButtons() {
+        foreach (UpgradeCard card in cards) {
+            card.button.enabled = true;
+        }
+    }
+
+    IEnumerator DelayActivateButtons() {
+        yield return new WaitForSecondsRealtime(1f);
+        ActivateButtons();
     }
 }

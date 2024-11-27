@@ -68,7 +68,6 @@ public class Wolf : MonoBehaviour
     }
 
     public void SetAttackDamage(float damage) {
-        Debug.Log("Set daage " + damage.ToString());
         attackDamage = damage;
     }
 
