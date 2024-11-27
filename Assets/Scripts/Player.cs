@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private Damagable damagable;
     [SerializeField] private float attackDamange;
     [SerializeField] private float knockbackForce = 200f;
+    [SerializeField] private Rigidbody2D ropeTool;
     
     void Awake()
     {
@@ -105,6 +106,10 @@ public class Player : MonoBehaviour
         Vector2 velDelta = targetVel - rb.velocity;
         Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
         rb.AddForce(requiredAccel * rb.mass);
+
+        if (secondaryActive) {
+            ropeTool.angularVelocity = 1250f;
+        }
     }
 
     public void OpenMenu() {
@@ -179,9 +184,24 @@ public class Player : MonoBehaviour
         isAttacking = true;
     }
 
-    public void OnSecondaryAttack() {
-        toolBelt.UseSlingshot();
+    private bool secondaryActive = false;
+    public void OnSecondaryAttack(InputValue value) {
+        // toolBelt.UseSlingshot();
+        if (value.isPressed) {
+            Debug.Log("active");
+            secondaryActive = true;
+        } else {
+            Debug.Log("inactive");
+            secondaryActive = false;
+        }
+        // ropeTool.angularVelocity = 10f;
     }
+    // public void OnSecondaryAttackCanceled() {
+    //     // toolBelt.UseSlingshot();
+    //     Debug.Log("inactive");
+    //     secondaryActive = false;
+    //     // ropeTool.angularVelocity = 10f;
+    // }
 
     public void CollectItem(ItemDrop itemDrop) {
         audioSource.PlayOneShot(collectSound);

@@ -5,7 +5,9 @@ using UnityEngine;
 public class MoveTowardsPointer : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
-    // [SerializeField] private float minDistance;
+    [SerializeField] private float minDistance;
+    [SerializeField] private float damping;
+
     private Rigidbody2D rb;
 
     void Start() {
@@ -13,20 +15,16 @@ public class MoveTowardsPointer : MonoBehaviour
     }
 
     void FixedUpdate() {
-        Vector2 targetDirection = (Vector2) (Pointer.Instance.transform.position - transform.position);
-        Vector2 desiredVelocity = targetDirection.normalized * moveSpeed;
-        Vector2 currentVelocity = rb.velocity;
-        Vector2 deltaVelocity = desiredVelocity - currentVelocity;
-        Vector2 force = rb.mass * deltaVelocity / Time.fixedDeltaTime;
-        rb.AddForce(force);
+        Vector2 targetDirection = (Vector2)(Pointer.Instance.transform.position - transform.position);
+        float distance = targetDirection.magnitude;
 
-        // Vector2 distanceDelta = (Vector2) (Pointer.Instance.transform.position - transform.position);
-        // Vector2 targetVel = Mathf.Min()
-        // Vector2 targetDirection = distanceDelta.normalized;
-        // rb.AddForce(targetDirection * moveForce);
-        // if (distanceDelta.magnitude >= minDistance) {
-        //     Vector2 targetDirection = distanceDelta.normalized;
-        //     rb.AddForce(targetDirection * moveForce);
-        // }
+        if (distance > minDistance) {
+            Vector2 desiredVelocity = targetDirection.normalized * moveSpeed;
+            Vector2 smoothVelocity = Vector2.Lerp(rb.velocity, desiredVelocity, Time.fixedDeltaTime * damping);
+            rb.velocity = smoothVelocity;
+        } else {
+            rb.velocity = Vector2.zero;
+        }
     }
+
 }
