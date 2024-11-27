@@ -179,6 +179,10 @@ public class Player : MonoBehaviour
         isAttacking = true;
     }
 
+    public void OnSecondaryAttack() {
+        toolBelt.UseSlingshot();
+    }
+
     public void CollectItem(ItemDrop itemDrop) {
         audioSource.PlayOneShot(collectSound);
         PlayerInventory.Instance.AddItem(itemDrop.item, 1);

@@ -87,9 +87,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "AttachRope",
+                    "name": "SecondaryAttack",
                     "type": "Button",
-                    "id": "2a9c1e43-2f06-4b91-b96c-3c5b23833fa1",
+                    "id": "efba7936-bbd9-4bf7-a882-8e94909af9e7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -341,12 +341,12 @@
                 },
                 {
                     "name": "",
-                    "id": "b740b07e-c4b0-4476-97d4-4a1a3f300a07",
+                    "id": "dcfba4c7-4ff8-4d3f-9b53-78e93b209b63",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AttachRope",
+                    "action": "SecondaryAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

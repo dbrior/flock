@@ -132,7 +132,6 @@ MonoBehaviour:
   detectionRadius: 3
   waitMin: 0.5
   waitMax: 1
-  attackDamage: 20
 --- !u!50 &1642303859757627988
 Rigidbody2D:
   serializedVersion: 4
@@ -254,6 +253,9 @@ MonoBehaviour:
   - itemPrefab: {fileID: 4465506323250089622, guid: 2a9fcb711dc644260b8980cfda4e87d9, type: 3}
     probability: 0.33
     maxAmount: 3
+  - itemPrefab: {fileID: 8742995438940802542, guid: 61191ea388b534beb8925ff683a06224, type: 3}
+    probability: 0.5
+    maxAmount: 4
 --- !u!1001 &7079103484468190596
 PrefabInstance:
   m_ObjectHideFlags: 0

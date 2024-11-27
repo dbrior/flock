@@ -45,10 +45,11 @@ public class ToolBelt : MonoBehaviour
         if (useToolUI) toolUI.SetActiveTool(toolIdx);
     }
 
-    private void UseSlingshot() {
-        GameObject pellet = Instantiate(pelletPrefab, (Vector2) transform.position + (heading * 0.1f), Quaternion.identity);
+    public void UseSlingshot() {
+        Vector2 direction = (Vector2) (Pointer.Instance.transform.position - transform.position).normalized;
+        GameObject pellet = Instantiate(pelletPrefab, (Vector2) transform.position + (direction * 0.1f), Quaternion.identity);
         Rigidbody2D pelletRb = pellet.GetComponent<Rigidbody2D>();
-        pelletRb.velocity = heading * pelletSpeed;
+        pelletRb.velocity = direction * pelletSpeed;
         Destroy(pellet, 2f);
     }
 

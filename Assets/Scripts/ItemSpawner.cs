@@ -23,8 +23,11 @@ public class ItemSpawner : MonoBehaviour
             for (int i=0; i<itemSpawn.maxAmount; i++) {
                 float spawnRoll = UnityEngine.Random.Range(0, 1f);
                 if (spawnRoll > itemSpawn.probability) continue;
-                Vector2 spawnLocation = (Vector2) transform.position + (UnityEngine.Random.insideUnitCircle.normalized * 0.1f);
-                Instantiate(itemSpawn.itemPrefab, spawnLocation, Quaternion.identity);
+                // Vector2 spawnLocation = (Vector2) transform.position + (UnityEngine.Random.insideUnitCircle.normalized * 0.1f);
+                GameObject spawnedObj = Instantiate(itemSpawn.itemPrefab, transform.position, Quaternion.identity);
+                Rigidbody2D rb = spawnedObj.GetComponent<Rigidbody2D>();
+                Vector2 randomForce = (UnityEngine.Random.insideUnitCircle.normalized * 50f);
+                rb.AddForce(randomForce);
             }
         }
     }
