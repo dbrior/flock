@@ -12,6 +12,7 @@ public class ToolBelt : MonoBehaviour
     private int totalToolCount;
     public bool allowedPlanting = true;
     [SerializeField] private GameObject pelletPrefab;
+    [SerializeField] private Transform pelletSpawn;
     [SerializeField] private float pelletSpeed;
     [SerializeField] private bool useToolUI = false;
     [SerializeField] private ToolUI toolUI;
@@ -54,8 +55,18 @@ public class ToolBelt : MonoBehaviour
     }
 
     public void UseSlingshotAtTarget(Vector2 targetPosition) {
-        Vector2 direction = (targetPosition - (Vector2) transform.position).normalized;
-        GameObject pellet = Instantiate(pelletPrefab, (Vector2) transform.position + (direction * 0.1f), Quaternion.identity);
+        Vector2 direction = Vector2.zero;
+        Vector2 spawnLocation = Vector2.zero;
+        if (pelletSpawn != null) {
+            Vector2 pelletSpawnPosition = pelletSpawn.position;
+            direction = (targetPosition - (Vector2) pelletSpawnPosition).normalized;
+            spawnLocation = pelletSpawnPosition;
+        } else {
+            direction = (targetPosition - (Vector2) transform.position).normalized;
+            spawnLocation = (Vector2) transform.position + (direction * 0.1f);
+        }
+        
+        GameObject pellet = Instantiate(pelletPrefab, spawnLocation, Quaternion.identity);
         Rigidbody2D pelletRb = pellet.GetComponent<Rigidbody2D>();
         pelletRb.velocity = direction * pelletSpeed;
         Destroy(pellet, 2f);

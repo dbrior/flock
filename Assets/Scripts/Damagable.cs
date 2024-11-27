@@ -13,6 +13,7 @@ public class Damagable : MonoBehaviour
 
     [SerializeField] private AudioClip hitSound;
     private AudioSource audioSource;
+    [SerializeField] private Animator hitAnimator;
 
 
     void Start()
@@ -52,6 +53,10 @@ public class Damagable : MonoBehaviour
 
         if (hitSound != null) {
             audioSource.PlayOneShot(hitSound);
+        }
+
+        if (hitAnimator != null) {
+            hitAnimator.SetTrigger("Hit");
         }
     }
 }

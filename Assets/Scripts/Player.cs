@@ -34,7 +34,8 @@ public class Player : MonoBehaviour
     private Damagable damagable;
     [SerializeField] private float attackDamange;
     [SerializeField] private float knockbackForce = 200f;
-    [SerializeField] private Rigidbody2D ropeTool;
+    [SerializeField] private Rigidbody2D ropeRb;
+    [SerializeField] private Weapon ropeWeapon;
     
     void Awake()
     {
@@ -108,7 +109,7 @@ public class Player : MonoBehaviour
         rb.AddForce(requiredAccel * rb.mass);
 
         if (secondaryActive) {
-            ropeTool.angularVelocity = 1250f;
+            ropeRb.angularVelocity = 1250f;
         }
     }
 
@@ -188,10 +189,10 @@ public class Player : MonoBehaviour
     public void OnSecondaryAttack(InputValue value) {
         // toolBelt.UseSlingshot();
         if (value.isPressed) {
-            Debug.Log("active");
+            ropeWeapon.EnableDamage();
             secondaryActive = true;
         } else {
-            Debug.Log("inactive");
+            ropeWeapon.DisableDamage();
             secondaryActive = false;
         }
         // ropeTool.angularVelocity = 10f;
@@ -231,7 +232,7 @@ public class Player : MonoBehaviour
             damagable.ChangeHealth(value);
         }
 
-        Weapon ropeWeapon = ropeTool.gameObject.GetComponent<Weapon>();
+        Weapon ropeWeapon = ropeRb.gameObject.GetComponent<Weapon>();
         ropeWeapon.damage = attackDamange;
         ropeWeapon.knockbackForce = knockbackForce;
     }

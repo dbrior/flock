@@ -37,6 +37,8 @@ public class Shop : MonoBehaviour
         Item currency = shopEntry.currency;
         int cost = shopEntry.cost;
 
+        Debug.Log("buyss");
+
         if (CanAfford(currency, cost)) {
             RemoveCurrency(currency, cost);
 
@@ -50,6 +52,8 @@ public class Shop : MonoBehaviour
             } else if (item.itemName == "FarmRadius") {
                 Debug.Log("Farm increase");
                 GetComponent<FarmPlot>().IncreaseRadius(1);
+            } else if (item.itemName == "HunterFireRate") {
+                HunterManager.Instance.IncreaseFireRate(1f);
             } else {
                 GiveItem(item, 1);
             }
