@@ -6647,7 +6647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &463873916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7543,7 +7543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &512443079
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8650,8 +8650,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wolfSpawnRange:
-    min: 0
-    max: 3
+    min: 3
+    max: 8
   wolfSpawnFrequency:
     min: 10
     max: 30
@@ -9182,7 +9182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shop: {fileID: 1781135532}
-  currency: {fileID: 11400000, guid: f3129a8bc4c154da2969105b8b8350bf, type: 2}
+  currency: {fileID: 11400000, guid: a27554d8a44d04a2cafb58ac9c285c3a, type: 2}
   cost: 10
   item: {fileID: 11400000, guid: 2a2c6c661f8614a5eb2d33d7cc48c093, type: 2}
 --- !u!1 &714244170
@@ -9437,6 +9437,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wolfPrefab: {fileID: 1297718032968050557, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
+  attackDamage: 20
+  maxHealth: 75
 --- !u!1 &770040265
 GameObject:
   m_ObjectHideFlags: 0
@@ -10843,7 +10845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &941023510
 Transform:
   m_ObjectHideFlags: 0
@@ -120034,11 +120036,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6781391174571967063, guid: 87f4a31271dce0e4c91482262178cd9e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.56
+      value: -0.416
       objectReference: {fileID: 0}
     - target: {fileID: 6781391174571967063, guid: 87f4a31271dce0e4c91482262178cd9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.221
+      value: 1.751
       objectReference: {fileID: 0}
     - target: {fileID: 6781391174571967063, guid: 87f4a31271dce0e4c91482262178cd9e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -123243,11 +123245,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8740883313036888016, guid: 2a3c21776e2962046ac8deaea1c50147, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.12
+      value: -0.227
       objectReference: {fileID: 0}
     - target: {fileID: 8740883313036888016, guid: 2a3c21776e2962046ac8deaea1c50147, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.023
+      value: -0.307
       objectReference: {fileID: 0}
     - target: {fileID: 8740883313036888016, guid: 2a3c21776e2962046ac8deaea1c50147, type: 3}
       propertyPath: m_LocalPosition.z

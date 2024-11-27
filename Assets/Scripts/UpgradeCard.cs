@@ -14,6 +14,7 @@ public enum UpgradeType : int {
     Knockback,
     MoveSpeed,
     MaxHealth,
+    Heal,
     PenCapacity
 }
 

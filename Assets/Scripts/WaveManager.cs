@@ -103,6 +103,8 @@ public class WaveManager : MonoBehaviour
 
         WolfManager.Instance.SetSpawnCount(wolfSpawnRange);
         WolfManager.Instance.SetSpawnInterval(wolfSpawnFrequency);
+        WolfManager.Instance.IncreaseDamageByPct(0.2f);
+        WolfManager.Instance.IncreaseHealthByPct(0.2f);
         // WolfManager.Instance.SpawnWolves();
 
         // CropManager.Instance.SpawnRandomCrops();

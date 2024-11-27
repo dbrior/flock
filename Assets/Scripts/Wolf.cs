@@ -18,12 +18,14 @@ public class Wolf : MonoBehaviour
     private Vector2 animationDirection;
     [SerializeField] private float waitMin;
     [SerializeField] private float waitMax;
+    private float attackDamage;
 
     private Damagable damagable;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        damagable = GetComponent<Damagable>();
     }
 
     void Start()
@@ -65,10 +67,19 @@ public class Wolf : MonoBehaviour
         rb.AddForce(Vector2.ClampMagnitude(requiredAccel * rb.mass, maxForce));
     }
 
+    public void SetAttackDamage(float damage) {
+        Debug.Log("Set daage " + damage.ToString());
+        attackDamage = damage;
+    }
+
+    public void SetMaxHealth(float health) {
+        damagable.SetMaxHealth(health);
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.TryGetComponent<Damagable>(out Damagable targetDamagable) && col.gameObject.GetComponent<Wolf>() == null) {
-            targetDamagable.Hit(transform.position, 25f, 100f);
+            targetDamagable.Hit(transform.position, attackDamage, 100f);
         }
         // if (col.gameObject.layer == LayerMask.NameToLayer("WildSheep"))
         // {

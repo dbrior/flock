@@ -22,7 +22,7 @@ public class Damagable : MonoBehaviour
         currHealth = maxHealth;   
     }
 
-    private void ChangeHealth(float delta) {
+    public void ChangeHealth(float delta) {
         currHealth += delta;
         healthUI.fillAmount = currHealth / maxHealth;
     }
@@ -35,6 +35,10 @@ public class Damagable : MonoBehaviour
     public void ChangeMaxHealth(float delta) {
         maxHealth += delta;
         healthUI.fillAmount = currHealth / maxHealth;
+    }
+
+    public void SetMaxHealth(float newMax) {
+        maxHealth = newMax;
     }
 
     public void Hit(Vector2 damagePos, float damage, float knockback) {

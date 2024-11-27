@@ -203,6 +203,8 @@ public class Player : MonoBehaviour
             knockbackForce += value;
         } else if (upgradeType == UpgradeType.MaxHealth) {
             damagable.ChangeMaxHealth(value);
+        } else if (upgradeType == UpgradeType.Heal) {
+            damagable.ChangeHealth(value);
         }
     }
 

@@ -10,6 +10,8 @@ public class WolfManager : MonoBehaviour
     private IntRange spawnCount;
     private FloatRange spawnInterval;
     private List<GameObject> wolves;
+    [SerializeField] private float attackDamage;
+    [SerializeField] private float maxHealth;
 
     void Awake() {
         if (Instance == null) {Instance = this;}
@@ -20,6 +22,14 @@ public class WolfManager : MonoBehaviour
 
     void Start() {
         StartCoroutine(WolfSpawner());
+    }
+
+    public void IncreaseDamageByPct(float pct) {
+        attackDamage = attackDamage * (1f+pct);
+    }
+
+    public void IncreaseHealthByPct(float pct) {
+        maxHealth = maxHealth * (1f+pct);
     }
 
     public void Reset() {
@@ -36,8 +46,12 @@ public class WolfManager : MonoBehaviour
 
     public void SpawnWolves() {
         for (int i = 0; i < Random.Range(spawnCount.min, spawnCount.max); i++) {
-            GameObject wolf = SpawnManager.Instance.SpawnObject(wolfPrefab);
-            wolves.Add(wolf);
+            GameObject wolfObj = SpawnManager.Instance.SpawnObject(wolfPrefab);
+            wolves.Add(wolfObj);
+
+            Wolf wolf = wolfObj.GetComponent<Wolf>();
+            wolf.SetMaxHealth(maxHealth);
+            wolf.SetAttackDamage(attackDamage);
         }
     }
 

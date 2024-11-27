@@ -18,6 +18,19 @@ public class CardManager : MonoBehaviour
     [SerializeField] private GameObject cardMenu;
     [SerializeField] private List<CardRank> cardRanks;
 
+    private List<UpgradeType> possibleUpgrades = new List<UpgradeType>{
+        UpgradeType.RopeLength,
+        UpgradeType.ShearRadius,
+        // UpgradeType.WateringRadius,
+        UpgradeType.Strength,
+        UpgradeType.Damage,
+        UpgradeType.Knockback,
+        UpgradeType.MoveSpeed,
+        UpgradeType.MaxHealth,
+        UpgradeType.Heal
+        // UpgradeType.PenCapacity
+    };
+
 
     public Dictionary<UpgradeType,string> upgradeNames = new Dictionary<UpgradeType, string>{
         {UpgradeType.RopeLength, "ROPE   LENGTH"},
@@ -28,19 +41,21 @@ public class CardManager : MonoBehaviour
         {UpgradeType.Knockback, "KNOCKBACK"},
         {UpgradeType.MoveSpeed, "MOVE    SPEED"},
         {UpgradeType.MaxHealth, "MAX    HEALTH"},
-        {UpgradeType.PenCapacity, "PEN    CAPACITY"}
+        {UpgradeType.PenCapacity, "PEN    CAPACITY"},
+        {UpgradeType.Heal, "HEAL"}
     };
 
     public Dictionary<UpgradeType,(float min,float max)> upgradeValueRanges = new Dictionary<UpgradeType, (float min,float max)>{
-        {UpgradeType.RopeLength, (1f, 5f)},
-        {UpgradeType.ShearRadius, (0.05f, 0.2f)},
+        {UpgradeType.RopeLength, (1f, 2f)},
+        {UpgradeType.ShearRadius, (0.005f, 0.02f)},
         {UpgradeType.WateringRadius, (0.05f, 0.2f)},
         {UpgradeType.Strength, (0.2f, 1f)},
-        {UpgradeType.Damage, (2f, 20f)},
-        {UpgradeType.Knockback, (20f, 200f)},
-        {UpgradeType.MoveSpeed, (0.2f, 0.5f)},
+        {UpgradeType.Damage, (1f, 10f)},
+        {UpgradeType.Knockback, (2f, 20f)},
+        {UpgradeType.MoveSpeed, (0.1f, 0.25f)},
         {UpgradeType.MaxHealth, (2f, 10f)},
-        {UpgradeType.PenCapacity, (1f, 10f)}
+        {UpgradeType.PenCapacity, (1f, 10f)},
+        {UpgradeType.Heal, (10f, 100f)}
     };
 
     void Awake() {
@@ -72,7 +87,7 @@ public class CardManager : MonoBehaviour
 
     public void RandomizeCards() {
         foreach (UpgradeCard card in cards) {
-            UpgradeType type = (UpgradeType) UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(UpgradeType)).Length);
+            UpgradeType type = possibleUpgrades[UnityEngine.Random.Range(0, possibleUpgrades.Count)];
 
             (float min, float max) = upgradeValueRanges[type];
             float value = (float) Math.Round(UnityEngine.Random.Range(min, max), 1);
