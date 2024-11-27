@@ -29,11 +29,13 @@ public class FarmPlot : MonoBehaviour
         minX = Mathf.Round(minX*100f)/100f;
         float maxX = transform.position.x+(radius*gridStep);
         maxX = Mathf.Round(maxX*100f)/100f;
+        maxX += 0.01f;
 
         float minY = transform.position.y-(radius*gridStep);
         minY = Mathf.Round(minY*100f)/100f;
         float maxY = transform.position.y+(radius*gridStep);
         maxY = Mathf.Round(maxY*100f)/100f;
+        maxY += 0.01f;
 
         for (float x=minX; x<=maxX; x+=gridStep) {
             for (float y=minY; y<=maxY; y+=gridStep) {
