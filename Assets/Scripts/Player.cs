@@ -230,6 +230,10 @@ public class Player : MonoBehaviour
         } else if (upgradeType == UpgradeType.Heal) {
             damagable.ChangeHealth(value);
         }
+
+        Weapon ropeWeapon = ropeTool.gameObject.GetComponent<Weapon>();
+        ropeWeapon.damage = attackDamange;
+        ropeWeapon.knockbackForce = knockbackForce;
     }
 
     public void OnIncreaseRope() {

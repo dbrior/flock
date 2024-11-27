@@ -53,6 +53,14 @@ public class ToolBelt : MonoBehaviour
         Destroy(pellet, 2f);
     }
 
+    public void UseSlingshotAtTarget(Vector2 targetPosition) {
+        Vector2 direction = (targetPosition - (Vector2) transform.position).normalized;
+        GameObject pellet = Instantiate(pelletPrefab, (Vector2) transform.position + (direction * 0.1f), Quaternion.identity);
+        Rigidbody2D pelletRb = pellet.GetComponent<Rigidbody2D>();
+        pelletRb.velocity = direction * pelletSpeed;
+        Destroy(pellet, 2f);
+    }
+
     private void UseShears() {
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, shearRadius);
         if (objectsInRange.Length > 0) {

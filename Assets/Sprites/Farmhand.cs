@@ -8,6 +8,11 @@ public enum FarmhandState {
     Water
 }
 
+public enum FarmhandType {
+    Farmer,
+    Hunter
+}
+
 public class Farmhand : MonoBehaviour
 {
     [SerializeField] private FarmPlot farmPlot;
