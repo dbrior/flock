@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5809801817184462346}
   - component: {fileID: 7816283980651346217}
   - component: {fileID: 7405940714465007539}
-  - component: {fileID: 5598451183860833502}
   - component: {fileID: 5009658456811733342}
   - component: {fileID: 4339098764514307362}
+  - component: {fileID: 2259537292151267167}
   m_Layer: 14
   m_Name: Hunter
   m_TagString: Untagged
@@ -138,25 +138,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5598451183860833502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375127763543933279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7614a9566ad8543aba0f2ceb6419ecd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wolfLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  detectionRadius: 2
-  moveSpeed: 0.35
-  fireHz: 1
-  player: {fileID: 0}
 --- !u!114 &5009658456811733342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +188,25 @@ CapsuleCollider2D:
   m_Offset: {x: -0.00411972, y: -0.053554446}
   m_Size: {x: 0.12226307, y: 0.081067614}
   m_Direction: 1
+--- !u!114 &2259537292151267167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375127763543933279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7614a9566ad8543aba0f2ceb6419ecd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wolfLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  detectionRadius: 2
+  moveSpeed: 0.5
+  fireHz: 1
+  player: {fileID: 0}
 --- !u!1 &5933440314247674594
 GameObject:
   m_ObjectHideFlags: 0

@@ -70,6 +70,7 @@ public class CardManager : MonoBehaviour
     }
 
     public void ShowCards() {
+        RandomizeCards();
         Time.timeScale = 0;
         cardMenu.SetActive(true);
         DeactivateButtons();
@@ -89,7 +90,6 @@ public class CardManager : MonoBehaviour
             player.AddUpgrade(card.upgradeType, card.value);
         }
 
-        RandomizeCards();
         HideCards();
     }
 

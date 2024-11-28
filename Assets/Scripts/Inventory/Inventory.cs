@@ -31,6 +31,10 @@ public class Inventory : MonoBehaviour
             CardManager.Instance.ShowCards();
             return;
         }
+        if (item.itemName == "XP") {
+            XPManager.Instance.AddXp(1f);
+            return;
+        }
 
         int newCount = count;
         if (inventory.TryGetValue(item, out int currCount)) {
