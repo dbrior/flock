@@ -231,6 +231,10 @@ public class Player : MonoBehaviour
             damagable.ChangeMaxHealth(value);
         } else if (upgradeType == UpgradeType.Heal) {
             damagable.HealPct(value/100f);
+        } else if (upgradeType == UpgradeType.BlockChance) {
+            damagable.ChangeBlockChance(value/100f);
+        } else if (upgradeType == UpgradeType.HealthRegen) {
+            damagable.ChangeHealthRegen(value);
         }
 
         Weapon ropeWeapon = ropeRb.gameObject.GetComponent<Weapon>();

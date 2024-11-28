@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System.Collections;
 
 public class Damagable : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class Damagable : MonoBehaviour
     private float currHealth;
     [SerializeField] private Image healthUI;
     private Rigidbody2D rb;
+    private float blockChance;
     [SerializeField] private UnityEvent onDeath;
+    private float regenPerSecond;
 
 
     [SerializeField] private AudioClip hitSound;
@@ -20,7 +23,20 @@ public class Damagable : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        currHealth = maxHealth;   
+        currHealth = maxHealth;
+        blockChance = 0f;
+        regenPerSecond = 0f;
+    }
+
+    public void ChangeBlockChance(float delta) {
+        blockChance += delta;
+    }
+
+    public void ChangeHealthRegen(float delta) {
+        if (regenPerSecond == 0) {
+            StartCoroutine(Regen());
+        }
+        regenPerSecond += delta;
     }
 
     public void HealPct(float pct) {
@@ -48,6 +64,9 @@ public class Damagable : MonoBehaviour
     }
 
     public void Hit(Vector2 damagePos, float damage, float knockback) {
+        float hitRoll = Random.Range(0, 1f);
+        if (hitRoll <= blockChance) return;
+
         ChangeHealth(-damage);
         if(currHealth <= 0) {
             onDeath?.Invoke();
@@ -62,6 +81,13 @@ public class Damagable : MonoBehaviour
 
         if (hitAnimator != null) {
             hitAnimator.SetTrigger("Hit");
+        }
+    }
+
+    IEnumerator Regen() {
+        while (true) {
+            ChangeHealth(regenPerSecond);
+            yield return new WaitForSeconds(1f);
         }
     }
 }

@@ -19,15 +19,17 @@ public class CardManager : MonoBehaviour
     [SerializeField] private List<CardRank> cardRanks;
 
     private List<UpgradeType> possibleUpgrades = new List<UpgradeType>{
-        UpgradeType.RopeLength,
-        UpgradeType.ShearRadius,
+        // UpgradeType.RopeLength,
+        // UpgradeType.ShearRadius,
         // UpgradeType.WateringRadius,
         UpgradeType.Strength,
         UpgradeType.Damage,
         UpgradeType.Knockback,
         UpgradeType.MoveSpeed,
         UpgradeType.MaxHealth,
-        UpgradeType.Heal
+        UpgradeType.Heal,
+        UpgradeType.BlockChance,
+        UpgradeType.HealthRegen
         // UpgradeType.PenCapacity
     };
 
@@ -42,7 +44,9 @@ public class CardManager : MonoBehaviour
         {UpgradeType.MoveSpeed, "MOVE    SPEED"},
         {UpgradeType.MaxHealth, "MAX    HEALTH"},
         {UpgradeType.PenCapacity, "PEN    CAPACITY"},
-        {UpgradeType.Heal, "HEAL"}
+        {UpgradeType.Heal, "HEAL"},
+        {UpgradeType.BlockChance, "BLOCK    CHANCE"},
+        {UpgradeType.HealthRegen, "HEALTH    REGEN"}
     };
 
     public Dictionary<UpgradeType,(float min,float max)> upgradeValueRanges = new Dictionary<UpgradeType, (float min,float max)>{
@@ -55,7 +59,9 @@ public class CardManager : MonoBehaviour
         {UpgradeType.MoveSpeed, (0.1f, 0.25f)},
         {UpgradeType.MaxHealth, (2f, 10f)},
         {UpgradeType.PenCapacity, (1f, 10f)},
-        {UpgradeType.Heal, (5f, 50f)}
+        {UpgradeType.Heal, (5f, 50f)},
+        {UpgradeType.BlockChance, (0.2f, 5f)},
+        {UpgradeType.HealthRegen, (0.25f, 5f)}
     };
 
     void Awake() {

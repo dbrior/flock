@@ -15,7 +15,9 @@ public enum UpgradeType : int {
     MoveSpeed,
     MaxHealth,
     Heal,
-    PenCapacity
+    PenCapacity,
+    BlockChance,
+    HealthRegen
 }
 
 public class UpgradeCard : MonoBehaviour
