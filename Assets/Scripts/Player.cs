@@ -229,7 +229,7 @@ public class Player : MonoBehaviour
         } else if (upgradeType == UpgradeType.MaxHealth) {
             damagable.ChangeMaxHealth(value);
         } else if (upgradeType == UpgradeType.Heal) {
-            damagable.ChangeHealth(value);
+            damagable.HealPct(value);
         }
 
         Weapon ropeWeapon = ropeRb.gameObject.GetComponent<Weapon>();

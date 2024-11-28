@@ -23,8 +23,13 @@ public class Damagable : MonoBehaviour
         currHealth = maxHealth;   
     }
 
+    public void HealPct(float pct) {
+        ChangeHealth(pct * maxHealth);
+    }
+
     public void ChangeHealth(float delta) {
         currHealth += delta;
+        currHealth = Mathf.Min(currHealth, maxHealth);
         healthUI.fillAmount = currHealth / maxHealth;
     }
 
