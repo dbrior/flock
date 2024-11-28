@@ -51,11 +51,11 @@ public class CardManager : MonoBehaviour
         {UpgradeType.WateringRadius, (0.05f, 0.2f)},
         {UpgradeType.Strength, (0.2f, 1f)},
         {UpgradeType.Damage, (1f, 10f)},
-        {UpgradeType.Knockback, (4f, 40f)},
+        {UpgradeType.Knockback, (8f, 80f)},
         {UpgradeType.MoveSpeed, (0.1f, 0.25f)},
         {UpgradeType.MaxHealth, (2f, 10f)},
         {UpgradeType.PenCapacity, (1f, 10f)},
-        {UpgradeType.Heal, (10f, 100f)}
+        {UpgradeType.Heal, (5f, 50f)}
     };
 
     void Awake() {

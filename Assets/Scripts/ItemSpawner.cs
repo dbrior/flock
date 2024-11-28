@@ -28,6 +28,7 @@ public class ItemSpawner : MonoBehaviour
                 Rigidbody2D rb = spawnedObj.GetComponent<Rigidbody2D>();
                 Vector2 randomForce = (UnityEngine.Random.insideUnitCircle.normalized * 50f);
                 rb.AddForce(randomForce);
+                Destroy(spawnedObj, 30f);
             }
         }
     }

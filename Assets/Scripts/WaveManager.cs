@@ -107,7 +107,7 @@ public class WaveManager : MonoBehaviour
         WolfManager.Instance.IncreaseHealthByPct(0.2f);
         // WolfManager.Instance.SpawnWolves();
 
-        // CropManager.Instance.SpawnRandomCrops();
+        CropManager.Instance.SpawnRandomCrops();
         currentTimeSeconds = 0;
         dayTimer = StartCoroutine(DayCycle());
 

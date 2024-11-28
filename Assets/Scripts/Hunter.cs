@@ -38,9 +38,6 @@ public class Hunter : MonoBehaviour
         Vector2 smoothedPosition = Vector2.SmoothDamp(transform.position, targetPosition, ref currentVelocity, 0.75f, moveSpeed, Time.fixedDeltaTime);
 
         rb.MovePosition(smoothedPosition);
-
-        Debug.Log(player.position);
-        Debug.Log(rb.velocity);
     }
 
 

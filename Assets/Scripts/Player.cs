@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float knockbackForce = 200f;
     [SerializeField] private Rigidbody2D ropeRb;
     [SerializeField] private Weapon ropeWeapon;
+    public List<Transform> hunterSlots;
     
     void Awake()
     {
@@ -229,7 +230,7 @@ public class Player : MonoBehaviour
         } else if (upgradeType == UpgradeType.MaxHealth) {
             damagable.ChangeMaxHealth(value);
         } else if (upgradeType == UpgradeType.Heal) {
-            damagable.HealPct(value);
+            damagable.HealPct(value/100f);
         }
 
         Weapon ropeWeapon = ropeRb.gameObject.GetComponent<Weapon>();

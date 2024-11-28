@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7dd5f742bde24eb88442d358932ea37, type: 3}
-  m_Name: GunnerFireRate
+  m_Name: HunterCount
   m_EditorClassIdentifier: 
-  itemName: HunterFireRate
+  itemName: HunterCount
   sprite: {fileID: 0}
