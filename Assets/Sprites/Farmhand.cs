@@ -5,7 +5,8 @@ using UnityEngine;
 public enum FarmhandState {
     Wander,
     Plant,
-    Water
+    Water,
+    Harvest
 }
 
 public enum FarmhandType {
@@ -19,6 +20,7 @@ public class Farmhand : MonoBehaviour
 
     private List<Vector2> needsPlant;
     private List<Vector2> needsWater;
+    private List<Vector2> needsHarvest;
     private ToolBelt toolBelt;
     private Rigidbody2D rb;
     private Vector2 targetPosition;
@@ -49,6 +51,11 @@ public class Farmhand : MonoBehaviour
                 if (needsWater.Count > 0) {
                     needsWater.RemoveAt(0);
                 }
+            } else if (state == FarmhandState.Harvest) {
+                toolBelt.UseTool(Tool.Shears);
+                if (needsHarvest.Count > 0) {
+                    needsHarvest.RemoveAt(0);
+                }
             }
 
             CheckCrops();
@@ -66,6 +73,7 @@ public class Farmhand : MonoBehaviour
     public void CheckCrops() {
         needsPlant = farmPlot.needsPlant;
         needsWater = farmPlot.needsWater;
+        needsHarvest = farmPlot.needsHarvest;
 
         if (needsPlant.Count > 0) {
             state = FarmhandState.Plant;
@@ -73,6 +81,9 @@ public class Farmhand : MonoBehaviour
         } else if (needsWater.Count > 0) {
             state = FarmhandState.Water;
             targetPosition = needsWater[0];
+        } else if (needsHarvest.Count > 0) {
+            state = FarmhandState.Harvest;
+            targetPosition = needsHarvest[0];
         } else {
             state = FarmhandState.Wander;
             targetPosition = transform.position;

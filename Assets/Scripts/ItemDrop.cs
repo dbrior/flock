@@ -17,21 +17,28 @@ public class ItemDrop : MonoBehaviour
     }
     void FixedUpdate() {
         if (suckedIn) {
-            Vector2 targetVel = (Vector2) (target.transform.position - transform.position).normalized * suckSpeed;
+            Vector2 distance = (Vector2) (target.transform.position - transform.position);
+            if (distance.magnitude <= 0.01f) {
+                target.GetComponent<ItemDropMagnet>().CollectItem(this);
+            }
+
+            Vector2 targetVel = distance.normalized * suckSpeed;
             Vector2 velDelta = targetVel - rb.velocity;
             Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
             rb.AddForce(requiredAccel * rb.mass);
         }
     }
     public void SuckedInBy(GameObject targetObj, float speed) {
+        if (suckedIn) return;
+        
         target = targetObj;
         suckSpeed = speed;
         suckedIn = true;
     }
-    public void OnTriggerStay2D(Collider2D col) {
-        float objDistance = (col.gameObject.transform.position - transform.position).magnitude;
-        if (objDistance <= 0.01 && col.gameObject.TryGetComponent<Player>(out Player player)) {
-            player.CollectItem(this);
-        }
-    }
+    // public void OnTriggerStay2D(Collider2D col) {
+    //     float objDistance = (col.gameObject.transform.position - transform.position).magnitude;
+    //     if (objDistance <= 0.01 && col.gameObject.TryGetComponent<Player>(out Player player)) {
+    //         player.CollectItem(this);
+    //     }
+    // }
 }

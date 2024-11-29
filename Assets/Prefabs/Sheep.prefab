@@ -364,12 +364,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbf97350c38340e7a28097a822a7ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 500
   healthUI: {fileID: 5872268663222057303}
   onDeath:
     m_PersistentCalls:
       m_Calls: []
   hitSound: {fileID: 8300000, guid: 2a9f3745618c546788d067cfee127a72, type: 3}
+  hitAnimator: {fileID: 0}
 --- !u!1001 &2122605450991818187
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class FarmPlot : MonoBehaviour
     public List<Vector2> plotPoints;
     public List<Vector2> needsPlant;
     public List<Vector2> needsWater;
+    public List<Vector2> needsHarvest;
 
     void Start() {
         plotPoints = GetPoints();
@@ -73,6 +74,8 @@ public class FarmPlot : MonoBehaviour
                 cropLocations.Add((Vector2) crop.transform.position);
                 if (crop.state == CropState.Dry) {
                     needsWater.Add(crop.transform.position);
+                } else if (crop.state == CropState.Ready) {
+                    needsHarvest.Add(crop.transform.position);
                 }
             }            
         }

@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     private InteractionHints interactionHints;
 
     [Header("Audio")]
-    [SerializeField] private AudioClip collectSound;
     private AudioSource audioSource;
     
     [Header("Misc")]
@@ -205,11 +204,6 @@ public class Player : MonoBehaviour
     //     // ropeTool.angularVelocity = 10f;
     // }
 
-    public void CollectItem(ItemDrop itemDrop) {
-        audioSource.PlayOneShot(collectSound);
-        PlayerInventory.Instance.AddItem(itemDrop.item, 1);
-        Destroy(itemDrop.gameObject);
-    }
     // WateringRadius,
     // Knockback,
     // MoveSpeed,
