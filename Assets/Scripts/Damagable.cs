@@ -15,6 +15,7 @@ public class Damagable : MonoBehaviour
 
 
     [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip deathSound;
     private AudioSource audioSource;
     [SerializeField] private Animator hitAnimator;
 
@@ -72,6 +73,9 @@ public class Damagable : MonoBehaviour
 
         ChangeHealth(-damage);
         if(currHealth <= 0) {
+            if (deathSound != null) {
+                AudioSource.PlayClipAtPoint(deathSound, transform.position, 1f);
+            }
             onDeath?.Invoke();
             Destroy(gameObject);
         }
