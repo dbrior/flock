@@ -224,20 +224,23 @@ public class Player : MonoBehaviour
         } else if (upgradeType == UpgradeType.MoveSpeed) {
             moveSpeed += value/10f;
         } else if (upgradeType == UpgradeType.Damage) {
-            attackDamange += value;
+            attackDamange *= 1f + (value/100f);
         } else if (upgradeType == UpgradeType.Knockback) {
-            knockbackForce += value;
+            knockbackForce *= 1f + (value/100f);
         } else if (upgradeType == UpgradeType.MaxHealth) {
-            damagable.ChangeMaxHealth(value);
+            damagable.ChangeMaxHealthPct(value/100f);
         } else if (upgradeType == UpgradeType.Heal) {
             damagable.HealPct(value/100f);
         } else if (upgradeType == UpgradeType.BlockChance) {
             damagable.ChangeBlockChance(value/100f);
         } else if (upgradeType == UpgradeType.HealthRegen) {
-            damagable.ChangeHealthRegen(value);
+            damagable.ChangeHealthRegen(value/100f);
+        } else if (upgradeType == UpgradeType.CritChance) {
+            ropeWeapon.ChangeCritChance(value/100f);
+        } else if (upgradeType == UpgradeType.CritMultiplier) {
+            ropeWeapon.ChangeCritMultiplier(value/100f);
         }
 
-        Weapon ropeWeapon = ropeRb.gameObject.GetComponent<Weapon>();
         ropeWeapon.damage = attackDamange;
         ropeWeapon.knockbackForce = knockbackForce;
     }

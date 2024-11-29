@@ -25,7 +25,8 @@ public class Damagable : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         currHealth = maxHealth;
         blockChance = 0f;
-        regenPerSecond = 0f;
+        regenPerSecond = 1f;
+        StartCoroutine(Regen());
     }
 
     public void ChangeBlockChance(float delta) {
@@ -33,10 +34,7 @@ public class Damagable : MonoBehaviour
     }
 
     public void ChangeHealthRegen(float delta) {
-        if (regenPerSecond == 0) {
-            StartCoroutine(Regen());
-        }
-        regenPerSecond += delta;
+        regenPerSecond *= 1f + delta;
     }
 
     public void HealPct(float pct) {
@@ -56,6 +54,11 @@ public class Damagable : MonoBehaviour
 
     public void ChangeMaxHealth(float delta) {
         maxHealth += delta;
+        healthUI.fillAmount = currHealth / maxHealth;
+    }
+
+    public void ChangeMaxHealthPct(float pct) {
+        maxHealth += 1f + pct;
         healthUI.fillAmount = currHealth / maxHealth;
     }
 
