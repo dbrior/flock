@@ -47,6 +47,7 @@ public class CropManager : MonoBehaviour
         int spawnAmount = Random.Range(dailySpawnAmount.min, dailySpawnAmount.max);
         for (int i=0; i<spawnAmount; i++) {
             Crop crop = SpawnManager.Instance.SpawnObject(cropPrefab).GetComponent<Crop>();
+            crop.isWildCrop = true;
             crop.SetState(CropState.Ready);
             crops.Add(crop);
         }

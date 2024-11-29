@@ -88,6 +88,11 @@ public class FarmPlot : MonoBehaviour
         cropLocations = cropLocations.Select(pos => NormalizeVector2(pos)).ToList();
 
         needsPlant = checklist.Except(cropLocations).ToList();
+        foreach (Vector2 position in needsPlant) {
+            CropManager.Instance.PlantCrop(position);
+            needsWater.Add(position);
+        }
+        needsPlant.Clear();
         // Debug.Log("Checklist");
         // foreach (var item in cropLocations) {
         //     Debug.Log(item);

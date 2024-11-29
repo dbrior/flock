@@ -17,6 +17,7 @@ public class Crop : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private ItemSpawner itemSpawner;
+    public bool isWildCrop = false;
 
     void Awake() {
         totalStates = System.Enum.GetValues(typeof(CropState)).Length;
@@ -43,17 +44,40 @@ public class Crop : MonoBehaviour
     public void Harvest() {
         if (state == CropState.Ready) {
             itemSpawner.SpawnItems();
-            CropManager.Instance.RemoveCropImmediately(this);
+            if (isWildCrop) {
+                CropManager.Instance.RemoveCropImmediately(this);
+            } else {
+                SetState(CropState.Dry);
+            }
+        }
+    }
+
+    public void WorkCrop() {
+        if (state == CropState.Dry) {
+            Water();
+        } else if (state == CropState.Ready) {
+            Harvest();
         }
     }
 
     public void NextState() {
-        if (state == CropState.Dry || state == CropState.Ready) {
+        // if (state == CropState.Dry || state == CropState.Ready) {
+            // CropManager.Instance.RemoveCrop(this);
+        // } else 
+        if (isWildCrop && state == CropState.Dry) {
             CropManager.Instance.RemoveCrop(this);
-        } else if (state == CropState.Watered) {
+        }
+
+        if (state == CropState.Watered) {
             SetState(CropState.Growing);
         } else if (state == CropState.Growing) {
             SetState(CropState.Ready);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col) {
+        if (col.gameObject.TryGetComponent<Player>(out Player player)) {
+            WorkCrop();
         }
     }
 }
