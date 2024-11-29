@@ -56,6 +56,8 @@ public class Shop : MonoBehaviour
                 HunterManager.Instance.IncreaseFireRate(1f);
             } else if (item.itemName == "HunterCount") { 
                 HunterManager.Instance.SpawnHunter(lastActivePlayer);
+            } else if (item.itemName == "FarmhandCount") { 
+                GetComponent<FarmPlot>().SpawnFarmHand();
             } else {
                 GiveItem(item, 1);
             }

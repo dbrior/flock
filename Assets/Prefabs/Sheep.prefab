@@ -247,7 +247,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -370,6 +370,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   hitSound: {fileID: 0}
+  deathSound: {fileID: 0}
   hitAnimator: {fileID: 0}
 --- !u!1001 &2122605450991818187
 PrefabInstance:

@@ -16,7 +16,7 @@ public enum FarmhandType {
 
 public class Farmhand : MonoBehaviour
 {
-    [SerializeField] private FarmPlot farmPlot;
+    [SerializeField] public FarmPlot farmPlot;
 
     private List<Vector2> needsPlant;
     private List<Vector2> needsWater;
@@ -33,7 +33,7 @@ public class Farmhand : MonoBehaviour
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-        CheckCrops();
+        // CheckCrops();
         // StartCoroutine(ContinuouslyScan());
     }
 
@@ -68,6 +68,11 @@ public class Farmhand : MonoBehaviour
         Vector2 deltaVelocity = desiredVelocity - rb.velocity;
         Vector2 force = rb.mass * deltaVelocity / Time.fixedDeltaTime;
         rb.AddForce(force);
+    }
+
+    public void SetFarmPlot(FarmPlot plot) {
+        farmPlot = plot;
+        CheckCrops();
     }
 
     public void CheckCrops() {

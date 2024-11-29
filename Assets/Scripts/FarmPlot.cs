@@ -11,6 +11,7 @@ public enum FarmTodo : int {
 
 public class FarmPlot : MonoBehaviour
 {
+    [SerializeField] private GameObject farmHandPrefab;
     [SerializeField] private int radius;
     [SerializeField] private float gridStep;
     public List<Vector2> plotPoints;
@@ -46,6 +47,11 @@ public class FarmPlot : MonoBehaviour
         }
 
         return points;
+    }
+
+    public void SpawnFarmHand() {
+        Farmhand newFarmHand = Instantiate(farmHandPrefab, transform.position, transform.rotation).GetComponent<Farmhand>();
+        newFarmHand.SetFarmPlot(this);
     }
 
     public void IncreaseRadius(int delta) {
