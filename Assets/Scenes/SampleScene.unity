@@ -14094,6 +14094,7 @@ MonoBehaviour:
   plotPoints: []
   needsPlant: []
   needsWater: []
+  needsHarvest: []
 --- !u!4 &1406357091
 Transform:
   m_ObjectHideFlags: 0
@@ -14588,6 +14589,7 @@ MonoBehaviour:
   plotPoints: []
   needsPlant: []
   needsWater: []
+  needsHarvest: []
 --- !u!114 &1495243995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128496,6 +128498,10 @@ PrefabInstance:
       propertyPath: toolUI
       value: 
       objectReference: {fileID: 380456176}
+    - target: {fileID: 1764298251494807475, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 644e79a0400b34d2db00968f6bf37be7, type: 3}
     - target: {fileID: 1764298251494807475, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: hitAnimator
       value: 

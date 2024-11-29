@@ -369,7 +369,7 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
-  hitSound: {fileID: 8300000, guid: 2a9f3745618c546788d067cfee127a72, type: 3}
+  hitSound: {fileID: 0}
   hitAnimator: {fileID: 0}
 --- !u!1001 &2122605450991818187
 PrefabInstance:
