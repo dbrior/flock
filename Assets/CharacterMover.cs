@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CharacterMover : MonoBehaviour
@@ -10,6 +11,8 @@ public class CharacterMover : MonoBehaviour
     private Vector2 animationDirection;
 
     [SerializeField] private float moveSpeed;
+    [SerializeField] private LayerMask targetLayer;
+    [SerializeField] private float detectionRadius;
     [SerializeField] private bool hasTarget;
     [SerializeField] private float waitMin;
     [SerializeField] private float waitMax;
@@ -60,17 +63,29 @@ public class CharacterMover : MonoBehaviour
     IEnumerator ScanForTarget() {
         while (true)
         {
+            if (targetLayer.value == 0) {
+                heading =  Random.insideUnitCircle.normalized;
+            } else {
+                Collider2D[] targetsInRange = Physics2D.OverlapCircleAll(transform.position, detectionRadius, targetLayer);
+                if (targetsInRange.Length > 0)
+                {
+                    Collider2D closestTarget = targetsInRange.OrderBy(target => Vector2.Distance(transform.position, target.transform.position)).First();
+                    heading = (closestTarget.transform.position - transform.position).normalized;
+                } else {
+                    heading =  Random.insideUnitCircle.normalized;
+                }
+            }
             // if (hasTarget) {
-            //     Collider2D[] targetsInRange = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
-            //     if (targetsInRange.Length > 0)
-            //     {
-            //         Collider2D closestSheep = sheepInRange.OrderBy(sheep => Vector2.Distance(transform.position, sheep.transform.position)).First();
-            //         heading = (closestSheep.transform.position - transform.position).normalized;
-            //     } else {
-            //         heading =  Random.insideUnitCircle.normalized;
-            //     }
+                // Collider2D[] targetsInRange = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
+                // if (targetsInRange.Length > 0)
+                // {
+                //     Collider2D closestSheep = sheepInRange.OrderBy(sheep => Vector2.Distance(transform.position, sheep.transform.position)).First();
+                //     heading = (closestSheep.transform.position - transform.position).normalized;
+                // } else {
+                //     heading =  Random.insideUnitCircle.normalized;
+                // }
             // }
-            heading =  Random.insideUnitCircle.normalized;
+            // heading =  Random.insideUnitCircle.normalized;
             yield return new WaitForSeconds(Random.Range(waitMin, waitMax));
         }
     }
