@@ -145,6 +145,12 @@ public class Sheep : MonoBehaviour
         }
     }
 
+    public void OnCollisionEnter2D(Collision2D col) {
+        if (!isSheared && col.gameObject.TryGetComponent<Player>(out Player player)) {
+            Shear();
+        }
+    }
+
     private IEnumerator WaitThenExecute(float duration, Action action)
     {
         yield return new WaitForSeconds(duration);

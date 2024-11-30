@@ -18,6 +18,9 @@ public class CardManager : MonoBehaviour
     [SerializeField] private List<UpgradeCard> cards;
     [SerializeField] private GameObject cardMenu;
     [SerializeField] private List<CardRank> cardRanks;
+    [SerializeField] private AudioClip cardOpenSound;
+
+    private AudioSource audioSource;
 
     private List<UpgradeType> possibleUpgrades = new List<UpgradeType>{
         // UpgradeType.RopeLength,
@@ -76,11 +79,16 @@ public class CardManager : MonoBehaviour
         else {Destroy(gameObject);}
     }
 
+    void Start() {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public void ShowCards() {
         RandomizeCards();
         Time.timeScale = 0;
         cardMenu.SetActive(true);
         DeactivateButtons();
+        audioSource.PlayOneShot(cardOpenSound);
         StartCoroutine(DelayActivateButtons());
     }
 
