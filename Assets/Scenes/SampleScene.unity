@@ -11651,6 +11651,7 @@ MonoBehaviour:
   knockbackForce: 2000
   hitCooldownSec: 3
   attackZone: {fileID: 369330340}
+  indiscriminantDamage: 1
 --- !u!1 &1282277175
 GameObject:
   m_ObjectHideFlags: 0

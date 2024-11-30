@@ -11,6 +11,7 @@ public class Attacker : MonoBehaviour
     [SerializeField] private float knockbackForce;
     [SerializeField] private float hitCooldownSec;
     [SerializeField] private Collider2D attackZone;
+    [SerializeField] private bool indiscriminantDamage;
     private bool readyToAttack = true;
     private Damagable currentTarget;
 
@@ -38,7 +39,19 @@ public class Attacker : MonoBehaviour
     }
 
     public void AttackLand() {
-        if (currentTarget.GetComponent<Collider2D>().IsTouching(attackZone)) {
+        if (indiscriminantDamage) {
+            List<Collider2D> results = new List<Collider2D>();
+            ContactFilter2D filter = new ContactFilter2D().NoFilter();
+
+            int overlapCount = attackZone.OverlapCollider(filter, results);
+
+            foreach (Collider2D collider in results)
+            {
+                if (collider.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
+                    damagable.Hit(transform.position, damage, knockbackForce);
+                }
+            }
+        } else if (currentTarget.GetComponent<Collider2D>().IsTouching(attackZone)) {
             currentTarget.Hit(transform.position, damage, knockbackForce);
         }
         StartCoroutine(HitTimer(hitCooldownSec));
