@@ -53,6 +53,9 @@ public class Player : MonoBehaviour
         for (int i=0; i<2; i++) {
             animator.SetLayerWeight(i, i == playerId ? 1f : 0f);
         }
+
+        ropeWeapon.damage = attackDamange;
+        ropeWeapon.knockbackForce = knockbackForce;
     }
 
     private Dictionary<Vector2, int> cardinalIntMappings = new Dictionary<Vector2, int>{
@@ -209,6 +212,7 @@ public class Player : MonoBehaviour
     // MoveSpeed,
     // PenCapacity
     public void AddUpgrade(UpgradeType upgradeType, float value) {
+        Debug.Log(upgradeType);
         if (upgradeType == UpgradeType.ShearRadius) {
             toolBelt.shearRadius += value;
         } else if (upgradeType == UpgradeType.Strength) {
@@ -252,6 +256,7 @@ public class Player : MonoBehaviour
     }
 
     public void IncreaseDamage(float addedDamage) {
+        Debug.Log("Increase damage");
         attackDamange += addedDamage;
     }
 

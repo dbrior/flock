@@ -69,7 +69,7 @@ public class CardManager : MonoBehaviour
         {UpgradeType.PenCapacity, (1f, 10f)},
         {UpgradeType.Heal, (5f, 50f)},
         {UpgradeType.BlockChance, (1f, 5f)},
-        {UpgradeType.HealthRegen, (5f, 25f)},
+        {UpgradeType.HealthRegen, (1f, 10f)},
         {UpgradeType.CritChance, (0.5f, 10f)},
         {UpgradeType.CritMultiplier, (25f, 100f)}
     };

@@ -30,7 +30,7 @@ public class Weapon : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D col) {
         if (damageEnabled && col.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
             if (Random.Range(0, 1f) <= critChance) {
-                damagable.Hit(transform.position, damage*critMutliplier, knockbackForce*critMutliplier);
+                damagable.Hit(transform.position, damage*critMutliplier, knockbackForce*2f, true);
             } else {
                 damagable.Hit(transform.position, damage, knockbackForce);
             }

@@ -8,6 +8,7 @@ public class Damagable : MonoBehaviour
     [SerializeField] private float maxHealth;
     private float currHealth;
     [SerializeField] private Image healthUI;
+    [SerializeField] private Transform hitNumberLocation;
     private Rigidbody2D rb;
     private float blockChance;
     [SerializeField] private UnityEvent onDeath;
@@ -67,7 +68,7 @@ public class Damagable : MonoBehaviour
         maxHealth = newMax;
     }
 
-    public void Hit(Vector2 damagePos, float damage, float knockback) {
+    public void Hit(Vector2 damagePos, float damage, float knockback, bool isCrit = false) {
         float hitRoll = Random.Range(0, 1f);
         if (hitRoll <= blockChance) return;
 
@@ -88,6 +89,10 @@ public class Damagable : MonoBehaviour
 
         if (hitAnimator != null) {
             hitAnimator.SetTrigger("Hit");
+        }
+
+        if (hitNumberLocation != null) {
+            DamageNumberSpawner.Instance.SpawnDamageNumber(hitNumberLocation.position, Mathf.Round(damage).ToString(), isCrit);
         }
     }
 

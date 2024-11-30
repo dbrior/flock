@@ -41,6 +41,7 @@ Transform:
   - {fileID: 4734717150680428395}
   - {fileID: 5200200440541264084}
   - {fileID: 6055773347878062859}
+  - {fileID: 7605861852437046113}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2818268794414184719
@@ -326,6 +327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 75
   healthUI: {fileID: 2695611407063801859}
+  hitNumberLocation: {fileID: 7605861852437046113}
   onDeath:
     m_PersistentCalls:
       m_Calls:
@@ -341,7 +343,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: edcf849e50ae74b80822d4340af4f233, type: 3}
   deathSound: {fileID: 0}
   hitAnimator: {fileID: 0}
 --- !u!114 &3447361789295914738
@@ -528,6 +530,37 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 8
+--- !u!1 &8199576133422567940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7605861852437046113}
+  m_Layer: 0
+  m_Name: hitNumberLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7605861852437046113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199576133422567940}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.184, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 47412920673762415}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7594127934641245343
 PrefabInstance:
   m_ObjectHideFlags: 0
