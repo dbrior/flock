@@ -47,7 +47,7 @@ public class Attacker : MonoBehaviour
 
             foreach (Collider2D collider in results)
             {
-                if (collider.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
+                if (collider.gameObject != gameObject && collider.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
                     damagable.Hit(transform.position, damage, knockbackForce);
                 }
             }

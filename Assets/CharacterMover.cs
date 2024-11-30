@@ -9,13 +9,14 @@ public class CharacterMover : MonoBehaviour
     private Animator animator;
     private Vector2 heading;
     private Vector2 animationDirection;
+    private SpriteRenderer spriteRenderer;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private float detectionRadius;
-    [SerializeField] private bool hasTarget;
     [SerializeField] private float waitMin;
     [SerializeField] private float waitMax;
+    [SerializeField] private bool flippingSprite = false;
 
     private Dictionary<Vector2, int> cardinalIntMappings = new Dictionary<Vector2, int>{
         { Vector2.zero, 0 },
@@ -28,6 +29,7 @@ public class CharacterMover : MonoBehaviour
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -36,18 +38,22 @@ public class CharacterMover : MonoBehaviour
     }
 
     void Update() {
-        Vector2 newAnimationDirection;
-        if (heading == Vector2.zero) {
-            newAnimationDirection = Vector2.zero;
-        } else if (Mathf.Abs(heading.x) > Mathf.Abs(heading.y)) {
-            newAnimationDirection = heading.x > 0 ? Vector2.right : Vector2.left;
+        if (flippingSprite) {
+            spriteRenderer.flipX = heading.x < 0 ? true : false;
         } else {
-            newAnimationDirection = heading.y > 0 ? Vector2.up : Vector2.down;
-        }
+            Vector2 newAnimationDirection;
+            if (heading == Vector2.zero) {
+                newAnimationDirection = Vector2.zero;
+            } else if (Mathf.Abs(heading.x) > Mathf.Abs(heading.y)) {
+                newAnimationDirection = heading.x > 0 ? Vector2.right : Vector2.left;
+            } else {
+                newAnimationDirection = heading.y > 0 ? Vector2.up : Vector2.down;
+            }
 
-        if (newAnimationDirection != animationDirection) {
-            animationDirection = newAnimationDirection;
-            animator.SetInteger("Direction", cardinalIntMappings[animationDirection]);
+            if (newAnimationDirection != animationDirection) {
+                animationDirection = newAnimationDirection;
+                animator.SetInteger("Direction", cardinalIntMappings[animationDirection]);
+            }
         }
     }
 
