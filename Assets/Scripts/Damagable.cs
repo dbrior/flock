@@ -35,7 +35,7 @@ public class Damagable : MonoBehaviour
     }
 
     public void ChangeHealthRegen(float delta) {
-        regenPerSecond *= 1f + delta;
+        regenPerSecond += delta;
     }
 
     public void HealPct(float pct) {

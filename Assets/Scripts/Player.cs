@@ -228,7 +228,7 @@ public class Player : MonoBehaviour
         } else if (upgradeType == UpgradeType.BlockChance) {
             damagable.ChangeBlockChance(value/100f);
         } else if (upgradeType == UpgradeType.HealthRegen) {
-            damagable.ChangeHealthRegen(value/100f);
+            damagable.ChangeHealthRegen(value);
         } else if (upgradeType == UpgradeType.CritChance) {
             ropeWeapon.ChangeCritChance(value/100f);
         } else if (upgradeType == UpgradeType.CritMultiplier) {
