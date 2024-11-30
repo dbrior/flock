@@ -235,6 +235,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   hitSound: {fileID: 8300000, guid: edcf849e50ae74b80822d4340af4f233, type: 3}
+  deathSound: {fileID: 0}
   hitAnimator: {fileID: 7144021653032942544}
 --- !u!114 &8534154233674851778
 MonoBehaviour:
@@ -254,7 +255,7 @@ MonoBehaviour:
     maxAmount: 1
   - itemPrefab: {fileID: 4465506323250089622, guid: 2a9fcb711dc644260b8980cfda4e87d9, type: 3}
     probability: 0.33
-    maxAmount: 3
+    maxAmount: 2
   - itemPrefab: {fileID: 8742995438940802542, guid: 61191ea388b534beb8925ff683a06224, type: 3}
     probability: 0.5
     maxAmount: 4

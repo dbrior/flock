@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class CreatureSpawn {
+    public GameObject creaturePrefab;
+    public IntRange spawnAmount;
+    public FloatRange spawnInterval;
+    public List<FloatRange> spawnTimeRanges;
+}
+
 public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager Instance { get; private set; }
@@ -9,10 +17,17 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private PolygonCollider2D spawnZone;
     [SerializeField] private Transform backupSpawnPoint;
     [SerializeField] private int maxAttempts;
+    [SerializeField] private List<CreatureSpawn> creatureSpawns;
 
     void Awake() {
         if (Instance == null) {Instance = this;}
         else {Destroy(gameObject);}
+    }
+
+    void Start() {
+        foreach (CreatureSpawn creatureSpawn in creatureSpawns) {
+            StartCoroutine(CreatureSpawner(creatureSpawn));
+        }
     }
 
     public GameObject SpawnObject(GameObject obj) {
@@ -41,6 +56,30 @@ public class SpawnManager : MonoBehaviour
         }
 
         return Vector2.zero;
+    }
+
+    IEnumerator CreatureSpawner(CreatureSpawn creatureSpawn) {
+        while (true) {
+            // Check if in valid spawning time
+            float currentTime = WaveManager.Instance.getCurrentTime();
+            bool shouldSpawn = false;
+            foreach (FloatRange range in creatureSpawn.spawnTimeRanges) {
+                if (currentTime >= range.min && currentTime <= range.max) {
+                    shouldSpawn = true;
+                    break;
+                }
+            }
+
+            // Spawn creatures
+            if (shouldSpawn) {
+                int spawnAmount = Random.Range(creatureSpawn.spawnAmount.min, creatureSpawn.spawnAmount.max);
+                for (int i=0; i<spawnAmount; i++) {
+                    SpawnObject(creatureSpawn.creaturePrefab);
+                }
+            }
+
+            yield return new WaitForSeconds(Random.Range(creatureSpawn.spawnInterval.min, creatureSpawn.spawnInterval.max));
+        }
     }
 
 }
