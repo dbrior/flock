@@ -12,8 +12,15 @@ public class Attacker : MonoBehaviour
     [SerializeField] private float hitCooldownSec;
     [SerializeField] private Collider2D attackZone;
     [SerializeField] private bool indiscriminantDamage;
+    [SerializeField] private AudioClip attackLandSound;
     private bool readyToAttack = true;
     private Damagable currentTarget;
+
+    private AudioSource audioSource;
+
+    void Start() {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     // private void OnTriggerStay2D(Collider2D col) {
     //     if (readyToAttack && ((1 << col.gameObject.layer) & targetLayer) != 0) {
@@ -53,6 +60,9 @@ public class Attacker : MonoBehaviour
             }
         } else if (currentTarget.GetComponent<Collider2D>().IsTouching(attackZone)) {
             currentTarget.Hit(transform.position, damage, knockbackForce);
+        }
+        if (audioSource != null) {
+            audioSource.PlayOneShot(attackLandSound);
         }
         StartCoroutine(HitTimer(hitCooldownSec));
     }

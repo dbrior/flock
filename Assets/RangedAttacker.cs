@@ -9,7 +9,14 @@ public class RangedAttacker : MonoBehaviour
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float cooldownSec;
     [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private AudioClip shootSound;
+
+    private AudioSource audioSource;
     private bool onCooldown = false;
+
+    void Start() {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void Attack(Vector2 position) {
         if (!onCooldown) {
@@ -24,6 +31,10 @@ public class RangedAttacker : MonoBehaviour
 
             onCooldown = true;
             StartCoroutine(CooldownTimer(cooldownSec));
+
+            if (audioSource != null) {
+                audioSource.PlayOneShot(shootSound);
+            }
         }
     }
     
