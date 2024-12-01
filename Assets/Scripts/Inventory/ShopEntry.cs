@@ -7,4 +7,5 @@ public class ShopEntry : MonoBehaviour
     [SerializeField] public Item currency;
     [SerializeField] public int cost;
     [SerializeField] public Item item;
+    public int purchaseCount = 0;
 }

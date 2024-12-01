@@ -130,6 +130,10 @@ public class SheepManager : MonoBehaviour
         tameSheepList.Clear();
     }
 
+    public List<Sheep> GetTameSheep() {
+        return tameSheepList;
+    }
+
     public void ReleaseSheep(GameObject sheepObj) {
         sheepObj.layer = LayerMask.NameToLayer("WildSheep");
 

@@ -62,7 +62,7 @@ public class CardManager : MonoBehaviour
         {UpgradeType.ShearRadius, (0.005f, 0.02f)},
         {UpgradeType.WateringRadius, (0.05f, 0.2f)},
         {UpgradeType.Strength, (0.2f, 1f)},
-        {UpgradeType.Damage, (1f, 20f)},
+        {UpgradeType.Damage, (10f, 20f)},
         {UpgradeType.Knockback, (1f, 20f)},
         {UpgradeType.MoveSpeed, (0.1f, 0.25f)},
         {UpgradeType.MaxHealth, (1f, 20f)},

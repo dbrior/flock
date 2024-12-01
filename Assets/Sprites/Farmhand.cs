@@ -1,29 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum FarmhandState {
     Wander,
     Plant,
     Water,
-    Harvest
+    Harvest,
+    Shear
 }
 
 public enum FarmhandType {
     Farmer,
+    Herder,
     Hunter
 }
 
 public class Farmhand : MonoBehaviour
 {
+    [SerializeField] private FarmhandType farmhandType;
     [SerializeField] public FarmPlot farmPlot;
 
     private List<Vector2> needsPlant;
     private List<Vector2> needsWater;
     private List<Vector2> needsHarvest;
+    private List<Transform> needsShear;
     private ToolBelt toolBelt;
     private Rigidbody2D rb;
     private Vector2 targetPosition;
+    private Transform targetTransform;
     [SerializeField] private float moveSpeed;
     private FarmhandState state;
 
@@ -33,37 +39,60 @@ public class Farmhand : MonoBehaviour
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+        targetPosition = transform.position;
+        targetTransform = transform;
         // CheckCrops();
-        // StartCoroutine(ContinuouslyScan());
+        StartCoroutine(ContinuouslyScan());
     }
 
     void Update() {
         // if (needsPlant.Count == 0 && needsWater.Count == 0) return;
 
-        if (((Vector2) transform.position - targetPosition).magnitude < 0.05) {
-            if (state == FarmhandState.Plant) {
-                toolBelt.UseTool(Tool.SeedBag);
-                if (needsPlant.Count > 0) {
-                    needsPlant.RemoveAt(0);
+        if (farmhandType == FarmhandType.Farmer) {
+            if (((Vector2) transform.position - targetPosition).magnitude < 0.05) {
+                if (state == FarmhandState.Plant) {
+                    toolBelt.UseTool(Tool.SeedBag);
+                    if (needsPlant.Count > 0) {
+                        needsPlant.RemoveAt(0);
+                    }
+                } else if (state == FarmhandState.Water) {
+                    toolBelt.UseTool(Tool.WateringCan);
+                    if (needsWater.Count > 0) {
+                        needsWater.RemoveAt(0);
+                    }
+                } else if (state == FarmhandState.Harvest) {
+                    toolBelt.UseTool(Tool.Shears);
+                    if (needsHarvest.Count > 0) {
+                        needsHarvest.RemoveAt(0);
+                    }
                 }
-            } else if (state == FarmhandState.Water) {
-                toolBelt.UseTool(Tool.WateringCan);
-                if (needsWater.Count > 0) {
-                    needsWater.RemoveAt(0);
-                }
-            } else if (state == FarmhandState.Harvest) {
-                toolBelt.UseTool(Tool.Shears);
-                if (needsHarvest.Count > 0) {
-                    needsHarvest.RemoveAt(0);
-                }
+                // CheckCrops();
             }
+        } else if (farmhandType == FarmhandType.Herder) {
+            if (((Vector2) transform.position - (Vector2) targetTransform.position).magnitude < 0.16) {
+                if (state == FarmhandState.Shear) {
+                    toolBelt.UseTool(Tool.Shears);
+                    if (needsShear.Count > 0) {
+                        needsShear.RemoveAt(0);
+                    }
 
-            CheckCrops();
+                    if (needsShear.Count == 0) {
+                        targetTransform = transform;
+                    }
+                }
+
+                // CheckSheep();
+            }
         }
     }
 
     void FixedUpdate() {
-        Vector2 targetDirection = (targetPosition - (Vector2) transform.position);
+        Vector2 targetDirection = Vector2.zero;
+        if (farmhandType == FarmhandType.Farmer) {
+            targetDirection = (targetPosition - (Vector2) transform.position);
+        } else if (farmhandType == FarmhandType.Herder) {
+            targetDirection = (Vector2) (targetTransform.position - transform.position);
+        }
         Vector2 desiredVelocity = targetDirection.normalized * moveSpeed;
         Vector2 deltaVelocity = desiredVelocity - rb.velocity;
         Vector2 force = rb.mass * deltaVelocity / Time.fixedDeltaTime;
@@ -95,9 +124,30 @@ public class Farmhand : MonoBehaviour
         }
     }
 
+    public void CheckSheep() {
+        needsShear = SheepManager.Instance.GetTameSheep().Where(sheep => !sheep.IsSheared()).Select(sheep => sheep.transform).ToList();
+
+        if (needsShear.Count > 0) {
+            state = FarmhandState.Shear;
+            targetTransform = needsShear[0];
+        }
+    }
+
+    // private void OnCollisionEnter2D(Collision2D col) {
+    //     if (col.gameObject.TryGetComponent<Sheep>(out Sheep sheep)) {
+    //         if !sheep.IsSheared() {
+
+    //         }
+    //     }
+    // }
+
     private IEnumerator ContinuouslyScan() {
         while (true) {
-            CheckCrops();
+            if (farmhandType == FarmhandType.Farmer) {
+                CheckCrops();
+            } else if (farmhandType == FarmhandType.Herder) {
+                CheckSheep();
+            }
             yield return new WaitForSeconds(10f);
         }
     }

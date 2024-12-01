@@ -16,6 +16,7 @@ public class Damagable : MonoBehaviour
 
 
     [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip critSound;
     [SerializeField] private AudioClip deathSound;
     private AudioSource audioSource;
     [SerializeField] private Animator hitAnimator;
@@ -83,7 +84,9 @@ public class Damagable : MonoBehaviour
         Vector3 damageVector = ((Vector2) transform.position - damagePos).normalized * knockback;
         rb.AddForce(damageVector);
 
-        if (hitSound != null) {
+        if (isCrit && critSound != null) {
+            audioSource.PlayOneShot(critSound);
+        } else if (hitSound != null) {
             audioSource.PlayOneShot(hitSound);
         }
 

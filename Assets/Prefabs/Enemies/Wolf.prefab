@@ -223,6 +223,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   hitSound: {fileID: 8300000, guid: edcf849e50ae74b80822d4340af4f233, type: 3}
+  critSound: {fileID: 8300000, guid: bf14a966baaf84a86b7432f312b97173, type: 3}
   deathSound: {fileID: 0}
   hitAnimator: {fileID: 7144021653032942544}
 --- !u!114 &8534154233674851778

@@ -135,6 +135,10 @@ public class Sheep : MonoBehaviour
         damagable.RestoreHealth();
     }
 
+    public bool IsSheared() {
+        return isSheared;
+    }
+
     public void OnTriggerEnter2D(Collider2D col) {
         // Sheared sheep can eat crops
         if (isSheared && col.gameObject.TryGetComponent<Crop>(out Crop crop)) {

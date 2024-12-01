@@ -62,9 +62,15 @@ public class Shop : MonoBehaviour
                 GiveItem(item, 1);
             }
 
-            shopEntry.cost *= 2;
+            shopEntry.cost = Mathf.RoundToInt(shopEntry.cost * 1.2f);
         }
     }
+
+    // private float CalculateNewCost(int purchaseCount) {
+    //     return xpGoalBase * Mathf.Pow(currLevel, 1.1f);
+    //     // return xpGoalBase * Mathf.Pow(1.02f, currLevel-1);
+    //     // return xpGoal * 1.02f;
+    // }
 
     // public void PurchaseHeal(Item currency, int cost) {
     //     if (CanAfford(currency, cost)) {

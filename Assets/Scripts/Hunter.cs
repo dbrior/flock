@@ -53,7 +53,7 @@ public class Hunter : MonoBehaviour
             } else {
                 hasTarget = false;
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
