@@ -69,7 +69,7 @@ public class Farmhand : MonoBehaviour
                 // CheckCrops();
             }
         } else if (farmhandType == FarmhandType.Herder) {
-            if (((Vector2) transform.position - (Vector2) targetTransform.position).magnitude < 0.16) {
+            if (((Vector2) transform.position - (Vector2) targetTransform.position).magnitude < 0.165) {
                 if (state == FarmhandState.Shear) {
                     toolBelt.UseTool(Tool.Shears);
                     if (needsShear.Count > 0) {

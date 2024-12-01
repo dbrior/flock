@@ -144,10 +144,12 @@ public class WaveManager : MonoBehaviour
 
             // Set toggleable lights
             float currentTime = getCurrentTime();
-            if (!lightsOn && currentTime < lightsTurnOffTime || currentTime >= lightsTurnOnTime) {
+            if (!lightsOn && (currentTime < lightsTurnOffTime || currentTime >= lightsTurnOnTime)) {
                 TurnOnLights();
-            } else if (lightsOn && currentTime >= lightsTurnOffTime && currentTime < lightsTurnOnTime) {
+                MusicManager.Instance.FadeToNightMusic();
+            } else if (lightsOn && (currentTime >= lightsTurnOffTime && currentTime < lightsTurnOnTime)) {
                 TurnOffLights();
+                MusicManager.Instance.FadeToDayMusic();
             }
         }
         EndWave();
