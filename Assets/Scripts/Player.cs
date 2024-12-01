@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody2D ropeRb;
     [SerializeField] private Weapon ropeWeapon;
     public List<Transform> hunterSlots;
+    [SerializeField] private AudioClip stepSound;
     
     void Awake()
     {
@@ -128,10 +129,24 @@ public class Player : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
+    private bool stepping = false;
     public void OnMove(InputValue inputValue) {
         if (inMenu) return;
+        Vector2 newMoveVec = inputValue.Get<Vector2>();
 
-        moveVec = inputValue.Get<Vector2>();
+        // Move sound
+        if (!stepping && (moveVec == Vector2.zero && newMoveVec != Vector2.zero)) {
+            audioSource.clip = stepSound;
+            audioSource.loop = true;
+            audioSource.Play();
+            audioSource.loop = true;
+            stepping = true;
+        } else if (stepping && (newMoveVec == Vector2.zero && moveVec != Vector2.zero)) {
+            audioSource.loop = false;
+            stepping = false;
+        }
+
+        moveVec = newMoveVec;
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, heading, interactRange, interactionLayer);
         if (hit && hit.transform.gameObject.TryGetComponent<Interactable>(out Interactable interactable)) {

@@ -127612,6 +127612,14 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2588375515361313247, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588375515361313247, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2777728608378045438, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -127680,6 +127688,10 @@ PrefabInstance:
       propertyPath: ropeTool
       value: 
       objectReference: {fileID: 987973837}
+    - target: {fileID: 8084549005287282610, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: stepSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 183a4793d632541549f3a9f1e391acca, type: 3}
     - target: {fileID: 8084549005287282610, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: ropeWeapon
       value: 
