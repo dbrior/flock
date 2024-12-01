@@ -4983,6 +4983,23 @@ MonoBehaviour:
   - {fileID: 1853338814}
   - {fileID: 879053169}
   - {fileID: 1377229046}
+  icons:
+  - upgradeType: 4
+    iconSprite: {fileID: 21300000, guid: 8ac2dfebb5d6f479a9c743c33336748c, type: 3}
+  - upgradeType: 5
+    iconSprite: {fileID: 21300000, guid: 8ac2dfebb5d6f479a9c743c33336748c, type: 3}
+  - upgradeType: 7
+    iconSprite: {fileID: 21300000, guid: 885f81d29a8314b3eadadd4f9a294751, type: 3}
+  - upgradeType: 8
+    iconSprite: {fileID: 21300000, guid: 885f81d29a8314b3eadadd4f9a294751, type: 3}
+  - upgradeType: 10
+    iconSprite: {fileID: 21300000, guid: 1cf6fdf0ff6c643a8b64ba5f2fb0e32c, type: 3}
+  - upgradeType: 11
+    iconSprite: {fileID: 21300000, guid: 885f81d29a8314b3eadadd4f9a294751, type: 3}
+  - upgradeType: 12
+    iconSprite: {fileID: 21300000, guid: 8ac2dfebb5d6f479a9c743c33336748c, type: 3}
+  - upgradeType: 13
+    iconSprite: {fileID: 21300000, guid: 8ac2dfebb5d6f479a9c743c33336748c, type: 3}
   cardMenu: {fileID: 319234523}
   cardRanks:
   - rank: 0

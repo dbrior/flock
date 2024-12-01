@@ -29,5 +29,6 @@ public class UpgradeCard : MonoBehaviour
     public TextMeshProUGUI title;
     public TextMeshProUGUI description;
     public Image background;
+    public Image icon;
     public Button button;
 }

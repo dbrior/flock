@@ -12,10 +12,18 @@ public class CardRank
     public Color color;
 }
 
+[System.Serializable]
+public class CardIcon
+{
+    public UpgradeType upgradeType;
+    public Sprite iconSprite;
+}
+
 public class CardManager : MonoBehaviour
 {
     public static CardManager Instance { get; private set; }
     [SerializeField] private List<UpgradeCard> cards;
+    [SerializeField] private List<CardIcon> icons;
     [SerializeField] private GameObject cardMenu;
     [SerializeField] private List<CardRank> cardRanks;
     [SerializeField] private AudioClip cardOpenSound;
@@ -122,6 +130,13 @@ public class CardManager : MonoBehaviour
         foreach (UpgradeCard card in cards) {
             UpgradeType type = selectedUpgrades.ElementAt(index); // Safe as HashSet maintains insertion order
             index++;
+
+            foreach (CardIcon cardIcon in icons) {
+                if (cardIcon.upgradeType == type) {
+                    card.icon.sprite = cardIcon.iconSprite;
+                    break;
+                }
+            }
 
             (float min, float max) = upgradeValueRanges[type];
             float value = (float)Math.Round(UnityEngine.Random.Range(min, max), 1);
