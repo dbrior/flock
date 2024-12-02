@@ -9,9 +9,13 @@ public class Projectile : MonoBehaviour
     public float damage;
     public float knockbackForce;
     public GameObject source;
+    public bool isKinematic = true;
+    public bool isDestructible = true;
 
     void Update() {
-        transform.Translate(heading * moveSpeed * Time.deltaTime);
+        if (isKinematic) {
+            transform.Translate(heading * moveSpeed * Time.deltaTime);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D col) {
@@ -20,6 +24,9 @@ public class Projectile : MonoBehaviour
         if (col.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
             damagable.Hit(transform.position, damage, knockbackForce);
         }
-        Destroy(gameObject);
+
+        if (isDestructible) {
+            Destroy(gameObject);
+        }
     }
 }

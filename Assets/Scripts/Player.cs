@@ -190,7 +190,7 @@ public class Player : MonoBehaviour
     }
 
     public void OnAttack() {
-        if (isAttacking) return;
+        if (isAttacking || inMenu) return;
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, attackRadius);
         if (objectsInRange.Length > 0) {
             foreach (Collider2D obj in objectsInRange) {
