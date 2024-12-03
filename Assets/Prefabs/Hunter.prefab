@@ -105,6 +105,7 @@ MonoBehaviour:
   heading: {x: 0, y: 0}
   shearRadius: 0.1
   wateringRadius: 0.1
+  pelletDamage: 20
   allowedPlanting: 1
   pelletPrefab: {fileID: 6302693463734982198, guid: 8bdbbbcc8fc7944d0ab90eb1d4cbb3ce, type: 3}
   pelletSpawn: {fileID: 8222300518266771101}
@@ -206,6 +207,7 @@ MonoBehaviour:
   detectionRadius: 2
   moveSpeed: 0.5
   fireHz: 1
+  toolBelt: {fileID: 0}
   player: {fileID: 0}
 --- !u!1 &5933440314247674594
 GameObject:

@@ -7,6 +7,7 @@ public class ToolBelt : MonoBehaviour
     public Vector2 heading;
     public float shearRadius;
     public float wateringRadius;
+    public float pelletDamage;
 
     private Tool currentTool;
     private int totalToolCount;
@@ -49,6 +50,7 @@ public class ToolBelt : MonoBehaviour
     public void UseSlingshot() {
         Vector2 direction = (Vector2) (Pointer.Instance.transform.position - transform.position).normalized;
         GameObject pellet = Instantiate(pelletPrefab, (Vector2) transform.position + (direction * 0.1f), Quaternion.identity);
+        pellet.GetComponent<Pellet>().damage = pelletDamage;
         Rigidbody2D pelletRb = pellet.GetComponent<Rigidbody2D>();
         pelletRb.velocity = direction * pelletSpeed;
         Destroy(pellet, 2f);
@@ -67,6 +69,7 @@ public class ToolBelt : MonoBehaviour
         }
         
         GameObject pellet = Instantiate(pelletPrefab, spawnLocation, Quaternion.identity);
+        pellet.GetComponent<Pellet>().damage = pelletDamage;
         Rigidbody2D pelletRb = pellet.GetComponent<Rigidbody2D>();
         pelletRb.velocity = direction * pelletSpeed;
         Destroy(pellet, 2f);

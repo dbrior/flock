@@ -10,18 +10,22 @@ public class Hunter : MonoBehaviour
     private RotateToFaceTarget tracker;
     public float fireHz;
 
-    private ToolBelt toolBelt;
+    public ToolBelt toolBelt;
     private Transform targetTransform;
     private bool hasTarget;
     private Rigidbody2D rb;
     public Transform player;
     private Vector2 positionOffset;
-    void Start()
-    {
+
+    void Awake() {
         hasTarget = false;
         toolBelt = GetComponent<ToolBelt>();
         tracker = GetComponent<RotateToFaceTarget>();
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Start()
+    {
         StartCoroutine(ScanForEnemies());
         StartCoroutine(Attack());
         StartCoroutine(Bob());

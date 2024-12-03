@@ -38,13 +38,25 @@ public class Shop : MonoBehaviour
 
     public void AttemptPurchase(ShopEntry shopEntry) {
         Item item = shopEntry.item;
-        Item currency = shopEntry.currency;
-        int cost = shopEntry.cost;
 
-        Debug.Log("buyss");
+        bool canAfford = true;
+        foreach (CostCurrency costCurrency in shopEntry.costCurrencies) {
+            Item currency = costCurrency.currency;
+            int cost = costCurrency.cost;
 
-        if (CanAfford(currency, cost)) {
-            RemoveCurrency(currency, cost);
+            if (!CanAfford(currency, cost)) {
+                canAfford = false;
+                break;
+            }
+        }
+
+        if (canAfford) {
+            foreach (CostCurrency costCurrency in shopEntry.costCurrencies) {
+                Item currency = costCurrency.currency;
+                int cost = costCurrency.cost;
+
+                RemoveCurrency(currency, cost);
+            }
 
             // Special handling of healing & damage increase
             if (item.itemName == "Damage") {
@@ -60,6 +72,8 @@ public class Shop : MonoBehaviour
                 HunterManager.Instance.IncreaseFireRate(1f);
             } else if (item.itemName == "HunterCount") { 
                 HunterManager.Instance.SpawnHunter(lastActivePlayer);
+            } else if (item.itemName == "HunterDamage") { 
+                HunterManager.Instance.IncreaseDamage(0.2f);
             } else if (item.itemName == "FarmhandCount") { 
                 GetComponent<FarmPlot>().SpawnFarmHand();
             } else if (item.itemName == "MagicCount") { 

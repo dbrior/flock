@@ -9,6 +9,7 @@ public class HunterManager : MonoBehaviour
     [SerializeField] private List<Hunter> hunters;
     [SerializeField] private GameObject hunterPrefab;
     [SerializeField] private float fireHz;
+    [SerializeField] private float damage;
 
     void Awake() {
         if (Instance == null) {Instance = this;} 
@@ -18,6 +19,17 @@ public class HunterManager : MonoBehaviour
     public void IncreaseFireRate(float hz) {
         fireHz += hz;
         DeployFireRate();
+    }
+
+    public void IncreaseDamage(float pct) {
+        damage = damage * (1f + pct);
+        DeployDamage();
+    }
+
+    private void DeployDamage() {
+        foreach (Hunter hunter in hunters) {
+            hunter.toolBelt.pelletDamage = damage;
+        }
     }
 
     private void DeployFireRate() {
@@ -30,6 +42,7 @@ public class HunterManager : MonoBehaviour
         GameObject hunterObj = Instantiate(hunterPrefab, player.transform.position, player.transform.rotation);
         Hunter hunter = hunterObj.GetComponent<Hunter>();
         hunter.fireHz = fireHz;
+        hunter.toolBelt.pelletDamage = damage;
 
         Transform hunterSlot = player.hunterSlots[Random.Range(0, player.hunterSlots.Count)];
         hunter.player = hunterSlot;
