@@ -124,9 +124,9 @@ public class WaveManager : MonoBehaviour
         wolfSpawnFrequency.max *= 0.80f;
         // SheepManager.Instance.Reset();
         // WolfManager.Instance.Reset();
-        CropManager.Instance.AdvanceCrops();
+        // CropManager.Instance.AdvanceCrops();
         SheepManager.Instance.CleanReferences();
-        SheepManager.Instance.AdvanceSheep();
+        // SheepManager.Instance.AdvanceSheep();
         StartWave();
     }
 

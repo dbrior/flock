@@ -14,6 +14,7 @@ public enum SheepState : int {
 public class Sheep : MonoBehaviour
 {
     // [SerializeField] private float maxForce;
+    [SerializeField] private Item sheepFood;
     [SerializeField] private AudioClip captureSound;
     private AudioSource audioSource;
     private Rigidbody2D rb;
@@ -94,6 +95,7 @@ public class Sheep : MonoBehaviour
     public void Capture() {
         audioSource.PlayOneShot(captureSound);
         isCaptured = true;
+        StartCoroutine("FeedTimer");
     }
 
     public void Release() {
@@ -133,6 +135,15 @@ public class Sheep : MonoBehaviour
     public void Feed() {
         Regrow();
         damagable.RestoreHealth();
+    }
+
+    private void Hunger() {
+        if (PlayerInventory.Instance.GetItemCount(sheepFood) > 0) {
+            PlayerInventory.Instance.RemoveItem(sheepFood, 1);
+            Feed();
+        } else {
+            Hit(20f);
+        }
     }
 
     public bool IsSheared() {
@@ -201,6 +212,13 @@ public class Sheep : MonoBehaviour
             yield return new WaitForSeconds(moveTime);
             heading = Vector2.zero;
             animator.SetTrigger("Idle");
+        }
+    }
+
+    IEnumerator FeedTimer() {
+        while (true) {
+            yield return new WaitForSeconds(30f);
+            Hunger();
         }
     }
 }

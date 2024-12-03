@@ -28,11 +28,17 @@ public class Crop : MonoBehaviour
         SetState(CropState.Dry);
     }
 
+    void Start() {
+        StartCoroutine("GrowthTimer");
+    }
+
     public void SetState(CropState newState) {
         state = newState;
         if (animator != null) {
             animator.SetInteger("State", (int) state);
         }
+        StopCoroutine("GrowthTimer");
+        StartCoroutine("GrowthTimer");
     }
 
     public void Water() {
@@ -78,6 +84,13 @@ public class Crop : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.TryGetComponent<Player>(out Player player)) {
             WorkCrop();
+        }
+    }
+
+    IEnumerator GrowthTimer() {
+        while (true) {
+            yield return new WaitForSeconds(30f);
+            NextState();
         }
     }
 }
