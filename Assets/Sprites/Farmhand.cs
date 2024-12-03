@@ -149,7 +149,7 @@ public class Farmhand : MonoBehaviour
             } else if (farmhandType == FarmhandType.Herder) {
                 CheckSheep();
             }
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(3f);
         }
     }
 }

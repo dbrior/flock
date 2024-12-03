@@ -31,7 +31,7 @@ public class HunterManager : MonoBehaviour
         Hunter hunter = hunterObj.GetComponent<Hunter>();
         hunter.fireHz = fireHz;
 
-        Transform hunterSlot = player.hunterSlots[Random.Range(0, player.hunterSlots.Count-1)];
+        Transform hunterSlot = player.hunterSlots[Random.Range(0, player.hunterSlots.Count)];
         hunter.player = hunterSlot;
 
         hunters.Add(hunter);
