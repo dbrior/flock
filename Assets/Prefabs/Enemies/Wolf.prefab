@@ -207,6 +207,7 @@ MonoBehaviour:
   maxHealth: 50
   healthUI: {fileID: 3329699755350176024}
   hitNumberLocation: {fileID: 1093861587089533060}
+  blockChance: 0.01
   onDeath:
     m_PersistentCalls:
       m_Calls:
@@ -223,6 +224,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   hitSound: {fileID: 8300000, guid: edcf849e50ae74b80822d4340af4f233, type: 3}
+  blockSound: {fileID: 8300000, guid: 1ccd0c85c293e4bc8973ae50b1baa6e2, type: 3}
   critSound: {fileID: 8300000, guid: bf14a966baaf84a86b7432f312b97173, type: 3}
   deathSound: {fileID: 0}
   hitAnimator: {fileID: 7144021653032942544}

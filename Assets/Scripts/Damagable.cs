@@ -10,12 +10,13 @@ public class Damagable : MonoBehaviour
     [SerializeField] private Image healthUI;
     [SerializeField] private Transform hitNumberLocation;
     private Rigidbody2D rb;
-    private float blockChance;
+    public float blockChance = 0.01f;
     [SerializeField] private UnityEvent onDeath;
     private float regenPerSecond;
 
 
     [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip blockSound;
     [SerializeField] private AudioClip critSound;
     [SerializeField] private AudioClip deathSound;
     private AudioSource audioSource;
@@ -27,7 +28,6 @@ public class Damagable : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         currHealth = maxHealth;
-        blockChance = 0f;
         regenPerSecond = 1f;
         StartCoroutine(Regen());
     }
@@ -71,7 +71,11 @@ public class Damagable : MonoBehaviour
 
     public void Hit(Vector2 damagePos, float damage, float knockback, bool isCrit = false) {
         float hitRoll = Random.Range(0, 1f);
-        if (hitRoll <= blockChance) return;
+        if (hitRoll <= blockChance) {
+            DamageNumberSpawner.Instance.SpawnStatusIcon(hitNumberLocation.position, StatusIconType.Block);
+            audioSource.PlayOneShot(blockSound);
+            return;
+        }
 
         ChangeHealth(-damage);
         if(currHealth <= 0) {
