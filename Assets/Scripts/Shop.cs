@@ -81,6 +81,8 @@ public class Shop : MonoBehaviour
                 lastActivePlayer.spinner.SpawnRadialInstances();
             } else if (item.itemName == "MagicSpeed") { 
                 lastActivePlayer.spinner.rotateSpeed *= 1.2f;
+            } else if (item.itemName == "MagicDamage") { 
+                lastActivePlayer.spinner.IncreaseDamage(0.2f);
             } else {
                 GiveItem(item, 1);
             }

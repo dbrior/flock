@@ -7,6 +7,7 @@ public class Spinner : MonoBehaviour
     public float rotateSpeed; // Speed of rotation
     public Transform target; // Center point to rotate around
     public GameObject prefab; // Prefab to spawn
+    public float damage;
     public int instanceCount;
     public float radius = 0.4f; // Radius of the circle
     public float rotationOffest;
@@ -22,6 +23,18 @@ public class Spinner : MonoBehaviour
     {
         transform.position = target.position;
         transform.Rotate(0, 0, -rotateSpeed * Time.deltaTime);
+    }
+
+    public void IncreaseDamage(float pct) {
+        damage = damage * (1f + pct);
+        DeployDamage();
+    }
+
+    public void DeployDamage() {
+        foreach (GameObject projObj in spawnedInstances) {
+            Projectile projectile = projObj.GetComponent<Projectile>();
+            projectile.damage = damage;
+        }
     }
 
     public void SpawnRadialInstances()
