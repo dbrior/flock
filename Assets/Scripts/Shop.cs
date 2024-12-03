@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] private GameObject shopWindow;
-
+    private GameObject shopWindow;
     private Player lastActivePlayer;
+
+    void Start() {
+        shopWindow = transform.GetChild(0).gameObject;
+    }
+
     public void OpenShop(GameObject playerObj) {
         Player player = playerObj.GetComponent<Player>();
         player.OpenMenu();
@@ -58,11 +62,16 @@ public class Shop : MonoBehaviour
                 HunterManager.Instance.SpawnHunter(lastActivePlayer);
             } else if (item.itemName == "FarmhandCount") { 
                 GetComponent<FarmPlot>().SpawnFarmHand();
+            } else if (item.itemName == "MagicCount") { 
+                lastActivePlayer.spinner.instanceCount += 1;
+                lastActivePlayer.spinner.SpawnRadialInstances();
+            } else if (item.itemName == "MagicSpeed") { 
+                lastActivePlayer.spinner.rotateSpeed *= 1.2f;
             } else {
                 GiveItem(item, 1);
             }
 
-            shopEntry.cost = Mathf.RoundToInt(shopEntry.cost * 1.2f);
+            shopEntry.PurchaseComplete();
         }
     }
 

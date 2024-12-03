@@ -130,6 +130,7 @@ public class Farmhand : MonoBehaviour
         if (needsShear.Count > 0) {
             state = FarmhandState.Shear;
             targetTransform = needsShear[0];
+            Debug.Log("scanned sheep");
         }
     }
 

@@ -7,7 +7,7 @@ public class Spinner : MonoBehaviour
     public float rotateSpeed; // Speed of rotation
     public Transform target; // Center point to rotate around
     public GameObject prefab; // Prefab to spawn
-    public int instanceCount = 2; // Number of instances to spawn
+    public int instanceCount;
     public float radius = 0.4f; // Radius of the circle
     public float rotationOffest;
 
@@ -24,7 +24,7 @@ public class Spinner : MonoBehaviour
         transform.Rotate(0, 0, -rotateSpeed * Time.deltaTime);
     }
 
-    void SpawnRadialInstances()
+    public void SpawnRadialInstances()
     {
         ClearInstances();
 

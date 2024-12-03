@@ -280,8 +280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac935881fb864087aa59e0f68e4a68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  farmhandType: 0
   farmPlot: {fileID: 0}
-  moveSpeed: 0.1
+  moveSpeed: 0.2
 --- !u!114 &945959854547658418
 MonoBehaviour:
   m_ObjectHideFlags: 0

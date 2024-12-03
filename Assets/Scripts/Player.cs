@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Weapon ropeWeapon;
     public List<Transform> hunterSlots;
     [SerializeField] private AudioClip stepSound;
+    public Spinner spinner;
     
     void Awake()
     {
