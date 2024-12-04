@@ -57,6 +57,7 @@ public class FarmPlot : MonoBehaviour
     public void IncreaseRadius(int delta) {
         radius += delta;
         plotPoints = GetPoints();
+        ScanCrops();
     }
 
     private Vector2 NormalizeVector2(Vector2 vector, int decimals = 2)
@@ -68,7 +69,7 @@ public class FarmPlot : MonoBehaviour
         );
     }
 
-    private void ScanCrops() {
+    public void ScanCrops() {
         List<Vector2> checklist = new List<Vector2>(plotPoints).Select(pos => NormalizeVector2(pos)).ToList();
         // needsPlant.Clear();
         needsWater.Clear();

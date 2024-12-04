@@ -31,7 +31,7 @@ public class Farmhand : MonoBehaviour
     private Vector2 targetPosition;
     private Transform targetTransform;
     [SerializeField] private float moveSpeed;
-    private FarmhandState state;
+    [SerializeField] private FarmhandState state;
 
     void Awake() {
         toolBelt = GetComponent<ToolBelt>();
@@ -49,7 +49,7 @@ public class Farmhand : MonoBehaviour
         // if (needsPlant.Count == 0 && needsWater.Count == 0) return;
 
         if (farmhandType == FarmhandType.Farmer) {
-            if (((Vector2) transform.position - targetPosition).magnitude < 0.05) {
+            if (((Vector2) transform.position - targetPosition).magnitude < 0.09) {
                 if (state == FarmhandState.Plant) {
                     toolBelt.UseTool(Tool.SeedBag);
                     if (needsPlant.Count > 0) {
@@ -105,23 +105,26 @@ public class Farmhand : MonoBehaviour
     }
 
     public void CheckCrops() {
+        farmPlot.ScanCrops();
         needsPlant = farmPlot.needsPlant;
         needsWater = farmPlot.needsWater;
         needsHarvest = farmPlot.needsHarvest;
 
         if (needsPlant.Count > 0) {
             state = FarmhandState.Plant;
-            targetPosition = needsPlant[0];
+            targetPosition = needsPlant[Random.Range(0, needsPlant.Count)];
         } else if (needsWater.Count > 0) {
             state = FarmhandState.Water;
-            targetPosition = needsWater[0];
+            targetPosition = needsWater[Random.Range(0, needsWater.Count)];
         } else if (needsHarvest.Count > 0) {
             state = FarmhandState.Harvest;
-            targetPosition = needsHarvest[0];
+            targetPosition = needsHarvest[Random.Range(0, needsHarvest.Count)];
         } else {
             state = FarmhandState.Wander;
             targetPosition = transform.position;
         }
+
+        Debug.Log(state);
     }
 
     public void CheckSheep() {
