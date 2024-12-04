@@ -91,6 +91,9 @@ public class Farmhand : MonoBehaviour
         if (farmhandType == FarmhandType.Farmer) {
             targetDirection = (targetPosition - (Vector2) transform.position);
         } else if (farmhandType == FarmhandType.Herder) {
+            if (targetTransform == null) {
+                CheckSheep();
+            }
             targetDirection = (Vector2) (targetTransform.position - transform.position);
         }
         Vector2 desiredVelocity = targetDirection.normalized * moveSpeed;
@@ -132,8 +135,9 @@ public class Farmhand : MonoBehaviour
 
         if (needsShear.Count > 0) {
             state = FarmhandState.Shear;
-            targetTransform = needsShear[0];
-            Debug.Log("scanned sheep");
+            targetTransform = needsShear[Random.Range(0, needsShear.Count)];
+        } else {
+            state = FarmhandState.Wander;
         }
     }
 

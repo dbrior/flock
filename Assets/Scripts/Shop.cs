@@ -83,6 +83,8 @@ public class Shop : MonoBehaviour
                 lastActivePlayer.spinner.rotateSpeed *= 1.2f;
             } else if (item.itemName == "MagicDamage") { 
                 lastActivePlayer.spinner.IncreaseDamage(0.2f);
+            } else if (item.itemName == "HerderCount") { 
+                HerderManager.Instance.SpawnHerder();
             } else {
                 GiveItem(item, 1);
             }
