@@ -122,6 +122,7 @@ public class Player : MonoBehaviour
         inMenu = true;
         moveVec = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.velocity = Vector2.zero;
     }
 
     public void CloseMenu() {

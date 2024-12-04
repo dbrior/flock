@@ -15,7 +15,10 @@ public class Hunter : MonoBehaviour
     private bool hasTarget;
     private Rigidbody2D rb;
     public Transform player;
+    public Transform watchpoint;
     private Vector2 positionOffset;
+
+    public bool goToWatchpoint;
 
     void Awake() {
         hasTarget = false;
@@ -29,6 +32,7 @@ public class Hunter : MonoBehaviour
         StartCoroutine(ScanForEnemies());
         StartCoroutine(Attack());
         StartCoroutine(Bob());
+        goToWatchpoint = true;
         // player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -36,8 +40,13 @@ public class Hunter : MonoBehaviour
 
     void FixedUpdate()
     {
+        Vector2 targetPosition = Vector2.zero;
         // Smoothly damp the hunter's position towards the player's position
-        Vector2 targetPosition = (Vector2) player.position + positionOffset;
+        if (goToWatchpoint) {
+            targetPosition = (Vector2) watchpoint.position + (positionOffset/4f);
+        } else {
+            targetPosition = (Vector2) player.position + positionOffset;
+        }
         Vector2 smoothedPosition = Vector2.SmoothDamp(transform.position, targetPosition, ref currentVelocity, 0.75f, moveSpeed, Time.fixedDeltaTime);
 
         rb.MovePosition(smoothedPosition);

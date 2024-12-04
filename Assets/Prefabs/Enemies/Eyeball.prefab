@@ -344,6 +344,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  regenEnabled: 0
+  regenPerSecond: 0
+  regenDelay: 5
   hitSound: {fileID: 8300000, guid: edcf849e50ae74b80822d4340af4f233, type: 3}
   blockSound: {fileID: 8300000, guid: 1ccd0c85c293e4bc8973ae50b1baa6e2, type: 3}
   critSound: {fileID: 8300000, guid: bf14a966baaf84a86b7432f312b97173, type: 3}
@@ -363,6 +366,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSpawns:
   - itemPrefab: {fileID: 8742995438940802542, guid: 61191ea388b534beb8925ff683a06224, type: 3}
+    probability: 0.5
+    maxAmount: 6
+  - itemPrefab: {fileID: 4465506323250089622, guid: 273f615ec33ec4549b76d1730733a8f2, type: 3}
     probability: 0.5
     maxAmount: 2
 --- !u!1 &2855599972847363329

@@ -10,6 +10,8 @@ public class HunterManager : MonoBehaviour
     [SerializeField] private GameObject hunterPrefab;
     [SerializeField] private float fireHz;
     [SerializeField] private float damage;
+    [SerializeField] private Transform spawnLocation;
+    [SerializeField] private Transform watchpoint;
 
     void Awake() {
         if (Instance == null) {Instance = this;} 
@@ -38,14 +40,27 @@ public class HunterManager : MonoBehaviour
         }
     }
 
+    public void SendToWatchpoint() {
+        foreach (Hunter hunter in hunters) {
+            hunter.goToWatchpoint = true;
+        }
+    }
+
+    public void SendToPlayer() {
+        foreach (Hunter hunter in hunters) {
+            hunter.goToWatchpoint = false;
+        }
+    }
+
     public void SpawnHunter(Player player) {
-        GameObject hunterObj = Instantiate(hunterPrefab, player.transform.position, player.transform.rotation);
+        GameObject hunterObj = Instantiate(hunterPrefab, spawnLocation.position, spawnLocation.rotation);
         Hunter hunter = hunterObj.GetComponent<Hunter>();
         hunter.fireHz = fireHz;
         hunter.toolBelt.pelletDamage = damage;
 
         Transform hunterSlot = player.hunterSlots[Random.Range(0, player.hunterSlots.Count)];
         hunter.player = hunterSlot;
+        hunter.watchpoint = watchpoint;
 
         hunters.Add(hunter);
     }
