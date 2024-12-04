@@ -8834,6 +8834,7 @@ MonoBehaviour:
   - type: 0
     sprite: {fileID: 21300000, guid: 3ae13199d3d5049b281fad468b0bb46f, type: 3}
   critColor: {r: 1, g: 0.3537736, b: 0.3537736, a: 1}
+  healColor: {r: 0.3591855, g: 1, b: 0.35294116, a: 1}
 --- !u!224 &1250313372 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2875299291552086273, guid: b407b9a80b07e43e29de0f99b90ff06a, type: 3}
@@ -122352,6 +122353,14 @@ PrefabInstance:
       propertyPath: hitAnimator
       value: 
       objectReference: {fileID: 1019494118}
+    - target: {fileID: 1764298251494807475, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: regenEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764298251494807475, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: regenPerSecond
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1764298251494807475, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.size
       value: 3

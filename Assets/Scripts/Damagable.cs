@@ -12,7 +12,10 @@ public class Damagable : MonoBehaviour
     private Rigidbody2D rb;
     public float blockChance = 0.01f;
     [SerializeField] private UnityEvent onDeath;
-    private float regenPerSecond;
+    [SerializeField] private bool regenEnabled;
+    [SerializeField] private float regenPerSecond;
+    [SerializeField] private float regenDelay;
+    private float lastHitTime;
 
 
     [SerializeField] private AudioClip hitSound;
@@ -28,8 +31,9 @@ public class Damagable : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         currHealth = maxHealth;
-        regenPerSecond = 1f;
-        StartCoroutine(Regen());
+        if (regenEnabled) {
+            StartCoroutine(Regen());
+        }
     }
 
     public void ChangeBlockChance(float delta) {
@@ -45,14 +49,15 @@ public class Damagable : MonoBehaviour
     }
 
     public void ChangeHealth(float delta) {
+        if (delta > 0 && currHealth >= maxHealth) return;
+
         currHealth += delta;
         currHealth = Mathf.Min(currHealth, maxHealth);
         healthUI.fillAmount = currHealth / maxHealth;
     }
 
     public void RestoreHealth() {
-        currHealth = maxHealth;
-        healthUI.fillAmount = currHealth / maxHealth;
+        ChangeHealth(maxHealth - currHealth);
     }
 
     public void ChangeMaxHealth(float delta) {
@@ -77,6 +82,8 @@ public class Damagable : MonoBehaviour
             return;
         }
 
+        lastHitTime = Time.time;
+
         ChangeHealth(-damage);
         if(currHealth <= 0) {
             if (deathSound != null) {
@@ -99,13 +106,19 @@ public class Damagable : MonoBehaviour
         }
 
         if (hitNumberLocation != null) {
-            DamageNumberSpawner.Instance.SpawnDamageNumber(hitNumberLocation.position, Mathf.Round(damage).ToString(), isCrit);
+            DamageNumberType numberType = isCrit ? DamageNumberType.Crit : DamageNumberType.Normal;
+            DamageNumberSpawner.Instance.SpawnDamageNumber(hitNumberLocation.position, Mathf.Round(damage).ToString(), numberType);
         }
     }
 
     IEnumerator Regen() {
         while (true) {
-            ChangeHealth(regenPerSecond);
+            if (currHealth < maxHealth && lastHitTime < Time.time - regenDelay) {
+                ChangeHealth(regenPerSecond);
+                if (hitNumberLocation != null) {
+                    DamageNumberSpawner.Instance.SpawnDamageNumber(hitNumberLocation.position, Mathf.Round(regenPerSecond).ToString(), DamageNumberType.Heal);
+                }
+            }
             yield return new WaitForSeconds(1f);
         }
     }

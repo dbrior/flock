@@ -18,7 +18,7 @@ public class Wolf : MonoBehaviour
     private Vector2 animationDirection;
     [SerializeField] private float waitMin;
     [SerializeField] private float waitMax;
-    private float attackDamage;
+    [SerializeField] private float attackDamage;
 
     private Damagable damagable;
 

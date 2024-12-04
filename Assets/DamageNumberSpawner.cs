@@ -5,6 +5,13 @@ using UnityEngine.UI;
 using TMPro;
 
 [System.Serializable]
+public enum DamageNumberType {
+    Normal,
+    Crit,
+    Heal
+}
+
+[System.Serializable]
 public enum StatusIconType {
     Block
 }
@@ -26,6 +33,7 @@ public class DamageNumberSpawner : MonoBehaviour
     private Dictionary<StatusIconType,Sprite> statusSprites = new Dictionary<StatusIconType,Sprite>();
 
     [SerializeField] private Color critColor;
+    [SerializeField] private Color healColor;
 
     void Awake() {
         if (Instance == null) {Instance = this;}
@@ -38,7 +46,7 @@ public class DamageNumberSpawner : MonoBehaviour
         }
     }
 
-    public void SpawnDamageNumber(Vector3 position, string damageText, bool isCrit)
+    public void SpawnDamageNumber(Vector3 position, string damageText, DamageNumberType type)
     {
         // Instantiate the damage number prefab under the world-space canvas
         GameObject damageNumber = Instantiate(damageNumberPrefab, worldSpaceCanvas.transform);
@@ -56,9 +64,11 @@ public class DamageNumberSpawner : MonoBehaviour
         damageTextObj.text = damageText;
 
         // Set Crit color
-        if (isCrit) {
+        if (type == DamageNumberType.Crit) {
             damageTextObj.color = critColor;
             damageTextObj.fontSize *= 1.5f;
+        } else if (type == DamageNumberType.Heal) {
+            damageTextObj.color = healColor;
         }
 
         // Optional: Start fade or animation

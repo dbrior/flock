@@ -314,6 +314,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  regenEnabled: 1
+  regenPerSecond: 20
   hitSound: {fileID: 8300000, guid: edcf849e50ae74b80822d4340af4f233, type: 3}
   blockSound: {fileID: 8300000, guid: 1ccd0c85c293e4bc8973ae50b1baa6e2, type: 3}
   critSound: {fileID: 8300000, guid: bf14a966baaf84a86b7432f312b97173, type: 3}
