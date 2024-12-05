@@ -60,13 +60,10 @@ public class Shop : MonoBehaviour
 
             // Special handling of healing & damage increase
             if (item.itemName == "Damage") {
-                Debug.Log("Damage Upgrade");
                 lastActivePlayer.IncreaseDamage(5f);
             } else if (item.itemName == "Heal") {
-                Debug.Log("Heal");
                 lastActivePlayer.Heal();
             } else if (item.itemName == "FarmRadius") {
-                Debug.Log("Farm increase");
                 GetComponent<FarmPlot>().IncreaseRadius(1);
             } else if (item.itemName == "HunterFireRate") {
                 HunterManager.Instance.IncreaseFireRate(1f);

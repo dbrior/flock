@@ -95,14 +95,6 @@ public class FarmPlot : MonoBehaviour
             needsWater.Add(position);
         }
         needsPlant.Clear();
-        // Debug.Log("Checklist");
-        // foreach (var item in cropLocations) {
-        //     Debug.Log(item);
-        // }
-        // Debug.Log("plant");
-        // foreach (var item in needsPlant) {
-        //     Debug.Log(item);
-        // }
     }
 
     private IEnumerator ContinouslyScan() {

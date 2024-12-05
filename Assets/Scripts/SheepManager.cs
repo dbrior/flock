@@ -182,7 +182,6 @@ public class SheepManager : MonoBehaviour
 
     private IEnumerator SheepSpawner() {
         while (true) {
-            Debug.Log("Spawn sheep");
             SpawnSheep();
             float waitTime = 0f;
             if (!(WaveManager.Instance.getCurrentTime() < 5 || WaveManager.Instance.getCurrentTime() >= 21)) {

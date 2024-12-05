@@ -64,7 +64,6 @@ public class WolfManager : MonoBehaviour
 
     private IEnumerator WolfSpawner() {
         while (true) {
-            Debug.Log("Spawn wolves");
             SpawnWolves();
             float waitTime = 0f;
             if (WaveManager.Instance.getCurrentTime() < 5 || WaveManager.Instance.getCurrentTime() >= 21) {

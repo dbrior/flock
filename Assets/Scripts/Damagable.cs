@@ -60,6 +60,10 @@ public class Damagable : MonoBehaviour
         ChangeHealth(pct * maxHealth);
     }
 
+    public float GetHealthPct() {
+        return currHealth / maxHealth;
+    }
+
     public void ChangeHealth(float delta) {
         if (delta > 0 && currHealth >= maxHealth) return;
         if (!isBoss && currHealth == maxHealth && delta < 0) {
@@ -69,6 +73,11 @@ public class Damagable : MonoBehaviour
         currHealth += delta;
         currHealth = Mathf.Min(currHealth, maxHealth);
         healthUI.fillAmount = currHealth / maxHealth;
+
+        // Spawn healing numbers
+        if (hitNumberLocation != null && delta > 0) {
+            DamageNumberSpawner.Instance.SpawnDamageNumber(hitNumberLocation.position, Mathf.Round(delta).ToString(), DamageNumberType.Heal);
+        }
 
         if (!isBoss && currHealth == maxHealth) {
             HideHealthBar();
@@ -134,9 +143,6 @@ public class Damagable : MonoBehaviour
         while (true) {
             if (currHealth < maxHealth && lastHitTime < Time.time - regenDelay) {
                 ChangeHealth(regenPerSecond);
-                if (hitNumberLocation != null) {
-                    DamageNumberSpawner.Instance.SpawnDamageNumber(hitNumberLocation.position, Mathf.Round(regenPerSecond).ToString(), DamageNumberType.Heal);
-                }
             }
             yield return new WaitForSeconds(1f);
         }

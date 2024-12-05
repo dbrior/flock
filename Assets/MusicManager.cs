@@ -36,7 +36,6 @@ public class MusicManager : MonoBehaviour
 
     public void FadeToNightMusic()
     {
-        Debug.Log("Trigger mussic");
         StartCoroutine(FadeMusic(nightMusic));
     }
 

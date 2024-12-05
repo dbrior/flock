@@ -273,7 +273,6 @@ public class Player : MonoBehaviour
     }
 
     public void IncreaseDamage(float addedDamage) {
-        Debug.Log("Increase damage");
         attackDamange += addedDamage;
     }
 
