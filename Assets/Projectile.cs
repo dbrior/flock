@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     public float moveSpeed;
     public float damage;
     public float knockbackForce;
-    public GameObject owner;
+    public Collider2D ownerCollider;
     public bool isKinematic = true;
     public bool isDestructible = true;
 
@@ -18,14 +18,13 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public void SetOwner(GameObject newOwner) {
-        owner = newOwner;
-        if (newOwner.TryGetComponent<Collider2D>(out Collider2D ownerCollider)) {
-            Physics2D.IgnoreCollision(ownerCollider, GetComponent<Collider2D>());
-        }
+    public void SetOwner(Collider2D newOwnerCollider) {
+        ownerCollider = newOwnerCollider;
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
+        if (col == ownerCollider || col.isTrigger) return;
+
         if (col.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
             damagable.Hit(transform.position, damage, knockbackForce);
         }

@@ -84,7 +84,9 @@ public class Spinner : MonoBehaviour
             Projectile projectile = instance.GetComponent<Projectile>();
             projectile.damage = damage;
 
-            projectile.SetOwner(transform.parent.gameObject);
+            if (transform.parent.gameObject.TryGetComponent<Collider2D>(out Collider2D collider)) {
+                projectile.SetOwner(collider);
+            }
 
             // Set the local position based on the angle and radius
             float angleRad = angle * Mathf.Deg2Rad;

@@ -211,7 +211,7 @@ MonoBehaviour:
   moveSpeed: 1
   damage: 10
   knockbackForce: 100
-  owner: {fileID: 0}
+  ownerCollider: {fileID: 0}
   isKinematic: 1
   isDestructible: 1
 --- !u!50 &-7071715254472023099

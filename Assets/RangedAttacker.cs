@@ -13,9 +13,11 @@ public class RangedAttacker : MonoBehaviour
 
     private AudioSource audioSource;
     private bool onCooldown = false;
+    private Collider2D collider;
 
-    void Start() {
+    void Awake() {
         audioSource = GetComponent<AudioSource>();
+        collider = GetComponent<Collider2D>();
     }
 
     public void Attack(Vector2 position) {
@@ -28,7 +30,7 @@ public class RangedAttacker : MonoBehaviour
             projectile.knockbackForce = knockbackForce;
             projectile.moveSpeed = projectileSpeed;
             
-            projectile.SetOwner(gameObject);
+            projectile.SetOwner(collider);
 
             onCooldown = true;
             StartCoroutine(CooldownTimer(cooldownSec));
