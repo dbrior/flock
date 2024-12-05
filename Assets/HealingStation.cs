@@ -6,6 +6,7 @@ public class HealingStation : MonoBehaviour
 {
     [SerializeField] private float healAmount;
     [SerializeField] private float frequencySec;
+    [SerializeField] private Item healItem;
     [SerializeField] private AudioClip healSound;
     [SerializeField] private Animator healAnimator;
 
@@ -48,24 +49,34 @@ public class HealingStation : MonoBehaviour
         }
     }
 
+    private bool fireAnimation = false;
     private IEnumerator Heal() {
         while (true) {
             foreach (Damagable target in targets) {
                 if (target.GetHealthPct() >= 1f) {
                     RemoveTarget(target);
                 } else {
-                    target.ChangeHealth(healAmount);
+                    // Heal if player has heal item
+                    if (PlayerInventory.Instance.GetItemCount(healItem) > 0) {
+                        PlayerInventory.Instance.RemoveItem(healItem, 1);
 
-                    if (healSound != null) {
-                        audioSource.PlayOneShot(healSound);
+                        // Update health
+                        target.ChangeHealth(healAmount);
+                        if (healSound != null) {
+                            audioSource.PlayOneShot(healSound);
+                        }
+
+                        fireAnimation = true;
                     }
                 }
             }
 
-            if (healAnimator != null) {
+            if (healAnimator != null && fireAnimation) {
                 Debug.Log("Settings animator");
                 healAnimator.SetTrigger("Heal");
             }
+
+            fireAnimation = false;
 
             yield return new WaitForSeconds(frequencySec);
         }
