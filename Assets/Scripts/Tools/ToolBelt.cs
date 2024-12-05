@@ -87,19 +87,19 @@ public class ToolBelt : MonoBehaviour
     }
 
     private void UseSeedBag() {
-        Vector2 spawnLocation = GetGridLocation(transform.position);
+        // Vector2 spawnLocation = GetGridLocation(transform.position);
 
-        Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, 0.16f);
-        if (objectsInRange.Length > 0) {
-            foreach (Collider2D obj in objectsInRange) {
-                if (obj.TryGetComponent<Crop>(out Crop crop)) {
-                    if ((Vector2) crop.transform.position == spawnLocation) {
-                        return;
-                    }
-                }
-            }
-        }
-        CropManager.Instance.PlantCrop(spawnLocation);
+        // Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, 0.16f);
+        // if (objectsInRange.Length > 0) {
+        //     foreach (Collider2D obj in objectsInRange) {
+        //         if (obj.TryGetComponent<Crop>(out Crop crop)) {
+        //             if ((Vector2) crop.transform.position == spawnLocation) {
+        //                 return;
+        //             }
+        //         }
+        //     }
+        // }
+        // CropManager.Instance.PlantCrop(spawnLocation);
     }
 
     private void UseWateringCan() {

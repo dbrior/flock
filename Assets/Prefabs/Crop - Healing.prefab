@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1963917316983923845
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -276641783206906693, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: itemSpawns.Array.data[0].itemPrefab
+      value: 
+      objectReference: {fileID: 4465506323250089622, guid: 091ca80e080e34dca98c04d4f962c7ae, type: 3}
+    - target: {fileID: 3749822279074914586, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -191456974, guid: 55b8937eeed7540638eada3704a9ce5f, type: 3}
+    - target: {fileID: 4984600077904589487, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: m_Name
+      value: cropWheat Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103345412117349618, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.8616532
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103345412117349618, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.11186361
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103345412117349618, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.4776483
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103345412117349618, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103345412117349618, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103345412117349618, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103345412117349618, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103345412117349618, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103345412117349618, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103345412117349618, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934510474021735677, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: a331af6718e314994b63394d1c610080, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}

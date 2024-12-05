@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Crop - Healing
+  m_Controller: {fileID: 9100000, guid: d1b7c271c26204eacb9c481e76c4215d, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d6e2b83550c2b49d787f71b4ffe81121, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e00de3e7fab9e4354a95ced48e3af307, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9288dc80d24fc4a08afedbefacede99a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 02ce38e54c8464bfc9ae931bac5e6c3b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c55537f5ef7204b58a70e3595c34852b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7466f89783f9645ea9548ba90f2675c7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 323691f160138420eb9edf3fbe9bc4e8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 71aa4bcf3f9b04c84a47a9e6ab32b7a4, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9557d599a334647bf97a98a4dda760bd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 699dfcf9dd34a43ea8d32de2a3e21c87, type: 2}

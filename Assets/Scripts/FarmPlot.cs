@@ -14,6 +14,7 @@ public class FarmPlot : MonoBehaviour
     [SerializeField] private GameObject farmHandPrefab;
     [SerializeField] private int radius;
     [SerializeField] private float gridStep;
+    [SerializeField] private CropType cropType;
     public List<Vector2> plotPoints;
     public List<Vector2> needsPlant;
     public List<Vector2> needsWater;
@@ -90,7 +91,7 @@ public class FarmPlot : MonoBehaviour
 
         needsPlant = checklist.Except(cropLocations).ToList();
         foreach (Vector2 position in needsPlant) {
-            CropManager.Instance.PlantCrop(position);
+            CropManager.Instance.PlantCrop(position, cropType);
             needsWater.Add(position);
         }
         needsPlant.Clear();

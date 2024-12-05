@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -276641783206906693}
   - component: {fileID: 7398834495057194932}
   m_Layer: 0
-  m_Name: crop
+  m_Name: Crop - Wheat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

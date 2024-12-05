@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3919379588146199057}
   - component: {fileID: 7210781085964414645}
   m_Layer: 0
-  m_Name: Wheat
+  m_Name: CropBundle - Wheat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
