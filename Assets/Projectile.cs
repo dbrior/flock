@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D col) {
+    private void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
             damagable.Hit(transform.position, damage, knockbackForce);
         }

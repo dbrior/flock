@@ -26,7 +26,7 @@ public class ItemSpawner : MonoBehaviour
                 // Vector2 spawnLocation = (Vector2) transform.position + (UnityEngine.Random.insideUnitCircle.normalized * 0.1f);
                 GameObject spawnedObj = Instantiate(itemSpawn.itemPrefab, transform.position, Quaternion.identity);
                 Rigidbody2D rb = spawnedObj.GetComponent<Rigidbody2D>();
-                Vector2 randomForce = (UnityEngine.Random.insideUnitCircle.normalized * 50f);
+                Vector2 randomForce = (UnityEngine.Random.insideUnitCircle.normalized * UnityEngine.Random.Range(10f, 75f));
                 rb.AddForce(randomForce);
                 Destroy(spawnedObj, 30f);
             }
