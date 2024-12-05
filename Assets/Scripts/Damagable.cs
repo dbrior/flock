@@ -34,6 +34,15 @@ public class Damagable : MonoBehaviour
         if (regenEnabled) {
             StartCoroutine(Regen());
         }
+        HideHealthBar();
+    }
+
+    public void HideHealthBar() {
+        healthUI.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void ShowHealthBar() {
+        healthUI.transform.parent.gameObject.SetActive(true);
     }
 
     public void ChangeBlockChance(float delta) {
@@ -50,10 +59,17 @@ public class Damagable : MonoBehaviour
 
     public void ChangeHealth(float delta) {
         if (delta > 0 && currHealth >= maxHealth) return;
+        if (currHealth == maxHealth && delta < 0) {
+            ShowHealthBar();
+        }
 
         currHealth += delta;
         currHealth = Mathf.Min(currHealth, maxHealth);
         healthUI.fillAmount = currHealth / maxHealth;
+
+        if (currHealth == maxHealth) {
+            HideHealthBar();
+        }
     }
 
     public void RestoreHealth() {
