@@ -126179,6 +126179,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 97fd68eb44a724eae8126aaa4527b15d, type: 3}
     - target: {fileID: 1764298251494807475, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      propertyPath: regenDelay
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764298251494807475, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: hitAnimator
       value: 
       objectReference: {fileID: 1019494118}
