@@ -24,6 +24,7 @@ public class Damagable : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     private AudioSource audioSource;
     [SerializeField] private Animator hitAnimator;
+    [SerializeField] private bool isBoss;
 
 
     void Start()
@@ -34,7 +35,9 @@ public class Damagable : MonoBehaviour
         if (regenEnabled) {
             StartCoroutine(Regen());
         }
-        HideHealthBar();
+        if (!isBoss) {
+            HideHealthBar();
+        }
     }
 
     public void HideHealthBar() {
@@ -59,7 +62,7 @@ public class Damagable : MonoBehaviour
 
     public void ChangeHealth(float delta) {
         if (delta > 0 && currHealth >= maxHealth) return;
-        if (currHealth == maxHealth && delta < 0) {
+        if (!isBoss && currHealth == maxHealth && delta < 0) {
             ShowHealthBar();
         }
 
@@ -67,7 +70,7 @@ public class Damagable : MonoBehaviour
         currHealth = Mathf.Min(currHealth, maxHealth);
         healthUI.fillAmount = currHealth / maxHealth;
 
-        if (currHealth == maxHealth) {
+        if (!isBoss && currHealth == maxHealth) {
             HideHealthBar();
         }
     }

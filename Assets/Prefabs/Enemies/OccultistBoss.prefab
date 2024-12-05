@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2787919929368241433}
   - component: {fileID: 3527807545872113344}
   - component: {fileID: 3802755270996927337}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 7036552852206599228}
   - component: {fileID: 5326583376767692698}
   - component: {fileID: 7475133903641212366}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OccultistBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,6 +542,7 @@ MonoBehaviour:
   critSound: {fileID: 8300000, guid: bf14a966baaf84a86b7432f312b97173, type: 3}
   deathSound: {fileID: 0}
   hitAnimator: {fileID: 0}
+  isBoss: 1
 --- !u!70 &4556070578195386891
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -871,10 +872,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 5461340269042030209, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5479613378730060956, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c3a9d5e2a7607483ba87a51305b7cf15, type: 3}
+    - target: {fileID: 5798769129649130649, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7049090427213801753, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7060657439151658680, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
       propertyPath: m_SizeDelta.x
       value: -0.015000006

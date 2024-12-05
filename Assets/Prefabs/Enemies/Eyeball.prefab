@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7714983695122580736}
   - component: {fileID: 7824716612035216722}
   - component: {fileID: 3447361789295914738}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Eyeball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,6 +352,7 @@ MonoBehaviour:
   critSound: {fileID: 8300000, guid: bf14a966baaf84a86b7432f312b97173, type: 3}
   deathSound: {fileID: 0}
   hitAnimator: {fileID: 2829670442134598725}
+  isBoss: 0
 --- !u!114 &3447361789295914738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,6 +666,18 @@ PrefabInstance:
     - target: {fileID: 5461340269042030209, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461340269042030209, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798769129649130649, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7049090427213801753, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
