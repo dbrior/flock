@@ -68,21 +68,6 @@ public class Farmhand : MonoBehaviour
                 }
                 // CheckCrops();
             }
-        } else if (farmhandType == FarmhandType.Herder) {
-            if (((Vector2) transform.position - (Vector2) targetTransform.position).magnitude < 0.165) {
-                if (state == FarmhandState.Shear) {
-                    toolBelt.UseTool(Tool.Shears);
-                    if (needsShear.Count > 0) {
-                        needsShear.RemoveAt(0);
-                    }
-
-                    if (needsShear.Count == 0) {
-                        targetTransform = transform;
-                    }
-                }
-
-                // CheckSheep();
-            }
         }
     }
 
@@ -135,19 +120,25 @@ public class Farmhand : MonoBehaviour
 
         if (needsShear.Count > 0) {
             state = FarmhandState.Shear;
-            targetTransform = needsShear[Random.Range(0, needsShear.Count)];
+            if (!needsShear.Contains(targetTransform)) {
+                targetTransform = needsShear[Random.Range(0, needsShear.Count)];
+            }
         } else {
+            targetTransform = transform;
             state = FarmhandState.Wander;
         }
     }
 
-    // private void OnCollisionEnter2D(Collision2D col) {
-    //     if (col.gameObject.TryGetComponent<Sheep>(out Sheep sheep)) {
-    //         if !sheep.IsSheared() {
-
-    //         }
-    //     }
-    // }
+    private void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.TryGetComponent<Sheep>(out Sheep sheep)) {
+            if (!sheep.IsSheared()) {
+                toolBelt.UseTool(Tool.Shears);
+            }
+            if (farmhandType == FarmhandType.Herder) {
+                CheckSheep();
+            }
+        }
+    }
 
     private IEnumerator ContinuouslyScan() {
         while (true) {

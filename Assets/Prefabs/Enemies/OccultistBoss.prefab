@@ -402,6 +402,7 @@ GameObject:
   - component: {fileID: 243521209937998386}
   - component: {fileID: 7036552852206599228}
   - component: {fileID: 5326583376767692698}
+  - component: {fileID: 7475133903641212366}
   m_Layer: 0
   m_Name: OccultistBoss
   m_TagString: Untagged
@@ -520,7 +521,19 @@ MonoBehaviour:
   blockChance: 0.1
   onDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7475133903641212366}
+        m_TargetAssemblyTypeName: ItemSpawner, Assembly-CSharp
+        m_MethodName: SpawnItems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   regenEnabled: 1
   regenPerSecond: 50
   regenDelay: 5
@@ -708,6 +721,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7475133903641212366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156904570195260950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a31e65072a3744b283a70bad33cd4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSpawns:
+  - itemPrefab: {fileID: 4465506323250089622, guid: 017da9208ff5e4496b85590011373a56, type: 3}
+    probability: 1
+    maxAmount: 1
+  - itemPrefab: {fileID: 8742995438940802542, guid: 61191ea388b534beb8925ff683a06224, type: 3}
+    probability: 0.75
+    maxAmount: 100
 --- !u!1 &7253975035972212669
 GameObject:
   m_ObjectHideFlags: 0
