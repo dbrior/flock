@@ -4,15 +4,29 @@ public class CameraWithBounds : MonoBehaviour
 {
     public Transform player1; // First Player Transform to follow
     public Transform player2; // Second Player Transform to follow
+    private Transform startPlayer2;
     public Vector2 toleranceBounds = new Vector2(2f, 2f); // The tolerance bounds around the camera's center
+    private Vector2 startToleranceBounds;
     public Vector2 maxDistanceFromOrigin = new Vector2(10f, 10f); // Maximum allowed distance from origin (0,0) on each axis
 
     private Vector3 offset;
 
     void Start()
     {
+        startPlayer2 = player2;
+        startToleranceBounds = toleranceBounds;
         // Calculate the initial offset between the camera and the midpoint of the two players
         offset = transform.position - GetMidpoint(player1.position, player2.position);
+    }
+
+    public void FocusPlayer1() {
+        player2 = player1;
+        toleranceBounds = Vector2.zero;
+    }
+
+    public void UnfocusPlayer1() {
+        player2 = startPlayer2;
+        toleranceBounds = startToleranceBounds;
     }
 
     void LateUpdate()

@@ -8,6 +8,8 @@ public class MoveTowardsPointer : MonoBehaviour
     [SerializeField] private float minDistance;
     [SerializeField] private float damping;
 
+    public bool active = true;
+
     private Rigidbody2D rb;
 
     void Start() {
@@ -15,13 +17,17 @@ public class MoveTowardsPointer : MonoBehaviour
     }
 
     void FixedUpdate() {
-        Vector2 targetDirection = (Vector2)(Pointer.Instance.transform.position - transform.position);
-        float distance = targetDirection.magnitude;
+        if (active) {
+            Vector2 targetDirection = (Vector2)(Pointer.Instance.transform.position - transform.position);
+            float distance = targetDirection.magnitude;
 
-        if (distance > minDistance) {
-            Vector2 desiredVelocity = targetDirection.normalized * moveSpeed;
-            Vector2 smoothVelocity = Vector2.Lerp(rb.velocity, desiredVelocity, Time.fixedDeltaTime * damping);
-            rb.velocity = smoothVelocity;
+            if (distance > minDistance) {
+                Vector2 desiredVelocity = targetDirection.normalized * moveSpeed;
+                Vector2 smoothVelocity = Vector2.Lerp(rb.velocity, desiredVelocity, Time.fixedDeltaTime * damping);
+                rb.velocity = smoothVelocity;
+            } else {
+                rb.velocity = Vector2.zero;
+            }
         } else {
             rb.velocity = Vector2.zero;
         }

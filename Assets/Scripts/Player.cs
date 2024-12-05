@@ -123,12 +123,16 @@ public class Player : MonoBehaviour
         moveVec = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.velocity = Vector2.zero;
+        ropeRb.gameObject.GetComponent<MoveTowardsPointer>().active = false;
+        Camera.main.GetComponent<CameraWithBounds>().FocusPlayer1();
     }
 
     public void CloseMenu() {
         inMenu = false;
         moveVec = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Dynamic;
+        ropeRb.gameObject.GetComponent<MoveTowardsPointer>().active = true;
+        Camera.main.GetComponent<CameraWithBounds>().UnfocusPlayer1();
     }
 
     private bool stepping = false;
