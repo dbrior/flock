@@ -48,6 +48,11 @@ public class WaveManager : MonoBehaviour
 
     private int currDay;
 
+    [SerializeField] private int bossSpawnDayInterval;
+    [SerializeField] private List<GameObject> bossList;
+    [SerializeField] private Transform bossSpawnLocation;
+    private bool shouldSpawnBoss = false;
+
     void Awake() {
         if (Instance == null) { Instance = this; } 
         else { Destroy(gameObject); }
@@ -61,6 +66,12 @@ public class WaveManager : MonoBehaviour
         StartWave();
 
         currentTimeSeconds = wakeTime * (dayLengthSeconds / 24f);
+    }
+
+    private void SpawnBoss() {
+        GameObject prefab = bossList[Random.Range(0, bossList.Count)];
+        Instantiate(prefab, bossSpawnLocation.position, bossSpawnLocation.rotation);
+        shouldSpawnBoss = false;
     }
 
     public void AddToggleableLight(Light2D light) {
@@ -112,6 +123,11 @@ public class WaveManager : MonoBehaviour
         dayTimer = StartCoroutine(DayCycle());
 
         UIManager.Instance.UpdateDay(currDay);
+
+        // Check if boss should spawn tonight
+        if (currDay % bossSpawnDayInterval == 0) {
+            shouldSpawnBoss = true;
+        }
     }
 
     public void EndWave() {
@@ -150,6 +166,11 @@ public class WaveManager : MonoBehaviour
             } else if (lightsOn && (currentTime >= lightsTurnOffTime && currentTime < lightsTurnOnTime)) {
                 TurnOffLights();
                 MusicManager.Instance.FadeToDayMusic();
+            }
+
+            // Spawn boss
+            if (shouldSpawnBoss && currentTime >= 21) {
+                SpawnBoss();
             }
         }
         EndWave();

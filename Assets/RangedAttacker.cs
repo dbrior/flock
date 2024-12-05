@@ -27,7 +27,8 @@ public class RangedAttacker : MonoBehaviour
             projectile.damage = damage;
             projectile.knockbackForce = knockbackForce;
             projectile.moveSpeed = projectileSpeed;
-            projectile.source = gameObject;
+            
+            projectile.SetOwner(gameObject);
 
             onCooldown = true;
             StartCoroutine(CooldownTimer(cooldownSec));

@@ -339,7 +339,7 @@ MonoBehaviour:
     m_Bits: 8
   attackAnimator: {fileID: 2032834718964430163}
   damage: 50
-  knockbackForce: 2000
+  knockbackForce: 200
   hitCooldownSec: 3
   attackZone: {fileID: 1920914704087159553}
   indiscriminantDamage: 1

@@ -214,7 +214,7 @@ MonoBehaviour:
   damage: 40
   knockbackForce: 300
   projectileSpeed: 2
-  cooldownSec: 0.5
+  cooldownSec: 3
   projectilePrefab: {fileID: 4556007113218172146, guid: a0cacc20ff5b946d5a9816f5d9777fe3, type: 3}
   shootSound: {fileID: 8300000, guid: a006b969cdbc54029900f5690e276d82, type: 3}
 --- !u!82 &7714983695122580736
