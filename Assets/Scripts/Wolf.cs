@@ -81,7 +81,7 @@ public class Wolf : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D col)
     {
-        if (col.gameObject.TryGetComponent<Damagable>(out Damagable targetDamagable) && col.gameObject.GetComponent<Wolf>() == null && Time.time >= lastHitTime + attackCooldownSec) {
+        if (col.gameObject.layer != LayerMask.NameToLayer("Wolf") && col.gameObject.TryGetComponent<Damagable>(out Damagable targetDamagable) && Time.time >= lastHitTime + attackCooldownSec) {
             targetDamagable.Hit(transform.position, attackDamage, 100f);
             lastHitTime = Time.time;
         }

@@ -194,8 +194,8 @@ MonoBehaviour:
   moveSpeed: 0.1
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
-  detectionRadius: 0
+    m_Bits: 264
+  detectionRadius: 3
   waitMin: 1
   waitMax: 4
   flippingSprite: 1
@@ -540,7 +540,7 @@ MonoBehaviour:
   attacker: {fileID: 2776813160493309264}
   targetLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 264
 --- !u!1 &8199576133422567940
 GameObject:
   m_ObjectHideFlags: 0
