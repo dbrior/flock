@@ -2314,7 +2314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbf97350c38340e7a28097a822a7ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10000
+  maxHealth: 50000
   healthUI: {fileID: 1407606277}
   hitNumberLocation: {fileID: 148099774}
   blockChance: 0
@@ -2322,7 +2322,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   regenEnabled: 1
-  regenPerSecond: 50
+  regenPerSecond: 850
   regenDelay: 10
   hitSound: {fileID: 0}
   blockSound: {fileID: 0}
@@ -4451,7 +4451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbf97350c38340e7a28097a822a7ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10000
+  maxHealth: 50000
   healthUI: {fileID: 1328842519}
   hitNumberLocation: {fileID: 362682866}
   blockChance: 0
@@ -4459,7 +4459,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   regenEnabled: 1
-  regenPerSecond: 50
+  regenPerSecond: 850
   regenDelay: 10
   hitSound: {fileID: 0}
   blockSound: {fileID: 0}
@@ -5078,7 +5078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbf97350c38340e7a28097a822a7ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10000
+  maxHealth: 50000
   healthUI: {fileID: 1066666067}
   hitNumberLocation: {fileID: 451809994}
   blockChance: 0
@@ -5086,7 +5086,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   regenEnabled: 1
-  regenPerSecond: 50
+  regenPerSecond: 850
   regenDelay: 10
   hitSound: {fileID: 0}
   blockSound: {fileID: 0}
