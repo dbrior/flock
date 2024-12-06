@@ -8669,6 +8669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 986398041}
   - component: {fileID: 986398042}
+  - component: {fileID: 986398043}
   m_Layer: 3
   m_Name: MagicShield
   m_TagString: Untagged
@@ -8743,6 +8744,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &986398043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986398040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbf97350c38340e7a28097a822a7ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  healthUI: {fileID: 0}
+  hitNumberLocation: {fileID: 0}
+  blockChance: 0.01
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  regenEnabled: 0
+  regenPerSecond: 0
+  regenDelay: 0
+  hitSound: {fileID: 0}
+  blockSound: {fileID: 0}
+  critSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  hitAnimator: {fileID: 0}
+  isBoss: 0
+  randomizePitch: 0
 --- !u!50 &987973837 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 2362330277033630554, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}

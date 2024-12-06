@@ -19,6 +19,9 @@ public class Wolf : MonoBehaviour
     [SerializeField] private float waitMin;
     [SerializeField] private float waitMax;
     [SerializeField] private float attackDamage;
+    [SerializeField] private float attackCooldownSec;
+
+    private float lastHitTime;
 
     private Damagable damagable;
 
@@ -30,6 +33,7 @@ public class Wolf : MonoBehaviour
 
     void Start()
     {
+        lastHitTime = 0;
         StartCoroutine(ScanForSheep());
         animator.SetLayerWeight(0, 0);
         animator.SetLayerWeight(1, 0);
@@ -75,10 +79,11 @@ public class Wolf : MonoBehaviour
         damagable.SetMaxHealth(health);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnCollisionStay2D(Collision2D col)
     {
-        if (col.gameObject.TryGetComponent<Damagable>(out Damagable targetDamagable) && col.gameObject.GetComponent<Wolf>() == null) {
+        if (col.gameObject.TryGetComponent<Damagable>(out Damagable targetDamagable) && col.gameObject.GetComponent<Wolf>() == null && Time.time >= lastHitTime + attackCooldownSec) {
             targetDamagable.Hit(transform.position, attackDamage, 100f);
+            lastHitTime = Time.time;
         }
         // if (col.gameObject.layer == LayerMask.NameToLayer("WildSheep"))
         // {
