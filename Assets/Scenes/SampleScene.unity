@@ -126422,6 +126422,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: womanRed
       objectReference: {fileID: 0}
+    - target: {fileID: 2614926414458780750, guid: b407b9a80b07e43e29de0f99b90ff06a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3831403213566007678, guid: b407b9a80b07e43e29de0f99b90ff06a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
