@@ -5,7 +5,7 @@ using UnityEngine;
 public class Attacker : MonoBehaviour
 {
     [SerializeField] private LayerMask targetLayer;
-
+    [SerializeField] private LayerMask ignoreLayer;
     [SerializeField] private Animator attackAnimator;
     [SerializeField] private float damage;
     [SerializeField] private float knockbackForce;
