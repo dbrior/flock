@@ -23,7 +23,7 @@ public class Attacker : MonoBehaviour
     }
 
     // private void OnTriggerStay2D(Collider2D col) {
-    //     if (readyToAttack && ((1 << col.gameObject.layer) & targetLayer) != 0) {
+        // if (readyToAttack && ((1 << col.gameObject.layer) & targetLayer) != 0) {
     //         if (col.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
     //             damagable.Hit(transform.position, damage, knockbackForce);
     //             readyToAttack = false;
@@ -54,6 +54,8 @@ public class Attacker : MonoBehaviour
 
             foreach (Collider2D collider in results)
             {
+                if (((1 << collider.gameObject.layer) & ignoreLayer) != 0) continue;
+
                 if (collider.gameObject != gameObject && collider.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
                     damagable.Hit(transform.position, damage, knockbackForce);
                 }
