@@ -498,7 +498,7 @@ MonoBehaviour:
   moveSpeed: 0.3
   targetLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   detectionRadius: 3
   waitMin: 1
   waitMax: 3
@@ -543,6 +543,7 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   hitAnimator: {fileID: 0}
   isBoss: 1
+  randomizePitch: 0
 --- !u!70 &4556070578195386891
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

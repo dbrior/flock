@@ -194,7 +194,7 @@ MonoBehaviour:
   moveSpeed: 0.1
   targetLayer:
     serializedVersion: 2
-    m_Bits: 264
+    m_Bits: 0
   detectionRadius: 3
   waitMin: 1
   waitMax: 4
@@ -540,7 +540,7 @@ MonoBehaviour:
   attacker: {fileID: 2776813160493309264}
   targetLayer:
     serializedVersion: 2
-    m_Bits: 264
+    m_Bits: 16648
 --- !u!1 &8199576133422567940
 GameObject:
   m_ObjectHideFlags: 0

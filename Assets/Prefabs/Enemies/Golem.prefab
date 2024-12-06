@@ -84,6 +84,9 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 264
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &2541037006850683105
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +219,7 @@ MonoBehaviour:
   moveSpeed: 0.1
   targetLayer:
     serializedVersion: 2
-    m_Bits: 264
+    m_Bits: 0
   detectionRadius: 3
   waitMin: 1
   waitMax: 2
@@ -339,6 +342,9 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 8
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0
   attackAnimator: {fileID: 2032834718964430163}
   damage: 50
   knockbackForce: 200
