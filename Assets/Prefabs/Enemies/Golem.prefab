@@ -83,7 +83,7 @@ MonoBehaviour:
   attacker: {fileID: 7959564610484802502}
   targetLayer:
     serializedVersion: 2
-    m_Bits: 264
+    m_Bits: 16648
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   moveSpeed: 0.1
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16648
   detectionRadius: 3
   waitMin: 1
   waitMax: 2
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 16648
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 0
