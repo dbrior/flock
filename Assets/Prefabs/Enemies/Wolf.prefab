@@ -166,7 +166,7 @@ MonoBehaviour:
   waitMin: 0.5
   waitMax: 1
   attackDamage: 20
-  attackCooldownSec: 1
+  attackCooldownSec: 0.5
 --- !u!50 &1642303859757627988
 Rigidbody2D:
   serializedVersion: 4
