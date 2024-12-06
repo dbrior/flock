@@ -25,12 +25,18 @@ public class Damagable : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private Animator hitAnimator;
     [SerializeField] private bool isBoss;
+    [SerializeField] private bool randomizePitch;
 
+    private float originalPitch;
+
+    void Awake() {
+        rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        audioSource = GetComponent<AudioSource>();
+        originalPitch = audioSource.pitch;
         currHealth = maxHealth;
         if (regenEnabled) {
             StartCoroutine(Regen());
@@ -103,6 +109,10 @@ public class Damagable : MonoBehaviour
     }
 
     public void Hit(Vector2 damagePos, float damage, float knockback, bool isCrit = false) {
+        if (randomizePitch) {
+            audioSource.pitch = originalPitch;
+        }
+
         float hitRoll = Random.Range(0, 1f);
         if (hitRoll <= blockChance) {
             DamageNumberSpawner.Instance.SpawnStatusIcon(hitNumberLocation.position, StatusIconType.Block);
@@ -126,6 +136,7 @@ public class Damagable : MonoBehaviour
         if (isCrit && critSound != null) {
             audioSource.PlayOneShot(critSound);
         } else if (hitSound != null) {
+            if (randomizePitch) audioSource.pitch = Random.Range(0.8f, 1.2f);
             audioSource.PlayOneShot(hitSound);
         }
 

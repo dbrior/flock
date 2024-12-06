@@ -347,12 +347,13 @@ MonoBehaviour:
   regenEnabled: 0
   regenPerSecond: 0
   regenDelay: 5
-  hitSound: {fileID: 8300000, guid: edcf849e50ae74b80822d4340af4f233, type: 3}
+  hitSound: {fileID: 8300000, guid: 5ef2e071b515b41e0a5253e608427903, type: 3}
   blockSound: {fileID: 8300000, guid: 1ccd0c85c293e4bc8973ae50b1baa6e2, type: 3}
   critSound: {fileID: 8300000, guid: bf14a966baaf84a86b7432f312b97173, type: 3}
   deathSound: {fileID: 0}
   hitAnimator: {fileID: 2829670442134598725}
   isBoss: 0
+  randomizePitch: 1
 --- !u!114 &3447361789295914738
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -592,11 +592,16 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+  regenEnabled: 0
+  regenPerSecond: 0
+  regenDelay: 0
   hitSound: {fileID: 0}
   blockSound: {fileID: 0}
   critSound: {fileID: 0}
   deathSound: {fileID: 0}
   hitAnimator: {fileID: 0}
+  isBoss: 0
+  randomizePitch: 0
 --- !u!114 &1252419288893483841
 MonoBehaviour:
   m_ObjectHideFlags: 0
