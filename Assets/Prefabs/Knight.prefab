@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4338390866426657169}
   - component: {fileID: 5508189854016093311}
   - component: {fileID: 4000156213085765274}
+  - component: {fileID: 1048031402830437064}
   m_Layer: 14
   m_Name: Knight
   m_TagString: Untagged
@@ -149,14 +150,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11373409921329751}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -167,7 +168,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!70 &5749725090501618591
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -341,13 +342,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
+  flippingSprite: 0
+  distanceTolerance: 0.01
+  pathfindingIntervalSec: 3
+  shouldWander: 1
+  anchoredWandering: 1
+  wanderingAnchor: {fileID: 0}
+  wanderRadius: 0.2
+  wanderingWaitTimeSec:
+    min: 1
+    max: 4
+--- !u!114 &1048031402830437064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11373409921329751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d32d4b0bbc5492a81be3e0f8e5de0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
-  detectionRadius: 0
-  waitMin: 1
-  waitMax: 2
-  flippingSprite: 0
+    m_Bits: 1024
+  detectionRadius: 0.5
+  scanIntervalSec: 1
 --- !u!1 &3027084270881854772
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,15 @@ public class CharacterMover : MonoBehaviour
     [SerializeField] private bool flippingSprite = false;
     [SerializeField] private float distanceTolerance;
     [SerializeField] private float pathfindingIntervalSec = 3f;
+
+    // Wandering
+    [SerializeField] private bool shouldWander;
+    [SerializeField] private bool anchoredWandering;
+    [SerializeField] private Transform wanderingAnchor;
+    [SerializeField] private float wanderRadius;
+    [SerializeField] private FloatRange wanderingWaitTimeSec;
+    private bool wandering;
+
     public Action onReachDestination;
     private Transform navTransform;
     private NavMeshPath path;
@@ -40,6 +49,13 @@ public class CharacterMover : MonoBehaviour
         hasDestination = false;
         path = new NavMeshPath();
         rb.drag = 10f;
+    }
+
+    void Start() {
+        if (shouldWander) {
+            wandering = true;
+            StartCoroutine("Wander");
+        }
     }
 
     void Update() {
@@ -106,6 +122,10 @@ public class CharacterMover : MonoBehaviour
         heading = Vector2.zero;
         rb.velocity = Vector2.zero;
         onReachDestination?.Invoke();
+
+        if (shouldWander) {
+            EnableWander();
+        }
     }
 
     private Vector3[] GeneratePointsToTarget(Vector3 targetPosition) {
@@ -122,6 +142,10 @@ public class CharacterMover : MonoBehaviour
         }
         points = null;
         hasDestination = false;
+
+        if (shouldWander) {
+            EnableWander();
+        }
     }
 
     // One time attempt at navigating
@@ -130,6 +154,7 @@ public class CharacterMover : MonoBehaviour
         if (waypoints == null) return false;
 
         StopNavigation();
+        DisableWander();
         hasDestination = true;
         navTransform = null;
         SetPoints(waypoints);
@@ -140,6 +165,7 @@ public class CharacterMover : MonoBehaviour
         if (waypoints == null) return false;
 
         StopNavigation();
+        DisableWander();
         hasDestination = true;
         navTransform = targetTransform;
         SetPoints(waypoints);
@@ -149,12 +175,14 @@ public class CharacterMover : MonoBehaviour
     // Lock and retry destination
     public void NavigateTo(Vector3 worldPosition) {
         StopNavigation();
+        DisableWander();
         hasDestination = true;
         navTransform = null;
         navCoroutine = StartCoroutine(Navigate(worldPosition));
     }
     public void NavigateTo(Transform targetTransform) {
         StopNavigation();
+        DisableWander();
         hasDestination = true;
         navTransform = targetTransform;
         navCoroutine = StartCoroutine(Navigate(targetTransform));
@@ -162,7 +190,6 @@ public class CharacterMover : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col) {
         if (hasDestination && col.transform == navTransform) {
-            Debug.Log("collision edn");
             ReachedDestination();
         }
     }
@@ -194,6 +221,36 @@ public class CharacterMover : MonoBehaviour
             }
             
             yield return new WaitForSeconds(pathfindingIntervalSec);
+        }
+    }
+
+    public void DisableWander() {
+        wandering = false;
+    }
+
+    public void EnableWander() {
+        wandering = true;
+    }
+
+    private void AttemptWander() {
+        // Make 3 attempts to wander
+        int WANDER_ATTEMPTS = 3;
+
+        for (int i=0; i<WANDER_ATTEMPTS; i++) {
+            NavMeshHit hit;
+            Vector2 wanderPoint = (UnityEngine.Random.insideUnitSphere * wanderRadius) + (anchoredWandering ? wanderingAnchor.position : transform.position);
+
+            if (NavMesh.SamplePosition(wanderPoint, out hit, 0.08f, NavMesh.AllAreas)) {
+                bool success = TryNavigateTo(hit.position);
+                if (success) break;
+            }
+        }
+    }
+
+    IEnumerator Wander() {
+        while (true) {
+            if (wandering) AttemptWander();
+            yield return new WaitForSeconds(UnityEngine.Random.Range(wanderingWaitTimeSec.min, wanderingWaitTimeSec.max));
         }
     }
 }

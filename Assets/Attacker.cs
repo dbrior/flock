@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class Attacker : MonoBehaviour
@@ -13,6 +14,7 @@ public class Attacker : MonoBehaviour
     [SerializeField] private Collider2D attackZone;
     [SerializeField] private bool indiscriminantDamage;
     [SerializeField] private AudioClip attackLandSound;
+    [SerializeField] private UnityEvent onAttackLand;
     private bool readyToAttack = true;
     private Damagable currentTarget;
 
@@ -67,6 +69,7 @@ public class Attacker : MonoBehaviour
             audioSource.PlayOneShot(attackLandSound);
         }
         StartCoroutine(HitTimer(hitCooldownSec));
+        onAttackLand?.Invoke();
     }
 
     IEnumerator HitTimer(float cooldown) {

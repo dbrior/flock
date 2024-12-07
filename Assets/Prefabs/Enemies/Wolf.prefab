@@ -406,6 +406,13 @@ MonoBehaviour:
   flippingSprite: 0
   distanceTolerance: 0.01
   pathfindingIntervalSec: 0
+  shouldWander: 1
+  anchoredWandering: 0
+  wanderingAnchor: {fileID: 0}
+  wanderRadius: 0.6
+  wanderingWaitTimeSec:
+    min: 1
+    max: 4
 --- !u!114 &8328420696919295402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,13 +430,6 @@ MonoBehaviour:
     m_Bits: 16712
   detectionRadius: 3
   scanIntervalSec: 1
-  shouldWander: 1
-  anchoredWandering: 0
-  wanderingAnchor: {fileID: 0}
-  wanderRadius: 0.5
-  wanderingWaitTimeSec:
-    min: 1
-    max: 3
 --- !u!1001 &7079103484468190596
 PrefabInstance:
   m_ObjectHideFlags: 0
