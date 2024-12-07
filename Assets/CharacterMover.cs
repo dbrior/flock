@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using System;
 
 public class CharacterMover : MonoBehaviour
@@ -7,7 +9,11 @@ public class CharacterMover : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private bool flippingSprite = false;
     [SerializeField] private float distanceTolerance;
+    [SerializeField] private float pathfindingIntervalSec = 3f;
     public Action onReachDestination;
+    private Transform navTransform;
+    private NavMeshPath path;
+    Coroutine navCoroutine;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -32,7 +38,7 @@ public class CharacterMover : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         hasDestination = false;
-
+        path = new NavMeshPath();
         rb.drag = 10f;
     }
 
@@ -60,7 +66,10 @@ public class CharacterMover : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (!hasDestination || points == null || points.Length == 0) return;
+        if (!hasDestination || points == null || points.Length == 0) {
+            heading = Vector2.zero;
+            return;
+        }
 
         // Move to next waypoint if reached current
         Vector2 distance = (Vector2) points[pointIdx] - (Vector2) transform.position;
@@ -83,7 +92,6 @@ public class CharacterMover : MonoBehaviour
     public void SetPoints(Vector3[] newPoints) {
         points = newPoints;
         pointIdx = 0;
-        hasDestination = true;
     }
 
     private void NextWaypoint() {
@@ -98,5 +106,94 @@ public class CharacterMover : MonoBehaviour
         heading = Vector2.zero;
         rb.velocity = Vector2.zero;
         onReachDestination?.Invoke();
+    }
+
+    private Vector3[] GeneratePointsToTarget(Vector3 targetPosition) {
+        if(NavMesh.CalculatePath(transform.position, targetPosition, NavMesh.AllAreas, path)) {
+            return path.corners;
+        } else {
+            return null;
+        }
+    }
+
+    public void StopNavigation() {
+        if (navCoroutine != null) {
+            StopCoroutine("Navigate");
+        }
+        points = null;
+        hasDestination = false;
+    }
+
+    // One time attempt at navigating
+    public bool TryNavigateTo(Vector3 worldPosition) {
+        Vector3[] waypoints = GeneratePointsToTarget(worldPosition);
+        if (waypoints == null) return false;
+
+        StopNavigation();
+        hasDestination = true;
+        navTransform = null;
+        SetPoints(waypoints);
+        return true;
+    }
+    public bool TryNavigateTo(Transform targetTransform) {
+        Vector3[] waypoints = GeneratePointsToTarget(targetTransform.position);
+        if (waypoints == null) return false;
+
+        StopNavigation();
+        hasDestination = true;
+        navTransform = targetTransform;
+        SetPoints(waypoints);
+        return true;
+    }
+
+    // Lock and retry destination
+    public void NavigateTo(Vector3 worldPosition) {
+        StopNavigation();
+        hasDestination = true;
+        navTransform = null;
+        navCoroutine = StartCoroutine(Navigate(worldPosition));
+    }
+    public void NavigateTo(Transform targetTransform) {
+        StopNavigation();
+        hasDestination = true;
+        navTransform = targetTransform;
+        navCoroutine = StartCoroutine(Navigate(targetTransform));
+    }
+
+    private void OnCollisionEnter2D(Collision2D col) {
+        if (hasDestination && col.transform == navTransform) {
+            Debug.Log("collision edn");
+            ReachedDestination();
+        }
+    }
+
+    IEnumerator Navigate(Vector3 position) {
+        while (hasDestination) {
+            if (Vector3.Distance(position, transform.position) <= distanceTolerance) {
+                break;
+            }
+
+            Vector3[] waypoints = GeneratePointsToTarget(position);
+            if (waypoints != null) {
+                SetPoints(waypoints);
+            }
+
+            yield return new WaitForSeconds(pathfindingIntervalSec);
+        }
+    }
+
+    IEnumerator Navigate(Transform target) {
+        while (hasDestination) {
+            if (Vector3.Distance(target.position, transform.position) <= distanceTolerance) {
+                break;
+            }
+
+            Vector3[] waypoints = GeneratePointsToTarget(target.position);
+            if (waypoints != null) {
+                SetPoints(waypoints);
+            }
+            
+            yield return new WaitForSeconds(pathfindingIntervalSec);
+        }
     }
 }

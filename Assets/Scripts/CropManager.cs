@@ -48,9 +48,10 @@ public class CropManager : MonoBehaviour
         cropsToRemove.Clear();
     }
 
-    public void PlantCrop(Vector2 position, CropType cropType) {
+    public Crop PlantCrop(Vector2 position, CropType cropType) {
         Crop crop = Instantiate(cropPrefabs[cropType], position, Quaternion.identity).GetComponent<Crop>();
         crops.Add(crop);
+        return crop;
     }
 
     public void RemoveCrop(Crop crop) {

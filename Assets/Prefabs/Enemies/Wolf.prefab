@@ -405,6 +405,7 @@ MonoBehaviour:
   moveSpeed: 0.25
   flippingSprite: 0
   distanceTolerance: 0.01
+  pathfindingIntervalSec: 0
 --- !u!114 &8328420696919295402
 MonoBehaviour:
   m_ObjectHideFlags: 0

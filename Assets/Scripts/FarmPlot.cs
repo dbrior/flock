@@ -13,11 +13,11 @@ public enum TaskType : int {
 
 [System.Serializable]
 public struct Task {
-    public Vector2 position;
+    public Transform transform;
     public TaskType type;
 
-    public Task(Vector2 position, TaskType type) {
-        this.position = position;
+    public Task(Transform transform, TaskType type) {
+        this.transform = transform;
         this.type = type;
     }
 }
@@ -118,9 +118,9 @@ public class FarmPlot : MonoBehaviour
                 seenLocations.Add((Vector2) crop.transform.position);
 
                 if (crop.state == CropState.Dry) {
-                    allTasks.Add(new Task(crop.transform.position, TaskType.Water));
+                    allTasks.Add(new Task(crop.transform, TaskType.Water));
                 } else if (crop.state == CropState.Ready) {
-                    allTasks.Add(new Task(crop.transform.position, TaskType.Harvest));
+                    allTasks.Add(new Task(crop.transform, TaskType.Harvest));
                 }
             }            
         }
@@ -128,8 +128,8 @@ public class FarmPlot : MonoBehaviour
 
         // Plant any missing crops
         foreach (Vector2 position in checklist.Except(seenLocations).ToList()) {
-            CropManager.Instance.PlantCrop(position, cropType);
-            allTasks.Add(new Task(position, TaskType.Water));
+            Crop newCrop = CropManager.Instance.PlantCrop(position, cropType);
+            allTasks.Add(new Task(newCrop.transform, TaskType.Water));
         }
 
         openTasks = allTasks.Except(claimedTasks).ToList();

@@ -383,7 +383,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.2
   flippingSprite: 0
-  distanceTolerance: 0.08
+  distanceTolerance: 0.01
+  pathfindingIntervalSec: 3
 --- !u!95 &-85685462218216491
 Animator:
   serializedVersion: 5

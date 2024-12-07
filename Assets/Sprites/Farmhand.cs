@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.AI;
 using System.Linq;
 using UnityEngine;
 
@@ -25,7 +24,6 @@ public class Farmhand : MonoBehaviour
 
     private CharacterMover characterMover;
     private Task currTask;
-    private NavMeshPath path;
 
     private List<Transform> needsShear;
     private ToolBelt toolBelt;
@@ -36,19 +34,10 @@ public class Farmhand : MonoBehaviour
         toolBelt = GetComponent<ToolBelt>();
         rb = GetComponent<Rigidbody2D>();
         characterMover = GetComponent<CharacterMover>();
-        path = new NavMeshPath();
     }
 
     void Start() {
         StartCoroutine(ContinuouslyScan());
-    }
-
-    private Vector3[] GeneratePointsToTarget(Vector3 targetPosition) {
-        if(NavMesh.CalculatePath(transform.position, targetPosition, NavMesh.AllAreas, path)) {
-            return path.corners;
-        } else {
-            return null;
-        }
     }
 
     public void SetFarmPlot(FarmPlot plot) {
@@ -66,9 +55,7 @@ public class Farmhand : MonoBehaviour
         currTask = newTask;
 
         // Set destination
-        Vector3[] waypoints = GeneratePointsToTarget(currTask.position);
-        if (waypoints == null) return;
-        characterMover.SetPoints(waypoints);
+        characterMover.NavigateTo(currTask.transform);
 
         // Set action at destination
         if (newTask.type == TaskType.Water) {
@@ -81,17 +68,25 @@ public class Farmhand : MonoBehaviour
         characterMover.onReachDestination += () => farmPlot.UnclaimTask(currTask);
     }
 
+
+    // TODO remove
+    private Transform sheepTask;
+    public void ClearSheepTask() {
+        sheepTask = null;
+        characterMover.StopNavigation();
+    }
     public void CheckSheep() {
         needsShear = SheepManager.Instance.GetTameSheep().Where(sheep => !sheep.IsSheared()).Select(sheep => sheep.transform).ToList();
+        if (needsShear.Contains(sheepTask)) return;
 
         if (needsShear.Count > 0) {
+            Debug.Log("nav to sheep");
             Transform targetSheep = needsShear[Random.Range(0, needsShear.Count)];
+            sheepTask = targetSheep;
             
-            Vector3[] waypoints = GeneratePointsToTarget(targetSheep.position);
-            if (waypoints != null) {
-                characterMover.SetPoints(waypoints);
-                characterMover.onReachDestination = () => toolBelt.UseTool(Tool.Shears);
-            }
+            characterMover.NavigateTo(targetSheep);
+            characterMover.onReachDestination = () => toolBelt.UseTool(Tool.Shears);
+            characterMover.onReachDestination += () => ClearSheepTask();
         }
     }
 
@@ -100,9 +95,14 @@ public class Farmhand : MonoBehaviour
             if (!sheep.IsSheared()) {
                 toolBelt.UseTool(Tool.Shears);
             }
-            if (farmhandType == FarmhandType.Herder) {
-                CheckSheep();
+
+            if (sheep.transform == sheepTask) {
+                ClearSheepTask();
             }
+
+            // if (farmhandType == FarmhandType.Herder) {
+            //     CheckSheep();
+            // }
         }
     }
 

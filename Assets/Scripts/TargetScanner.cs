@@ -1,8 +1,8 @@
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine;
 
 public class TargetScanner : MonoBehaviour
 {
@@ -20,15 +20,11 @@ public class TargetScanner : MonoBehaviour
     [SerializeField] private float wanderRadius;
     [SerializeField] private FloatRange wanderingWaitTimeSec;
     private bool wandering;
-
-    // Nav Mesh
     private NavMeshPath path;
-    private NavMeshObstacle obstacle;
 
     void Awake() {
-        path = new NavMeshPath();
         characterMover = GetComponent<CharacterMover>();
-        obstacle = GetComponent<NavMeshObstacle>();
+        path = new NavMeshPath();
     }
 
     void Start() {
@@ -76,17 +72,16 @@ public class TargetScanner : MonoBehaviour
             if (targetsInRange.Length > 0)
             {
                 foreach(Collider2D target in targetsInRange.OrderBy(target => Vector2.Distance(transform.position, target.transform.position)).ToList()) {
-                    Vector3[] points = GeneratePointsToTarget(target.transform.position);
-                    if (points == null) continue;
+                    bool success = characterMover.TryNavigateTo(target.transform);
+                    if (success) break;
 
                     // Target found
-                    StopCoroutine("Wander");
+                    // StopCoroutine("Wander");
                     wandering = false;
-                    characterMover.SetPoints(points);
                     break;
                 }
             } else {
-                if (shouldWander && !wandering) StartCoroutine("Wander");
+                // if (shouldWander && !wandering) StartCoroutine("Wander");
                 wandering = true;
             }
             yield return new WaitForSeconds(scanIntervalSec);
