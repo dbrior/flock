@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5508189854016093311}
   - component: {fileID: 4000156213085765274}
   - component: {fileID: 1048031402830437064}
+  - component: {fileID: 973340065568177022}
   m_Layer: 14
   m_Name: Knight
   m_TagString: Untagged
@@ -142,6 +143,9 @@ MonoBehaviour:
   attackZone: {fileID: 3881596293600573918}
   indiscriminantDamage: 1
   attackLandSound: {fileID: 8300000, guid: 7800f7e1890984bb1bd25fab19afab03, type: 3}
+  onAttackLand:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &7412821428978838172
 Rigidbody2D:
   serializedVersion: 4
@@ -369,6 +373,19 @@ MonoBehaviour:
     m_Bits: 1024
   detectionRadius: 0.5
   scanIntervalSec: 1
+--- !u!114 &973340065568177022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11373409921329751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bfbf2fcb20244d0a8dc0f46e95af456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  building: {fileID: 0}
 --- !u!1 &3027084270881854772
 GameObject:
   m_ObjectHideFlags: 0

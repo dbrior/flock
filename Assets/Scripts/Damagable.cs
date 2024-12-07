@@ -11,7 +11,7 @@ public class Damagable : MonoBehaviour
     [SerializeField] private Transform hitNumberLocation;
     private Rigidbody2D rb;
     public float blockChance = 0.01f;
-    [SerializeField] private UnityEvent onDeath;
+    public UnityEvent onDeath;
     [SerializeField] private bool regenEnabled;
     [SerializeField] private float regenPerSecond;
     [SerializeField] private float regenDelay;

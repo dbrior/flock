@@ -224,6 +224,11 @@ public class CharacterMover : MonoBehaviour
         }
     }
 
+    public void SetWanderAnchor(Transform anchor) {
+        wanderingAnchor = anchor;
+        anchoredWandering = true;
+    }
+
     public void DisableWander() {
         wandering = false;
     }

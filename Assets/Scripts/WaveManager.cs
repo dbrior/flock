@@ -15,11 +15,11 @@ public class IntRange {
 }
 
 [System.Serializable]
-public class FloatRange {
+public struct FloatRange {
     public float min;
     public float max;
 
-    void Init(float min, float max) {
+    public FloatRange(float min, float max) {
         this.min = min;
         this.max = max;
     }
