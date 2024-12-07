@@ -41,10 +41,7 @@ public class TargetScanner : MonoBehaviour
     }
 
     private Vector3[] GeneratePointsToTarget(Vector3 targetPosition) {
-        // if (obstacle != null) obstacle.enabled = false;
-            
         if(NavMesh.CalculatePath(transform.position, targetPosition, NavMesh.AllAreas, path)) {
-            // if (obstacle != null) obstacle.enabled = true;
             return path.corners;
         } else {
             return null;

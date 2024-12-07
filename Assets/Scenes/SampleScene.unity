@@ -10858,7 +10858,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 30
+  m_text: 20
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24d14100debfa4d3683545dd9e4089ea, type: 2}
   m_sharedMaterial: {fileID: 4296451056064825846, guid: 24d14100debfa4d3683545dd9e4089ea, type: 2}
@@ -122170,7 +122170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   costText: {fileID: 1136612256}
   currency: {fileID: 11400000, guid: a27554d8a44d04a2cafb58ac9c285c3a, type: 2}
-  cost: 30
+  cost: 20
 --- !u!114 &1985239809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126716,63 +126716,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2119773439}
   m_CullTransparentMesh: 1
---- !u!1001 &2133743807
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1297718032968050557, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
-      propertyPath: m_Name
-      value: Wolf
-      objectReference: {fileID: 0}
-    - target: {fileID: 6500154160831602232, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.8273132
-      objectReference: {fileID: 0}
-    - target: {fileID: 6500154160831602232, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.34238908
-      objectReference: {fileID: 0}
-    - target: {fileID: 6500154160831602232, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.008461015
-      objectReference: {fileID: 0}
-    - target: {fileID: 6500154160831602232, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6500154160831602232, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6500154160831602232, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6500154160831602232, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6500154160831602232, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6500154160831602232, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6500154160831602232, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
 --- !u!1 &2146808848
 GameObject:
   m_ObjectHideFlags: 0
@@ -128503,6 +128446,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FarmPlot
       objectReference: {fileID: 0}
+    - target: {fileID: 8062665163038571495, guid: 8a9c41387ba1d4fc88e6adcbcff8f490, type: 3}
+      propertyPath: cost
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8310716198262137030, guid: 8a9c41387ba1d4fc88e6adcbcff8f490, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.48
@@ -128577,4 +128524,3 @@ SceneRoots:
   - {fileID: 2640788955820655330}
   - {fileID: 1937962092}
   - {fileID: 1972554618}
-  - {fileID: 2133743807}

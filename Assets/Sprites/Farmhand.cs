@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using System.Linq;
 using UnityEngine;
 
@@ -22,69 +23,32 @@ public class Farmhand : MonoBehaviour
     [SerializeField] private FarmhandType farmhandType;
     [SerializeField] public FarmPlot farmPlot;
 
-    private List<Vector2> needsPlant;
-    private List<Vector2> needsWater;
-    private List<Vector2> needsHarvest;
+    private CharacterMover characterMover;
+    private Task currTask;
+    private NavMeshPath path;
+
     private List<Transform> needsShear;
     private ToolBelt toolBelt;
     private Rigidbody2D rb;
-    private Vector2 targetPosition;
-    private Transform targetTransform;
-    [SerializeField] private float moveSpeed;
     [SerializeField] private FarmhandState state;
 
     void Awake() {
         toolBelt = GetComponent<ToolBelt>();
+        rb = GetComponent<Rigidbody2D>();
+        characterMover = GetComponent<CharacterMover>();
+        path = new NavMeshPath();
     }
 
     void Start() {
-        rb = GetComponent<Rigidbody2D>();
-        targetPosition = transform.position;
-        targetTransform = transform;
-        // CheckCrops();
         StartCoroutine(ContinuouslyScan());
     }
 
-    void Update() {
-        // if (needsPlant.Count == 0 && needsWater.Count == 0) return;
-
-        if (farmhandType == FarmhandType.Farmer) {
-            if (((Vector2) transform.position - targetPosition).magnitude < 0.09) {
-                if (state == FarmhandState.Plant) {
-                    toolBelt.UseTool(Tool.SeedBag);
-                    if (needsPlant.Count > 0) {
-                        needsPlant.RemoveAt(0);
-                    }
-                } else if (state == FarmhandState.Water) {
-                    toolBelt.UseTool(Tool.WateringCan);
-                    if (needsWater.Count > 0) {
-                        needsWater.RemoveAt(0);
-                    }
-                } else if (state == FarmhandState.Harvest) {
-                    toolBelt.UseTool(Tool.Shears);
-                    if (needsHarvest.Count > 0) {
-                        needsHarvest.RemoveAt(0);
-                    }
-                }
-                // CheckCrops();
-            }
+    private Vector3[] GeneratePointsToTarget(Vector3 targetPosition) {
+        if(NavMesh.CalculatePath(transform.position, targetPosition, NavMesh.AllAreas, path)) {
+            return path.corners;
+        } else {
+            return null;
         }
-    }
-
-    void FixedUpdate() {
-        Vector2 targetDirection = Vector2.zero;
-        if (farmhandType == FarmhandType.Farmer) {
-            targetDirection = (targetPosition - (Vector2) transform.position);
-        } else if (farmhandType == FarmhandType.Herder) {
-            if (targetTransform == null) {
-                CheckSheep();
-            }
-            targetDirection = (Vector2) (targetTransform.position - transform.position);
-        }
-        Vector2 desiredVelocity = targetDirection.normalized * moveSpeed;
-        Vector2 deltaVelocity = desiredVelocity - rb.velocity;
-        Vector2 force = rb.mass * deltaVelocity / Time.fixedDeltaTime;
-        rb.AddForce(force);
     }
 
     public void SetFarmPlot(FarmPlot plot) {
@@ -93,39 +57,41 @@ public class Farmhand : MonoBehaviour
     }
 
     public void CheckCrops() {
-        farmPlot.ScanCrops();
-        needsPlant = farmPlot.needsPlant;
-        needsWater = farmPlot.needsWater;
-        needsHarvest = farmPlot.needsHarvest;
+        // If current task still needs to be done, exit
+        if (farmPlot.allTasks.Contains(currTask) || farmPlot.openTasks.Count == 0) return;
+        farmPlot.UnclaimTask(currTask);
 
-        if (needsPlant.Count > 0) {
-            state = FarmhandState.Plant;
-            targetPosition = needsPlant[Random.Range(0, needsPlant.Count)];
-        } else if (needsWater.Count > 0) {
-            state = FarmhandState.Water;
-            targetPosition = needsWater[Random.Range(0, needsWater.Count)];
-        } else if (needsHarvest.Count > 0) {
-            state = FarmhandState.Harvest;
-            targetPosition = needsHarvest[Random.Range(0, needsHarvest.Count)];
-        } else {
-            state = FarmhandState.Wander;
-            targetPosition = transform.position;
+        Task newTask = farmPlot.openTasks[Random.Range(0, farmPlot.openTasks.Count)];
+        farmPlot.ClaimTask(newTask);
+        currTask = newTask;
+
+        // Set destination
+        Vector3[] waypoints = GeneratePointsToTarget(currTask.position);
+        if (waypoints == null) return;
+        characterMover.SetPoints(waypoints);
+
+        // Set action at destination
+        if (newTask.type == TaskType.Water) {
+            characterMover.onReachDestination = () => toolBelt.UseTool(Tool.WateringCan);
+        } else if (newTask.type == TaskType.Harvest) {
+            characterMover.onReachDestination = () => toolBelt.UseTool(Tool.Shears);
         }
 
-        Debug.Log(state);
+        // Remove claimed task once complete
+        characterMover.onReachDestination += () => farmPlot.UnclaimTask(currTask);
     }
 
     public void CheckSheep() {
         needsShear = SheepManager.Instance.GetTameSheep().Where(sheep => !sheep.IsSheared()).Select(sheep => sheep.transform).ToList();
 
         if (needsShear.Count > 0) {
-            state = FarmhandState.Shear;
-            if (!needsShear.Contains(targetTransform)) {
-                targetTransform = needsShear[Random.Range(0, needsShear.Count)];
+            Transform targetSheep = needsShear[Random.Range(0, needsShear.Count)];
+            
+            Vector3[] waypoints = GeneratePointsToTarget(targetSheep.position);
+            if (waypoints != null) {
+                characterMover.SetPoints(waypoints);
+                characterMover.onReachDestination = () => toolBelt.UseTool(Tool.Shears);
             }
-        } else {
-            targetTransform = transform;
-            state = FarmhandState.Wander;
         }
     }
 

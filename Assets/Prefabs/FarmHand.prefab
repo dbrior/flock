@@ -192,7 +192,9 @@ GameObject:
   - component: {fileID: 2058176332127830880}
   - component: {fileID: 945959854547658418}
   - component: {fileID: 5942588580837083768}
-  - component: {fileID: 3996337269750797752}
+  - component: {fileID: -8307578134989610405}
+  - component: {fileID: -3632959767303206092}
+  - component: {fileID: -85685462218216491}
   m_Layer: 0
   m_Name: FarmHand
   m_TagString: Untagged
@@ -282,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   farmhandType: 0
   farmPlot: {fileID: 0}
-  moveSpeed: 0.2
+  state: 0
 --- !u!114 &945959854547658418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +300,7 @@ MonoBehaviour:
   heading: {x: 0, y: 0}
   shearRadius: 0.1
   wateringRadius: 0.1
+  pelletDamage: 0
   allowedPlanting: 1
   pelletPrefab: {fileID: 0}
   pelletSpawn: {fileID: 0}
@@ -331,8 +334,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &3996337269750797752
-BoxCollider2D:
+--- !u!70 &-8307578134989610405
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -363,16 +366,42 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.005}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.24}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.07}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: -0.0017716514}
+  m_Size: {x: 0.16000001, y: 0.073257186}
+  m_Direction: 1
+--- !u!114 &-3632959767303206092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7163764010931372815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b411a01b984c44a1d860b883bb011584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.2
+  flippingSprite: 0
+  distanceTolerance: 0.08
+--- !u!95 &-85685462218216491
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7163764010931372815}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 4e1da7ea1c15545449177f972b0f1bc5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

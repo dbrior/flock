@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7163764010931372815, guid: 03c8f09d66e4a4965bc2bb8862a363bb, type: 3}
       propertyPath: m_Name
-      value: FarmHand Variant
+      value: Farmhand - Herder
       objectReference: {fileID: 0}
     - target: {fileID: 8102958470551103931, guid: 03c8f09d66e4a4965bc2bb8862a363bb, type: 3}
       propertyPath: m_LocalPosition.x

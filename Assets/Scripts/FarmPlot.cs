@@ -4,9 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public enum FarmTodo : int {
+public enum TaskType : int {
     Plant = 0,
-    Water = 1
+    Water = 1,
+    Harvest = 2,
+    Shear = 3
+}
+
+[System.Serializable]
+public struct Task {
+    public Vector2 position;
+    public TaskType type;
+
+    public Task(Vector2 position, TaskType type) {
+        this.position = position;
+        this.type = type;
+    }
 }
 
 public class FarmPlot : MonoBehaviour
@@ -15,10 +28,21 @@ public class FarmPlot : MonoBehaviour
     [SerializeField] private int radius;
     [SerializeField] private float gridStep;
     [SerializeField] private CropType cropType;
+    public List<Task> openTasks;
+    public List<Task> claimedTasks;
+    public List<Task> allTasks;
     public List<Vector2> plotPoints;
+
+
     public List<Vector2> needsPlant;
     public List<Vector2> needsWater;
     public List<Vector2> needsHarvest;
+
+    void Awake() {
+        openTasks = new List<Task>();
+        claimedTasks = new List<Task>();
+        allTasks = new List<Task>();
+    }
 
     void Start() {
         plotPoints = GetPoints();
@@ -70,37 +94,51 @@ public class FarmPlot : MonoBehaviour
         );
     }
 
-    public void ScanCrops() {
-        List<Vector2> checklist = new List<Vector2>(plotPoints).Select(pos => NormalizeVector2(pos)).ToList();
-        // needsPlant.Clear();
-        needsWater.Clear();
+    public void ClaimTask(Task task) {
+        if (openTasks.Contains(task)) openTasks.Remove(task);
+        if (!claimedTasks.Contains(task)) claimedTasks.Add(task);
+    }
 
-        List<Vector2> cropLocations = new List<Vector2>();
+    public void UnclaimTask(Task task) {
+        if (claimedTasks.Contains(task)) claimedTasks.Remove(task);
+    }
+
+    public void ScanCrops() {
+        // All plot points that should have a crop
+        List<Vector2> checklist = new List<Vector2>(plotPoints).Select(pos => NormalizeVector2(pos)).ToList();
+        List<Vector2> seenLocations = new List<Vector2>();
+
+        openTasks.Clear();
+        allTasks.Clear();
+
+        // Check already planted crops in range
         Collider2D[] cols = Physics2D.OverlapBoxAll((Vector2) transform.position, new Vector2(radius,radius), 0);
         foreach (Collider2D col in cols) {
             if (col.gameObject.TryGetComponent<Crop>(out Crop crop)) {
-                cropLocations.Add((Vector2) crop.transform.position);
+                seenLocations.Add((Vector2) crop.transform.position);
+
                 if (crop.state == CropState.Dry) {
-                    needsWater.Add(crop.transform.position);
+                    allTasks.Add(new Task(crop.transform.position, TaskType.Water));
                 } else if (crop.state == CropState.Ready) {
-                    needsHarvest.Add(crop.transform.position);
+                    allTasks.Add(new Task(crop.transform.position, TaskType.Harvest));
                 }
             }            
         }
-        cropLocations = cropLocations.Select(pos => NormalizeVector2(pos)).ToList();
+        seenLocations = seenLocations.Select(pos => NormalizeVector2(pos)).ToList();
 
-        needsPlant = checklist.Except(cropLocations).ToList();
-        foreach (Vector2 position in needsPlant) {
+        // Plant any missing crops
+        foreach (Vector2 position in checklist.Except(seenLocations).ToList()) {
             CropManager.Instance.PlantCrop(position, cropType);
-            needsWater.Add(position);
+            allTasks.Add(new Task(position, TaskType.Water));
         }
-        needsPlant.Clear();
+
+        openTasks = allTasks.Except(claimedTasks).ToList();
     }
 
     private IEnumerator ContinouslyScan() {
         while (true) {
             ScanCrops();
-            yield return new WaitForSeconds(30f);
+            yield return new WaitForSeconds(3f);
         }
     }
 }
