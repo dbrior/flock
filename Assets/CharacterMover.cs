@@ -1,22 +1,23 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using System;
 
 public class CharacterMover : MonoBehaviour
 {
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private bool flippingSprite = false;
+    [SerializeField] private float distanceTolerance;
+    public Action onReachDestination;
+
     private Rigidbody2D rb;
     private Animator animator;
-    private Vector2 heading;
-    private Vector2 animationDirection;
     private SpriteRenderer spriteRenderer;
 
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private LayerMask targetLayer;
-    [SerializeField] private float detectionRadius;
-    [SerializeField] private float waitMin;
-    [SerializeField] private float waitMax;
-    [SerializeField] private bool flippingSprite = false;
+    private bool hasDestination;
+    private Vector3[] points;
+    private int pointIdx;
+    private Vector2 heading;
+    private Vector2 animationDirection;
 
     private Dictionary<Vector2, int> cardinalIntMappings = new Dictionary<Vector2, int>{
         { Vector2.zero, 0 },
@@ -30,17 +31,17 @@ public class CharacterMover : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+        hasDestination = false;
 
-    void Start()
-    {
-        StartCoroutine(ScanForTarget());
+        rb.drag = 10f;
     }
 
     void Update() {
+        // Handle movement animations
         if (flippingSprite) {
             spriteRenderer.flipX = heading.x < 0 ? true : false;
         } else {
+            // Determine required animation direction
             Vector2 newAnimationDirection;
             if (heading == Vector2.zero) {
                 newAnimationDirection = Vector2.zero;
@@ -50,6 +51,7 @@ public class CharacterMover : MonoBehaviour
                 newAnimationDirection = heading.y > 0 ? Vector2.up : Vector2.down;
             }
 
+            // Update animation direction if needed
             if (newAnimationDirection != animationDirection) {
                 animationDirection = newAnimationDirection;
                 animator.SetInteger("Direction", cardinalIntMappings[animationDirection]);
@@ -58,41 +60,43 @@ public class CharacterMover : MonoBehaviour
     }
 
     void FixedUpdate() {
-        Vector2 targetVel = heading * moveSpeed;
-        Vector2 velDelta = targetVel - rb.velocity;
-        Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
+        if (!hasDestination || points == null || points.Length == 0) return;
 
-        float maxForce = rb.mass * 9.81f;
-        rb.AddForce(Vector2.ClampMagnitude(requiredAccel * rb.mass, maxForce));
+        // Move to next waypoint if reached current
+        Vector2 distance = (Vector2) points[pointIdx] - (Vector2) transform.position;
+        if (distance.magnitude <= distanceTolerance) {
+            NextWaypoint();
+        }
+
+        // If we still have a destination, move in direction of next waypoin
+        if (hasDestination) {
+            distance = (Vector2) points[pointIdx] - (Vector2) transform.position;
+            heading = distance.normalized;
+            Vector2 targetVel = heading * moveSpeed;
+            Vector2 velDelta = targetVel - rb.velocity;
+            Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
+
+            rb.AddForce(requiredAccel * rb.mass);
+        }
     }
 
-    IEnumerator ScanForTarget() {
-        while (true)
-        {
-            if (targetLayer.value == 0) {
-                heading =  Random.insideUnitCircle.normalized;
-            } else {
-                Collider2D[] targetsInRange = Physics2D.OverlapCircleAll(transform.position, detectionRadius, targetLayer);
-                if (targetsInRange.Length > 0)
-                {
-                    Collider2D closestTarget = targetsInRange.OrderBy(target => Vector2.Distance(transform.position, target.transform.position)).First();
-                    heading = (closestTarget.transform.position - transform.position).normalized;
-                } else {
-                    heading =  Random.insideUnitCircle.normalized;
-                }
-            }
-            // if (hasTarget) {
-                // Collider2D[] targetsInRange = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
-                // if (targetsInRange.Length > 0)
-                // {
-                //     Collider2D closestSheep = sheepInRange.OrderBy(sheep => Vector2.Distance(transform.position, sheep.transform.position)).First();
-                //     heading = (closestSheep.transform.position - transform.position).normalized;
-                // } else {
-                //     heading =  Random.insideUnitCircle.normalized;
-                // }
-            // }
-            // heading =  Random.insideUnitCircle.normalized;
-            yield return new WaitForSeconds(Random.Range(waitMin, waitMax));
+    public void SetPoints(Vector3[] newPoints) {
+        points = newPoints;
+        pointIdx = 0;
+        hasDestination = true;
+    }
+
+    private void NextWaypoint() {
+        pointIdx += 1;
+        if (pointIdx >= points.Length) {
+            ReachedDestination();
         }
+    }
+
+    private void ReachedDestination() {
+        hasDestination = false;
+        heading = Vector2.zero;
+        rb.velocity = Vector2.zero;
+        onReachDestination?.Invoke();
     }
 }

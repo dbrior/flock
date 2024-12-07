@@ -48,6 +48,8 @@ GameObject:
   - component: {fileID: 8534154233674851778}
   - component: {fileID: 6831185035851501628}
   - component: {fileID: 6279396055031669441}
+  - component: {fileID: 5144179630104774903}
+  - component: {fileID: 8328420696919295402}
   m_Layer: 10
   m_Name: Wolf
   m_TagString: Untagged
@@ -385,9 +387,48 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0006234372, y: -0.019950854}
+  m_Offset: {x: 0, y: -0.019950854}
   m_Size: {x: 0.13942632, y: 0.121346876}
   m_Direction: 1
+--- !u!114 &5144179630104774903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297718032968050557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b411a01b984c44a1d860b883bb011584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.25
+  flippingSprite: 0
+  distanceTolerance: 0.01
+--- !u!114 &8328420696919295402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297718032968050557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d32d4b0bbc5492a81be3e0f8e5de0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 16712
+  detectionRadius: 3
+  scanIntervalSec: 1
+  shouldWander: 1
+  anchoredWandering: 0
+  wanderingAnchor: {fileID: 0}
+  wanderRadius: 0.5
+  wanderingWaitTimeSec:
+    min: 1
+    max: 3
 --- !u!1001 &7079103484468190596
 PrefabInstance:
   m_ObjectHideFlags: 0

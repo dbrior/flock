@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7714983695122580736}
   - component: {fileID: 7824716612035216722}
   - component: {fileID: 3447361789295914738}
+  - component: {fileID: 8840214233536584037}
   m_Layer: 10
   m_Name: Eyeball
   m_TagString: Untagged
@@ -192,13 +193,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  detectionRadius: 3
-  waitMin: 1
-  waitMax: 4
   flippingSprite: 1
+  distanceTolerance: 0.01
 --- !u!114 &2776813160493309264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +369,30 @@ MonoBehaviour:
   - itemPrefab: {fileID: 4465506323250089622, guid: 273f615ec33ec4549b76d1730733a8f2, type: 3}
     probability: 0.5
     maxAmount: 2
+--- !u!114 &8840214233536584037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989833164967275191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d32d4b0bbc5492a81be3e0f8e5de0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 16648
+  detectionRadius: 3
+  scanIntervalSec: 1
+  shouldWander: 1
+  anchoredWandering: 0
+  wanderingAnchor: {fileID: 0}
+  wanderRadius: 0.5
+  wanderingWaitTimeSec:
+    min: 1
+    max: 3
 --- !u!1 &2855599972847363329
 GameObject:
   m_ObjectHideFlags: 0

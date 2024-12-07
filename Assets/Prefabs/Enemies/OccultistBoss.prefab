@@ -478,6 +478,7 @@ GameObject:
   - component: {fileID: 7036552852206599228}
   - component: {fileID: 5326583376767692698}
   - component: {fileID: 7475133903641212366}
+  - component: {fileID: 8488142402150105775}
   m_Layer: 10
   m_Name: OccultistBoss
   m_TagString: Untagged
@@ -571,13 +572,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.3
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 16648
-  detectionRadius: 3
-  waitMin: 1
-  waitMax: 3
   flippingSprite: 0
+  distanceTolerance: 0.01
 --- !u!114 &5156771611158578250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,6 +813,30 @@ MonoBehaviour:
   - itemPrefab: {fileID: 8742995438940802542, guid: 61191ea388b534beb8925ff683a06224, type: 3}
     probability: 0.75
     maxAmount: 100
+--- !u!114 &8488142402150105775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156904570195260950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d32d4b0bbc5492a81be3e0f8e5de0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 16648
+  detectionRadius: 3
+  scanIntervalSec: 1
+  shouldWander: 1
+  anchoredWandering: 0
+  wanderingAnchor: {fileID: 0}
+  wanderRadius: 0.5
+  wanderingWaitTimeSec:
+    min: 1
+    max: 3
 --- !u!1 &7253975035972212669
 GameObject:
   m_ObjectHideFlags: 0
