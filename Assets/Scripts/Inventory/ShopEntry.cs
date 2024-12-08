@@ -58,13 +58,17 @@ public class ShopEntry : MonoBehaviour
 
     private void PurchaseComplete() {
         purchaseCount += 1;
-
         onPurchase?.Invoke();
         onPurchasePlayer?.Invoke(shop.lastActivePlayer);
-
-        foreach (Cost cost in costs) {
-            int newPrice = Mathf.RoundToInt((1f + costScaling) * cost.amount);
-            cost.SetPrice(newPrice);
+        
+        // Update each cost with scaled price
+        for (int i = 0; i < costs.Count; i++) {
+            Cost currentCost = costs[i];
+            int newPrice = Mathf.RoundToInt(currentCost.amount * (1f + costScaling));
+            currentCost.SetPrice(newPrice);
+            
+            // Important: Update the list with the modified cost
+            costs[i] = currentCost;
         }
     }
 

@@ -12123,7 +12123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428657439138643198, guid: 8c09d68ba3f6a47788702f35f5c3f256, type: 3}
       propertyPath: workerSlots
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6428657439138643198, guid: 8c09d68ba3f6a47788702f35f5c3f256, type: 3}
       propertyPath: workerPrefab
@@ -124611,7 +124611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2787510955347736276, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
       propertyPath: costScaling
-      value: 0.3
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2787510955347736276, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
       propertyPath: costs.Array.data[0].amount
@@ -124621,6 +124621,10 @@ PrefabInstance:
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1947266295}
+    - target: {fileID: 2787510955347736276, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3103908283528090679, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -124647,7 +124651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3106527261659979330, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
       propertyPath: costScaling
-      value: 0.3
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 3106527261659979330, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
       propertyPath: costs.Array.data[0].amount
@@ -124657,6 +124661,10 @@ PrefabInstance:
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1947266295}
+    - target: {fileID: 3106527261659979330, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3106527261659979330, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
       value: 0.5
@@ -124991,7 +124999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8053461328660271094, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
       propertyPath: costScaling
-      value: 0.3
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8053461328660271094, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
       propertyPath: costs.Array.data[0].amount
@@ -125005,6 +125013,10 @@ PrefabInstance:
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1947266295}
+    - target: {fileID: 8053461328660271094, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8542068755156966042, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
       propertyPath: m_Name
       value: ShopWindow - Magic
@@ -125264,7 +125276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8566436614051766788, guid: 1568e690870eb4aab8ba8636c616851d, type: 3}
       propertyPath: costScaling
-      value: 0.3
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8566436614051766788, guid: 1568e690870eb4aab8ba8636c616851d, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -125558,7 +125570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6874066509114742862, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       propertyPath: costScaling
-      value: 0.3
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 6874066509114742862, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -125566,11 +125578,11 @@ PrefabInstance:
       objectReference: {fileID: 1495243999}
     - target: {fileID: 6874066509114742862, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SpawnFarmHand
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7900961694841637561, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       propertyPath: costScaling
-      value: 0.3
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7900961694841637561, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -125578,7 +125590,7 @@ PrefabInstance:
       objectReference: {fileID: 1495243999}
     - target: {fileID: 7900961694841637561, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncreaseRadius
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -126166,7 +126178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3319793042459911585, guid: dd5f9ab0f45c144fa9099593d30286b8, type: 3}
       propertyPath: costScaling
-      value: 0.3
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 3319793042459911585, guid: dd5f9ab0f45c144fa9099593d30286b8, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -126338,7 +126350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7457635767893105795, guid: dd5f9ab0f45c144fa9099593d30286b8, type: 3}
       propertyPath: costScaling
-      value: 0.3
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7457635767893105795, guid: dd5f9ab0f45c144fa9099593d30286b8, type: 3}
       propertyPath: onPurchasePlayer.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -126370,7 +126382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7695939639492326421, guid: dd5f9ab0f45c144fa9099593d30286b8, type: 3}
       propertyPath: costScaling
-      value: 0.3
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7695939639492326421, guid: dd5f9ab0f45c144fa9099593d30286b8, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -126684,7 +126696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1831361883608969415, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
       propertyPath: costScaling
-      value: 0.3
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 1831361883608969415, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -126692,11 +126704,11 @@ PrefabInstance:
       objectReference: {fileID: 1777427955}
     - target: {fileID: 1831361883608969415, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncreaseRadius
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3146327509461852720, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
       propertyPath: costScaling
-      value: 0.3
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 3146327509461852720, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -126704,7 +126716,7 @@ PrefabInstance:
       objectReference: {fileID: 1777427955}
     - target: {fileID: 3146327509461852720, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SpawnFarmHand
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
