@@ -1,13 +1,11 @@
-using UnityEngine;
-using TMPro;
+// using UnityEngine;
+// using TMPro;
 
-public class CostCurrency : MonoBehaviour
-{
-    public TextMeshProUGUI costText;
-    public Item currency;
-    public int cost;
+// public class CostUI : MonoBehaviour
+// {
+//     public TextMeshProUGUI costText;
 
-    void Start() {
-        GetComponentInParent<ShopEntry>().costCurrencies.Add(this);
-    }
-}
+//     void Awake() {
+//         costText = GetComponent<TexMeshProUGUI>();
+//     }
+// }

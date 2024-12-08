@@ -37,6 +37,11 @@ public class WorkerBuilding : MonoBehaviour
         if (workers.Count < workerSlots) StartCoroutine("SpawnTimer");
     }
 
+    public void IncreaseWorkerCount(int amount) {
+        workerSlots += 1;
+        SpawnWorker();
+    }
+
     IEnumerator SpawnTimer() {
         yield return new WaitForSeconds(respawnCooldownSec);
         if (workers.Count < workerSlots) SpawnWorker();
