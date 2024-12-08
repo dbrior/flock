@@ -37,6 +37,7 @@ public class Worker : MonoBehaviour
         currentTask = newTask;
         characterMover.NavigateTo(currentTask.transform);
         characterMover.onReachDestination = () => CompleteTask(currentTask);
+        characterMover.onAbandonDestination = () => CompleteTask(currentTask);
     }
 
     private void CompleteTask(Task task) {

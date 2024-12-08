@@ -20,6 +20,7 @@ public class CharacterMover : MonoBehaviour
     private bool wandering;
 
     public Action onReachDestination;
+    public Action onAbandonDestination;
     private Transform navTransform;
     private NavMeshPath path;
     Coroutine navCoroutine;
@@ -143,6 +144,8 @@ public class CharacterMover : MonoBehaviour
         points = null;
         hasDestination = false;
 
+        onAbandonDestination?.Invoke();
+
         if (shouldWander) {
             EnableWander();
         }
@@ -211,6 +214,8 @@ public class CharacterMover : MonoBehaviour
 
     IEnumerator Navigate(Transform target) {
         while (hasDestination) {
+            if (target == null) StopNavigation();
+
             if (Vector3.Distance(target.position, transform.position) <= distanceTolerance) {
                 break;
             }
