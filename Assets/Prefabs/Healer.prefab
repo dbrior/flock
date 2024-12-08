@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7457244661832606}
   - component: {fileID: 8235426616081884266}
   - component: {fileID: 1900716905907344781}
-  - component: {fileID: 4116728572042610025}
+  - component: {fileID: 578102641265504759}
   m_Layer: 3
   m_Name: Healer
   m_TagString: Untagged
@@ -141,11 +141,11 @@ MonoBehaviour:
   hitCooldownSec: 10
   attackZone: {fileID: 8819517161109192338}
   indiscriminantDamage: 1
-  attackLandSound: {fileID: 8300000, guid: 7800f7e1890984bb1bd25fab19afab03, type: 3}
+  attackLandSound: {fileID: 8300000, guid: 1c96868fcc862465dad345a9e474412b, type: 3}
   onAttackLand:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4116728572042610025}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: HealingCompanion, Assembly-CSharp
         m_MethodName: ResetJob
         m_Mode: 1
@@ -243,7 +243,7 @@ MonoBehaviour:
   regenDelay: 0
   hitSound: {fileID: 8300000, guid: 5ef2e071b515b41e0a5253e608427903, type: 3}
   blockSound: {fileID: 8300000, guid: 1ccd0c85c293e4bc8973ae50b1baa6e2, type: 3}
-  critSound: {fileID: 0}
+  critSound: {fileID: 8300000, guid: bf14a966baaf84a86b7432f312b97173, type: 3}
   deathSound: {fileID: 0}
   hitAnimator: {fileID: 6543008132065006236}
   isBoss: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
   wanderingWaitTimeSec:
     min: 1
     max: 4
---- !u!114 &4116728572042610025
+--- !u!114 &578102641265504759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -376,9 +376,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1189620088068912308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f5a32578a04545b1887e8df9ad22cd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bfbf2fcb20244d0a8dc0f46e95af456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldScanForTasks: 1
+  scanIntervalSec: 3
 --- !u!1 &4029110617065381664
 GameObject:
   m_ObjectHideFlags: 0

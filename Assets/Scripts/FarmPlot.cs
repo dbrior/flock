@@ -3,25 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public enum TaskType : int {
-    Plant = 0,
-    Water = 1,
-    Harvest = 2,
-    Shear = 3
-}
-
-[System.Serializable]
-public struct Task {
-    public Transform transform;
-    public TaskType type;
-
-    public Task(Transform transform, TaskType type) {
-        this.transform = transform;
-        this.type = type;
-    }
-}
-
 public class FarmPlot : MonoBehaviour
 {
     [SerializeField] private GameObject farmHandPrefab;

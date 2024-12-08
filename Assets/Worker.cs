@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Worker : MonoBehaviour
 {
-    [SerializeField] private WorkerBuilding building;
+    [SerializeField] private bool shouldScanForTasks;
+    [SerializeField] private float scanIntervalSec;
+
+    private WorkerBuilding building;
     private CharacterMover characterMover;
+    private Task currentTask;
 
     void Awake() {
         characterMover = GetComponent<CharacterMover>();
@@ -14,11 +18,40 @@ public class Worker : MonoBehaviour
         }
     }
 
+    void Start() {
+        if (shouldScanForTasks) StartCoroutine("ScanForTask");
+    }
+
     public void SetWorkerBuilding(WorkerBuilding newBuilding)  {
         building = newBuilding;
     }
 
     public void SetWanderAnchor(Transform location) {
         characterMover.SetWanderAnchor(location);
+    }
+
+    private void RequestTask() {
+        Task newTask = building.RequestTask();
+        if (newTask == null) return;
+
+        currentTask = newTask;
+        characterMover.NavigateTo(currentTask.transform);
+        characterMover.onReachDestination = () => CompleteTask(currentTask);
+    }
+
+    private void CompleteTask(Task task) {
+        building.CompleteTask(task);
+        if (currentTask == task) {
+            currentTask = null;
+        }
+    }
+
+    IEnumerator ScanForTask() {
+        while (shouldScanForTasks) {
+            if (!building.IsTaskValid(currentTask)) {
+                RequestTask();
+            }
+            yield return new WaitForSeconds(scanIntervalSec);
+        }
     }
 }
