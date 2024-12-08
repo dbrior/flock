@@ -131,14 +131,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 16392
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 0
   attackAnimator: {fileID: 6543008132065006236}
   damage: -500
   knockbackForce: 0
-  hitCooldownSec: 10
+  hitCooldownSec: 3
   attackZone: {fileID: 8819517161109192338}
   indiscriminantDamage: 1
   attackLandSound: {fileID: 8300000, guid: 1c96868fcc862465dad345a9e474412b, type: 3}
@@ -496,7 +496,7 @@ MonoBehaviour:
   attacker: {fileID: 2080232407004737323}
   targetLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 16392
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 0
