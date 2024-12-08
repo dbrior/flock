@@ -125885,7 +125885,7 @@ PrefabInstance:
       objectReference: {fileID: 1495243999}
     - target: {fileID: 6874066509114742862, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: SpawnFarmHand
       objectReference: {fileID: 0}
     - target: {fileID: 7900961694841637561, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       propertyPath: costScaling
@@ -125897,7 +125897,7 @@ PrefabInstance:
       objectReference: {fileID: 1495243999}
     - target: {fileID: 7900961694841637561, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: IncreaseRadius
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -127072,7 +127072,7 @@ PrefabInstance:
       objectReference: {fileID: 1777427955}
     - target: {fileID: 1831361883608969415, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: IncreaseRadius
       objectReference: {fileID: 0}
     - target: {fileID: 3146327509461852720, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
       propertyPath: costScaling
@@ -127084,7 +127084,7 @@ PrefabInstance:
       objectReference: {fileID: 1777427955}
     - target: {fileID: 3146327509461852720, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: SpawnFarmHand
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
