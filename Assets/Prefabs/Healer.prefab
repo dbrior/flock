@@ -18,6 +18,9 @@ GameObject:
   - component: {fileID: 8235426616081884266}
   - component: {fileID: 1900716905907344781}
   - component: {fileID: 578102641265504759}
+  - component: {fileID: 8257111884207854094}
+  - component: {fileID: 1338214045955909088}
+  - component: {fileID: 7008564199712022469}
   m_Layer: 3
   m_Name: Healer
   m_TagString: Untagged
@@ -157,6 +160,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isImmediateAttack: 0
 --- !u!50 &8376954888137785072
 Rigidbody2D:
   serializedVersion: 4
@@ -165,7 +169,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1189620088068912308}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -357,8 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.5
-  flippingSprite: 0
-  distanceTolerance: 0.01
+  distanceTolerance: 0.2
   pathfindingIntervalSec: 0.5
   shouldWander: 1
   anchoredWandering: 1
@@ -381,6 +384,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldScanForTasks: 1
   scanIntervalSec: 3
+--- !u!195 &8257111884207854094
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189620088068912308}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.08
+  m_Speed: 0.5
+  m_Acceleration: 3
+  avoidancePriority: 50
+  m_AngularSpeed: 10
+  m_StoppingDistance: 0.48
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 0.48
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1338214045955909088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189620088068912308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23190f90813a40fcb4855dc4ae192b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFlippingSprite: 0
+--- !u!114 &7008564199712022469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189620088068912308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e39f6090724e4a4a8aadeb042afa2bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4029110617065381664
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,13 +543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e22a28b024a4960b1498e932ba8198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attacker: {fileID: 2080232407004737323}
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 16392
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!58 &6311028076177594707
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -20,6 +20,9 @@ GameObject:
   - component: {fileID: 1048031402830437064}
   - component: {fileID: 973340065568177022}
   - component: {fileID: 3161028704171599477}
+  - component: {fileID: 1846825183836685996}
+  - component: {fileID: 7584686681191996191}
+  - component: {fileID: 6894556829955426314}
   m_Layer: 14
   m_Name: Knight
   m_TagString: Untagged
@@ -138,7 +141,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16584
   attackAnimator: {fileID: 2967777482990497887}
-  damage: 50
+  damage: 25
   knockbackForce: 1000
   hitCooldownSec: 1
   attackZone: {fileID: 3881596293600573918}
@@ -147,6 +150,7 @@ MonoBehaviour:
   onAttackLand:
     m_PersistentCalls:
       m_Calls: []
+  isImmediateAttack: 0
 --- !u!50 &7412821428978838172
 Rigidbody2D:
   serializedVersion: 4
@@ -155,7 +159,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11373409921329751}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -347,13 +351,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
-  flippingSprite: 0
   distanceTolerance: 0.01
   pathfindingIntervalSec: 3
   shouldWander: 1
   anchoredWandering: 1
   wanderingAnchor: {fileID: 0}
-  wanderRadius: 0.2
+  wanderRadius: 0.4
   wanderingWaitTimeSec:
     min: 1
     max: 4
@@ -400,7 +403,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35085da9df7d4690ac9aadcd041b216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePct: 0.5
+  firePct: 0.75
+--- !u!195 &1846825183836685996
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11373409921329751}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.08
+  m_Speed: 0.35
+  m_Acceleration: 3
+  avoidancePriority: 50
+  m_AngularSpeed: 10
+  m_StoppingDistance: 0.1
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 0.48
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &7584686681191996191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11373409921329751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e39f6090724e4a4a8aadeb042afa2bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6894556829955426314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11373409921329751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23190f90813a40fcb4855dc4ae192b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFlippingSprite: 0
 --- !u!1 &3027084270881854772
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,13 +594,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e22a28b024a4960b1498e932ba8198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attacker: {fileID: 3579503823551153897}
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!58 &1075841052446651490
 CircleCollider2D:
   m_ObjectHideFlags: 0

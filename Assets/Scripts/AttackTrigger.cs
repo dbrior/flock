@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class AttackTrigger : MonoBehaviour
 {
-    [SerializeField] private Attacker attacker;
-    [SerializeField] private LayerMask targetLayer;
-    [SerializeField] private LayerMask ignoreLayer;
+    private Attacker attacker;
+    private LayerMask targetLayer;
+    private LayerMask ignoreLayer;
 
+    void Start() {
+        attacker = GetComponentInParent<Attacker>();
+        targetLayer = attacker.GetTargetLayer();
+        ignoreLayer = attacker.GetIgnoreLayer();
+    }
 
     private void OnTriggerStay2D(Collider2D col) {
         if (((1 << col.gameObject.layer) & ignoreLayer) != 0) return;

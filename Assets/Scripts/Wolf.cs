@@ -90,17 +90,17 @@ public class Wolf : MonoBehaviour
         damagable.SetMaxHealth(health);
     }
 
-    void OnCollisionStay2D(Collision2D col)
-    {
-        if (col.gameObject.layer != LayerMask.NameToLayer("Wolf") && col.gameObject.TryGetComponent<Damagable>(out Damagable targetDamagable) && Time.time >= lastHitTime + attackCooldownSec) {
-            targetDamagable.Hit(transform.position, attackDamage, 100f);
-            lastHitTime = Time.time;
-        }
-        // if (col.gameObject.layer == LayerMask.NameToLayer("WildSheep"))
-        // {
-        //     SheepManager.Instance.KillSheep(col.gameObject);
-        // }
-    }
+    // void OnCollisionStay2D(Collision2D col)
+    // {
+    //     if (col.gameObject.layer != LayerMask.NameToLayer("Wolf") && col.gameObject.TryGetComponent<Damagable>(out Damagable targetDamagable) && Time.time >= lastHitTime + attackCooldownSec) {
+    //         targetDamagable.Hit(transform.position, attackDamage, 100f);
+    //         lastHitTime = Time.time;
+    //     }
+    //     // if (col.gameObject.layer == LayerMask.NameToLayer("WildSheep"))
+    //     // {
+    //     //     SheepManager.Instance.KillSheep(col.gameObject);
+    //     // }
+    // }
 
     // IEnumerator ScanForSheep() {
     //     while (true)

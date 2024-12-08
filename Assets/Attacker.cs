@@ -15,6 +15,7 @@ public class Attacker : MonoBehaviour
     [SerializeField] private bool indiscriminantDamage;
     [SerializeField] private AudioClip attackLandSound;
     [SerializeField] private UnityEvent onAttackLand;
+    [SerializeField] private bool isImmediateAttack;
     private bool readyToAttack = true;
     private Damagable currentTarget;
 
@@ -37,12 +38,22 @@ public class Attacker : MonoBehaviour
     //     }
     // }
 
+    public LayerMask GetTargetLayer() {
+        return targetLayer;
+    }
+
+    public LayerMask GetIgnoreLayer() {
+        return ignoreLayer;
+    }
+
     public void AttackStart(Damagable damagable) {
         if (readyToAttack) {
             currentTarget = damagable;
             readyToAttack = false;
             if (attackAnimator != null) {
                 attackAnimator.SetTrigger("Attack");
+            } else {
+                AttackLand();
             }
         }
     }

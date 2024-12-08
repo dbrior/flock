@@ -29,7 +29,7 @@ public class TargetScanner : MonoBehaviour
             if (targetsInRange.Length > 0)
             {
                 foreach(Collider2D target in targetsInRange.OrderBy(target => Vector2.Distance(transform.position, target.transform.position)).ToList()) {
-                    bool success = characterMover.TryNavigateTo(target.transform);
+                    bool success = characterMover.TryNavigateTo(target.transform.position);
                     if (success) break;
                 }
             }

@@ -73,10 +73,10 @@ public class Farmhand : MonoBehaviour
     private Transform sheepTask;
     public void ClearSheepTask() {
         sheepTask = null;
-        characterMover.StopNavigation();
+        // characterMover.StopNavigation();
     }
     public void CheckSheep() {
-        needsShear = SheepManager.Instance.GetTameSheep().Where(sheep => !sheep.IsSheared()).Select(sheep => sheep.transform).ToList();
+        needsShear = SheepManager.Instance.GetTameSheep().Where(sheep => sheep != null && !sheep.IsSheared()).Select(sheep => sheep.transform).ToList();
         if (needsShear.Contains(sheepTask)) return;
 
         if (needsShear.Count > 0) {
