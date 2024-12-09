@@ -53,11 +53,12 @@ public class Worker : MonoBehaviour
     }
 
     public void ReceivedItem(Item item) {
-        if (item == targetItem) {
+        if (currentTask.type == TaskType.CollectItem && item == targetItem) {
             Debug.Log("worker received itrem");
             if (inventory.GetItemCount(targetItem) >= targetAmount) {
                 characterMover.NavigateTo(building.transform);
-                characterMover.onReachDestination = () => CompleteTask(currentTask);
+                characterMover.onReachDestination = () => building.GetComponent<ResourceProcessingBuilding>().DepositItem(inventory, targetItem, inventory.GetItemCount(targetItem));
+                characterMover.onReachDestination += () => CompleteTask(currentTask);
             }
         }
     }

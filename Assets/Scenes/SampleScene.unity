@@ -2266,6 +2266,8 @@ GameObject:
   - component: {fileID: 104614519}
   - component: {fileID: 104614520}
   - component: {fileID: 104614521}
+  - component: {fileID: 104614522}
+  - component: {fileID: 104614523}
   m_Layer: 0
   m_Name: Furnace
   m_TagString: Untagged
@@ -2433,9 +2435,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputItem: {fileID: 11400000, guid: bd60a5a364bbf477ab45ec14129b6015, type: 2}
-  outputItem: {fileID: 11400000, guid: 14637b2f2d4d446c29cda35d525c6495, type: 2}
-  targetAmount: 5
+  outputItem: {fileID: 11400000, guid: dd3d475affad045eab6d24408ef373aa, type: 2}
+  targetAmount: 2
+  maxPerWorker: 1
   processingTimeSec: 10
+--- !u!114 &104614522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104614515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b717af909f9e6437db38e96e0398f756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
+  uiElements: []
+--- !u!95 &104614523
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104614515}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 94b8ea55ab6214d3e85b027e9b0743f7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &116018466 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4186667604437993030, guid: 0715114bb2fed46bca21a656a5516638, type: 3}

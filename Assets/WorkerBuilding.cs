@@ -73,15 +73,15 @@ public class WorkerBuilding : MonoBehaviour
         }
     }
 
-    public int GetItemCollectTaskCount(Task targetTask) {
+    public int GetItemCollectTaskCount(Item item) {
         int count = 0;
         foreach (Task task in openTasks) {
-            if (task.type == TaskType.CollectItem && task.item == targetTask.item) {
+            if (task.type == TaskType.CollectItem && task.item == item) {
                 count += task.amount;
             }
         }
         foreach (Task task in claimedTasks) {
-            if (task.type == TaskType.CollectItem && task.item == targetTask.item) {
+            if (task.type == TaskType.CollectItem && task.item == item) {
                 count += task.amount;
             }
         }
