@@ -110,6 +110,19 @@ public class CharacterMover : MonoBehaviour
         anchoredWandering = true;
     }
 
+    public bool ShouldWander() {
+        return shouldWander;
+    }
+
+    public void EnableWandering() {
+        shouldWander = true;
+    }
+
+    public void DisableWandering() {
+        shouldWander = false;
+        StopCoroutine("Wander");
+    }
+
     public void StartWandering() {
         wandering = true;
         StartCoroutine("Wander");

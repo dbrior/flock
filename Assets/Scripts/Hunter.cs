@@ -33,7 +33,6 @@ public class Hunter : MonoBehaviour
         StartCoroutine(Attack());
         StartCoroutine(Bob());
         goToWatchpoint = true;
-        // player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private Vector2 currentVelocity;
@@ -59,10 +58,10 @@ public class Hunter : MonoBehaviour
             Collider2D[] wolvesInRange = Physics2D.OverlapCircleAll(transform.position, detectionRadius, wolfLayer);
             if (wolvesInRange.Length > 0)
             {
-                Collider2D closestWolf = wolvesInRange.OrderBy(wolf => Vector2.Distance(transform.position, wolf.transform.position)).First();
+                Transform closestWolf = wolvesInRange.Select(collider => collider.transform.root).Distinct().OrderBy(wolf => Vector2.Distance(transform.position, wolf.transform.position)).First();
                 hasTarget = true;
-                tracker.target = closestWolf.transform;
-                targetTransform = closestWolf.transform;
+                tracker.target = closestWolf;
+                targetTransform = closestWolf;
             } else {
                 hasTarget = false;
             }

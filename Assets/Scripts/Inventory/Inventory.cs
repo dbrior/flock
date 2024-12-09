@@ -11,6 +11,12 @@ public class Inventory : MonoBehaviour
 
     private Dictionary<Item, TextMeshProUGUI> uiMappings = new Dictionary<Item, TextMeshProUGUI>();
 
+    private Worker worker;
+
+    void Awake() {
+        worker = GetComponent<Worker>();
+    }
+
     private void Start()
     {
         for (int i = 0; i < items.Count && i < uiElements.Count; i++) {
@@ -42,6 +48,10 @@ public class Inventory : MonoBehaviour
         }
         inventory[item] = newCount;
         UpdateItemUI(item, newCount);
+
+        if (worker != null) {
+            worker.ReceivedItem(item);
+        }
     }
 
     public void RemoveItem(Item item, int count)

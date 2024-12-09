@@ -10,16 +10,20 @@ public class Worker : MonoBehaviour
     private WorkerBuilding building;
     private CharacterMover characterMover;
     private Task currentTask;
+    private Inventory inventory;
+    private Item targetItem;
+    private int targetAmount;
 
     void Awake() {
         characterMover = GetComponent<CharacterMover>();
-        if (TryGetComponent<Damagable>(out Damagable damagable)) {
+        inventory = GetComponent<Inventory>();
+        if (building != null && TryGetComponent<Damagable>(out Damagable damagable)) {
             damagable.onDeath.AddListener(() => building.RemoveWorker(this));
         }
     }
 
     void Start() {
-        if (shouldScanForTasks) StartCoroutine("ScanForTask");
+        if (building != null && shouldScanForTasks) StartCoroutine("ScanForTask");
     }
 
     public void SetWorkerBuilding(WorkerBuilding newBuilding)  {
@@ -36,8 +40,26 @@ public class Worker : MonoBehaviour
 
         currentTask = newTask;
         characterMover.NavigateTo(currentTask.transform);
-        characterMover.onReachDestination = () => CompleteTask(currentTask);
-        characterMover.onAbandonDestination = () => CompleteTask(currentTask);
+
+        Debug.Log("Navigate to " + currentTask.transform.gameObject.name);
+
+        if (newTask.type != TaskType.CollectItem) {
+            characterMover.onReachDestination = () => CompleteTask(currentTask);
+            characterMover.onAbandonDestination = () => CompleteTask(currentTask);
+        } else {
+            targetItem = currentTask.item;
+            targetAmount = currentTask.amount;
+        }
+    }
+
+    public void ReceivedItem(Item item) {
+        if (item == targetItem) {
+            Debug.Log("worker received itrem");
+            if (inventory.GetItemCount(targetItem) >= targetAmount) {
+                characterMover.NavigateTo(building.transform);
+                characterMover.onReachDestination = () => CompleteTask(currentTask);
+            }
+        }
     }
 
     private void CompleteTask(Task task) {

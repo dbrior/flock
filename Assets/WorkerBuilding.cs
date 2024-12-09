@@ -73,11 +73,27 @@ public class WorkerBuilding : MonoBehaviour
         }
     }
 
+    public int GetItemCollectTaskCount(Task targetTask) {
+        int count = 0;
+        foreach (Task task in openTasks) {
+            if (task.type == TaskType.CollectItem && task.item == targetTask.item) {
+                count += task.amount;
+            }
+        }
+        foreach (Task task in claimedTasks) {
+            if (task.type == TaskType.CollectItem && task.item == targetTask.item) {
+                count += task.amount;
+            }
+        }
+        return count;
+    }
+
     public Task RequestTask() {
         if (openTasks.Count == 0) return null;
 
         Task task = openTasks[Random.Range(0, openTasks.Count)];
         ClaimTask(task);
+        Debug.Log("Task calimed");
 
         return task;
     }

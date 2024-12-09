@@ -26,6 +26,7 @@ public class Damagable : MonoBehaviour
     [SerializeField] private Animator hitAnimator;
     [SerializeField] private bool isBoss;
     [SerializeField] private bool randomizePitch;
+    [SerializeField] private bool isIndestructible;
 
     private float originalPitch;
 
@@ -128,10 +129,14 @@ public class Damagable : MonoBehaviour
                 AudioSource.PlayClipAtPoint(deathSound, transform.position, 1f);
             }
             onDeath?.Invoke();
-            Destroy(gameObject);
+            if (isIndestructible) {
+                RestoreHealth();
+            } else {
+                Destroy(gameObject);
+            }
         }
         Vector3 damageVector = ((Vector2) transform.position - damagePos).normalized * knockback;
-        rb.AddForce(damageVector);
+        if (rb != null) rb.AddForce(damageVector);
 
         if (isCrit && critSound != null) {
             audioSource.PlayOneShot(critSound);
