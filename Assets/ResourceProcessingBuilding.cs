@@ -30,31 +30,38 @@ public class ResourceProcessingBuilding : MonoBehaviour
     public void DepositItem(Inventory sourceInv, Item item, int amount) {
         if (item != inputItem || sourceInv.GetItemCount(item) < amount) return;
         sourceInv.RemoveItem(item, amount);
-        inventory.AddItem(item, amount);
-        if (!isProcessing) StartCoroutine("Process");
+        // inventory.AddItem(item, amount);
+        PlayerInventory.Instance.AddItem(item, amount);
+        // if (!isProcessing) StartCoroutine("Process");
     }
 
     IEnumerator CheckResources() {
         while (true) {
+            int taskCount = workerBuilding.GetItemCollectTaskCount(inputItem);
+            if (taskCount == 0) {
+                Task newTask = new Task(node.transform, TaskType.CollectItem, inputItem, 3);
+                workerBuilding.AddTask(newTask);
+            }
+
             // ------ Request Needed Materials ------ //
             // Assumes 1:1 input to output
-            int materialsRequested = workerBuilding.GetItemCollectTaskCount(inputItem);
-            int missingInputCount = targetAmount - (PlayerInventory.Instance.GetItemCount(outputItem) + inventory.GetItemCount(inputItem) + materialsRequested);
-            Debug.Log("Missing " + missingInputCount + " " + inputItem.name + " (" + materialsRequested + " requested)");
-            if (node != null && missingInputCount > 0) {
-                int tasksToCreate = missingInputCount / maxPerWorker;
-                if (missingInputCount % maxPerWorker > 0) {
-                    tasksToCreate++;
-                }
-                Debug.Log(tasksToCreate + " tasks needed");
+            // int materialsRequested = workerBuilding.GetItemCollectTaskCount(inputItem);
+            // int missingInputCount = targetAmount - (PlayerInventory.Instance.GetItemCount(outputItem) + inventory.GetItemCount(inputItem) + materialsRequested);
+            // Debug.Log("Missing " + missingInputCount + " " + inputItem.name + " (" + materialsRequested + " requested)");
+            // if (node != null && missingInputCount > 0) {
+            //     int tasksToCreate = missingInputCount / maxPerWorker;
+            //     if (missingInputCount % maxPerWorker > 0) {
+            //         tasksToCreate++;
+            //     }
+            //     Debug.Log(tasksToCreate + " tasks needed");
 
-                for (int i=0; i<tasksToCreate; i++) {
-                    int taskAmount = Mathf.Min(maxPerWorker, missingInputCount - (i * maxPerWorker));
-                    Debug.Log("Dispatching task " + taskAmount + " " + inputItem.name);
-                    Task newTask = new Task(node.transform, TaskType.CollectItem, inputItem, taskAmount);
-                    workerBuilding.AddTask(newTask);
-                }
-            }
+            //     for (int i=0; i<tasksToCreate; i++) {
+            //         int taskAmount = Mathf.Min(maxPerWorker, missingInputCount - (i * maxPerWorker));
+            //         Debug.Log("Dispatching task " + taskAmount + " " + inputItem.name);
+                    // Task newTask = new Task(node.transform, TaskType.CollectItem, inputItem, taskAmount);
+                    // workerBuilding.AddTask(newTask);
+            //     }
+            // } else if ()
             yield return new WaitForSeconds(3f);
         }
     }

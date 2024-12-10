@@ -33,7 +33,6 @@ public class WorkerBuilding : MonoBehaviour
     }
 
     private void SpawnWorker() {
-        Debug.Log("Spawning worker");
         Worker newWorker = Instantiate(workerPrefab, spawnTransform.position, spawnTransform.rotation).GetComponent<Worker>();
         newWorker.SetWorkerBuilding(this);
         workers.Add(newWorker);
@@ -54,7 +53,6 @@ public class WorkerBuilding : MonoBehaviour
     }
 
     IEnumerator SpawnTimer() {
-        Debug.Log("Worker spawn timer started");
         yield return new WaitForSeconds(respawnCooldownSec);
         if (workers.Count < workerSlots) SpawnWorker();
     }
@@ -75,7 +73,7 @@ public class WorkerBuilding : MonoBehaviour
         }
     }
 
-    public int GetItemCollectTaskCount(Item item) {
+    public int GetItemCollectItemCount(Item item) {
         int count = 0;
         foreach (Task task in openTasks) {
             if (task.type == TaskType.CollectItem && task.item == item) {
@@ -90,17 +88,32 @@ public class WorkerBuilding : MonoBehaviour
         return count;
     }
 
+    public int GetItemCollectTaskCount(Item item) {
+        int count = 0;
+        foreach (Task task in openTasks) {
+            if (task.type == TaskType.CollectItem && task.item == item) {
+                count += 1;
+            }
+        }
+        foreach (Task task in claimedTasks) {
+            if (task.type == TaskType.CollectItem && task.item == item) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
     public Task RequestTask() {
         if (openTasks.Count == 0) return null;
 
         Task task = openTasks[Random.Range(0, openTasks.Count)];
         ClaimTask(task);
-        Debug.Log("Task calimed");
 
         return task;
     }
 
     public void CompleteTask(Task task) {
+        Debug.Log("Task complete " + task.type.ToString());
         UnclaimTask(task);
     }
 
