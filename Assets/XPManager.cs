@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class XPManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class XPManager : MonoBehaviour
 
     [SerializeField] private float xpGoalBase;
     [SerializeField] private Image xpBar;
+    [SerializeField] private TextMeshProUGUI levelText;
     private float xpGoal;
     
     private float currXp;
@@ -42,6 +44,7 @@ public class XPManager : MonoBehaviour
 
     private void LevelUp() {
         currLevel += 1;
+        levelText.text = "LVL    -    " + currLevel;
         xpGoal = CalculateXpGoal();
         CardManager.Instance.ShowCards();
     }
