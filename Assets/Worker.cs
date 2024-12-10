@@ -17,12 +17,12 @@ public class Worker : MonoBehaviour
     void Awake() {
         characterMover = GetComponent<CharacterMover>();
         inventory = GetComponent<Inventory>();
-        if (building != null && TryGetComponent<Damagable>(out Damagable damagable)) {
-            damagable.onDeath.AddListener(() => building.RemoveWorker(this));
-        }
     }
 
     void Start() {
+        if (building != null && TryGetComponent<Damagable>(out Damagable damagable)) {
+            damagable.onDeath.AddListener(() => building.RemoveWorker(this));
+        }
         if (building != null && shouldScanForTasks) StartCoroutine("ScanForTask");
     }
 

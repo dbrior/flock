@@ -63,7 +63,7 @@ public class Attacker : MonoBehaviour
         } else if (currentTarget.GetComponent<Collider2D>().IsTouching(attackZone)) {
             currentTarget.Hit(transform.position, damage, knockbackForce);
         }
-        if (audioSource != null) {
+        if (audioSource != null && attackLandSound != null) {
             audioSource.PlayOneShot(attackLandSound);
         }
         StartCoroutine(HitTimer(hitCooldownSec));

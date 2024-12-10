@@ -124,17 +124,6 @@ public class Damagable : MonoBehaviour
         lastHitTime = Time.time;
 
         ChangeHealth(-damage);
-        if(currHealth <= 0) {
-            if (deathSound != null) {
-                AudioSource.PlayClipAtPoint(deathSound, transform.position, 1f);
-            }
-            onDeath?.Invoke();
-            if (isIndestructible) {
-                RestoreHealth();
-            } else {
-                Destroy(gameObject);
-            }
-        }
         Vector3 damageVector = ((Vector2) transform.position - damagePos).normalized * knockback;
         if (rb != null) rb.AddForce(damageVector);
 
@@ -152,6 +141,19 @@ public class Damagable : MonoBehaviour
         if (hitNumberLocation != null) {
             DamageNumberType numberType = isCrit ? DamageNumberType.Crit : DamageNumberType.Normal;
             DamageNumberSpawner.Instance.SpawnDamageNumber(hitNumberLocation.position, Mathf.Round(damage).ToString(), numberType);
+        }
+
+        // Death
+        if(currHealth <= 0) {
+            if (deathSound != null) {
+                AudioSource.PlayClipAtPoint(deathSound, transform.position, 1f);
+            }
+            onDeath?.Invoke();
+            if (isIndestructible) {
+                RestoreHealth();
+            } else {
+                Destroy(gameObject);
+            }
         }
     }
 

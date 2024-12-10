@@ -33,6 +33,7 @@ public class WorkerBuilding : MonoBehaviour
     }
 
     private void SpawnWorker() {
+        Debug.Log("Spawning worker");
         Worker newWorker = Instantiate(workerPrefab, spawnTransform.position, spawnTransform.rotation).GetComponent<Worker>();
         newWorker.SetWorkerBuilding(this);
         workers.Add(newWorker);
@@ -53,6 +54,7 @@ public class WorkerBuilding : MonoBehaviour
     }
 
     IEnumerator SpawnTimer() {
+        Debug.Log("Worker spawn timer started");
         yield return new WaitForSeconds(respawnCooldownSec);
         if (workers.Count < workerSlots) SpawnWorker();
     }
