@@ -14,6 +14,10 @@ public class WorkerBuilding : MonoBehaviour
     [SerializeField] private List<Task> openTasks = new List<Task>();
     [SerializeField] private List<Task> claimedTasks = new List<Task>();
 
+    [SerializeField] private float workerMaxHealth;
+    [SerializeField] private float workerDamage;
+    [SerializeField] private float fireRate;
+
     private List<Worker> workers = new List<Worker>();
 
     void Start() {
@@ -40,6 +44,9 @@ public class WorkerBuilding : MonoBehaviour
         if (wanderAnchor != null) {
             newWorker.SetWanderAnchor(wanderAnchor);
         }
+
+        // Set worker values
+        // workerDamage.GetComponent<Damagable>().SetMax
     }
 
     public void RemoveWorker(Worker worker) {

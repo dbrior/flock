@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7879151839752936801}
   - component: {fileID: 1830714260578654306}
   - component: {fileID: 867343528220001634}
-  - component: {fileID: -909946992577516614}
+  - component: {fileID: 1661774893711924983}
   m_Layer: 12
   m_Name: Pellet
   m_TagString: Untagged
@@ -116,7 +116,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-909946992577516614
+--- !u!114 &1661774893711924983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,7 +158,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6302693463734982198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a273793036a84b63923a25bf9993629, type: 3}
+  m_Script: {fileID: 11500000, guid: 34b4a160e818b4ff1972ad3919bff94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  heading: {x: 1, y: 0}
+  moveSpeed: 0
+  damage: 0
+  knockbackForce: 0
+  ownerCollider: {fileID: 0}
+  isKinematic: 1
+  isDestructible: 1

@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class RangedAttackTrigger : MonoBehaviour
 {
-    [SerializeField] private RangedAttacker attacker;
+    private RangedAttacker attacker;
     [SerializeField] private LayerMask targetLayer;
+
+    void Start() {
+        attacker = GetComponentInParent<RangedAttacker>();
+    }
 
     private void OnTriggerStay2D(Collider2D col) {
         if (((1 << col.gameObject.layer) & targetLayer) != 0) {

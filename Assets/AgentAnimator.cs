@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class AgentAnimator : MonoBehaviour
 {
     [SerializeField] private bool isFlippingSprite;
+    [SerializeField] private bool isInverted;
     private NavMeshAgent agent;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -30,8 +31,8 @@ public class AgentAnimator : MonoBehaviour
         Vector2 velocity = (Vector2) agent.velocity;
 
         if (isFlippingSprite) {
-            spriteRenderer.flipX = velocity.x < 0;
-            return;
+            spriteRenderer.flipX = !isInverted ? velocity.x < 0 : velocity.x > 0;
+            // return;
         }
 
         float threshold = 1.1f;

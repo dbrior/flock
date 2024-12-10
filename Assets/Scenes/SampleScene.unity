@@ -3036,6 +3036,8 @@ MonoBehaviour:
   respawnCooldownSec: 30
   spawnTransform: {fileID: 213764426}
   wanderAnchor: {fileID: 213764426}
+  openTasks: []
+  claimedTasks: []
 --- !u!114 &104614521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10516,6 +10518,26 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &1046844776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046844763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8787e16089de143489b9d426ffc0bbbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskTypes: 
+  workerPrefab: {fileID: 1375127763543933279, guid: 9f0c12ca5cc5e418884e05a964c75961, type: 3}
+  workerSlots: 0
+  respawnCooldownSec: 10
+  spawnTransform: {fileID: 0}
+  wanderAnchor: {fileID: 0}
+  openTasks: []
+  claimedTasks: []
 --- !u!1 &1056998117
 GameObject:
   m_ObjectHideFlags: 0
@@ -129521,7 +129543,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1473040889941493624, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
       propertyPath: m_Name
-      value: Tent
+      value: Hunter Tent
       objectReference: {fileID: 0}
     - target: {fileID: 3932525190580538576, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
       propertyPath: interactionText
@@ -129636,6 +129658,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1473040889941493624, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1046844772}
+    - targetCorrespondingSourceObject: {fileID: 1473040889941493624, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1046844776}
   m_SourcePrefab: {fileID: 100100000, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
 --- !u!1001 &5890974035889130246
 PrefabInstance:

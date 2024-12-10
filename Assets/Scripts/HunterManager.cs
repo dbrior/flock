@@ -6,7 +6,7 @@ public class HunterManager : MonoBehaviour
 {
     public static HunterManager Instance { get; private set; }
 
-    [SerializeField] private List<Hunter> hunters;
+    [SerializeField] private List<RangedAttacker> hunters;
     [SerializeField] private GameObject hunterPrefab;
     [SerializeField] private float fireHz;
     [SerializeField] private float damage;
@@ -29,39 +29,39 @@ public class HunterManager : MonoBehaviour
     }
 
     private void DeployDamage() {
-        foreach (Hunter hunter in hunters) {
-            hunter.toolBelt.pelletDamage = damage;
+        foreach (RangedAttacker hunter in hunters) {
+            hunter.SetDamage(damage);
         }
     }
 
     private void DeployFireRate() {
-        foreach (Hunter hunter in hunters) {
-            hunter.fireHz = fireHz;
+        foreach (RangedAttacker hunter in hunters) {
+            hunter.SetCooldownSec(1f/fireHz);
         }
     }
 
     public void SendToWatchpoint() {
-        foreach (Hunter hunter in hunters) {
-            hunter.goToWatchpoint = true;
-        }
+        {}
+        // foreach (Hunter hunter in hunters) {
+        //     hunter.goToWatchpoint = true;
+        // }
     }
 
     public void SendToPlayer() {
-        foreach (Hunter hunter in hunters) {
-            hunter.goToWatchpoint = false;
-        }
+        {}
+        // foreach (Hunter hunter in hunters) {
+        //     hunter.goToWatchpoint = false;
+        // }
     }
 
     public void SpawnHunter(Player player) {
         GameObject hunterObj = Instantiate(hunterPrefab, spawnLocation.position, spawnLocation.rotation);
-        Hunter hunter = hunterObj.GetComponent<Hunter>();
-        hunter.fireHz = fireHz;
-        hunter.toolBelt.pelletDamage = damage;
+        hunterObj.GetComponent<CharacterMover>().SetWanderAnchor(player.transform);
 
-        Transform hunterSlot = player.hunterSlots[Random.Range(0, player.hunterSlots.Count)];
-        hunter.player = hunterSlot;
-        hunter.watchpoint = watchpoint;
+        RangedAttacker rangedAttacker = hunterObj.GetComponent<RangedAttacker>();
+        rangedAttacker.SetCooldownSec(1f/fireHz);
+        rangedAttacker.SetDamage(damage);
 
-        hunters.Add(hunter);
+        hunters.Add(rangedAttacker);
     }
 }

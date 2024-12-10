@@ -14,10 +14,20 @@ public class RangedAttacker : MonoBehaviour
     private AudioSource audioSource;
     private bool onCooldown = false;
     private Collider2D collider;
+    private Animator animator;
 
     void Awake() {
+        animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         collider = GetComponent<Collider2D>();
+    }
+
+    public void SetDamage(float newDamage) {
+        damage = damage;
+    }
+
+    public void SetCooldownSec(float newCooldownSec) {
+        cooldownSec = newCooldownSec;
     }
 
     public void Attack(Vector2 position) {
@@ -37,6 +47,10 @@ public class RangedAttacker : MonoBehaviour
 
             if (audioSource != null) {
                 audioSource.PlayOneShot(shootSound);
+            }
+
+            if (animator != null) {
+                animator.SetTrigger("Attack");
             }
         }
     }
