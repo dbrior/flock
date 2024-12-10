@@ -5,11 +5,12 @@ using UnityEngine;
 public class Worker : MonoBehaviour
 {
     [SerializeField] private bool shouldScanForTasks;
+    [SerializeField] private bool shouldContinuouslyNavigate;
     [SerializeField] private float scanIntervalSec;
 
     private WorkerBuilding building;
     private CharacterMover characterMover;
-    private Task currentTask;
+    [SerializeField] private Task currentTask;
     private Inventory inventory;
     private Item targetItem;
     private int targetAmount;
@@ -22,6 +23,7 @@ public class Worker : MonoBehaviour
     void Start() {
         if (building != null && TryGetComponent<Damagable>(out Damagable damagable)) {
             damagable.onDeath.AddListener(() => building.RemoveWorker(this));
+            damagable.onDeath.AddListener(AbandonTask);
         }
         if (building != null && shouldScanForTasks) StartCoroutine("ScanForTask");
     }
@@ -43,12 +45,16 @@ public class Worker : MonoBehaviour
 
         Debug.Log("Navigate to " + currentTask.transform.gameObject.name);
 
-        if (newTask.type != TaskType.CollectItem) {
-            characterMover.onReachDestination = () => CompleteTask(currentTask);
-            characterMover.onAbandonDestination = () => CompleteTask(currentTask);
-        } else {
+        if (newTask.type == TaskType.CollectItem) {
             targetItem = currentTask.item;
             targetAmount = currentTask.amount;
+        } else if (newTask.type == TaskType.Heal) {
+            {}
+            // characterMover.onAbandonDestination = () => CompleteTask(currentTask);
+        } else {
+            characterMover.onReachDestination = () => CompleteTask(currentTask);
+            characterMover.onAbandonDestination = () => CompleteTask(currentTask);
+            // TODO make separate invalid destination
         }
     }
 
@@ -56,7 +62,6 @@ public class Worker : MonoBehaviour
         if (currentTask == null) return;
         
         if (currentTask.type == TaskType.CollectItem && item == targetItem) {
-            Debug.Log("worker received itrem");
             if (inventory.GetItemCount(targetItem) >= targetAmount) {
                 characterMover.NavigateTo(building.transform);
                 characterMover.onReachDestination = () => building.GetComponent<ResourceProcessingBuilding>().DepositItem(inventory, targetItem, inventory.GetItemCount(targetItem));
@@ -72,10 +77,19 @@ public class Worker : MonoBehaviour
         }
     }
 
+    public void AbandonTask() {
+        if (currentTask == null) return;
+
+        Debug.Log("Abandoning task: " + currentTask.type.ToString());
+        building.AbandonTask(currentTask);
+    }
+
     IEnumerator ScanForTask() {
         while (shouldScanForTasks) {
             if (!building.IsTaskValid(currentTask)) {
                 RequestTask();
+            } else if (shouldContinuouslyNavigate) {
+                characterMover.NavigateTo(currentTask.transform);
             }
             yield return new WaitForSeconds(scanIntervalSec);
         }

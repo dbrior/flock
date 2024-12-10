@@ -11,8 +11,8 @@ public class WorkerBuilding : MonoBehaviour
     [SerializeField] Transform spawnTransform;
     [SerializeField] Transform wanderAnchor;
 
-    private List<Task> openTasks = new List<Task>();
-    private List<Task> claimedTasks = new List<Task>();
+    [SerializeField] private List<Task> openTasks = new List<Task>();
+    [SerializeField] private List<Task> claimedTasks = new List<Task>();
 
     private List<Worker> workers = new List<Worker>();
 
@@ -65,12 +65,22 @@ public class WorkerBuilding : MonoBehaviour
 
     private void UnclaimTask(Task task) {
         if (claimedTasks.Contains(task)) claimedTasks.Remove(task);
+        if (!openTasks.Contains(task)) openTasks.Add(task);
     }
 
     public void AddTask(Task task) {
         if (!openTasks.Contains(task) && !claimedTasks.Contains(task)) {
             openTasks.Add(task);
         }
+    }
+
+    public void AbandonTask(Task task) {
+        UnclaimTask(task);
+    }
+
+    public void RemoveTask(Task task) {
+        if (openTasks.Contains(task)) openTasks.Remove(task);
+        if (claimedTasks.Contains(task)) claimedTasks.Remove(task);
     }
 
     public int GetItemCollectItemCount(Item item) {
@@ -107,6 +117,10 @@ public class WorkerBuilding : MonoBehaviour
         if (openTasks.Count == 0) return null;
 
         Task task = openTasks[Random.Range(0, openTasks.Count)];
+        if (task.transform == null) {
+            RemoveTask(task);
+            return RequestTask();
+        }
         ClaimTask(task);
 
         return task;
@@ -114,7 +128,7 @@ public class WorkerBuilding : MonoBehaviour
 
     public void CompleteTask(Task task) {
         Debug.Log("Task complete " + task.type.ToString());
-        UnclaimTask(task);
+        RemoveTask(task);
     }
 
     public bool IsTaskValid(Task task) {

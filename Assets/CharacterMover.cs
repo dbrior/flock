@@ -6,8 +6,7 @@ using System;
 
 public class CharacterMover : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float distanceTolerance;
+    // [SerializeField] private float moveSpeed;
     [SerializeField] private float pathfindingIntervalSec = 3f;
 
     // Wandering
@@ -42,7 +41,7 @@ public class CharacterMover : MonoBehaviour
 
     private bool IsAtDestination() {
         if (agent.pathPending) {
-            return Vector3.Distance(transform.position, agent.pathEndPosition) <= agent.stoppingDistance;
+            return Vector2.Distance(transform.position, agent.pathEndPosition) <= agent.stoppingDistance;
         } else {
             return (agent.remainingDistance <= agent.stoppingDistance);
         }
@@ -60,6 +59,7 @@ public class CharacterMover : MonoBehaviour
     }
 
     public void CancelNavigation() {
+        Debug.Log("Navigation cancelled");
         StopCoroutine("Navigate");
         shouldNavigate = false;
 

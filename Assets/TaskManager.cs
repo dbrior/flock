@@ -63,6 +63,24 @@ public class TaskManager : MonoBehaviour
         }
     }
 
+    public void CompleteTask(Task task) {
+        if (taskBuildings.ContainsKey(task.type)) {
+            List<WorkerBuilding> buildings = taskBuildings[task.type];
+            foreach (WorkerBuilding building in buildings) {
+                building.CompleteTask(task);
+            }
+        }
+    }
+
+    public void RemoveTask(Task task) {
+        if (taskBuildings.ContainsKey(task.type)) {
+            List<WorkerBuilding> buildings = taskBuildings[task.type];
+            foreach (WorkerBuilding building in buildings) {
+                building.RemoveTask(task);
+            }
+        }
+    }
+
     public ResourceNode GetNodeForItem(Item item) {
         foreach (ResourceNode node in resourceNodes) {
             if (node.item == item) {

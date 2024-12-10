@@ -35,6 +35,14 @@ public class ResourceProcessingBuilding : MonoBehaviour
         // if (!isProcessing) StartCoroutine("Process");
     }
 
+    public void SubmitProcessingJob() {
+        if (PlayerInventory.Instance.GetItemCount(inputItem) == 0) return;
+
+        PlayerInventory.Instance.RemoveItem(inputItem, 1);
+        inventory.AddItem(inputItem, 1);
+        if (!isProcessing) StartCoroutine("Process");
+    }
+
     IEnumerator CheckResources() {
         while (true) {
             int taskCount = workerBuilding.GetItemCollectTaskCount(inputItem);
@@ -61,7 +69,7 @@ public class ResourceProcessingBuilding : MonoBehaviour
                     // Task newTask = new Task(node.transform, TaskType.CollectItem, inputItem, taskAmount);
                     // workerBuilding.AddTask(newTask);
             //     }
-            // } else if ()
+            // }
             yield return new WaitForSeconds(3f);
         }
     }

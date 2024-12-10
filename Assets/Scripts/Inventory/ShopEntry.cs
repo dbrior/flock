@@ -15,12 +15,16 @@ public struct Cost {
         this.amount = amount;
         this.costText = costText;
 
-        this.costText.text = amount.ToString();
+        if (this.costText != null) {
+            this.costText.text = amount.ToString();
+        }
     }
 
     public void SetPrice(int newPrice) {
         this.amount = newPrice;
-        this.costText.text = amount.ToString();
+        if (this.costText != null) {
+            this.costText.text = amount.ToString();
+        }
     }
 }
 

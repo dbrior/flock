@@ -137,7 +137,7 @@ MonoBehaviour:
     m_Bits: 16392
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   attackAnimator: {fileID: 6543008132065006236}
   damage: -500
   knockbackForce: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbf97350c38340e7a28097a822a7ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 60
   healthUI: {fileID: 3871266865436200065}
   hitNumberLocation: {fileID: 5716231564339641924}
   blockChance: 0.25
@@ -252,6 +252,7 @@ MonoBehaviour:
   hitAnimator: {fileID: 6543008132065006236}
   isBoss: 0
   randomizePitch: 0
+  isIndestructible: 0
 --- !u!82 &8235426616081884266
 AudioSource:
   m_ObjectHideFlags: 0
@@ -360,9 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b411a01b984c44a1d860b883bb011584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.5
-  distanceTolerance: 0.2
-  pathfindingIntervalSec: 0.5
+  pathfindingIntervalSec: 0.25
   shouldWander: 1
   anchoredWandering: 1
   wanderingAnchor: {fileID: 0}
@@ -383,7 +382,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shouldScanForTasks: 1
-  scanIntervalSec: 3
+  shouldContinuouslyNavigate: 1
+  scanIntervalSec: 1
+  currentTask:
+    transform: {fileID: 0}
+    type: 0
+    item: {fileID: 0}
+    amount: 0
 --- !u!195 &8257111884207854094
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -398,7 +403,7 @@ NavMeshAgent:
   m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 10
-  m_StoppingDistance: 0.48
+  m_StoppingDistance: 0.16
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 0
   m_AutoRepath: 1
