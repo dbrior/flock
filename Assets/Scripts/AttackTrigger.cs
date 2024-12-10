@@ -18,8 +18,8 @@ public class AttackTrigger : MonoBehaviour
     }
 
     void Update() {
-        foreach (Damagable target in targets) {
-            attacker.AttackStart(target);
+        for (int i=0; i<targets.Count; i++) {
+            attacker.AttackStart(targets[i]);
         }
     }
 

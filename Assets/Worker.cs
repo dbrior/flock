@@ -53,6 +53,8 @@ public class Worker : MonoBehaviour
     }
 
     public void ReceivedItem(Item item) {
+        if (currentTask == null) return;
+        
         if (currentTask.type == TaskType.CollectItem && item == targetItem) {
             Debug.Log("worker received itrem");
             if (inventory.GetItemCount(targetItem) >= targetAmount) {

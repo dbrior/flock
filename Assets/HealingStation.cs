@@ -52,7 +52,8 @@ public class HealingStation : MonoBehaviour
     private bool fireAnimation = false;
     private IEnumerator Heal() {
         while (true) {
-            foreach (Damagable target in targets) {
+            for (int i=targets.Count-1; i >=0; i--) {
+                Damagable target = targets[i];
                 if (target.GetHealthPct() >= 1f) {
                     RemoveTarget(target);
                 } else {

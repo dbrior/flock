@@ -40,7 +40,7 @@ public class ResourceProcessingBuilding : MonoBehaviour
             // Assumes 1:1 input to output
             int materialsRequested = workerBuilding.GetItemCollectTaskCount(inputItem);
             int missingInputCount = targetAmount - (PlayerInventory.Instance.GetItemCount(outputItem) + inventory.GetItemCount(inputItem) + materialsRequested);
-            Debug.Log("Missing " + missingInputCount + " " + inputItem.name);
+            Debug.Log("Missing " + missingInputCount + " " + inputItem.name + " (" + materialsRequested + " requested)");
             if (node != null && missingInputCount > 0) {
                 int tasksToCreate = missingInputCount / maxPerWorker;
                 if (missingInputCount % maxPerWorker > 0) {
