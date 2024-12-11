@@ -5684,7 +5684,43 @@ MonoBehaviour:
   blockChance: 0
   onDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1432350825}
+        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+        m_MethodName: GameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1066835114}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1066835116}
+        m_TargetAssemblyTypeName: UIFade, Assembly-CSharp
+        m_MethodName: StartFade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   regenEnabled: 1
   regenPerSecond: 850
   regenDelay: 10
@@ -125580,7 +125616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764298251494807475, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: GameOver
       objectReference: {fileID: 0}
     - target: {fileID: 1764298251494807475, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
