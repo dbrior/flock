@@ -26,8 +26,8 @@ public class RangedAttacker : MonoBehaviour
         damage = damage;
     }
 
-    public void SetCooldownSec(float newCooldownSec) {
-        cooldownSec = newCooldownSec;
+    public void SetAttackCooldownSec(float newAttackCooldownSec) {
+        cooldownSec = newAttackCooldownSec;
     }
 
     public void Attack(Vector2 position) {

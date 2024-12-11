@@ -15,8 +15,9 @@ public class WorkerBuilding : MonoBehaviour
     [SerializeField] private List<Task> claimedTasks = new List<Task>();
 
     [SerializeField] private float workerMaxHealth;
+    [SerializeField] private float workerBlockChance;
     [SerializeField] private float workerDamage;
-    [SerializeField] private float fireRate;
+    [SerializeField] private float workerAttackCooldownSec;
 
     private List<Worker> workers = new List<Worker>();
 
@@ -45,8 +46,39 @@ public class WorkerBuilding : MonoBehaviour
             newWorker.SetWanderAnchor(wanderAnchor);
         }
 
-        // Set worker values
-        // workerDamage.GetComponent<Damagable>().SetMax
+        // Set worker stats
+        Damagable workerHealth = newWorker.GetComponent<Damagable>();
+        workerHealth.SetMaxHealth(workerMaxHealth);
+        workerHealth.RestoreHealth();
+        workerHealth.SetBlockChance(workerBlockChance);
+
+        if (newWorker.TryGetComponent<Attacker>(out Attacker attacker)) {
+            attacker.SetAttackCooldownSec(workerAttackCooldownSec);
+            attacker.SetDamage(workerDamage);
+        } else if (newWorker.TryGetComponent<RangedAttacker>(out RangedAttacker rangedAttacker)) {
+            rangedAttacker.SetAttackCooldownSec(workerAttackCooldownSec);
+            rangedAttacker.SetDamage(workerDamage);
+        }
+    }
+
+    public void ChangeWorkerMaxHealth(float pct) {
+        workerMaxHealth *= pct;
+    }
+
+    public void ChangeWorkerBlockChance(float delta) {
+        workerBlockChance += delta;
+    }
+
+    public void ChangeWorkerDamage(float pct) {
+        workerDamage *= pct;
+    }
+
+    public void ChangeWorkerAttackCooldownSec(float pct) {
+        workerAttackCooldownSec *= pct;
+    }
+
+    public void ChangeWorkerRespawnSec(float pct) {
+        respawnCooldownSec *= pct;
     }
 
     public void RemoveWorker(Worker worker) {

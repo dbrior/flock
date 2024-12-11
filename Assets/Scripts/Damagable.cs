@@ -109,6 +109,10 @@ public class Damagable : MonoBehaviour
         maxHealth = newMax;
     }
 
+    public void SetBlockChance(float newBlockChance) {
+        blockChance = newBlockChance;
+    }
+
     public void Hit(Vector2 damagePos, float damage, float knockback, bool isCrit = false) {
         if (randomizePitch) {
             audioSource.pitch = originalPitch;

@@ -17,6 +17,11 @@ public class ItemDrop : MonoBehaviour
     }
     void FixedUpdate() {
         if (suckedIn) {
+            if (target == null) {
+                suckedIn = false;
+                return;
+            }
+
             Vector2 distance = (Vector2) (target.transform.position - transform.position);
             if (distance.magnitude <= 0.05f) {
                 target.GetComponent<ItemDropMagnet>().CollectItem(this);

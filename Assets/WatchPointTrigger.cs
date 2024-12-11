@@ -5,14 +5,14 @@ using UnityEngine;
 public class WatchPointTrigger : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.TryGetComponent<Player>(out Player player)) {
-            HunterManager.Instance.SendToWatchpoint();
-        }
+        // if (col.gameObject.TryGetComponent<Player>(out Player player)) {
+        //     HunterManager.Instance.SendToWatchpoint();
+        // }
     }
 
     void OnTriggerExit2D(Collider2D col) {
-        if (col.gameObject.TryGetComponent<Player>(out Player player)) {
-            HunterManager.Instance.SendToPlayer();
-        }
+        // if (col.gameObject.TryGetComponent<Player>(out Player player)) {
+        //     HunterManager.Instance.SendToPlayer();
+        // }
     }
 }

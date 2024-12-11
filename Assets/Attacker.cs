@@ -33,6 +33,14 @@ public class Attacker : MonoBehaviour
         return ignoreLayer;
     }
 
+    public void SetAttackCooldownSec(float newAttackCooldownSec) {
+        hitCooldownSec = newAttackCooldownSec;
+    }
+
+    public void SetDamage(float newDamage) {
+        damage = newDamage;
+    }
+
     public void AttackStart(Damagable damagable) {
         if (readyToAttack) {
             currentTarget = damagable;

@@ -139,7 +139,7 @@ MonoBehaviour:
     m_Bits: 1024
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 16584
+    m_Bits: 49352
   attackAnimator: {fileID: 2967777482990497887}
   damage: 25
   knockbackForce: 1000
@@ -242,6 +242,7 @@ MonoBehaviour:
   hitAnimator: {fileID: 2967777482990497887}
   isBoss: 0
   randomizePitch: 0
+  isIndestructible: 0
 --- !u!82 &5508189854016093311
 AudioSource:
   m_ObjectHideFlags: 0
@@ -350,8 +351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b411a01b984c44a1d860b883bb011584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.1
-  distanceTolerance: 0.01
   pathfindingIntervalSec: 3
   shouldWander: 1
   anchoredWandering: 1
@@ -390,7 +389,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shouldScanForTasks: 0
+  shouldContinuouslyNavigate: 0
   scanIntervalSec: 0
+  currentTask:
+    transform: {fileID: 0}
+    type: 0
+    item: {fileID: 0}
+    amount: 0
 --- !u!114 &3161028704171599477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFlippingSprite: 0
+  isInverted: 0
 --- !u!1 &3027084270881854772
 GameObject:
   m_ObjectHideFlags: 0
