@@ -1137,7 +1137,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1cf6fdf0ff6c643a8b64ba5f2fb0e32c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c34a77cdf4e224db78e7cf47c6587b54, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4487,7 +4487,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8ac2dfebb5d6f479a9c743c33336748c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e90ad6dbb0251445783c942da5c924ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5663,7 +5663,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8151906632288106062}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.99, y: 3.146, z: -0.051419355}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5801,15 +5801,20 @@ MonoBehaviour:
   taskTypes: 
   workerPrefab: {fileID: 11373409921329751, guid: a4a3ee7ac0f854800a7e156c90402d9e, type: 3}
   workerSlots: 1
-  respawnCooldownSec: 10
   spawnTransform: {fileID: 6970244486471926469}
   wanderAnchor: {fileID: 2881764873701048348}
+  workerMaxHealth: 500
+  maxHealthUI: {fileID: 6251569227397432250}
+  workerBlockChance: 0.2
+  blockChanceUI: {fileID: 8504843778687883136}
+  workerDamage: 20
+  damageUI: {fileID: 2222963414235761386}
+  workerAttackCooldownSec: 2
+  attackCooldownUI: {fileID: 6136219316716800576}
+  respawnCooldownSec: 10
+  respawnCooldownUI: {fileID: 3827437737453455816}
   openTasks: []
   claimedTasks: []
-  workerMaxHealth: 250
-  workerBlockChance: 0.2
-  workerDamage: 20
-  workerAttackCooldownSec: 2
 --- !u!114 &6408433776111363944
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,23 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WorkerBuilding : MonoBehaviour
 {
+    [Header("Building Settings")]
     [SerializeField] private List<TaskType> taskTypes;
     [SerializeField] private GameObject workerPrefab;
-    [SerializeField] int workerSlots;
-    [SerializeField] float respawnCooldownSec;
-    [SerializeField] Transform spawnTransform;
-    [SerializeField] Transform wanderAnchor;
+    [SerializeField] private int workerSlots;
+    [SerializeField] private Transform spawnTransform;
+    [SerializeField] private Transform wanderAnchor;
 
+    [Header("Worker Stats")]
+    [SerializeField] private float workerMaxHealth;
+    [SerializeField] private TextMeshProUGUI maxHealthUI;
+    [SerializeField] private float workerBlockChance;
+    [SerializeField] private TextMeshProUGUI blockChanceUI;
+    [SerializeField] private float workerDamage;
+    [SerializeField] private TextMeshProUGUI damageUI;
+    [SerializeField] private float workerAttackCooldownSec;
+    [SerializeField] private TextMeshProUGUI attackCooldownUI;
+    [SerializeField] private float respawnCooldownSec;
+    [SerializeField] private TextMeshProUGUI respawnCooldownUI;
+
+    [Header("Tasks")]
     [SerializeField] private List<Task> openTasks = new List<Task>();
     [SerializeField] private List<Task> claimedTasks = new List<Task>();
-
-    [SerializeField] private float workerMaxHealth;
-    [SerializeField] private float workerBlockChance;
-    [SerializeField] private float workerDamage;
-    [SerializeField] private float workerAttackCooldownSec;
 
     private List<Worker> workers = new List<Worker>();
 
@@ -27,6 +36,7 @@ public class WorkerBuilding : MonoBehaviour
         }
 
         SpawnAllMissingWorkers();
+        UpdateStatUI();
     }
 
     // -------- Worker Spawning --------
@@ -61,24 +71,37 @@ public class WorkerBuilding : MonoBehaviour
         }
     }
 
+    private void UpdateStatUI() {
+        maxHealthUI.text = workerMaxHealth.ToString();
+        blockChanceUI.text = workerBlockChance.ToString();
+        damageUI.text = workerDamage.ToString();
+        attackCooldownUI.text = workerAttackCooldownSec.ToString();
+        respawnCooldownUI.text = respawnCooldownSec.ToString();
+    }
+
     public void ChangeWorkerMaxHealth(float pct) {
         workerMaxHealth *= pct;
+        UpdateStatUI();
     }
 
     public void ChangeWorkerBlockChance(float delta) {
         workerBlockChance += delta;
+        UpdateStatUI();
     }
 
     public void ChangeWorkerDamage(float pct) {
         workerDamage *= pct;
+        UpdateStatUI();
     }
 
     public void ChangeWorkerAttackCooldownSec(float pct) {
         workerAttackCooldownSec *= pct;
+        UpdateStatUI();
     }
 
     public void ChangeWorkerRespawnSec(float pct) {
         respawnCooldownSec *= pct;
+        UpdateStatUI();
     }
 
     public void RemoveWorker(Worker worker) {

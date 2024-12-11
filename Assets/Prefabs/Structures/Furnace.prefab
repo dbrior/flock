@@ -2033,7 +2033,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8ac2dfebb5d6f479a9c743c33336748c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e90ad6dbb0251445783c942da5c924ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2242,7 +2242,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1cf6fdf0ff6c643a8b64ba5f2fb0e32c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c34a77cdf4e224db78e7cf47c6587b54, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4707,15 +4707,20 @@ MonoBehaviour:
   taskTypes: 05000000
   workerPrefab: {fileID: 2398171259501374333, guid: 8362834d1c08c4840b9b3286b25e21fb, type: 3}
   workerSlots: 0
-  respawnCooldownSec: 30
   spawnTransform: {fileID: 996214388830663801}
   wanderAnchor: {fileID: 996214388830663801}
+  workerMaxHealth: 300
+  maxHealthUI: {fileID: 7170283594482786949}
+  workerBlockChance: 0.01
+  blockChanceUI: {fileID: 5381974083701625438}
+  workerDamage: 500
+  damageUI: {fileID: 3908366968963580944}
+  workerAttackCooldownSec: 2
+  attackCooldownUI: {fileID: 34932841284197417}
+  respawnCooldownSec: 30
+  respawnCooldownUI: {fileID: 256386558453073058}
   openTasks: []
   claimedTasks: []
-  workerMaxHealth: 300
-  workerBlockChance: 0.01
-  workerDamage: 500
-  workerAttackCooldownSec: 2
 --- !u!114 &5491035794147917239
 MonoBehaviour:
   m_ObjectHideFlags: 0
