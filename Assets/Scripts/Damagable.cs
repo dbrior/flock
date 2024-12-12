@@ -45,6 +45,12 @@ public class Damagable : MonoBehaviour
         if (!isBoss) {
             HideHealthBar();
         }
+
+        if (isBoss) {
+            onDeath.AddListener(GameManager.Instance.BossKill);
+        } else if (gameObject.layer == LayerMask.NameToLayer("Wolf")) {
+            onDeath.AddListener(GameManager.Instance.EnemyKill);
+        }
     }
 
     public void HideHealthBar() {

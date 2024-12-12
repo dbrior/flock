@@ -31,6 +31,8 @@ public class CameraWithBounds : MonoBehaviour
 
     void LateUpdate()
     {
+        if (player1 == null || player2 == null) return;
+        
         // Get the midpoint between the two players
         Vector3 midpoint = GetMidpoint(player1.position, player2.position);
         Vector3 targetPos = transform.position;

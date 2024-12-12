@@ -74,6 +74,10 @@ public class WaveManager : MonoBehaviour
         shouldSpawnBoss = false;
     }
 
+    public int GetCurrentDay() {
+        return currDay;
+    }
+
     public void AddToggleableLight(Light2D light) {
         toggleableLights.Add(light);
     }
