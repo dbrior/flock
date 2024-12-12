@@ -46,7 +46,7 @@ public class ResourceProcessingBuilding : MonoBehaviour
     IEnumerator CheckResources() {
         while (true) {
             int taskCount = workerBuilding.GetItemCollectTaskCount(inputItem);
-            if (taskCount == 0) {
+            if (taskCount < workerBuilding.GetWorkerCount()) {
                 Task newTask = new Task(node.transform, TaskType.CollectItem, inputItem, 3);
                 workerBuilding.AddTask(newTask);
             }

@@ -39,14 +39,14 @@ public class GameManager : MonoBehaviour
 
         int earnedPrestigePoints = CalculateEarnedPrestigePoints();
         int currentPrestigePoints = PlayerPrefs.GetInt("PrestigePoints", 0);
-        // PlayerPrefs.SetInt("PrestigePoints", currentPrestigePoints + earnedPrestigePoints);
+        PlayerPrefs.SetInt("PrestigePoints", currentPrestigePoints + earnedPrestigePoints);
 
         prestigeUI.text = "+" + earnedPrestigePoints.ToString();
     }
 
     public void ExitToMenu() {
         Debug.Log("Exiting");
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Menu");
     }
 
     public int CalculateEarnedPrestigePoints() {

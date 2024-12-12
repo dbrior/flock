@@ -13,7 +13,6 @@ public class PrestigeShop : MonoBehaviour
     private string currMenu;
 
     void Awake() {
-        PlayerPrefs.SetInt("PrestigePoints", 0);
         inventory = GetComponent<Inventory>();
         currPrestigePoints = PlayerPrefs.GetInt("PrestigePoints", 0);
     }

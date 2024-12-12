@@ -3,9 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[System.Serializable]
+public enum UnitType {
+    Farmhand,
+    Knight,
+    Hunter,
+    Healer,
+    Miner
+}
+
+
 public class WorkerBuilding : MonoBehaviour
 {
     [Header("Building Settings")]
+    [SerializeField] private UnitType unitType;
     [SerializeField] private List<TaskType> taskTypes;
     [SerializeField] private GameObject workerPrefab;
     [SerializeField] private int workerSlots;
@@ -30,6 +41,20 @@ public class WorkerBuilding : MonoBehaviour
 
     private List<Worker> workers = new List<Worker>();
 
+    private float CompoundedRate(float rate, int count) {
+        return Mathf.Pow(rate, count);
+    }
+
+    void Awake() {
+        // Pull prestige stats
+        workerSlots = workerSlots + PlayerPrefs.GetInt(unitType.ToString() + "-UnitCount-PurchaseCount", 0);
+        workerDamage = workerDamage * CompoundedRate(1.2f, PlayerPrefs.GetInt(unitType.ToString() + "-Damage-PurchaseCount", 0));
+        workerAttackCooldownSec = workerAttackCooldownSec * CompoundedRate(0.8f, PlayerPrefs.GetInt(unitType.ToString() + "-AttackCooldown-PurchaseCount", 0));
+        workerMaxHealth = workerMaxHealth * CompoundedRate(1.2f, PlayerPrefs.GetInt(unitType.ToString() + "-MaxHealth-PurchaseCount", 0));
+        workerBlockChance = workerBlockChance * CompoundedRate(1.2f, PlayerPrefs.GetInt(unitType.ToString() + "-BlockChance-PurchaseCount", 0));
+        respawnCooldownSec = respawnCooldownSec * CompoundedRate(0.8f, PlayerPrefs.GetInt(unitType.ToString() + "-RespawnCooldown-PurchaseCount", 0));
+    }
+
     void Start() {
         foreach (TaskType type in taskTypes) {
             TaskManager.Instance.AddBuilding(type, this);
@@ -37,6 +62,10 @@ public class WorkerBuilding : MonoBehaviour
 
         SpawnAllMissingWorkers();
         UpdateStatUI();
+    }
+
+    public int GetWorkerCount() {
+        return workerSlots;
     }
 
     // -------- Worker Spawning --------

@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 1879083392117255206}
   - component: {fileID: 6676727319160803280}
   - component: {fileID: 6079194072480041945}
+  - component: {fileID: 24450899826725169}
   m_Layer: 3
   m_Name: Miner
   m_TagString: Untagged
@@ -653,8 +654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b411a01b984c44a1d860b883bb011584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.3
-  distanceTolerance: 0.2
   pathfindingIntervalSec: 0.5
   shouldWander: 1
   anchoredWandering: 1
@@ -676,7 +675,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shouldScanForTasks: 1
+  shouldContinuouslyNavigate: 0
   scanIntervalSec: 3
+  currentTask:
+    transform: {fileID: 0}
+    type: 0
+    item: {fileID: 0}
+    amount: 0
 --- !u!195 &576894470488473791
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -712,6 +717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFlippingSprite: 0
+  isInverted: 0
 --- !u!114 &1879083392117255206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,6 +773,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items: []
   uiElements: []
+--- !u!114 &24450899826725169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398171259501374333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35085da9df7d4690ac9aadcd041b216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePct: 0.7
 --- !u!1 &5699211678602992260
 GameObject:
   m_ObjectHideFlags: 0

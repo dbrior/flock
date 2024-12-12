@@ -27,6 +27,8 @@ public class CharacterMover : MonoBehaviour
     void Awake() {
         agent = GetComponent<NavMeshAgent>();
         shouldNavigate = false;
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
     }
 
     void Start() {

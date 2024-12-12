@@ -7,5 +7,7 @@ public class PlayerInventory : Inventory
     void Awake() {
         if (Instance == null) {Instance = this;}
         else {Destroy(gameObject);}
+        
+        base.Awake();
     }
 }

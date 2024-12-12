@@ -46,8 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f76a9236f1664ce7a7973dde690e31b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
   pullSpeed: 2
   collectSound: {fileID: 8300000, guid: 2665dea3f1c554e9a8aa7bcf292a627e, type: 3}
+  filter: []
 --- !u!58 &4074642584498374071
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -384,8 +386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b411a01b984c44a1d860b883bb011584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.2
-  distanceTolerance: 0.01
   pathfindingIntervalSec: 3
   shouldWander: 0
   anchoredWandering: 0
@@ -462,3 +462,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFlippingSprite: 0
+  isInverted: 0

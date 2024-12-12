@@ -6519,7 +6519,7 @@ MonoBehaviour:
   lightsTurnOffTime: 5.5
   lightsTurnOnTime: 18
   wakeTime: 9
-  bossSpawnDayInterval: 10
+  bossSpawnDayInterval: 5
   bossList:
   - {fileID: 7156904570195260950, guid: c5f724e2c231044a78c0dc8b07a5b5c3, type: 3}
   bossSpawnLocation: {fileID: 1904274195}
@@ -125447,6 +125447,10 @@ PrefabInstance:
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SpawnFarmHand
       objectReference: {fileID: 0}
+    - target: {fileID: 6043502756302880637, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
+      propertyPath: radius
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -125528,6 +125532,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 971546518}
     m_Modifications:
+    - target: {fileID: 4182397609997154173, guid: c2822d23413944fefaa685392b038b3f, type: 3}
+      propertyPath: unitType
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5713644932125035135, guid: c2822d23413944fefaa685392b038b3f, type: 3}
       propertyPath: m_Name
       value: Furnace
@@ -125633,6 +125641,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6634000369271850614, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
+      propertyPath: unitType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634000369271850614, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
       propertyPath: wanderAnchor
       value: 
       objectReference: {fileID: 1019494112}
@@ -125688,6 +125700,10 @@ PrefabInstance:
     - target: {fileID: 487968789926544263, guid: ca8e406b65ffd42989e58d189dd03eba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2760006279974665748, guid: ca8e406b65ffd42989e58d189dd03eba, type: 3}
+      propertyPath: unitType
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3052489351349209261, guid: ca8e406b65ffd42989e58d189dd03eba, type: 3}
       propertyPath: m_Name
@@ -125918,6 +125934,10 @@ PrefabInstance:
     - target: {fileID: 3605903605621094497, guid: 2f6d5759be9ce4266b6b827ba59153a2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8098528854995523920, guid: 2f6d5759be9ce4266b6b827ba59153a2, type: 3}
+      propertyPath: unitType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8151906632288106062, guid: 2f6d5759be9ce4266b6b827ba59153a2, type: 3}
       propertyPath: m_Name
