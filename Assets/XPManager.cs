@@ -52,4 +52,8 @@ public class XPManager : MonoBehaviour
     private void SetXpBar() {
         xpBar.fillAmount = currXp / xpGoal;
     }
+
+    public int GetPlayerLevel() {
+        return currLevel;
+    }
 }

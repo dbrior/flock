@@ -11,6 +11,7 @@ public class TimeLight : MonoBehaviour
 
     void Start()
     {
+        light2D.enabled = false;
         WaveManager.Instance.AddToggleableLight(light2D);    
     }
 }
