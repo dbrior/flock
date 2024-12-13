@@ -53,6 +53,9 @@ public class WorkerBuilding : MonoBehaviour
         workerMaxHealth = workerMaxHealth * CompoundedRate(1.2f, PlayerPrefs.GetInt(unitType.ToString() + "-MaxHealth-PurchaseCount", 0));
         workerBlockChance = workerBlockChance * CompoundedRate(1.2f, PlayerPrefs.GetInt(unitType.ToString() + "-BlockChance-PurchaseCount", 0));
         respawnCooldownSec = respawnCooldownSec * CompoundedRate(0.8f, PlayerPrefs.GetInt(unitType.ToString() + "-RespawnCooldown-PurchaseCount", 0));
+
+        Debug.Log(unitType + " UnitCount " + workerSlots + " | " + PlayerPrefs.GetInt(unitType.ToString() + "-UnitCount-PurchaseCount", 0) + " purchased");
+        Debug.Log(unitType + " Damage " + workerDamage + " | " + PlayerPrefs.GetInt(unitType.ToString() + "-Damage-PurchaseCount", 0) + " purchased");
     }
 
     void Start() {
@@ -71,7 +74,8 @@ public class WorkerBuilding : MonoBehaviour
     // -------- Worker Spawning --------
 
     private void SpawnAllMissingWorkers() {
-        for (int i=0; i<workerSlots-workers.Count; i++) {
+        int missingWorkers = workerSlots-workers.Count;
+        for (int i=0; i<missingWorkers; i++) {
             SpawnWorker();
         }
     }

@@ -47,7 +47,9 @@ public class PrestigeShopEntry : MonoBehaviour
 
     public void CompletePurchase() {
         purchaseCount += 1;
-        PlayerPrefs.SetInt(prefEntry + "-PurchaseCount", purchaseCount);
+        string prefIndex = prefEntry + "-PurchaseCount";
+        Debug.Log("Storing " + purchaseCount + " at " + prefIndex);
+        PlayerPrefs.SetInt(prefIndex, purchaseCount);
         SetFields();
     }
 }
