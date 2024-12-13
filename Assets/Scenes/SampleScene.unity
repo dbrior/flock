@@ -125656,6 +125656,10 @@ PrefabInstance:
       propertyPath: wanderAnchor
       value: 
       objectReference: {fileID: 1019494112}
+    - target: {fileID: 6634000369271850614, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
+      propertyPath: workerDamage
+      value: 75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
