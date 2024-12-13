@@ -80,13 +80,12 @@ public class Farmhand : MonoBehaviour
         if (needsShear.Contains(sheepTask)) return;
 
         if (needsShear.Count > 0) {
-            Debug.Log("nav to sheep");
             Transform targetSheep = needsShear[Random.Range(0, needsShear.Count)];
             sheepTask = targetSheep;
             
             characterMover.NavigateTo(targetSheep);
             characterMover.onReachDestination = () => toolBelt.UseTool(Tool.Shears);
-            characterMover.onReachDestination += () => ClearSheepTask();
+            // characterMover.onReachDestination += () => ClearSheepTask();
         }
     }
 
