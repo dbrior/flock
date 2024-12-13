@@ -21,6 +21,10 @@ public class PrestigeShop : MonoBehaviour
         inventory.AddItem(prestigePointItem, currPrestigePoints);
     }
 
+    public void EraseAllPlayerPrefs() {
+        PlayerPrefs.DeleteAll();
+    }
+
     public void AddEntry(PrestigeShopEntry newEntry) {
         entries.Add(newEntry);
     }
