@@ -17,6 +17,7 @@ public class Attacker : MonoBehaviour
     [SerializeField] private UnityEvent onAttackLand;
     [SerializeField] private bool isImmediateAttack;
     [SerializeField] private bool isUnblockable;
+    [SerializeField] private bool canHitSelf;
     private bool readyToAttack = true;
     private Damagable currentTarget;
 
@@ -65,7 +66,7 @@ public class Attacker : MonoBehaviour
             {
                 if (((1 << collider.gameObject.layer) & ignoreLayer) != 0) continue;
 
-                if (collider.gameObject != gameObject && collider.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
+                if ((canHitSelf || collider.gameObject != gameObject) && collider.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
                     damagable.Hit(transform.position, damage, knockbackForce, isUnblockable: isUnblockable);
                 }
             }

@@ -162,6 +162,7 @@ MonoBehaviour:
         m_CallState: 2
   isImmediateAttack: 0
   isUnblockable: 1
+  canHitSelf: 1
 --- !u!50 &8376954888137785072
 Rigidbody2D:
   serializedVersion: 4
