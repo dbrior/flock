@@ -115,6 +115,10 @@ public class Damagable : MonoBehaviour
         maxHealth = newMax;
     }
 
+    public float GetMaxHealth() {
+        return maxHealth;
+    }
+
     public void SetBlockChance(float newBlockChance) {
         blockChance = newBlockChance;
     }

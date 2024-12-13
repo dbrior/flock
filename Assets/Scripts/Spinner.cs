@@ -60,6 +60,11 @@ public class Spinner : MonoBehaviour
         DeployDamage();
     }
 
+    public void SetDamage(float newDamage) {
+        damage = newDamage;
+        DeployDamage();
+    }
+
     public void DeployDamage()
     {
         foreach (GameObject projObj in spawnedInstances)

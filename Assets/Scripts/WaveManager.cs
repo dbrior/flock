@@ -69,8 +69,25 @@ public class WaveManager : MonoBehaviour
     }
 
     private void SpawnBoss() {
+        float multiplier = Mathf.Pow(2, (currDay/bossSpawnDayInterval)-1);
+
         GameObject prefab = bossList[Random.Range(0, bossList.Count)];
-        Instantiate(prefab, bossSpawnLocation.position, bossSpawnLocation.rotation);
+        GameObject bossObj =Instantiate(prefab, bossSpawnLocation.position, bossSpawnLocation.rotation);
+
+        // Increase boss health
+        Damagable bossHealth = bossObj.GetComponent<Damagable>();
+        bossHealth.SetMaxHealth(bossHealth.GetMaxHealth() * multiplier);
+        bossHealth.RestoreHealth();
+
+        // Increase boss damage
+        // TODO: this is specific to occultist boss
+        SpinnerAttacker bossSpinners = bossObj.GetComponent<SpinnerAttacker>();
+        bossSpinners.SetDamage(bossSpinners.GetDamage() * multiplier);
+
+        // Set boss title w/ level
+        TextSetter bossHealthText = bossObj.GetComponent<TextSetter>();
+        bossHealthText.SetText("ARCANE    OCCULTIST    -    LVL     " + (currDay/bossSpawnDayInterval));
+
         shouldSpawnBoss = false;
     }
 

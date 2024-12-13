@@ -482,6 +482,7 @@ GameObject:
   - component: {fileID: -6839797576281896116}
   - component: {fileID: -6545246640608825610}
   - component: {fileID: 1890619142464505290}
+  - component: {fileID: 4880572136697389443}
   m_Layer: 10
   m_Name: OccultistBoss
   m_TagString: Untagged
@@ -574,10 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b411a01b984c44a1d860b883bb011584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.25
-  distanceTolerance: 0.01
   pathfindingIntervalSec: 1
-  shouldWander: 0
   anchoredWandering: 0
   wanderingAnchor: {fileID: 0}
   wanderRadius: 0.6
@@ -625,6 +623,7 @@ MonoBehaviour:
   hitAnimator: {fileID: 0}
   isBoss: 1
   randomizePitch: 0
+  isIndestructible: 0
 --- !u!70 &4556070578195386891
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -887,6 +886,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFlippingSprite: 0
+  isInverted: 0
+--- !u!114 &4880572136697389443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156904570195260950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222081e64f75549c0aebb624e467f8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinners:
+  - {fileID: 5596445438682042185}
+  - {fileID: 591559604330754863}
+  - {fileID: 1691490985427691953}
+  damage: 20
 --- !u!1 &7253975035972212669
 GameObject:
   m_ObjectHideFlags: 0
