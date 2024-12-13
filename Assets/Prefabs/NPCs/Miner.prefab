@@ -658,7 +658,7 @@ MonoBehaviour:
   shouldWander: 1
   anchoredWandering: 1
   wanderingAnchor: {fileID: 0}
-  wanderRadius: 0.2
+  wanderRadius: 0.3
   wanderingWaitTimeSec:
     min: 1
     max: 4

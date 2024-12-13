@@ -27,7 +27,7 @@ public class NewTargetScanner : MonoBehaviour
         targetsInRange.Add(col.transform.root);
         if (targetsInRange.Count == 1) {
             StartCoroutine("ScanForTarget");
-            characterMover.DisableWandering();
+            characterMover.StopWandering();
         }
     }
 
@@ -37,7 +37,7 @@ public class NewTargetScanner : MonoBehaviour
         targetsInRange.Remove(col.transform.root);
         if (targetsInRange.Count == 0) {
             StopCoroutine("ScanForTarget");
-            characterMover.EnableWandering();
+            characterMover.StartWandering();
         }
     }
 

@@ -26,6 +26,8 @@ public class Worker : MonoBehaviour
             damagable.onDeath.AddListener(AbandonTask);
         }
         if (building != null && shouldScanForTasks) StartCoroutine("ScanForTask");
+
+        if (!shouldScanForTasks) characterMover.StartWandering();
     }
 
     public void SetWorkerBuilding(WorkerBuilding newBuilding)  {
@@ -38,7 +40,13 @@ public class Worker : MonoBehaviour
 
     private void RequestTask() {
         Task newTask = building.RequestTask();
-        if (newTask == null) return;
+        // Start wandering if no task
+        if (newTask == null) {
+            characterMover.StartWandering();
+            return;
+        }
+
+        characterMover.StopWandering();
 
         currentTask = newTask;
         characterMover.NavigateTo(currentTask.transform);

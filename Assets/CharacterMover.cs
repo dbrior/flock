@@ -10,17 +10,15 @@ public class CharacterMover : MonoBehaviour
     [SerializeField] private float pathfindingIntervalSec = 3f;
 
     // Wandering
-    [SerializeField] private bool shouldWander;
     [SerializeField] private bool anchoredWandering;
     [SerializeField] private Transform wanderingAnchor;
     [SerializeField] private float wanderRadius;
     [SerializeField] private FloatRange wanderingWaitTimeSec;
-    private bool wandering;
+    private Coroutine wanderingCoroutine;
 
     public Action onReachDestination;
     public Action onAbandonDestination;
     
-    Coroutine navCoroutine;
     private NavMeshAgent agent;
     private bool shouldNavigate;
 
@@ -29,10 +27,6 @@ public class CharacterMover : MonoBehaviour
         shouldNavigate = false;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-    }
-
-    void Start() {
-        if (shouldWander) StartWandering();
     }
 
     void Update() {
@@ -56,12 +50,9 @@ public class CharacterMover : MonoBehaviour
 
         onReachDestination = null;
         onAbandonDestination = null;
-
-        if (shouldWander) StartWandering();
     }
 
     public void CancelNavigation() {
-        Debug.Log("Navigation cancelled");
         StopCoroutine("Navigate");
         shouldNavigate = false;
 
@@ -69,8 +60,6 @@ public class CharacterMover : MonoBehaviour
 
         onReachDestination = null;
         onAbandonDestination = null;
-
-        if (shouldWander) StartWandering();
     }
 
     public bool TryNavigateTo(Vector3 worldPosition) {
@@ -112,27 +101,15 @@ public class CharacterMover : MonoBehaviour
         anchoredWandering = true;
     }
 
-    public bool ShouldWander() {
-        return shouldWander;
-    }
-
-    public void EnableWandering() {
-        shouldWander = true;
-    }
-
-    public void DisableWandering() {
-        shouldWander = false;
-        StopCoroutine("Wander");
-    }
-
     public void StartWandering() {
-        wandering = true;
-        StartCoroutine("Wander");
+        if (wanderingCoroutine != null) return;
+
+        wanderingCoroutine = StartCoroutine("Wander");
     }
 
     public void StopWandering() {
-        wandering = false;
         StopCoroutine("Wander");
+        wanderingCoroutine = null;
     }
 
     private void AttemptWander() {
@@ -142,7 +119,7 @@ public class CharacterMover : MonoBehaviour
 
     IEnumerator Wander() {
         while (true) {
-            if (wandering) AttemptWander();
+            AttemptWander();
             yield return new WaitForSeconds(UnityEngine.Random.Range(wanderingWaitTimeSec.min, wanderingWaitTimeSec.max));
         }
     }
