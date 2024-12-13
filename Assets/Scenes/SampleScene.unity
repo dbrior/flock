@@ -125538,7 +125538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4182397609997154173, guid: c2822d23413944fefaa685392b038b3f, type: 3}
       propertyPath: workerSlots
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5491035794147917239, guid: c2822d23413944fefaa685392b038b3f, type: 3}
       propertyPath: maxNodeDist
@@ -125712,6 +125712,10 @@ PrefabInstance:
     - target: {fileID: 2760006279974665748, guid: ca8e406b65ffd42989e58d189dd03eba, type: 3}
       propertyPath: unitType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2760006279974665748, guid: ca8e406b65ffd42989e58d189dd03eba, type: 3}
+      propertyPath: workerSlots
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3052489351349209261, guid: ca8e406b65ffd42989e58d189dd03eba, type: 3}
       propertyPath: m_Name
