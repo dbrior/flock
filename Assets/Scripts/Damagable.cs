@@ -148,7 +148,7 @@ public class Damagable : MonoBehaviour
             hitAnimator.SetTrigger("Hit");
         }
 
-        if (hitNumberLocation != null) {
+        if (damage > 0 && hitNumberLocation != null) {
             DamageNumberType numberType = isCrit ? DamageNumberType.Crit : DamageNumberType.Normal;
             DamageNumberSpawner.Instance.SpawnDamageNumber(hitNumberLocation.position, Mathf.Round(damage).ToString(), numberType);
         }
