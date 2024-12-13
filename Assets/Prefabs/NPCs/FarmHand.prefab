@@ -387,7 +387,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathfindingIntervalSec: 3
-  shouldWander: 0
   anchoredWandering: 0
   wanderingAnchor: {fileID: 0}
   wanderRadius: 0
