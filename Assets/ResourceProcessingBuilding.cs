@@ -12,6 +12,7 @@ public class ResourceProcessingBuilding : MonoBehaviour
     [SerializeField] private int targetAmount;
     [SerializeField] private int maxPerWorker;
     [SerializeField] private float processingTimeSec;
+    [SerializeField] private float maxNodeDist;
     private ResourceNode node;
     private bool isProcessing;
     
@@ -47,7 +48,9 @@ public class ResourceProcessingBuilding : MonoBehaviour
         while (true) {
             int taskCount = workerBuilding.GetItemCollectTaskCount(inputItem);
             if (taskCount < workerBuilding.GetWorkerCount()) {
-                Task newTask = new Task(node.transform, TaskType.CollectItem, inputItem, 3);
+                // Vector3 nodeOffset = Random.insideUnitCircle.normalized * Random.Range(0, maxNodeDist);
+                Vector3 nodeOffset = Random.insideUnitCircle.normalized * maxNodeDist;
+                Task newTask = new Task(node.transform.position + nodeOffset, TaskType.CollectItem, inputItem, 3);
                 workerBuilding.AddTask(newTask);
             }
 

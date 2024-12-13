@@ -208,7 +208,7 @@ public class WorkerBuilding : MonoBehaviour
         if (openTasks.Count == 0) return null;
 
         Task task = openTasks[Random.Range(0, openTasks.Count)];
-        if (task.transform == null) {
+        if (task.transform == null && !task.isPositionTask) {
             RemoveTask(task);
             return RequestTask();
         }

@@ -49,9 +49,15 @@ public class Worker : MonoBehaviour
         characterMover.StopWandering();
 
         currentTask = newTask;
-        characterMover.NavigateTo(currentTask.transform);
 
-        Debug.Log("Navigate to " + currentTask.transform.gameObject.name);
+        // Allow for either transform-based or position-based task navigation
+        if (currentTask.transform != null) {
+            characterMover.NavigateTo(currentTask.transform);
+            // Debug.Log("Navigate to " + currentTask.transform.gameObject.name);
+        } else {
+            characterMover.NavigateTo(currentTask.position);
+            // Debug.Log("Navigate to " + currentTask.position);
+        }
 
         if (newTask.type == TaskType.CollectItem) {
             targetItem = currentTask.item;

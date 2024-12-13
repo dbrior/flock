@@ -15,19 +15,38 @@ public enum TaskType : int {
 [System.Serializable]
 public class Task {
     public Transform transform;
+    public Vector3 position;
     public TaskType type;
     public Item item;
     public int amount;
+    public bool isPositionTask;
 
+    // TODO: Refactor. Current approach needs 2 variants of unique constructors (One for transform, one for position)
     public Task(Transform transform, TaskType type) {
         this.transform = transform;
+        this.position = transform.position;
         this.type = type;
+        this.isPositionTask = false;
+    }
+    public Task(Vector3 position, TaskType type) {
+        this.position = transform.position;
+        this.type = type;
+        this.isPositionTask = true;
     }
     public Task(Transform transform, TaskType type, Item item, int amount) {
         this.transform = transform;
+        this.position = transform.position;
         this.type = type;
         this.item = item;
         this.amount = amount;
+        this.isPositionTask = false;
+    }
+    public Task(Vector3 position, TaskType type, Item item, int amount) {
+        this.position = position;
+        this.type = type;
+        this.item = item;
+        this.amount = amount;
+        this.isPositionTask = true;
     }
 }
 

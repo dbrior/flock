@@ -125536,6 +125536,14 @@ PrefabInstance:
       propertyPath: unitType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4182397609997154173, guid: c2822d23413944fefaa685392b038b3f, type: 3}
+      propertyPath: workerSlots
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491035794147917239, guid: c2822d23413944fefaa685392b038b3f, type: 3}
+      propertyPath: maxNodeDist
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5713644932125035135, guid: c2822d23413944fefaa685392b038b3f, type: 3}
       propertyPath: m_Name
       value: Furnace
