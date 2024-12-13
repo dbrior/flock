@@ -161,6 +161,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   isImmediateAttack: 0
+  isUnblockable: 1
 --- !u!50 &8376954888137785072
 Rigidbody2D:
   serializedVersion: 4
@@ -362,7 +363,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathfindingIntervalSec: 0.25
-  shouldWander: 1
   anchoredWandering: 1
   wanderingAnchor: {fileID: 0}
   wanderRadius: 0.2
@@ -386,9 +386,11 @@ MonoBehaviour:
   scanIntervalSec: 1
   currentTask:
     transform: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
     type: 0
     item: {fileID: 0}
     amount: 0
+    isPositionTask: 0
 --- !u!195 &8257111884207854094
 NavMeshAgent:
   m_ObjectHideFlags: 0

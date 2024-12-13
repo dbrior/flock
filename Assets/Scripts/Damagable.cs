@@ -119,13 +119,13 @@ public class Damagable : MonoBehaviour
         blockChance = newBlockChance;
     }
 
-    public void Hit(Vector2 damagePos, float damage, float knockback, bool isCrit = false) {
+    public void Hit(Vector2 damagePos, float damage, float knockback, bool isCrit = false, bool isUnblockable = false) {
         if (randomizePitch) {
             audioSource.pitch = originalPitch;
         }
 
         float hitRoll = Random.Range(0, 1f);
-        if (hitRoll <= blockChance) {
+        if (!isUnblockable && hitRoll <= blockChance) {
             DamageNumberSpawner.Instance.SpawnStatusIcon(hitNumberLocation.position, StatusIconType.Block);
             audioSource.PlayOneShot(blockSound);
             return;

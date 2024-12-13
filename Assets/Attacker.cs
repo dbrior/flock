@@ -16,6 +16,7 @@ public class Attacker : MonoBehaviour
     [SerializeField] private AudioClip attackLandSound;
     [SerializeField] private UnityEvent onAttackLand;
     [SerializeField] private bool isImmediateAttack;
+    [SerializeField] private bool isUnblockable;
     private bool readyToAttack = true;
     private Damagable currentTarget;
 
@@ -65,11 +66,11 @@ public class Attacker : MonoBehaviour
                 if (((1 << collider.gameObject.layer) & ignoreLayer) != 0) continue;
 
                 if (collider.gameObject != gameObject && collider.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
-                    damagable.Hit(transform.position, damage, knockbackForce);
+                    damagable.Hit(transform.position, damage, knockbackForce, isUnblockable: isUnblockable);
                 }
             }
         } else if (currentTarget.GetComponent<Collider2D>().IsTouching(attackZone)) {
-            currentTarget.Hit(transform.position, damage, knockbackForce);
+            currentTarget.Hit(transform.position, damage, knockbackForce, isUnblockable: isUnblockable);
         }
         if (audioSource != null && attackLandSound != null) {
             audioSource.PlayOneShot(attackLandSound);
