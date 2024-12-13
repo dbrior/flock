@@ -32,6 +32,8 @@ public class TargetScanner : MonoBehaviour
                     bool success = characterMover.TryNavigateTo(target.transform.position);
                     if (success) break;
                 }
+            } else {
+                characterMover.StartWandering();
             }
             yield return new WaitForSeconds(scanIntervalSec);
         }

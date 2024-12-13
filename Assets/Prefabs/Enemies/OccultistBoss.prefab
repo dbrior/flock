@@ -483,6 +483,7 @@ GameObject:
   - component: {fileID: -6545246640608825610}
   - component: {fileID: 1890619142464505290}
   - component: {fileID: 4880572136697389443}
+  - component: {fileID: 3461198280942272528}
   m_Layer: 10
   m_Name: OccultistBoss
   m_TagString: Untagged
@@ -904,6 +905,19 @@ MonoBehaviour:
   - {fileID: 591559604330754863}
   - {fileID: 1691490985427691953}
   damage: 20
+--- !u!114 &3461198280942272528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156904570195260950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b546a7e74c274ad59e4d2ebad260dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textObj: {fileID: 3802755270996927337}
 --- !u!1 &7253975035972212669
 GameObject:
   m_ObjectHideFlags: 0
