@@ -250,7 +250,7 @@ MonoBehaviour:
   pathfindingIntervalSec: 3
   anchoredWandering: 1
   wanderingAnchor: {fileID: 0}
-  wanderRadius: 0.3
+  wanderRadius: 1
   wanderingWaitTimeSec:
     min: 1
     max: 4
