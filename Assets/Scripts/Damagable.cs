@@ -161,7 +161,9 @@ public class Damagable : MonoBehaviour
         if(currHealth <= 0) {
             DamageNumberSpawner.Instance.SpawnStatusIcon(hitNumberLocation.position, StatusIconType.Death);
             if (deathSound != null) {
-                AudioSource.PlayClipAtPoint(deathSound, transform.position, 1f);
+                PlayerManager.Instance.currentPlayer.audioSource.PlayOneShot(deathSound);
+                // audioSource.PlayOneShot(deathSound);
+                // AudioSource.PlayClipAtPoint(deathSound, transform.position, 1f);
             }
             onDeath?.Invoke();
             if (isIndestructible) {

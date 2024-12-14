@@ -14,7 +14,6 @@ public class Inventory : MonoBehaviour
     private Worker worker;
 
     protected virtual void Awake() {
-        Debug.Log(gameObject.name);
         worker = GetComponent<Worker>();
         for (int i = 0; i < items.Count && i < uiElements.Count; i++) {
             uiMappings[items[i]] = uiElements[i];

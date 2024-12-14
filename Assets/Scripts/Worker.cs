@@ -94,7 +94,7 @@ public class Worker : MonoBehaviour
     public void AbandonTask() {
         if (currentTask == null) return;
 
-        Debug.Log("Abandoning task: " + currentTask.type.ToString());
+        // Debug.Log("Abandoning task: " + currentTask.type.ToString());
         building.AbandonTask(currentTask);
     }
 

@@ -54,8 +54,8 @@ public class WorkerBuilding : MonoBehaviour
         workerBlockChance = workerBlockChance * CompoundedRate(1.2f, PlayerPrefs.GetInt(unitType.ToString() + "-BlockChance-PurchaseCount", 0));
         respawnCooldownSec = respawnCooldownSec * CompoundedRate(0.8f, PlayerPrefs.GetInt(unitType.ToString() + "-RespawnCooldown-PurchaseCount", 0));
 
-        Debug.Log(unitType + " UnitCount " + workerSlots + " | " + PlayerPrefs.GetInt(unitType.ToString() + "-UnitCount-PurchaseCount", 0) + " purchased");
-        Debug.Log(unitType + " Damage " + workerDamage + " | " + PlayerPrefs.GetInt(unitType.ToString() + "-Damage-PurchaseCount", 0) + " purchased");
+        // Debug.Log(unitType + " UnitCount " + workerSlots + " | " + PlayerPrefs.GetInt(unitType.ToString() + "-UnitCount-PurchaseCount", 0) + " purchased");
+        // Debug.Log(unitType + " Damage " + workerDamage + " | " + PlayerPrefs.GetInt(unitType.ToString() + "-Damage-PurchaseCount", 0) + " purchased");
     }
 
     void Start() {

@@ -409,10 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b411a01b984c44a1d860b883bb011584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.25
-  distanceTolerance: 0.01
   pathfindingIntervalSec: 1
-  shouldWander: 0
   anchoredWandering: 0
   wanderingAnchor: {fileID: 0}
   wanderRadius: 0.6
@@ -483,6 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFlippingSprite: 0
+  isInverted: 0
 --- !u!114 &7976057255103563284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,6 +510,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isImmediateAttack: 1
+  isUnblockable: 0
+  canHitSelf: 0
 --- !u!1 &3587503526660054065
 GameObject:
   m_ObjectHideFlags: 0

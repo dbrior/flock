@@ -74,7 +74,9 @@ public class WaveManager : MonoBehaviour
     IEnumerator SpawnBoss() {
         shouldSpawnBoss = false;
         onBossSpawn?.Invoke();
-        yield return new WaitForSeconds(12.8f);
+        Debug.Log("Spawner waiting");
+        yield return new WaitForSeconds(12.8f*2f);
+        Debug.Log("Spawner waiting finished");
         ChromaticAberrationRandomizer.Instance.EnableRandomization();
 
 
@@ -192,16 +194,17 @@ public class WaveManager : MonoBehaviour
 
             // Set toggleable lights
             float currentTime = getCurrentTime();
-            if (!MusicManager.Instance.isPlayingBossMusic && !lightsOn && (currentTime < lightsTurnOffTime || currentTime >= lightsTurnOnTime)) {
+            if (!lightsOn && (currentTime < lightsTurnOffTime || currentTime >= lightsTurnOnTime)) {
                 TurnOnLights();
-                MusicManager.Instance.FadeToNightMusic();
-            } else if (!MusicManager.Instance.isPlayingBossMusic && lightsOn && (currentTime >= lightsTurnOffTime && currentTime < lightsTurnOnTime)) {
+                if (!MusicManager.Instance.isPlayingBossMusic) MusicManager.Instance.FadeToNightMusic();
+            } else if (lightsOn && (currentTime >= lightsTurnOffTime && currentTime < lightsTurnOnTime)) {
                 TurnOffLights();
-                MusicManager.Instance.FadeToDayMusic();
+                if (!MusicManager.Instance.isPlayingBossMusic) MusicManager.Instance.FadeToDayMusic();
             }
 
             // Spawn boss
-            if (shouldSpawnBoss && currentTime >= 22f) {
+            if (shouldSpawnBoss && currentTime >= 21f) {
+                Debug.Log("Starting boss spawn");
                 StartCoroutine("SpawnBoss");
             }
         }

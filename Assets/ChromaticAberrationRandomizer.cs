@@ -53,7 +53,6 @@ public class ChromaticAberrationRandomizer : MonoBehaviour
         // Validate the global volume reference
         if (globalVolume == null)
         {
-            Debug.LogError("Global Volume is not assigned! Drag and drop a Volume from the scene.");
             enabled = false;
             return;
         }
@@ -61,7 +60,6 @@ public class ChromaticAberrationRandomizer : MonoBehaviour
         // Try to get the Chromatic Aberration component
         if (!globalVolume.profile.TryGet(out chromaticAberration))
         {
-            Debug.LogError("No Chromatic Aberration component found in the Volume Profile!");
             enabled = false;
             return;
         }

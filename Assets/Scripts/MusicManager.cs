@@ -49,8 +49,8 @@ public class MusicManager : MonoBehaviour
         normalVolume = audioSource.volume;
         normalFadeDuration = fadeDuration;
         isPlayingBossMusic = true;
-        fadeDuration = (12.8f)/2f;
-        StartCoroutine(FadeMusic(bossMusic));
+        fadeDuration = 12.8f;
+        StartCoroutine(FadeMusic(bossMusic, endingVolume: 1f));
         audioSource.volume = normalVolume;
     }
 
@@ -63,6 +63,7 @@ public class MusicManager : MonoBehaviour
 
     private IEnumerator FadeMusic(AudioClip newClip, float endingVolume = -1f)
     {
+        Debug.Log("Fading Start");
         // Fade out current music
         float startVolume = audioSource.volume;
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
@@ -76,6 +77,8 @@ public class MusicManager : MonoBehaviour
         audioSource.volume = 0;
         audioSource.Stop();
 
+        Debug.Log("Fading Middle");
+
         // Switch to new music and fade in
         audioSource.clip = newClip;
         audioSource.volume = endingVolume;
@@ -87,6 +90,7 @@ public class MusicManager : MonoBehaviour
 
             yield return null;
         }
+        Debug.Log("Fading EndDebug.Log");
         audioSource.volume = endingVolume < 0 ? startVolume : endingVolume;
     }
 }

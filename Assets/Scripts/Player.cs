@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     private InteractionHints interactionHints;
 
     [Header("Audio")]
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     
     [Header("Misc")]
     // Anything here should probably not be here
@@ -225,7 +225,6 @@ public class Player : MonoBehaviour
     }
     // public void OnSecondaryAttackCanceled() {
     //     // toolBelt.UseSlingshot();
-    //     Debug.Log("inactive");
     //     secondaryActive = false;
     //     // ropeTool.angularVelocity = 10f;
     // }
@@ -235,7 +234,6 @@ public class Player : MonoBehaviour
     // MoveSpeed,
     // PenCapacity
     public void AddUpgrade(UpgradeType upgradeType, float value) {
-        Debug.Log(upgradeType);
         if (upgradeType == UpgradeType.ShearRadius) {
             toolBelt.shearRadius += value;
         } else if (upgradeType == UpgradeType.Strength) {
