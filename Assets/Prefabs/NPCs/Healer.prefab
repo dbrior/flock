@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 8257111884207854094}
   - component: {fileID: 1338214045955909088}
   - component: {fileID: 7008564199712022469}
-  m_Layer: 3
+  m_Layer: 14
   m_Name: Healer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +450,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3437366274321854798}
   - component: {fileID: 8819517161109192338}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: AttackZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 3202187014147407840}
   - component: {fileID: 6311028076177594707}
   - component: {fileID: 8923901287562125275}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: AttackTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

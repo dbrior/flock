@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lazer- Occultist
       objectReference: {fileID: 0}
+    - target: {fileID: 3696246756771161768, guid: 0c86fd0d95e9c4388917fc44df1bdd38, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6334943702442471853, guid: 0c86fd0d95e9c4388917fc44df1bdd38, type: 3}
       propertyPath: moveSpeed
       value: 1

@@ -23,8 +23,8 @@ TagManager:
   - Companion
   - EnemyGoal
   - ResourceNode
-  - 
-  - 
+  - FriendlyProjectile
+  - EnemyProjectile
   - 
   - 
   - 

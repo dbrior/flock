@@ -10,6 +10,7 @@ public class RangedAttacker : MonoBehaviour
     [SerializeField] private float cooldownSec;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private AudioClip shootSound;
+    [SerializeField] private bool randomizePitch;
 
     private AudioSource audioSource;
     private bool onCooldown = false;
@@ -46,6 +47,7 @@ public class RangedAttacker : MonoBehaviour
             StartCoroutine(CooldownTimer(cooldownSec));
 
             if (audioSource != null) {
+                if (randomizePitch) audioSource.pitch = Random.Range(0.8f, 1.2f);
                 audioSource.PlayOneShot(shootSound);
             }
 
