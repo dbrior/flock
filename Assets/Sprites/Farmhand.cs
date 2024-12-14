@@ -77,13 +77,16 @@ public class Farmhand : MonoBehaviour
     }
     public void CheckSheep() {
         needsShear = SheepManager.Instance.GetTameSheep().Where(sheep => sheep != null && !sheep.IsSheared()).Select(sheep => sheep.transform).ToList();
-        if (needsShear.Contains(sheepTask)) return;
+        if (needsShear.Contains(sheepTask)) {
+            characterMover.NavigateTo(sheepTask.position);
+            return;
+        }
 
         if (needsShear.Count > 0) {
             Transform targetSheep = needsShear[Random.Range(0, needsShear.Count)];
             sheepTask = targetSheep;
             
-            characterMover.NavigateTo(targetSheep);
+            characterMover.NavigateTo(targetSheep.position);
             characterMover.onReachDestination = () => toolBelt.UseTool(Tool.Shears);
             // characterMover.onReachDestination += () => ClearSheepTask();
         }
