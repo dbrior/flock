@@ -80,6 +80,27 @@ public class WorkerBuilding : MonoBehaviour
         }
     }
 
+    private void SetWorkerStats(GameObject worker) {
+        // Set worker stats
+        Damagable workerHealth = worker.GetComponent<Damagable>();
+        workerHealth.SetMaxHealth(workerMaxHealth);
+        workerHealth.SetBlockChance(workerBlockChance);
+
+        if (worker.TryGetComponent<Attacker>(out Attacker attacker)) {
+            attacker.SetAttackCooldownSec(workerAttackCooldownSec);
+            attacker.SetDamage(workerDamage);
+        } else if (worker.TryGetComponent<RangedAttacker>(out RangedAttacker rangedAttacker)) {
+            rangedAttacker.SetAttackCooldownSec(workerAttackCooldownSec);
+            rangedAttacker.SetDamage(workerDamage);
+        }
+    }
+
+    private void UpdateAllWorkerStats() {
+        foreach (Worker worker in workers) {
+            SetWorkerStats(worker.gameObject);
+        }
+    }
+
     private void SpawnWorker() {
         Worker newWorker = Instantiate(workerPrefab, spawnTransform.position, spawnTransform.rotation).GetComponent<Worker>();
         newWorker.SetWorkerBuilding(this);
@@ -89,20 +110,9 @@ public class WorkerBuilding : MonoBehaviour
             newWorker.SetWanderAnchor(wanderAnchor);
         }
 
-        // Set worker stats
-        Damagable workerHealth = newWorker.GetComponent<Damagable>();
-        workerHealth.SetMaxHealth(workerMaxHealth);
-        workerHealth.RestoreHealth();
-        workerHealth.SetBlockChance(workerBlockChance);
-
-        if (newWorker.TryGetComponent<Attacker>(out Attacker attacker)) {
-            attacker.SetAttackCooldownSec(workerAttackCooldownSec);
-            attacker.SetDamage(workerDamage);
-        } else if (newWorker.TryGetComponent<RangedAttacker>(out RangedAttacker rangedAttacker)) {
-            rangedAttacker.SetAttackCooldownSec(workerAttackCooldownSec);
-            rangedAttacker.SetDamage(workerDamage);
-        }
-    }
+        SetWorkerStats(newWorker.gameObject);
+        newWorker.GetComponent<Damagable>().RestoreHealth();
+    }   
 
     private void UpdateStatUI() {
         maxHealthUI.text = workerMaxHealth.ToString();
@@ -115,26 +125,31 @@ public class WorkerBuilding : MonoBehaviour
     public void ChangeWorkerMaxHealth(float pct) {
         workerMaxHealth *= pct;
         UpdateStatUI();
+        UpdateAllWorkerStats();
     }
 
     public void ChangeWorkerBlockChance(float delta) {
         workerBlockChance += delta;
         UpdateStatUI();
+        UpdateAllWorkerStats();
     }
 
     public void ChangeWorkerDamage(float pct) {
         workerDamage *= pct;
         UpdateStatUI();
+        UpdateAllWorkerStats();
     }
 
     public void ChangeWorkerAttackCooldownSec(float pct) {
         workerAttackCooldownSec *= pct;
         UpdateStatUI();
+        UpdateAllWorkerStats();
     }
 
     public void ChangeWorkerRespawnSec(float pct) {
         respawnCooldownSec *= pct;
         UpdateStatUI();
+        UpdateAllWorkerStats();
     }
 
     public void RemoveWorker(Worker worker) {
