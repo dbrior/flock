@@ -56,6 +56,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lazer- Occultist
       objectReference: {fileID: 0}
+    - target: {fileID: 6334943702442471853, guid: 0c86fd0d95e9c4388917fc44df1bdd38, type: 3}
+      propertyPath: moveSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334943702442471853, guid: 0c86fd0d95e9c4388917fc44df1bdd38, type: 3}
+      propertyPath: isKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334943702442471853, guid: 0c86fd0d95e9c4388917fc44df1bdd38, type: 3}
+      propertyPath: isDestructible
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6822692426603975318, guid: 0c86fd0d95e9c4388917fc44df1bdd38, type: 3}
       propertyPath: m_Color.b
       value: 0.12156863

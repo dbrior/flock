@@ -18,6 +18,10 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    public void SetHeading(Vector2 newHeading) {
+        heading = newHeading;
+    }
+
     public void SetOwner(Collider2D newOwnerCollider) {
         ownerCollider = newOwnerCollider;
     }

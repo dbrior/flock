@@ -14783,12 +14783,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4f6711b538e42e39f02b95f58d5172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireIntervalSec: 0
   rotateSpeed: 150
   prefab: {fileID: 3696246756771161768, guid: 0c86fd0d95e9c4388917fc44df1bdd38, type: 3}
   damage: 20
   instanceCount: 0
   radius: 0.5
-  rotationOffest: -90
+  rotationOffset: 0
   radiusSize:
     min: 0
     max: 0
@@ -17017,6 +17018,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1495501798}
   - component: {fileID: 1495501797}
+  - component: {fileID: 1495501799}
   m_Layer: 0
   m_Name: Global Volume
   m_TagString: Untagged
@@ -17056,6 +17058,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1495501799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495501796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e9cac7701d94614a791d737e2324f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalVolume: {fileID: 1495501797}
+  minIntensity: 0
+  maxIntensity: 1
+  lerpDuration: 3
+  changeInterval: 3
+  lerpSmoothing: 1
 --- !u!1 &1496172505
 GameObject:
   m_ObjectHideFlags: 0

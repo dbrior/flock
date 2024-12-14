@@ -218,6 +218,61 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &3460585035415953210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738705873058559182}
+  - component: {fileID: 1130864069645932002}
+  m_Layer: 10
+  m_Name: projectileSpawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1738705873058559182
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3460585035415953210}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4712617186875609440}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1130864069645932002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3460585035415953210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04edfbab8f2ab4078a543a52741bbb38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 5179160853217152390, guid: 307545dd327d347afbd711a78dc445a9, type: 3}
+  projectileCount: 8
+  projectileMoveSpeed: 1
+  projectileDamage: 30
+  projectileKnockbackForce: 100
+  spawnRadius: 0.2
+  attackIntervalSec: 0.3
+  rotationSpeed: 0
+  rotateClockwise: 1
+  angleOffset: 10
+  randomizeAngle: 0
 --- !u!1 &4815348495403695844
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &218377869164218221
 Transform:
   m_ObjectHideFlags: 0
@@ -262,12 +317,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4f6711b538e42e39f02b95f58d5172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireIntervalSec: 1
   rotateSpeed: -75
   prefab: {fileID: 5179160853217152390, guid: 307545dd327d347afbd711a78dc445a9, type: 3}
   damage: 20
   instanceCount: 5
   radius: 1.5
-  rotationOffest: -90
+  rotationOffset: 0
   radiusSize:
     min: 0.1
     max: 1.5
@@ -290,7 +346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6917925709349261120
 Transform:
   m_ObjectHideFlags: 0
@@ -318,12 +374,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4f6711b538e42e39f02b95f58d5172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireIntervalSec: 1
   rotateSpeed: 75
   prefab: {fileID: 5179160853217152390, guid: 307545dd327d347afbd711a78dc445a9, type: 3}
   damage: 20
   instanceCount: 7
   radius: 1.5
-  rotationOffest: -90
+  rotationOffset: 0
   radiusSize:
     min: 0.1
     max: 1.5
@@ -346,7 +403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1818536430541420220
 Transform:
   m_ObjectHideFlags: 0
@@ -374,12 +431,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4f6711b538e42e39f02b95f58d5172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireIntervalSec: 1
   rotateSpeed: 75
   prefab: {fileID: 5179160853217152390, guid: 307545dd327d347afbd711a78dc445a9, type: 3}
   damage: 20
   instanceCount: 3
   radius: 1.5
-  rotationOffest: -90
+  rotationOffset: 0
   radiusSize:
     min: 0.1
     max: 1.5
@@ -510,6 +568,8 @@ Transform:
   - {fileID: 6917925709349261120}
   - {fileID: 218377869164218221}
   - {fileID: 1818536430541420220}
+  - {fileID: 3504329651820545629}
+  - {fileID: 1738705873058559182}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1930653136252854405
@@ -595,7 +655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbf97350c38340e7a28097a822a7ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10000
+  maxHealth: 2500
   healthUI: {fileID: 4893073344078118552}
   hitNumberLocation: {fileID: 3448300092987152118}
   blockChance: 0.1
@@ -949,6 +1009,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4712617186875609440}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8905086809471974205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3504329651820545629}
+  - component: {fileID: 7474651576742786880}
+  m_Layer: 10
+  m_Name: projectileSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3504329651820545629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8905086809471974205}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4712617186875609440}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7474651576742786880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8905086809471974205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04edfbab8f2ab4078a543a52741bbb38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 5179160853217152390, guid: 307545dd327d347afbd711a78dc445a9, type: 3}
+  projectileCount: 8
+  projectileMoveSpeed: 1
+  projectileDamage: 30
+  projectileKnockbackForce: 100
+  spawnRadius: 0.2
+  attackIntervalSec: 0.4
+  rotationSpeed: 40
+  rotateClockwise: 1
+  angleOffset: 0
+  randomizeAngle: 0
 --- !u!1001 &1147519732092211716
 PrefabInstance:
   m_ObjectHideFlags: 0
