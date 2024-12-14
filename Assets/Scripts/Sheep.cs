@@ -151,7 +151,6 @@ public class Sheep : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D col) {
-        Debug.Log("Sheep trigger " + col.gameObject.name);
         // Player can shear tamed sheep
         if (!isSheared && col.gameObject.TryGetComponent<Player>(out Player player)) {
             Shear();

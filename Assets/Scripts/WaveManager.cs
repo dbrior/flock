@@ -204,6 +204,15 @@ public class WaveManager : MonoBehaviour
         EndWave();
     }
 
+    public void DecideMusic() {
+        float currentTime = getCurrentTime();
+        if (currentTime < lightsTurnOffTime || currentTime >= lightsTurnOnTime) {
+            MusicManager.Instance.FadeToNightMusic();
+        } else if (currentTime >= lightsTurnOffTime && currentTime < lightsTurnOnTime) {
+            MusicManager.Instance.FadeToDayMusic();
+        }
+    }
+
     private Color GetInterpolatedColor(float normalizedTime) {
         if (lightingColors.Count < 2) return Color.white;
 

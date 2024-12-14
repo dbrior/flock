@@ -11381,10 +11381,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1432350825}
+        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+        m_MethodName: FadeToBossMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onBossDeath:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1495501799}
+        m_TargetAssemblyTypeName: ChromaticAberrationRandomizer, Assembly-CSharp
+        m_MethodName: DisableRandomization
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1432350822}
         m_TargetAssemblyTypeName: ChromaticAberrationRandomizer, Assembly-CSharp
         m_MethodName: DisableRandomization
         m_Mode: 1
@@ -16547,6 +16571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayMusic: {fileID: 8300000, guid: 7af21010e2f7542dfbb44aa5fbd155aa, type: 3}
   nightMusic: {fileID: 8300000, guid: 002b4fcfd2aba43889c8528826dd351a, type: 3}
+  bossMusic: {fileID: 8300000, guid: d7796b83828d84f6e8c1852c3ad18912, type: 3}
   gameOverMusic: {fileID: 8300000, guid: 97fd68eb44a724eae8126aaa4527b15d, type: 3}
   fadeDuration: 10
 --- !u!1 &1461956900

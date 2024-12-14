@@ -8,8 +8,11 @@ public class MusicManager : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private AudioClip dayMusic;
     [SerializeField] private AudioClip nightMusic;
+    [SerializeField] private AudioClip bossMusic;
     [SerializeField] private AudioClip gameOverMusic;
     [SerializeField] private float fadeDuration;
+
+    private bool isPlayingBossMusic;
 
     void Awake()
     {
@@ -39,6 +42,17 @@ public class MusicManager : MonoBehaviour
         StartCoroutine(FadeMusic(nightMusic));
     }
 
+    public void FadeToBossMusic()
+    {
+        isPlayingBossMusic = true;
+        StartCoroutine(FadeMusic(bossMusic));
+    }
+
+    public void StopBossMusic() {
+        isPlayingBossMusic = false;
+        WaveManager.Instance.DecideMusic();
+    }
+
     private IEnumerator FadeMusic(AudioClip newClip)
     {
         // Fade out current music
@@ -49,14 +63,11 @@ public class MusicManager : MonoBehaviour
             audioSource.volume = Mathf.Lerp(startVolume, 0, t / fadeDuration);
             yield return null;
         }
-        // audioSource.volume = 0;
-        // audioSource.Stop();
 
         // Wait for a couple of seconds
         yield return new WaitForSeconds(2);
         audioSource.volume = 0;
         audioSource.Stop();
-
 
         // Switch to new music and fade in
         audioSource.clip = newClip;
@@ -70,5 +81,4 @@ public class MusicManager : MonoBehaviour
         }
         audioSource.volume = startVolume;
     }
-
 }
