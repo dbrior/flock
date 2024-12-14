@@ -89,7 +89,7 @@ SpriteRenderer:
   m_SortingLayerID: 1918353767
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2084059419, guid: 84cf8298e372642439694efda2534429, type: 3}
+  m_Sprite: {fileID: -301738310, guid: 84cf8298e372642439694efda2534429, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
   blockSound: {fileID: 8300000, guid: 1ccd0c85c293e4bc8973ae50b1baa6e2, type: 3}
   critSound: {fileID: 8300000, guid: bf14a966baaf84a86b7432f312b97173, type: 3}
   deathSound: {fileID: 0}
-  hitAnimator: {fileID: 0}
+  hitAnimator: {fileID: 7901907450694209735}
   isBoss: 0
   randomizePitch: 0
   isIndestructible: 0
