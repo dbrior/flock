@@ -10402,7 +10402,7 @@ MonoBehaviour:
   blockSound: {fileID: 0}
   critSound: {fileID: 0}
   deathSound: {fileID: 0}
-  hitAnimator: {fileID: 0}
+  hitAnimator: {fileID: 512712093}
   isBoss: 0
   randomizePitch: 0
   isIndestructible: 0
@@ -10480,7 +10480,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -13655,8 +13655,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Size: {x: 9.986876, y: 1.7908463, z: 4}
-  m_Center: {x: -0.07050872, y: 2.739724, z: 0}
+  m_Size: {x: 9.986876, y: 1.8690416, z: 4}
+  m_Center: {x: -0.07050896, y: 2.7006264, z: 0}
   m_Area: 3
   m_AffectedAgents: ffffffff
 --- !u!1 &1013141124
@@ -16911,6 +16911,9 @@ MonoBehaviour:
   openers:
     serializedVersion: 2
     m_Bits: 16392
+  audioSource: {fileID: 512712091}
+  openSound: {fileID: 8300000, guid: d5feeb91c71b94a41b3058d2777455eb, type: 3}
+  closeSound: {fileID: 8300000, guid: b7f162e6a62dd4e38bf655b650f953c8, type: 3}
 --- !u!61 &1447611134
 BoxCollider2D:
   m_ObjectHideFlags: 0
