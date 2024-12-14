@@ -4,6 +4,8 @@ using UnityEngine.Rendering.Universal;
 
 public class ChromaticAberrationRandomizer : MonoBehaviour
 {
+    public static ChromaticAberrationRandomizer Instance {get; private set;}
+
     [Header("Randomization Settings")]
     [Tooltip("The Volume component to modify")]
     public Volume globalVolume;
@@ -40,6 +42,11 @@ public class ChromaticAberrationRandomizer : MonoBehaviour
 
     // Randomization state
     private bool isRandomizing;
+
+    void Awake() {
+        if (Instance == null) {Instance = this;}
+        else {Destroy(gameObject);}
+    }
 
     private void Start()
     {
@@ -115,6 +122,7 @@ public class ChromaticAberrationRandomizer : MonoBehaviour
 
         isRandomizing = true;
         SetNewTarget();
+        chromaticAberration.intensity.value = 1f;
         lerpTime = 0f;
         changeTimer = 0f;
     }

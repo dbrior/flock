@@ -39,6 +39,8 @@ public class Sheep : MonoBehaviour
     [SerializeField] private float minWaitTime;
     [SerializeField] private float maxWaitTime;
 
+    private float normalVolume;
+
 
     void Awake() {
         audioSource = GetComponent<AudioSource>();

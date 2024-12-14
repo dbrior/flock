@@ -12,7 +12,9 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioClip gameOverMusic;
     [SerializeField] private float fadeDuration;
 
-    private bool isPlayingBossMusic;
+    public bool isPlayingBossMusic {get; private set;}
+    private float normalVolume;
+    private float normalFadeDuration;
 
     void Awake()
     {
@@ -44,41 +46,47 @@ public class MusicManager : MonoBehaviour
 
     public void FadeToBossMusic()
     {
+        normalVolume = audioSource.volume;
+        normalFadeDuration = fadeDuration;
         isPlayingBossMusic = true;
+        fadeDuration = (12.8f)/2f;
         StartCoroutine(FadeMusic(bossMusic));
+        audioSource.volume = normalVolume;
     }
 
     public void StopBossMusic() {
         isPlayingBossMusic = false;
+        audioSource.volume = normalVolume;
+        fadeDuration = normalFadeDuration;
         WaveManager.Instance.DecideMusic();
     }
 
-    private IEnumerator FadeMusic(AudioClip newClip)
+    private IEnumerator FadeMusic(AudioClip newClip, float endingVolume = -1f)
     {
         // Fade out current music
         float startVolume = audioSource.volume;
-        float currVolume = startVolume;
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
             audioSource.volume = Mathf.Lerp(startVolume, 0, t / fadeDuration);
             yield return null;
         }
 
-        // Wait for a couple of seconds
-        yield return new WaitForSeconds(2);
+        // // Wait for a couple of seconds
+        // yield return new WaitForSeconds(1f);
         audioSource.volume = 0;
         audioSource.Stop();
 
         // Switch to new music and fade in
         audioSource.clip = newClip;
+        audioSource.volume = endingVolume;
         audioSource.Play();
 
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            audioSource.volume = Mathf.Lerp(0, startVolume, t / fadeDuration);
+            audioSource.volume = Mathf.Lerp(0, endingVolume < 0 ? startVolume : endingVolume, t / fadeDuration);
 
             yield return null;
         }
-        audioSource.volume = startVolume;
+        audioSource.volume = endingVolume < 0 ? startVolume : endingVolume;
     }
 }

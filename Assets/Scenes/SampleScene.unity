@@ -11369,18 +11369,6 @@ MonoBehaviour:
   onBossSpawn:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1495501799}
-        m_TargetAssemblyTypeName: ChromaticAberrationRandomizer, Assembly-CSharp
-        m_MethodName: EnableRandomization
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1432350825}
         m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
         m_MethodName: FadeToBossMusic
@@ -11396,21 +11384,9 @@ MonoBehaviour:
   onBossDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1495501799}
-        m_TargetAssemblyTypeName: ChromaticAberrationRandomizer, Assembly-CSharp
-        m_MethodName: DisableRandomization
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1432350822}
-        m_TargetAssemblyTypeName: ChromaticAberrationRandomizer, Assembly-CSharp
-        m_MethodName: DisableRandomization
+      - m_Target: {fileID: 1432350825}
+        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+        m_MethodName: StopBossMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11421,7 +11397,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   wakeTime: 9
-  bossSpawnDayInterval: 5
+  bossSpawnDayInterval: 1
   bossList:
   - {fileID: 7156904570195260950, guid: c5f724e2c231044a78c0dc8b07a5b5c3, type: 3}
   bossSpawnLocation: {fileID: 1904274195}

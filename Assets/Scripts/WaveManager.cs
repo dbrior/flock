@@ -71,11 +71,17 @@ public class WaveManager : MonoBehaviour
         currentTimeSeconds = wakeTime * (dayLengthSeconds / 24f);
     }
 
-    private void SpawnBoss() {
+    IEnumerator SpawnBoss() {
+        shouldSpawnBoss = false;
+        onBossSpawn?.Invoke();
+        yield return new WaitForSeconds(12.8f);
+        ChromaticAberrationRandomizer.Instance.EnableRandomization();
+
+
         float multiplier = Mathf.Pow(2, (currDay/bossSpawnDayInterval)-1);
 
         GameObject prefab = bossList[Random.Range(0, bossList.Count)];
-        GameObject bossObj =Instantiate(prefab, bossSpawnLocation.position, bossSpawnLocation.rotation);
+        GameObject bossObj = Instantiate(prefab, bossSpawnLocation.position, bossSpawnLocation.rotation);
 
         // Increase boss health
         Damagable bossHealth = bossObj.GetComponent<Damagable>();
@@ -84,6 +90,7 @@ public class WaveManager : MonoBehaviour
 
         // Set onDeath
         bossHealth.onDeath = onBossDeath;
+        bossHealth.onDeath.AddListener(() => ChromaticAberrationRandomizer.Instance.EnableRandomization());
 
         // Increase boss damage
         // TODO: this is specific to occultist boss
@@ -93,9 +100,6 @@ public class WaveManager : MonoBehaviour
         // Set boss title w/ level
         TextSetter bossHealthText = bossObj.GetComponent<TextSetter>();
         bossHealthText.SetText("ARCANE    OCCULTIST    -    LVL     " + (currDay/bossSpawnDayInterval));
-
-        shouldSpawnBoss = false;
-        onBossSpawn?.Invoke();
     }
 
     public int GetCurrentDay() {
@@ -188,17 +192,17 @@ public class WaveManager : MonoBehaviour
 
             // Set toggleable lights
             float currentTime = getCurrentTime();
-            if (!lightsOn && (currentTime < lightsTurnOffTime || currentTime >= lightsTurnOnTime)) {
+            if (!MusicManager.Instance.isPlayingBossMusic && !lightsOn && (currentTime < lightsTurnOffTime || currentTime >= lightsTurnOnTime)) {
                 TurnOnLights();
                 MusicManager.Instance.FadeToNightMusic();
-            } else if (lightsOn && (currentTime >= lightsTurnOffTime && currentTime < lightsTurnOnTime)) {
+            } else if (!MusicManager.Instance.isPlayingBossMusic && lightsOn && (currentTime >= lightsTurnOffTime && currentTime < lightsTurnOnTime)) {
                 TurnOffLights();
                 MusicManager.Instance.FadeToDayMusic();
             }
 
             // Spawn boss
-            if (shouldSpawnBoss && currentTime >= 21) {
-                SpawnBoss();
+            if (shouldSpawnBoss && currentTime >= 22f) {
+                StartCoroutine("SpawnBoss");
             }
         }
         EndWave();
