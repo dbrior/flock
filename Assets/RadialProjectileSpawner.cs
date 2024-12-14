@@ -63,9 +63,13 @@ public class RadialProjectileSpawner : MonoBehaviour
         }
     }
 
+    public void SetDamage(float newDamage) {
+        projectileDamage = newDamage;
+    }
+
     IEnumerator Randomization() {
         while (true) {
-            rotationSpeed = Random.Range(0f, 30f);
+            rotationSpeed = Random.Range(-30f, 30f);
             attackIntervalSec = Random.Range(0.4f, 1f);
             angleOffset = Random.Range(0, 90f);
             // projectileCount = Random.Range(3, 15);

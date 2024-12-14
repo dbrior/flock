@@ -203,7 +203,7 @@ public class WaveManager : MonoBehaviour
             }
 
             // Spawn boss
-            if (shouldSpawnBoss && currentTime >= 21f) {
+            if (shouldSpawnBoss && currentTime >= 19f) {
                 Debug.Log("Starting boss spawn");
                 StartCoroutine("SpawnBoss");
             }

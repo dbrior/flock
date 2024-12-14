@@ -49,7 +49,6 @@ public class DamageNumberSpawner : MonoBehaviour
 
     public void SpawnDamageNumber(Vector3 position, string damageText, DamageNumberType type)
     {
-        Debug.Log("SPawning damage number");
         // Instantiate the damage number prefab under the world-space canvas
         GameObject damageNumber = Instantiate(damageNumberPrefab, worldSpaceCanvas.transform);
 

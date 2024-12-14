@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpinnerAttacker : MonoBehaviour
 {
-    [SerializeField] private List<Spinner> spinners;
+    [SerializeField] private List<RadialProjectileSpawner> spinners;
     [SerializeField] private float damage;
 
     void Start() {
@@ -17,7 +17,7 @@ public class SpinnerAttacker : MonoBehaviour
 
     public void SetDamage(float newDamage) {
         damage = newDamage;
-        foreach (Spinner spinner in spinners) {
+        foreach (RadialProjectileSpawner spinner in spinners) {
             spinner.SetDamage(damage);
         }
     }

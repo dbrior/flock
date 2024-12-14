@@ -46,6 +46,7 @@ public class MusicManager : MonoBehaviour
 
     public void FadeToBossMusic()
     {
+        StopCoroutine("FadeMusic");
         normalVolume = audioSource.volume;
         normalFadeDuration = fadeDuration;
         isPlayingBossMusic = true;
