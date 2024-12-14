@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     public List<Transform> hunterSlots;
     [SerializeField] private AudioClip stepSound;
     public Spinner spinner;
+    [SerializeField] private LayerMask attackLayer;
     
     void Awake()
     {
@@ -197,10 +198,11 @@ public class Player : MonoBehaviour
 
     public void OnAttack() {
         if (isAttacking || inMenu) return;
-        Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, attackRadius);
-        if (objectsInRange.Length > 0) {
-            foreach (Collider2D obj in objectsInRange) {
-                if (obj.gameObject != gameObject && obj.TryGetComponent<Damagable>(out Damagable damagable)) {
+        Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(transform.position, attackRadius);
+        if (collidersInRange.Length > 0) {
+            foreach (Collider2D col in collidersInRange) {
+                GameObject obj = col.gameObject;
+                if (((1 << obj.layer) & attackLayer) != 0 && obj != gameObject && obj.TryGetComponent<Damagable>(out Damagable damagable)) {
                     damagable.Hit(transform.position, attackDamange, knockbackForce);
                 }
             }
