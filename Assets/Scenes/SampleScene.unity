@@ -11366,6 +11366,36 @@ MonoBehaviour:
   sceneLight: {fileID: 619394801}
   lightsTurnOffTime: 5.5
   lightsTurnOnTime: 18
+  onBossSpawn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1495501799}
+        m_TargetAssemblyTypeName: ChromaticAberrationRandomizer, Assembly-CSharp
+        m_MethodName: EnableRandomization
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onBossDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1495501799}
+        m_TargetAssemblyTypeName: ChromaticAberrationRandomizer, Assembly-CSharp
+        m_MethodName: DisableRandomization
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   wakeTime: 9
   bossSpawnDayInterval: 5
   bossList:
@@ -17076,6 +17106,7 @@ MonoBehaviour:
   lerpDuration: 3
   changeInterval: 3
   lerpSmoothing: 1
+  startEnabled: 0
 --- !u!1 &1496172505
 GameObject:
   m_ObjectHideFlags: 0

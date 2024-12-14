@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
 
 [System.Serializable]
@@ -38,6 +39,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private Light2D sceneLight;
     [SerializeField] private float lightsTurnOffTime;
     [SerializeField] private float lightsTurnOnTime;
+    [SerializeField] private UnityEvent onBossSpawn;
+    [SerializeField] private UnityEvent onBossDeath;
 
     private bool lightsOn;
     private List<Light2D> toggleableLights;
@@ -79,6 +82,9 @@ public class WaveManager : MonoBehaviour
         bossHealth.SetMaxHealth(bossHealth.GetMaxHealth() * multiplier);
         bossHealth.RestoreHealth();
 
+        // Set onDeath
+        bossHealth.onDeath = onBossDeath;
+
         // Increase boss damage
         // TODO: this is specific to occultist boss
         SpinnerAttacker bossSpinners = bossObj.GetComponent<SpinnerAttacker>();
@@ -89,6 +95,7 @@ public class WaveManager : MonoBehaviour
         bossHealthText.SetText("ARCANE    OCCULTIST    -    LVL     " + (currDay/bossSpawnDayInterval));
 
         shouldSpawnBoss = false;
+        onBossSpawn?.Invoke();
     }
 
     public int GetCurrentDay() {

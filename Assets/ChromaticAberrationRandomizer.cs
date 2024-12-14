@@ -26,6 +26,9 @@ public class ChromaticAberrationRandomizer : MonoBehaviour
     [Range(0.1f, 10f)]
     public float lerpSmoothing = 1f;
 
+    [Tooltip("Start with randomization enabled")]
+    public bool startEnabled = true;
+
     // Reference to the Chromatic Aberration component
     private ChromaticAberration chromaticAberration;
 
@@ -34,6 +37,9 @@ public class ChromaticAberrationRandomizer : MonoBehaviour
     private float targetIntensity;
     private float lerpTime;
     private float changeTimer;
+
+    // Randomization state
+    private bool isRandomizing;
 
     private void Start()
     {
@@ -55,11 +61,22 @@ public class ChromaticAberrationRandomizer : MonoBehaviour
 
         // Initial setup
         currentIntensity = chromaticAberration.intensity.value;
-        SetNewTarget();
+        
+        // Set initial randomization state
+        if (startEnabled)
+        {
+            EnableRandomization();
+        }
+        else
+        {
+            DisableRandomization();
+        }
     }
 
     private void Update()
     {
+        if (!isRandomizing) return;
+
         // Update timers
         changeTimer += Time.deltaTime;
         lerpTime += Time.deltaTime;
@@ -90,11 +107,56 @@ public class ChromaticAberrationRandomizer : MonoBehaviour
     }
 
     /// <summary>
+    /// Enables randomization of Chromatic Aberration
+    /// </summary>
+    public void EnableRandomization()
+    {
+        if (chromaticAberration == null) return;
+
+        isRandomizing = true;
+        SetNewTarget();
+        lerpTime = 0f;
+        changeTimer = 0f;
+    }
+
+    /// <summary>
+    /// Disables randomization and sets Chromatic Aberration to zero
+    /// </summary>
+    public void DisableRandomization()
+    {
+        if (chromaticAberration == null) return;
+
+        isRandomizing = false;
+        currentIntensity = 0f;
+        targetIntensity = 0f;
+        lerpTime = 0f;
+        changeTimer = 0f;
+        chromaticAberration.intensity.value = 0f;
+    }
+
+    /// <summary>
     /// Manually set a specific target intensity
     /// </summary>
     public void SetTargetIntensity(float intensity)
     {
+        if (!isRandomizing) return;
+
         targetIntensity = Mathf.Clamp(intensity, minIntensity, maxIntensity);
         lerpTime = 0f;
+    }
+
+    /// <summary>
+    /// Toggle the randomization state
+    /// </summary>
+    public void ToggleRandomization()
+    {
+        if (isRandomizing)
+        {
+            DisableRandomization();
+        }
+        else
+        {
+            EnableRandomization();
+        }
     }
 }
