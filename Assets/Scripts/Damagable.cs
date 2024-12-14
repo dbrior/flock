@@ -159,6 +159,7 @@ public class Damagable : MonoBehaviour
 
         // Death
         if(currHealth <= 0) {
+            DamageNumberSpawner.Instance.SpawnStatusIcon(hitNumberLocation.position, StatusIconType.Death);
             if (deathSound != null) {
                 AudioSource.PlayClipAtPoint(deathSound, transform.position, 1f);
             }

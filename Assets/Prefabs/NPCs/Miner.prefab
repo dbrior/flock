@@ -755,11 +755,13 @@ MonoBehaviour:
   hitCooldownSec: 1
   attackZone: {fileID: 107929741859401124}
   indiscriminantDamage: 0
-  attackLandSound: {fileID: 0}
+  attackLandSound: {fileID: 8300000, guid: c06999793211442e68ab6ac44367b204, type: 3}
   onAttackLand:
     m_PersistentCalls:
       m_Calls: []
   isImmediateAttack: 0
+  isUnblockable: 0
+  canHitSelf: 0
 --- !u!114 &6079194072480041945
 MonoBehaviour:
   m_ObjectHideFlags: 0

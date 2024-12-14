@@ -13,7 +13,8 @@ public enum DamageNumberType {
 
 [System.Serializable]
 public enum StatusIconType {
-    Block
+    Block,
+    Death
 }
 
 [System.Serializable]
