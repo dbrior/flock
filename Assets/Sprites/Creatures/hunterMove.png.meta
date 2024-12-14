@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fff45504fcf2847a58b63aeb2e28cbf0
+guid: 84cf8298e372642439694efda2534429
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,64 +123,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gunnerAttack_0
+      name: hunter_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 48
-        height: 32
+        height: 48
       alignment: 9
-      pivot: {x: 0.665, y: 0.32}
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e70235ccb2fa045c785a912808e6743b
-      internalID: -718863978
+      spriteID: 2b4a7152a1c4b4751b0d5f2b4b5c154d
+      internalID: 556492761
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gunnerAttack_1
+      name: hunter_2
       rect:
         serializedVersion: 2
         x: 48
         y: 0
         width: 48
-        height: 32
+        height: 48
       alignment: 9
-      pivot: {x: 0.665, y: 0.32}
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65c008a2029e0418e98dd264618b07aa
-      internalID: 685780878
+      spriteID: 2b9efa82602a44209858824645461a14
+      internalID: -111718203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gunnerAttack_2
+      name: hunter_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 48
-        height: 32
+        height: 48
       alignment: 9
-      pivot: {x: 0.665, y: 0.32}
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 635245bc6274144c185150d0524148d1
-      internalID: -599140544
+      spriteID: ae8f9d56b713f4d4496d7a11548027b8
+      internalID: 1139533400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hunter_5
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63b1ca5d81e9b487c951a0635ac71f33
+      internalID: -1086684177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hunter_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 682ea6394104641e69c85cbf15d595e2
+      internalID: -2084059419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hunter_8
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c871d09b959d4412a6df74e05b9144c
+      internalID: -1795643364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hunter_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b741df255fad24d9f8048341dbb915f5
+      internalID: -2145402156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hunterMove_0
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e01803ba34c30430d9c6ea066c66456f
+      internalID: -301738310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hunterMove_1
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30235ea3ddfa04f9eba5af5d8b2aad97
+      internalID: 649227172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hunterMove_2
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c530273b02c8447ada7ced69eb9e1b87
+      internalID: -52601149
       vertices: []
       indices: 
       edges: []
@@ -196,9 +343,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      gunnerAttack_0: -718863978
-      gunnerAttack_1: 685780878
-      gunnerAttack_2: -599140544
+      hunterMove_0: -301738310
+      hunterMove_1: 649227172
+      hunterMove_2: -52601149
+      hunter_0: 556492761
+      hunter_1: -789871678
+      hunter_2: -111718203
+      hunter_3: 1139533400
+      hunter_4: -1649544867
+      hunter_5: -1086684177
+      hunter_6: -2084059419
+      hunter_7: -382393304
+      hunter_8: -1795643364
+      hunter_9: -2145402156
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

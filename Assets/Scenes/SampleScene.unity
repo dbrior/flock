@@ -130721,7 +130721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6634000369271850614, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
       propertyPath: workerSlots
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6634000369271850614, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
       propertyPath: wanderAnchor
