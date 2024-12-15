@@ -36,7 +36,7 @@ public class CardManager : MonoBehaviour
         // UpgradeType.WateringRadius,
         // UpgradeType.Strength,
         UpgradeType.Damage,
-        UpgradeType.Knockback,
+        // UpgradeType.Knockback,
         // UpgradeType.MoveSpeed,
         UpgradeType.MaxHealth,
         UpgradeType.Heal,
