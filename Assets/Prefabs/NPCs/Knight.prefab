@@ -205,10 +205,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0.3
+  MaxDistance: 5
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -241,7 +241,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -328,7 +328,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathfindingIntervalSec: 3
-  shouldWander: 1
   anchoredWandering: 1
   wanderingAnchor: {fileID: 0}
   wanderRadius: 0.4
@@ -408,6 +407,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isImmediateAttack: 0
+  isUnblockable: 0
+  canHitSelf: 0
 --- !u!114 &1048031402830437064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,9 +443,11 @@ MonoBehaviour:
   scanIntervalSec: 0
   currentTask:
     transform: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
     type: 0
     item: {fileID: 0}
     amount: 0
+    isPositionTask: 0
 --- !u!114 &3161028704171599477
 MonoBehaviour:
   m_ObjectHideFlags: 0

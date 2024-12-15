@@ -213,10 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b411a01b984c44a1d860b883bb011584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.25
-  distanceTolerance: 0.01
   pathfindingIntervalSec: 1
-  shouldWander: 0
   anchoredWandering: 0
   wanderingAnchor: {fileID: 0}
   wanderRadius: 0.6
@@ -326,6 +323,7 @@ MonoBehaviour:
   hitAnimator: {fileID: 2032834718964430163}
   isBoss: 0
   randomizePitch: 1
+  isIndestructible: 0
 --- !u!114 &7959564610484802502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +353,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isImmediateAttack: 0
+  isUnblockable: 0
+  canHitSelf: 0
 --- !u!114 &6309903587458223624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,19 +385,19 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 1
+  Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0.3
+  MaxDistance: 5
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -430,7 +430,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -533,6 +533,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23190f90813a40fcb4855dc4ae192b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFlippingSprite: 0
+  isInverted: 0
 --- !u!1 &3395187808460343761
 GameObject:
   m_ObjectHideFlags: 0
