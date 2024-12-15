@@ -16,10 +16,9 @@ public class DoorTrigger : MonoBehaviour
         if (col.isTrigger) return;
 
         numObjectsInRange += 1;
-        if (numObjectsInRange == 1) animator.SetTrigger("Open");
-
-        if (audioSource != null && openSound != null) {
-            audioSource.PlayOneShot(openSound);
+        if (numObjectsInRange == 1) {
+            animator.SetTrigger("Open");
+            if (audioSource != null && openSound != null) audioSource.PlayOneShot(openSound);
         }
     }
 
@@ -28,10 +27,9 @@ public class DoorTrigger : MonoBehaviour
         if (col.isTrigger) return;
 
         numObjectsInRange -= 1;
-        if (numObjectsInRange == 0) animator.SetTrigger("Close");
-
-        if (audioSource != null && closeSound != null) {
-            audioSource.PlayOneShot(closeSound);
+        if (numObjectsInRange == 0) {
+            animator.SetTrigger("Close");
+            if (audioSource != null && closeSound != null) audioSource.PlayOneShot(closeSound);
         }
     }
 }
