@@ -3897,8 +3897,10 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
   - rank: 0.5
     color: {r: 0.44705883, g: 0.77254903, b: 1, a: 1}
-  - rank: 0.9
+  - rank: 0.8
     color: {r: 0.92941177, g: 0.34509805, b: 1, a: 1}
+  - rank: 0.95
+    color: {r: 1, g: 0.83267367, b: 0, a: 1}
   cardOpenSound: {fileID: 8300000, guid: 134ed23a30fbf43029eb7e10d54e478a, type: 3}
 --- !u!82 &339956582
 AudioSource:
