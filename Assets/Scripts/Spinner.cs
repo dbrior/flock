@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Spinner : MonoBehaviour
 {
-    [SerializeField] private float fireIntervalSec;
     public float rotateSpeed; // Speed of rotation
     public GameObject prefab; // Prefab to spawn
     public float damage;
     public int instanceCount;
     public float radius = 0.4f; // Base radius of the circle
-    public float rotationOffset;
+    public float rotationOffest;
     public FloatRange radiusSize; // Assumed to have 'min' and 'max' values
     public bool hasDynamicRadius;
     public float radiusChangeSpeed;
@@ -26,7 +25,6 @@ public class Spinner : MonoBehaviour
         baseRadius = radius; // Store the initial radius as the base radius
         baseRotateSpeed = rotateSpeed; // Store the initial rotate speed as the base rotate speed
         SpawnRadialInstances();
-        StartCoroutine(DeployProjectiles());
     }
 
     void Update()
@@ -35,7 +33,7 @@ public class Spinner : MonoBehaviour
         if (hasDynamicRadius)
         {
             // Smooth pulsing effect using sine wave
-            float pulse = Mathf.Sin((Time.time + timeOffset) * radiusChangeSpeed) * 0.5f + 0.5f; // Value between 0 and 1
+            float pulse = Mathf.Sin((Time.time+timeOffset) * radiusChangeSpeed) * 0.5f + 0.5f; // Value between 0 and 1
             radius = Mathf.Lerp(radiusSize.min, radiusSize.max, pulse);
         }
 
@@ -62,10 +60,14 @@ public class Spinner : MonoBehaviour
         DeployDamage();
     }
 
-    public void SetDamage(float newDamage)
-    {
+    public void SetDamage(float newDamage) {
         damage = newDamage;
         DeployDamage();
+    }
+
+    public void SetSpeed(float newSpeed) {
+        baseRotateSpeed = newSpeed;
+        rotateSpeed = newSpeed;
     }
 
     public void DeployDamage()
@@ -90,11 +92,9 @@ public class Spinner : MonoBehaviour
             // Instantiate the prefab as a child of the spinner
             GameObject instance = Instantiate(prefab, transform);
             Projectile projectile = instance.GetComponent<Projectile>();
-            projectile.isKinematic = false;
             projectile.damage = damage;
 
-            if (transform.parent.gameObject.TryGetComponent<Collider2D>(out Collider2D collider))
-            {
+            if (transform.parent.gameObject.TryGetComponent<Collider2D>(out Collider2D collider)) {
                 projectile.SetOwner(collider);
             }
 
@@ -108,7 +108,7 @@ public class Spinner : MonoBehaviour
             instance.transform.localPosition = localPosition;
 
             // Rotate the instance to face outward
-            instance.transform.localRotation = Quaternion.Euler(0, 0, angle + rotationOffset);
+            instance.transform.localRotation = Quaternion.Euler(0, 0, angle + rotationOffest);
 
             spawnedInstances.Add(instance);
         }
@@ -140,28 +140,5 @@ public class Spinner : MonoBehaviour
         }
         spawnedInstances.Clear();
         instanceAngles.Clear();
-    }
-
-    IEnumerator DeployProjectiles()
-    {
-        while (true)
-        {
-            foreach (GameObject instance in spawnedInstances)
-            {
-                if (instance != null)
-                {
-                    Projectile projectile = Instantiate(prefab, instance.transform.position, instance.transform.rotation).GetComponent<Projectile>();
-                    // Set the heading to make the projectile fly tangentially
-                    Vector3 spawnPosition = instance.transform.position;
-                    Vector2 tangentDirection = new Vector2(-spawnPosition.y, spawnPosition.x).normalized;
-                    projectile.SetHeading(tangentDirection);
-
-                    // Detach the projectile from the spinner
-                    instance.transform.parent = null;
-                }
-            }
-
-            yield return new WaitForSeconds(fireIntervalSec);
-        }
     }
 }

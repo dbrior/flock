@@ -4076,6 +4076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayMusic: {fileID: 8300000, guid: 7af21010e2f7542dfbb44aa5fbd155aa, type: 3}
   nightMusic: {fileID: 8300000, guid: 002b4fcfd2aba43889c8528826dd351a, type: 3}
+  bossMusic: {fileID: 0}
   gameOverMusic: {fileID: 8300000, guid: 97fd68eb44a724eae8126aaa4527b15d, type: 3}
   fadeDuration: 10
 --- !u!82 &1327186915

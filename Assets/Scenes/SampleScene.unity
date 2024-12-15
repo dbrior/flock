@@ -10400,7 +10400,7 @@ MonoBehaviour:
   regenEnabled: 1
   regenPerSecond: 850
   regenDelay: 10
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 5ef2e071b515b41e0a5253e608427903, type: 3}
   blockSound: {fileID: 0}
   critSound: {fileID: 0}
   deathSound: {fileID: 0}
@@ -14891,7 +14891,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1205158261}
   - component: {fileID: 1205158262}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Spinning Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14925,13 +14925,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4f6711b538e42e39f02b95f58d5172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireIntervalSec: 0
   rotateSpeed: 150
   prefab: {fileID: 3696246756771161768, guid: 0c86fd0d95e9c4388917fc44df1bdd38, type: 3}
   damage: 20
   instanceCount: 0
   radius: 0.5
-  rotationOffset: 0
+  rotationOffest: -90
   radiusSize:
     min: 0
     max: 0
@@ -129762,7 +129761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2787510955347736276, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
       propertyPath: costs.Array.data[0].amount
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2787510955347736276, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -129814,7 +129813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3106527261659979330, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3238898209235799738, guid: eae647bb71edd402c9cb36ad269db8e1, type: 3}
       propertyPath: m_AnchorMax.y
@@ -130689,7 +130688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2588375515361313247, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2777728608378045438, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       propertyPath: m_Name

@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void IncreaseMagicSpeed(float pctIncrease) {
-        currentPlayer.spinner.rotateSpeed *= 1f + pctIncrease;
+        currentPlayer.spinner.SetSpeed(currentPlayer.spinner.rotateSpeed * (1f + pctIncrease));
     }
 
     public void IncreaseMagicDamage(float pctIncrease) {

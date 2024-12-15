@@ -193,11 +193,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9473c1412294220b2d220c0820e507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currency: {fileID: 11400000, guid: a27554d8a44d04a2cafb58ac9c285c3a, type: 2}
-  item: {fileID: 11400000, guid: 52e6d83b8e3184acba115f81645f1521, type: 2}
+  costs: []
   costScaling: 0.2
-  purchaseCount: 0
-  costCurrencies: []
+  onPurchase:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchasePlayer:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1708076044939476587
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,11 +620,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9473c1412294220b2d220c0820e507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currency: {fileID: 11400000, guid: a27554d8a44d04a2cafb58ac9c285c3a, type: 2}
-  item: {fileID: 11400000, guid: f2023c9c9a2254e47bc3afcf4ac6ee4b, type: 2}
+  costs: []
   costScaling: 0.2
-  purchaseCount: 0
-  costCurrencies: []
+  onPurchase:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchasePlayer:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3663027683629520095
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +713,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1905782802077306739}
   - component: {fileID: 3223731629986144288}
-  - component: {fileID: 8062665163038571495}
   m_Layer: 0
   m_Name: Currency
   m_TagString: Untagged
@@ -762,21 +767,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &8062665163038571495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3867504892515397785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 510ece79815054befa5a8f024a3df20d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costText: {fileID: 4421038490260455701}
-  currency: {fileID: 11400000, guid: a27554d8a44d04a2cafb58ac9c285c3a, type: 2}
-  cost: 20
 --- !u!1 &4761375151371206611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,7 +1184,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3195059002121240816}
   - component: {fileID: 7832403928798057038}
-  - component: {fileID: 876643508046522773}
   m_Layer: 0
   m_Name: Currency
   m_TagString: Untagged
@@ -1249,21 +1238,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &876643508046522773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5978793229504635032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 510ece79815054befa5a8f024a3df20d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costText: {fileID: 9092735257801321271}
-  currency: {fileID: 11400000, guid: a27554d8a44d04a2cafb58ac9c285c3a, type: 2}
-  cost: 20
 --- !u!1 &6818443282315996657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,6 +1622,10 @@ MonoBehaviour:
   farmHandPrefab: {fileID: 7163764010931372815, guid: 03c8f09d66e4a4965bc2bb8862a363bb, type: 3}
   radius: 1
   gridStep: 0.16
+  cropType: 0
+  openTasks: []
+  claimedTasks: []
+  allTasks: []
   plotPoints: []
   needsPlant: []
   needsWater: []
@@ -1664,6 +1642,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14f747381c8fc4b3bbfb55508f0f2b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shopWindow: {fileID: 0}
+  lastActivePlayer: {fileID: 0}
 --- !u!212 &7640390671182056006
 SpriteRenderer:
   m_ObjectHideFlags: 0
