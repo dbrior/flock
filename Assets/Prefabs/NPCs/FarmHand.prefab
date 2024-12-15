@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 3405401000728554832}
   - component: {fileID: 675482720812367264}
   - component: {fileID: -3013971189556051067}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: FarmHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
