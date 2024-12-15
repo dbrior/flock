@@ -92,7 +92,7 @@ public class WaveManager : MonoBehaviour
 
         // Set onDeath
         bossHealth.onDeath = onBossDeath;
-        bossHealth.onDeath.AddListener(() => ChromaticAberrationRandomizer.Instance.EnableRandomization());
+        bossHealth.onDeath.AddListener(() => ChromaticAberrationRandomizer.Instance.DisableRandomization());
 
         // Increase boss damage
         // TODO: this is specific to occultist boss
