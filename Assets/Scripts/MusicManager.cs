@@ -10,6 +10,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioClip nightMusic;
     [SerializeField] private AudioClip bossMusic;
     [SerializeField] private AudioClip gameOverMusic;
+    [SerializeField] private AudioClip startingMusic;
     [SerializeField] private float fadeDuration;
 
     public bool isPlayingBossMusic {get; private set;}
@@ -25,6 +26,10 @@ public class MusicManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        if (startingMusic != null) {
+            audioSource.clip = startingMusic;
+            audioSource.Play();
+        }
     }
 
     public void GameOver()

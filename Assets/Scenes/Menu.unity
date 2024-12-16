@@ -4078,6 +4078,7 @@ MonoBehaviour:
   nightMusic: {fileID: 8300000, guid: 002b4fcfd2aba43889c8528826dd351a, type: 3}
   bossMusic: {fileID: 0}
   gameOverMusic: {fileID: 8300000, guid: 97fd68eb44a724eae8126aaa4527b15d, type: 3}
+  startingMusic: {fileID: 8300000, guid: 69825c0d2958e484ab805b204051175d, type: 3}
   fadeDuration: 10
 --- !u!82 &1327186915
 AudioSource:
@@ -4091,7 +4092,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7af21010e2f7542dfbb44aa5fbd155aa, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.17
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
