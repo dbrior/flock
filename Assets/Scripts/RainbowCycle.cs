@@ -7,23 +7,10 @@ public class RainbowCycleUnified : MonoBehaviour
     [SerializeField, Range(0.1f, 1.0f)] private float pastelSaturation = 0.5f; // Lower saturation for pastel colors
     [SerializeField, Range(0.5f, 1.0f)] private float pastelBrightness = 0.9f; // Higher brightness for pastel colors
 
-    private SpriteRenderer spriteRenderer;
-    private Light2D spriteLight;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Light2D spriteLight;
 
     private float hue; // Tracks the current hue value (0-1)
-
-    void Awake()
-    {
-        // Get references to the components
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteLight = GetComponent<Light2D>();
-
-        if (spriteRenderer == null)
-            Debug.LogError("No SpriteRenderer found on the GameObject!");
-
-        if (spriteLight == null)
-            Debug.LogError("No Light2D found on the GameObject!");
-    }
 
     void Update()
     {
@@ -35,10 +22,8 @@ public class RainbowCycleUnified : MonoBehaviour
         Color pastelColor = Color.HSVToRGB(hue, pastelSaturation, pastelBrightness);
 
         // Apply the same pastel color to both the sprite and light
-        if (spriteRenderer != null)
-            spriteRenderer.color = pastelColor;
+        if (spriteRenderer != null) spriteRenderer.color = pastelColor;
 
-        if (spriteLight != null)
-            spriteLight.color = pastelColor;
+        if (spriteLight != null) spriteLight.color = pastelColor;
     }
 }
