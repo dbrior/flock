@@ -19,17 +19,22 @@ public class Crop : MonoBehaviour
     private ItemSpawner itemSpawner;
     public bool isWildCrop = false;
 
+    private WorkerBuilding building;
+
     void Awake() {
         totalStates = System.Enum.GetValues(typeof(CropState)).Length;
         TryGetComponent<Animator>(out Animator animatorComp);
         animator = animatorComp;
         itemSpawner = GetComponent<ItemSpawner>();
-
-        SetState(CropState.Dry);
     }
 
     void Start() {
+        if (!isWildCrop) SetState(CropState.Dry);
         StartCoroutine("GrowthTimer");
+    }
+
+    public void SetBuilding(WorkerBuilding newBuilding) {
+        building = newBuilding;
     }
 
     public void SetState(CropState newState) {
@@ -39,11 +44,18 @@ public class Crop : MonoBehaviour
         }
         StopCoroutine("GrowthTimer");
         StartCoroutine("GrowthTimer");
+
+        if (building != null) {
+            if (state == CropState.Dry) building.AddTask(new Task(transform, TaskType.Water));
+            else if (state == CropState.Ready) building.AddTask(new Task(transform, TaskType.Harvest));
+        }
+        
     }
 
     public void Water() {
         if (state == CropState.Dry) {
             SetState(CropState.Watered);
+            if (building != null) building.RemoveTask(new Task(transform, TaskType.Water));
         }
     }
 
@@ -53,6 +65,7 @@ public class Crop : MonoBehaviour
             if (isWildCrop) {
                 CropManager.Instance.RemoveCropImmediately(this);
             } else {
+                if (building != null) building.RemoveTask(new Task(transform, TaskType.Harvest));
                 SetState(CropState.Dry);
             }
         }
@@ -81,8 +94,8 @@ public class Crop : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.TryGetComponent<Player>(out Player player)) {
+    private void OnTriggerStay2D(Collider2D col) {
+        if (col.gameObject.TryGetComponent<CropTools>(out CropTools cropTools)) {
             WorkCrop();
         }
     }

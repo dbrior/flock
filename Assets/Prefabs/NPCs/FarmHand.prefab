@@ -192,7 +192,6 @@ GameObject:
   - component: {fileID: 8102958470551103931}
   - component: {fileID: 523661145092297301}
   - component: {fileID: 2058176332127830880}
-  - component: {fileID: 945959854547658418}
   - component: {fileID: 5942588580837083768}
   - component: {fileID: -8307578134989610405}
   - component: {fileID: -3632959767303206092}
@@ -200,6 +199,8 @@ GameObject:
   - component: {fileID: 3405401000728554832}
   - component: {fileID: 675482720812367264}
   - component: {fileID: -3013971189556051067}
+  - component: {fileID: 3982255305397624346}
+  - component: {fileID: -5671975442024222293}
   m_Layer: 14
   m_Name: FarmHand
   m_TagString: Untagged
@@ -287,31 +288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac935881fb864087aa59e0f68e4a68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  farmhandType: 0
-  farmPlot: {fileID: 0}
-  state: 0
---- !u!114 &945959854547658418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7163764010931372815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ebd2c5eef1c445a907bb14c3828560, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heading: {x: 0, y: 0}
-  shearRadius: 0.1
-  wateringRadius: 0.1
-  pelletDamage: 0
-  allowedPlanting: 1
-  pelletPrefab: {fileID: 0}
-  pelletSpawn: {fileID: 0}
-  pelletSpeed: 0
-  useToolUI: 0
-  toolUI: {fileID: 0}
 --- !u!50 &5942588580837083768
 Rigidbody2D:
   serializedVersion: 4
@@ -389,10 +365,10 @@ MonoBehaviour:
   pathfindingIntervalSec: 3
   anchoredWandering: 0
   wanderingAnchor: {fileID: 0}
-  wanderRadius: 0
+  wanderRadius: 0.6
   wanderingWaitTimeSec:
-    min: 0
-    max: 0
+    min: 3
+    max: 5
 --- !u!95 &-85685462218216491
 Animator:
   serializedVersion: 5
@@ -462,3 +438,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFlippingSprite: 0
   isInverted: 0
+--- !u!114 &3982255305397624346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7163764010931372815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fabbcb77e63541fdb5f4fd0bce717bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5671975442024222293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7163764010931372815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bfbf2fcb20244d0a8dc0f46e95af456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldScanForTasks: 1
+  shouldContinuouslyNavigate: 1
+  scanIntervalSec: 1
+  currentTask:
+    transform: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    type: 0
+    item: {fileID: 0}
+    amount: 0
+    isPositionTask: 0

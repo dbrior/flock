@@ -5,24 +5,15 @@ using UnityEngine;
 
 public class FarmPlot : MonoBehaviour
 {
-    [SerializeField] private GameObject farmHandPrefab;
     [SerializeField] private int radius;
     [SerializeField] private float gridStep;
     [SerializeField] private CropType cropType;
-    public List<Task> openTasks;
-    public List<Task> claimedTasks;
-    public List<Task> allTasks;
     public List<Vector2> plotPoints;
 
-
-    public List<Vector2> needsPlant;
-    public List<Vector2> needsWater;
-    public List<Vector2> needsHarvest;
+    private WorkerBuilding building;
 
     void Awake() {
-        openTasks = new List<Task>();
-        claimedTasks = new List<Task>();
-        allTasks = new List<Task>();
+        building = GetComponent<WorkerBuilding>();
     }
 
     void Start() {
@@ -55,11 +46,6 @@ public class FarmPlot : MonoBehaviour
         return points;
     }
 
-    public void SpawnFarmHand() {
-        Farmhand newFarmHand = Instantiate(farmHandPrefab, transform.position, transform.rotation).GetComponent<Farmhand>();
-        newFarmHand.SetFarmPlot(this);
-    }
-
     public void IncreaseRadius(int delta) {
         radius += delta;
         plotPoints = GetPoints();
@@ -75,34 +61,16 @@ public class FarmPlot : MonoBehaviour
         );
     }
 
-    public void ClaimTask(Task task) {
-        if (openTasks.Contains(task)) openTasks.Remove(task);
-        if (!claimedTasks.Contains(task)) claimedTasks.Add(task);
-    }
-
-    public void UnclaimTask(Task task) {
-        if (claimedTasks.Contains(task)) claimedTasks.Remove(task);
-    }
-
     public void ScanCrops() {
         // All plot points that should have a crop
         List<Vector2> checklist = new List<Vector2>(plotPoints).Select(pos => NormalizeVector2(pos)).ToList();
         List<Vector2> seenLocations = new List<Vector2>();
-
-        openTasks.Clear();
-        allTasks.Clear();
 
         // Check already planted crops in range
         Collider2D[] cols = Physics2D.OverlapBoxAll((Vector2) transform.position, new Vector2(radius,radius), 0);
         foreach (Collider2D col in cols) {
             if (col.gameObject.TryGetComponent<Crop>(out Crop crop)) {
                 seenLocations.Add((Vector2) crop.transform.position);
-
-                if (crop.state == CropState.Dry) {
-                    allTasks.Add(new Task(crop.transform, TaskType.Water));
-                } else if (crop.state == CropState.Ready) {
-                    allTasks.Add(new Task(crop.transform, TaskType.Harvest));
-                }
             }            
         }
         seenLocations = seenLocations.Select(pos => NormalizeVector2(pos)).ToList();
@@ -110,10 +78,8 @@ public class FarmPlot : MonoBehaviour
         // Plant any missing crops
         foreach (Vector2 position in checklist.Except(seenLocations).ToList()) {
             Crop newCrop = CropManager.Instance.PlantCrop(position, cropType);
-            allTasks.Add(new Task(newCrop.transform, TaskType.Water));
+            newCrop.SetBuilding(building);
         }
-
-        openTasks = allTasks.Except(claimedTasks).ToList();
     }
 
     private IEnumerator ContinouslyScan() {

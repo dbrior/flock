@@ -62,7 +62,7 @@ public class Worker : MonoBehaviour
         if (newTask.type == TaskType.CollectItem) {
             targetItem = currentTask.item;
             targetAmount = currentTask.amount;
-        } else if (newTask.type == TaskType.Heal || newTask.type == TaskType.Shear) {
+        } else if (newTask.type == TaskType.Heal || newTask.type == TaskType.Shear || newTask.type == TaskType.Water || newTask.type == TaskType.Harvest) {
             // Do nothing since the target is the one that clears the task once complete
             {}
         } else {

@@ -14595,6 +14595,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058be7ea7ba334a269b99527fd880a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1019494152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427559473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fabbcb77e63541fdb5f4fd0bce717bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1030470410 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1221070959073677034, guid: 87f4a31271dce0e4c91482262178cd9e, type: 3}
@@ -15953,6 +15965,11 @@ Canvas:
   m_SortingLayerID: 1918353767
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!1 &1197285344 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5467946345390835687, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
+  m_PrefabInstance: {fileID: 1824458765872786778}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1205158260
 GameObject:
   m_ObjectHideFlags: 0
@@ -16238,6 +16255,11 @@ CanvasRenderer:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2875299291552086273, guid: b407b9a80b07e43e29de0f99b90ff06a, type: 3}
   m_PrefabInstance: {fileID: 3267423409132580105}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1268098691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 662749721277898806, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
+  m_PrefabInstance: {fileID: 4006263383027849191}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1282277175
 GameObject:
@@ -18517,12 +18539,43 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1229015249276786860, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
   m_PrefabInstance: {fileID: 1824458765872786778}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1197285344}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82bba1e9ecf07495f88439e137dd397f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1495244004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197285344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8787e16089de143489b9d426ffc0bbbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitType: 0
+  taskTypes: 000000000100000002000000
+  workerPrefab: {fileID: 7163764010931372815, guid: 03c8f09d66e4a4965bc2bb8862a363bb, type: 3}
+  workerSlots: 0
+  spawnTransform: {fileID: 1638989342}
+  wanderAnchor: {fileID: 1638989342}
+  isStatlessWorker: 1
+  workerMaxHealth: 0
+  maxHealthUI: {fileID: 0}
+  workerBlockChance: 0
+  blockChanceUI: {fileID: 0}
+  workerDamage: 0
+  damageUI: {fileID: 0}
+  workerAttackCooldownSec: 0
+  attackCooldownUI: {fileID: 0}
+  respawnCooldownSec: 0
+  respawnCooldownUI: {fileID: 0}
+  openTasks: []
+  claimedTasks: []
 --- !u!1 &1495501796
 GameObject:
   m_ObjectHideFlags: 0
@@ -124531,6 +124584,37 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &1638989341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1638989342}
+  m_Layer: 0
+  m_Name: SpawnLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1638989342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638989341}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.176, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1495243993}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1673953429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -125072,12 +125156,43 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6043502756302880637, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
   m_PrefabInstance: {fileID: 4006263383027849191}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1268098691}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82bba1e9ecf07495f88439e137dd397f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1777427960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268098691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8787e16089de143489b9d426ffc0bbbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitType: 0
+  taskTypes: 000000000100000002000000
+  workerPrefab: {fileID: 7163764010931372815, guid: 03c8f09d66e4a4965bc2bb8862a363bb, type: 3}
+  workerSlots: 0
+  spawnTransform: {fileID: 1638989342}
+  wanderAnchor: {fileID: 1638989342}
+  isStatlessWorker: 1
+  workerMaxHealth: 0
+  maxHealthUI: {fileID: 0}
+  workerBlockChance: 0
+  blockChanceUI: {fileID: 0}
+  workerDamage: 0
+  damageUI: {fileID: 0}
+  workerAttackCooldownSec: 0
+  attackCooldownUI: {fileID: 0}
+  respawnCooldownSec: 0
+  respawnCooldownUI: {fileID: 0}
+  openTasks: []
+  claimedTasks: []
 --- !u!114 &1781135532 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5406238782484857094, guid: b407b9a80b07e43e29de0f99b90ff06a, type: 3}
@@ -131823,6 +131938,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 971546518}
     m_Modifications:
+    - target: {fileID: 1229015249276786860, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
+      propertyPath: radius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5467946345390835687, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       propertyPath: m_Name
       value: FarmPlot - Wheat
@@ -131872,12 +131991,36 @@ PrefabInstance:
       value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 6874066509114742862, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874066509114742862, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874066509114742862, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1495243999}
+      objectReference: {fileID: 1495244004}
+    - target: {fileID: 6874066509114742862, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6874066509114742862, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SpawnFarmHand
+      value: IncreaseWorkerCount
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874066509114742862, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WorkerBuilding, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874066509114742862, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874066509114742862, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7900961694841637561, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       propertyPath: costScaling
@@ -131897,7 +132040,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5942945351519634877, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 580493797}
-    m_AddedComponents: []
+    - targetCorrespondingSourceObject: {fileID: 5942945351519634877, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1638989342}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5467946345390835687, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1495244004}
   m_SourcePrefab: {fileID: 100100000, guid: beb1d73a0eb99411c8083b9b0fd095d0, type: 3}
 --- !u!1001 &2412200792051566398
 PrefabInstance:
@@ -132199,6 +132348,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2777728608378045438, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1019494151}
+    - targetCorrespondingSourceObject: {fileID: 2777728608378045438, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1019494152}
     - targetCorrespondingSourceObject: {fileID: 1219905654789618079, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 693059635}
@@ -132415,12 +132567,36 @@ PrefabInstance:
       value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 3146327509461852720, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146327509461852720, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146327509461852720, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1777427955}
+      objectReference: {fileID: 1777427960}
+    - target: {fileID: 3146327509461852720, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3146327509461852720, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SpawnFarmHand
+      value: IncreaseWorkerCount
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146327509461852720, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WorkerBuilding, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146327509461852720, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146327509461852720, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6043502756302880637, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
       propertyPath: radius
@@ -132432,7 +132608,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1200515137879646828, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 535509294}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 662749721277898806, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1777427960}
   m_SourcePrefab: {fileID: 100100000, guid: dbbba69cc76e844dda3bd8ac102cc5cd, type: 3}
 --- !u!1001 &4253162354625118995
 PrefabInstance:
