@@ -12386,7 +12386,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   wakeTime: 9
-  bossSpawnDayInterval: 5
+  bossSpawnDayInterval: 1
   bossList:
   - {fileID: 7156904570195260950, guid: c5f724e2c231044a78c0dc8b07a5b5c3, type: 3}
   bossSpawnLocation: {fileID: 1904274195}

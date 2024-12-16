@@ -30,6 +30,9 @@ public class MusicManager : MonoBehaviour
             audioSource.clip = startingMusic;
             audioSource.Play();
         }
+
+        normalVolume = audioSource.volume;
+        normalFadeDuration = fadeDuration;
     }
 
     public void GameOver()
@@ -41,28 +44,25 @@ public class MusicManager : MonoBehaviour
 
     public void FadeToDayMusic()
     {
-        StartCoroutine(FadeMusic(dayMusic));
+        StartCoroutine(FadeMusic(dayMusic, endingVolume: normalVolume));
     }
 
     public void FadeToNightMusic()
     {
-        StartCoroutine(FadeMusic(nightMusic));
+        StartCoroutine(FadeMusic(nightMusic, endingVolume: normalVolume));
     }
 
     public void FadeToBossMusic()
     {
         StopCoroutine("FadeMusic");
-        normalVolume = audioSource.volume;
-        normalFadeDuration = fadeDuration;
         isPlayingBossMusic = true;
         fadeDuration = 12.8f;
         StartCoroutine(FadeMusic(bossMusic, endingVolume: 1f));
-        audioSource.volume = normalVolume;
     }
 
     public void StopBossMusic() {
+        StopCoroutine("FadeMusic");
         isPlayingBossMusic = false;
-        audioSource.volume = normalVolume;
         fadeDuration = normalFadeDuration;
         WaveManager.Instance.DecideMusic();
     }
@@ -87,7 +87,6 @@ public class MusicManager : MonoBehaviour
 
         // Switch to new music and fade in
         audioSource.clip = newClip;
-        audioSource.volume = endingVolume;
         audioSource.Play();
 
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
