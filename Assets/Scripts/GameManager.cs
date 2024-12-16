@@ -8,9 +8,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private TextMeshProUGUI prestigeUI;
+
+    [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private TextMeshProUGUI pausePrestige;
+    public bool isPaused {get; private set;}
     
     private int enemyKills;
     private int bossKills;
+
 
     void Awake() {
         if (Instance == null) {Instance = this;}
@@ -45,6 +50,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void ExitToMenu() {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
     }
 
@@ -52,8 +58,25 @@ public class GameManager : MonoBehaviour
         int playerLevel = XPManager.Instance.GetPlayerLevel();
         int daysSurvived = WaveManager.Instance.GetCurrentDay();
 
-        int earnedPrestigePoints = (playerLevel*2) + (daysSurvived*10) + (bossKills*100) + (enemyKills/10);
+        int earnedPrestigePoints = ((playerLevel-1)*2) + ((daysSurvived-1)*10) + (bossKills*100) + (enemyKills/10);
         return earnedPrestigePoints;
+    }
+
+    public void PauseGame() {
+        isPaused = true;
+        Time.timeScale = 0;
+        pauseScreen.SetActive(true);
+        int earnedPrestigePoints = CalculateEarnedPrestigePoints();
+        int currentPrestigePoints = PlayerPrefs.GetInt("PrestigePoints", 0);
+        PlayerPrefs.SetInt("PrestigePoints", currentPrestigePoints + earnedPrestigePoints);
+
+        pausePrestige.text = "+" + earnedPrestigePoints.ToString();
+    }
+
+    public void UnpauseGame() {
+        isPaused = false;
+        Time.timeScale = 1;
+        pauseScreen.SetActive(false);
     }
 
     // PlayerPref conevntions:

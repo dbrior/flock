@@ -280,6 +280,14 @@ public class Player : MonoBehaviour
         attackDamange += addedDamage;
     }
 
+    public void OnPause(InputValue value) {
+        if (!GameManager.Instance.isPaused) {
+            GameManager.Instance.PauseGame();
+        } else {
+            GameManager.Instance.UnpauseGame();
+        }
+    }
+
     // void OnCollisionEnter2D(Collision2D col) {
     //     if (col.gameObject.TryGetComponent<Interactable>(out Interactable interactable)) {
     //         interactionHints.ShowHint(interactable.interactionText);
