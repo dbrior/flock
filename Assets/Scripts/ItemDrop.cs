@@ -73,7 +73,6 @@ public class ItemDrop : MonoBehaviour
                 if (itemDrop != null && itemDrop.item == item) {
                     amount += itemDrop.amount;
                     itemDrop.StopAggregation();
-                    Destroy(itemDrop.gameObject);
 
                     transform.localScale = (1f + (0.05f * amount)) * originalScale;
                     // transform.localScale = Mathf.Min(1f + (0.1f * amount), 1.3f) * originalScale;
@@ -83,6 +82,8 @@ public class ItemDrop : MonoBehaviour
                     sumWeights += itemDrop.amount;
 
                     mergedCount += 1;
+
+                    Destroy(itemDrop.gameObject);
                 }
             }
 
