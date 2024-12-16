@@ -16859,6 +16859,7 @@ MonoBehaviour:
   nightMusic: {fileID: 8300000, guid: 002b4fcfd2aba43889c8528826dd351a, type: 3}
   bossMusic: {fileID: 8300000, guid: d7796b83828d84f6e8c1852c3ad18912, type: 3}
   gameOverMusic: {fileID: 8300000, guid: 97fd68eb44a724eae8126aaa4527b15d, type: 3}
+  startingMusic: {fileID: 0}
   fadeDuration: 10
 --- !u!1 &1447611131
 GameObject:
