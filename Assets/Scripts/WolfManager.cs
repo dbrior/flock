@@ -9,15 +9,13 @@ public class WolfManager : MonoBehaviour
     [SerializeField] private GameObject wolfPrefab;
     private IntRange spawnCount;
     private FloatRange spawnInterval;
-    private List<GameObject> wolves;
     [SerializeField] private float attackDamage;
     [SerializeField] private float maxHealth;
+    private int wolfCount;
 
     void Awake() {
         if (Instance == null) {Instance = this;}
         else {Destroy(gameObject);}
-
-        wolves = new List<GameObject>();
     }
 
     void Start() {
@@ -32,10 +30,6 @@ public class WolfManager : MonoBehaviour
         maxHealth = maxHealth * (1f+pct);
     }
 
-    public void Reset() {
-        DestroyAllWovles();
-    }
-
     public void SetSpawnCount(IntRange newRange) {
         spawnCount = newRange;
     }
@@ -44,10 +38,18 @@ public class WolfManager : MonoBehaviour
         spawnInterval = newInterval;
     }
 
+    public void IncreaseWolfCount() {
+        wolfCount += 1;
+    }
+
+    public void DecreaseWolfCount() {
+        wolfCount -= 1;
+    }
+
     public void SpawnWolves() {
         for (int i = 0; i < Random.Range(spawnCount.min, spawnCount.max); i++) {
             GameObject wolfObj = SpawnManager.Instance.SpawnObject(wolfPrefab);
-            wolves.Add(wolfObj);
+            IncreaseWolfCount();
 
             Wolf wolf = wolfObj.GetComponent<Wolf>();
             wolf.SetMaxHealth(maxHealth);
@@ -55,16 +57,10 @@ public class WolfManager : MonoBehaviour
         }
     }
 
-    public void DestroyAllWovles() {
-        for (int i = 0; i<wolves.Count; i++) {
-            Destroy(wolves[i]);
-        }
-        wolves.Clear();
-    }
-
     private IEnumerator WolfSpawner() {
         while (true) {
-            SpawnWolves();
+            if (wolfCount < 200) SpawnWolves();
+
             float waitTime = 0f;
             if (WaveManager.Instance.getCurrentTime() < 5 || WaveManager.Instance.getCurrentTime() >= 21) {
                 waitTime = Random.Range(spawnInterval.min/2f, spawnInterval.max/2f);

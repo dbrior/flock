@@ -44,6 +44,7 @@ public class Wolf : MonoBehaviour
         animator.SetLayerWeight(0, 0);
         animator.SetLayerWeight(1, 0);
         animator.SetLayerWeight(2, 1f);
+        damagable.onDeath.AddListener(() => WolfManager.Instance.DecreaseWolfCount());
     }
     // private Dictionary<Vector2, int> cardinalIntMappings = new Dictionary<Vector2, int>{
     //     { Vector2.zero, 0 },

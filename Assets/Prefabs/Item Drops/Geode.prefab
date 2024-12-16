@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 795865722125891041}
   - component: {fileID: 5101555393839242683}
   - component: {fileID: 3919379588146199057}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Geode
   m_TagString: Untagged
   m_Icon: {fileID: 0}

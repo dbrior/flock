@@ -172,6 +172,8 @@ public class WaveManager : MonoBehaviour
         currDay += 1;
         wolfSpawnFrequency.min *= 0.80f;
         wolfSpawnFrequency.max *= 0.80f;
+        // wolfSpawnRange.min = Mathf.RoundToInt(wolfSpawnRange.min*1.2f);
+        // wolfSpawnRange.max = Mathf.RoundToInt(wolfSpawnRange.max*1.2f);
         // SheepManager.Instance.Reset();
         // WolfManager.Instance.Reset();
         // CropManager.Instance.AdvanceCrops();

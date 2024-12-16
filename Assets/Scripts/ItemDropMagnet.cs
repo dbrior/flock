@@ -13,11 +13,11 @@ public class ItemDropMagnet : MonoBehaviour
     void Start() {
         audioSource = GetComponent<AudioSource>();
     }
-    public void OnTriggerEnter2D(Collider2D col) {
+    public void OnTriggerStay2D(Collider2D col) {
         if (col.gameObject.TryGetComponent<ItemDrop>(out ItemDrop item)) {
             if (filter.Count > 0 && !filter.Contains(item.item)) return;
 
-            item.SuckedInBy(gameObject, pullSpeed);
+            item.SuckedInBy(this, pullSpeed);
         }
     }
 
@@ -27,9 +27,9 @@ public class ItemDropMagnet : MonoBehaviour
         audioSource.PlayOneShot(collectSound);
 
         if (inventory == null) {
-            PlayerInventory.Instance.AddItem(itemDrop.item, 1);
+            PlayerInventory.Instance.AddItem(itemDrop.item, itemDrop.amount);
         } else {
-            inventory.AddItem(itemDrop.item, 1);
+            inventory.AddItem(itemDrop.item, itemDrop.amount);
         }
 
         Destroy(itemDrop.gameObject);

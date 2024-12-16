@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3468067069427422082}
   - component: {fileID: 9019753888640213284}
   - component: {fileID: 5018529732691755654}
-  m_Layer: 3
+  m_Layer: 19
   m_Name: ItemDropMagnet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,8 +80,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f76a9236f1664ce7a7973dde690e31b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
   pullSpeed: 1
   collectSound: {fileID: 0}
+  filter: []
 --- !u!1 &1994410631824127694
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +333,7 @@ MonoBehaviour:
   interactionLayer:
     serializedVersion: 2
     m_Bits: 2241
+  audioSource: {fileID: 0}
   attackRadius: 0.2
   flashlight: {fileID: 7568465516124126218}
   attackDamange: 0
@@ -340,6 +343,9 @@ MonoBehaviour:
   hunterSlots: []
   stepSound: {fileID: 0}
   spinner: {fileID: 0}
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!50 &2362330277033630554
 Rigidbody2D:
   serializedVersion: 4
@@ -602,6 +608,7 @@ MonoBehaviour:
   hitAnimator: {fileID: 0}
   isBoss: 0
   randomizePitch: 0
+  isIndestructible: 0
 --- !u!114 &1252419288893483841
 MonoBehaviour:
   m_ObjectHideFlags: 0

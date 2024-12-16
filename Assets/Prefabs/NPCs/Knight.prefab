@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 7045394216576602841}
   - component: {fileID: 8312960173148468668}
   - component: {fileID: 2002971474903549771}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: ItemDropMagnet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

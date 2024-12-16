@@ -131558,6 +131558,10 @@ PrefabInstance:
       propertyPath: unitType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8098528854995523920, guid: 2f6d5759be9ce4266b6b827ba59153a2, type: 3}
+      propertyPath: workerSlots
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8151906632288106062, guid: 2f6d5759be9ce4266b6b827ba59153a2, type: 3}
       propertyPath: m_Name
       value: Knight House
