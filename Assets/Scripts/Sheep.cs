@@ -114,6 +114,7 @@ public class Sheep : MonoBehaviour
             animator.SetLayerWeight(0, 0);
             animator.SetLayerWeight(1, 1.0f);
             isSheared = true;
+            TaskManager.Instance.RemoveTask(new Task(transform, TaskType.Shear));
         }
     }
 
@@ -153,8 +154,8 @@ public class Sheep : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D col) {
-        // Player can shear tamed sheep
-        if (!isSheared && col.gameObject.TryGetComponent<Player>(out Player player)) {
+        // Any character with shears can shear sheep on contact
+        if (!isSheared && col.gameObject.TryGetComponent<Shears>(out Shears shears)) {
             Shear();
         }
         // Sheared sheep can eat crops

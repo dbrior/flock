@@ -12386,7 +12386,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   wakeTime: 9
-  bossSpawnDayInterval: 1
+  bossSpawnDayInterval: 5
   bossList:
   - {fileID: 7156904570195260950, guid: c5f724e2c231044a78c0dc8b07a5b5c3, type: 3}
   bossSpawnLocation: {fileID: 1904274195}
@@ -13297,6 +13297,37 @@ MonoBehaviour:
   wolfPrefab: {fileID: 1297718032968050557, guid: 7d243e9675cf6459bab3c9445f6fe7ef, type: 3}
   attackDamage: 20
   maxHealth: 75
+--- !u!1 &756446143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 756446144}
+  m_Layer: 0
+  m_Name: HerderWander
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &756446144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756446143}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.952, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1545365381}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &788480031
 GameObject:
   m_ObjectHideFlags: 0
@@ -14005,10 +14036,10 @@ Transform:
   - {fileID: 1481481403}
   - {fileID: 1461956901}
   - {fileID: 1549734792}
-  - {fileID: 1545365381}
   - {fileID: 425802132}
   - {fileID: 1310301683}
   - {fileID: 311484029}
+  - {fileID: 1545365381}
   - {fileID: 1091638846}
   - {fileID: 1046844767}
   - {fileID: 2069323305}
@@ -14552,6 +14583,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427559473}
   m_Enabled: 1
+--- !u!114 &1019494151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427559473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058be7ea7ba334a269b99527fd880a6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1030470410 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1221070959073677034, guid: 87f4a31271dce0e4c91482262178cd9e, type: 3}
@@ -18807,6 +18850,8 @@ GameObject:
   - component: {fileID: 1545365384}
   - component: {fileID: 1545365385}
   - component: {fileID: 1545365386}
+  - component: {fileID: 1545365387}
+  - component: {fileID: 1545365388}
   m_Layer: 0
   m_Name: Barn
   m_TagString: Untagged
@@ -18829,6 +18874,7 @@ Transform:
   m_Children:
   - {fileID: 932656158}
   - {fileID: 447702788}
+  - {fileID: 756446144}
   m_Father: {fileID: 971546518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1545365382
@@ -18989,6 +19035,50 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &1545365387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545365380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8787e16089de143489b9d426ffc0bbbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitType: 0
+  taskTypes: 03000000
+  workerPrefab: {fileID: 8559782609300626304, guid: beb52a708c4ad463294c9c34a4f9d5a1, type: 3}
+  workerSlots: 0
+  spawnTransform: {fileID: 447702788}
+  wanderAnchor: {fileID: 756446144}
+  isStatlessWorker: 1
+  workerMaxHealth: 0
+  maxHealthUI: {fileID: 0}
+  workerBlockChance: 0
+  blockChanceUI: {fileID: 0}
+  workerDamage: 0
+  damageUI: {fileID: 0}
+  workerAttackCooldownSec: 0
+  attackCooldownUI: {fileID: 0}
+  respawnCooldownSec: 0
+  respawnCooldownUI: {fileID: 0}
+  openTasks: []
+  claimedTasks: []
+--- !u!114 &1545365388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545365380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60246ef85e9da429f966aaed0aadf0f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskGenerationIntervalSec: 1
 --- !u!1 &1548622862
 GameObject:
   m_ObjectHideFlags: 0
@@ -131700,9 +131790,21 @@ PrefabInstance:
       value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8566436614051766788, guid: 1568e690870eb4aab8ba8636c616851d, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566436614051766788, guid: 1568e690870eb4aab8ba8636c616851d, type: 3}
       propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 653279697}
+      objectReference: {fileID: 1545365387}
+    - target: {fileID: 8566436614051766788, guid: 1568e690870eb4aab8ba8636c616851d, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseWorkerCount
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566436614051766788, guid: 1568e690870eb4aab8ba8636c616851d, type: 3}
+      propertyPath: onPurchase.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WorkerBuilding, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -132094,6 +132196,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2777728608378045438, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1019494143}
+    - targetCorrespondingSourceObject: {fileID: 2777728608378045438, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1019494151}
     - targetCorrespondingSourceObject: {fileID: 1219905654789618079, guid: 043d30bb4158e4442a153768ddbc4aa0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 693059635}

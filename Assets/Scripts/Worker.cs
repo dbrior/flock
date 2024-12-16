@@ -62,9 +62,9 @@ public class Worker : MonoBehaviour
         if (newTask.type == TaskType.CollectItem) {
             targetItem = currentTask.item;
             targetAmount = currentTask.amount;
-        } else if (newTask.type == TaskType.Heal) {
+        } else if (newTask.type == TaskType.Heal || newTask.type == TaskType.Shear) {
+            // Do nothing since the target is the one that clears the task once complete
             {}
-            // characterMover.onAbandonDestination = () => CompleteTask(currentTask);
         } else {
             characterMover.onReachDestination = () => CompleteTask(currentTask);
             characterMover.onAbandonDestination = () => CompleteTask(currentTask);

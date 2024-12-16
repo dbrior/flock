@@ -24,6 +24,7 @@ public class WorkerBuilding : MonoBehaviour
     [SerializeField] private Transform wanderAnchor;
 
     [Header("Worker Stats")]
+    [SerializeField] private bool isStatlessWorker;
     [SerializeField] private float workerMaxHealth;
     [SerializeField] private TextMeshProUGUI maxHealthUI;
     [SerializeField] private float workerBlockChance;
@@ -64,7 +65,7 @@ public class WorkerBuilding : MonoBehaviour
         }
 
         SpawnAllMissingWorkers();
-        UpdateStatUI();
+        if (!isStatlessWorker) UpdateStatUI();
     }
 
     public int GetWorkerCount() {
@@ -110,8 +111,10 @@ public class WorkerBuilding : MonoBehaviour
             newWorker.SetWanderAnchor(wanderAnchor);
         }
 
-        SetWorkerStats(newWorker.gameObject);
-        newWorker.GetComponent<Damagable>().RestoreHealth();
+        if (newWorker.TryGetComponent<Damagable>(out Damagable damagable)) {
+            SetWorkerStats(newWorker.gameObject);
+            damagable.RestoreHealth();
+        }
     }   
 
     private void UpdateStatUI() {
@@ -179,18 +182,44 @@ public class WorkerBuilding : MonoBehaviour
     }
 
     public void AddTask(Task task) {
-        if (!openTasks.Contains(task) && !claimedTasks.Contains(task)) {
-            openTasks.Add(task);
-        }
+        if (!ContainsTask(task)) openTasks.Add(task);
     }
 
     public void AbandonTask(Task task) {
         UnclaimTask(task);
     }
 
+    public bool ContainsTask(Task task) {
+        for (int i=openTasks.Count-1; i>=0; i--) {
+            bool samePosition = !openTasks[i].isPositionTask ? openTasks[i].transform == task.transform : openTasks[i].position == task.position;
+            bool sameType = openTasks[i].type == task.type;
+
+            if (samePosition && sameType) return true;
+        }
+        for (int i=claimedTasks.Count-1; i>=0; i--) {
+            bool samePosition = !claimedTasks[i].isPositionTask ? claimedTasks[i].transform == task.transform : claimedTasks[i].position == task.position;
+            bool sameType = claimedTasks[i].type == task.type;
+
+            if (samePosition && sameType) return true;
+        }
+        return false;
+    }
+
     public void RemoveTask(Task task) {
-        if (openTasks.Contains(task)) openTasks.Remove(task);
-        if (claimedTasks.Contains(task)) claimedTasks.Remove(task);
+        for (int i=openTasks.Count-1; i>=0; i--) {
+            bool samePosition = !openTasks[i].isPositionTask ? openTasks[i].transform == task.transform : openTasks[i].position == task.position;
+            bool sameType = openTasks[i].type == task.type;
+
+            if (samePosition && sameType) openTasks.RemoveAt(i);
+        }
+        for (int i=claimedTasks.Count-1; i>=0; i--) {
+            bool samePosition = !claimedTasks[i].isPositionTask ? claimedTasks[i].transform == task.transform : claimedTasks[i].position == task.position;
+            bool sameType = claimedTasks[i].type == task.type;
+
+            if (samePosition && sameType) claimedTasks.RemoveAt(i);
+        }
+        // if (openTasks.Contains(task)) openTasks.Remove(task);
+        // if (claimedTasks.Contains(task)) claimedTasks.Remove(task);
     }
 
     public int GetItemCollectItemCount(Item item) {
@@ -234,6 +263,14 @@ public class WorkerBuilding : MonoBehaviour
         ClaimTask(task);
 
         return task;
+    }
+
+    public List<Task> GetClaimedTasks() {
+        return claimedTasks;
+    }
+
+    public List<Task> GetOpenTasks() {
+        return openTasks;
     }
 
     public void CompleteTask(Task task) {
