@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
     private bool damageEnabled;
     [SerializeField] private float critChance;
     [SerializeField] private float critMutliplier;
+    [SerializeField] private LayerMask targetLayer;
 
 
     public void EnableDamage() {
@@ -28,7 +29,7 @@ public class Weapon : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D col) {
-        if (damageEnabled && col.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
+        if (damageEnabled && ((targetLayer.value & (1 << col.gameObject.layer)) != 0) && col.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
             if (Random.Range(0, 1f) <= critChance) {
                 damagable.Hit(transform.position, damage*critMutliplier, knockbackForce*2f, true);
             } else {

@@ -16,6 +16,7 @@ public class Sheep : MonoBehaviour
     // [SerializeField] private float maxForce;
     [SerializeField] private Item sheepFood;
     [SerializeField] private AudioClip captureSound;
+    [SerializeField] private GameObject missingFoodIcon;
     private AudioSource audioSource;
     private Rigidbody2D rb;
     private Animator animator;
@@ -142,9 +143,11 @@ public class Sheep : MonoBehaviour
 
     private void Hunger() {
         if (PlayerInventory.Instance.GetItemCount(sheepFood) > 0) {
+            if (isCaptured) missingFoodIcon.SetActive(false);
             PlayerInventory.Instance.RemoveItem(sheepFood, 1);
             Feed();
         } else {
+            if (isSheared && isCaptured) missingFoodIcon.SetActive(true);
             Hit(20f);
         }
     }
