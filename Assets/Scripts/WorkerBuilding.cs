@@ -5,6 +5,7 @@ using TMPro;
 
 [System.Serializable]
 public enum UnitType {
+    None,
     Farmhand,
     Knight,
     Hunter,

@@ -4,6 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public enum CropType : int {
+    None,
     Wheat,
     Healing
 }
