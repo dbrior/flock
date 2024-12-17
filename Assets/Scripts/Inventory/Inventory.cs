@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddItem(Item item, int count)
+    public virtual void AddItem(Item item, int count)
     {
         if (item.itemName == "Chest") {
             CardManager.Instance.ShowCards();

@@ -18540,7 +18540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8787e16089de143489b9d426ffc0bbbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitType: 0
+  unitType: 1
   taskTypes: 000000000100000002000000
   workerPrefab: {fileID: 7163764010931372815, guid: 03c8f09d66e4a4965bc2bb8862a363bb, type: 3}
   workerSlots: 0
@@ -19083,7 +19083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8787e16089de143489b9d426ffc0bbbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitType: 0
+  unitType: 6
   taskTypes: 03000000
   workerPrefab: {fileID: 8559782609300626304, guid: beb52a708c4ad463294c9c34a4f9d5a1, type: 3}
   workerSlots: 0
@@ -125157,7 +125157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8787e16089de143489b9d426ffc0bbbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitType: 0
+  unitType: 1
   taskTypes: 000000000100000002000000
   workerPrefab: {fileID: 7163764010931372815, guid: 03c8f09d66e4a4965bc2bb8862a363bb, type: 3}
   workerSlots: 0
@@ -130791,6 +130791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2077005414}
   - component: {fileID: 2077005415}
+  - component: {fileID: 2077005416}
   m_Layer: 5
   m_Name: Quests
   m_TagString: Untagged
@@ -130831,9 +130832,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questContainer: {fileID: 2077005414}
   activeQuests: []
-  startingQuest: {fileID: 11400000, guid: fae35ff34f65d44b99e934a85752ec2b, type: 2}
-  completeColor: {r: 0.73962307, g: 1, b: 0.3820755, a: 0}
+  startingQuest: {fileID: 11400000, guid: 42816ed2ec0ae463d9c09f84603aa4f4, type: 2}
   questUIPrefab: {fileID: 8361017172354574704, guid: 503df3cece7ee4cb3b71ad2145681e67, type: 3}
+--- !u!114 &2077005416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077005413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &2079108321
 GameObject:
   m_ObjectHideFlags: 0
@@ -132724,7 +132750,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4182397609997154173, guid: c2822d23413944fefaa685392b038b3f, type: 3}
       propertyPath: unitType
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4182397609997154173, guid: c2822d23413944fefaa685392b038b3f, type: 3}
       propertyPath: workerSlots
@@ -132840,7 +132866,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6634000369271850614, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
       propertyPath: unitType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6634000369271850614, guid: 32c910a39b5f74a2d82eadd6bd45a184, type: 3}
       propertyPath: workerSlots
@@ -132909,7 +132935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760006279974665748, guid: ca8e406b65ffd42989e58d189dd03eba, type: 3}
       propertyPath: unitType
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2760006279974665748, guid: ca8e406b65ffd42989e58d189dd03eba, type: 3}
       propertyPath: workerSlots
@@ -133147,7 +133173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8098528854995523920, guid: 2f6d5759be9ce4266b6b827ba59153a2, type: 3}
       propertyPath: unitType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8098528854995523920, guid: 2f6d5759be9ce4266b6b827ba59153a2, type: 3}
       propertyPath: workerSlots

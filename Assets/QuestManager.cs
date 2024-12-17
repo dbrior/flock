@@ -2,12 +2,14 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [System.Serializable]
-public enum QuestType {
-    Capture,
-    Collect,
-    Plant,
-    Kill,
-    Purchase
+public enum QuestType : int {
+    PrimaryWeapon = 0,
+    SecondaryWeapon = 1,
+    Capture = 2,
+    Collect = 3,
+    Plant = 4,
+    Kill = 5,
+    Purchase = 6
 }
 
 [System.Serializable]
@@ -32,6 +34,7 @@ public class QuestTask {
     public CreatureType creatureType;
     public UnitType unitType;
     public CropType cropType;
+    public string textOverride;
 
     public int currAmount = 0;
     public bool isComplete = false;
@@ -41,7 +44,7 @@ public class QuestTask {
         if (type == QuestType.Capture) {
             return creatureType.ToString();
         } else if (type == QuestType.Collect) {
-            return item.name.ToString();
+            return item.itemName.ToString();
         } else if (type == QuestType.Plant) {
             return cropType.ToString();
         } else if (type == QuestType.Kill) {
@@ -60,6 +63,47 @@ public class Quest : ScriptableObject {
     public List<QuestTask> tasks;
     public Item reward;
     public int amount;
+    public Quest nextQuest;
+
+    public bool isComplete;
+    public QuestUI questUI;
+
+    public void CheckComplete() {
+        foreach (QuestTask task in tasks) {
+            if (!task.isComplete) return;
+        }
+
+        if (!isComplete) CompleteQuest();
+    }
+
+    private void CompleteQuest() {
+        isComplete = true;
+        questUI.CompleteQuest();
+        if (nextQuest != null) {
+            QuestManager.Instance.AddQuest(nextQuest);
+        }
+    }
+
+    public Quest Clone() {
+        Quest clone = Instantiate(this);
+        clone.tasks = new List<QuestTask>();
+        foreach (var task in tasks) {
+            QuestTask taskCopy = new QuestTask {
+                type = task.type,
+                amount = task.amount,
+                item = task.item,
+                creatureType = task.creatureType,
+                unitType = task.unitType,
+                cropType = task.cropType,
+                currAmount = 0, // Reset progress
+                isComplete = false,
+                textOverride = task.textOverride,
+                taskUI = null // UI not cloned
+            };
+            clone.tasks.Add(taskCopy);
+        }
+        return clone;
+    }
 }
 
 public class QuestManager : MonoBehaviour
@@ -69,7 +113,6 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private Transform questContainer;
     [SerializeField] private List<Quest> activeQuests = new List<Quest>();
     [SerializeField] private Quest startingQuest;
-    [SerializeField] private Color completeColor;
     
     [SerializeField] private GameObject questUIPrefab;
 
@@ -81,9 +124,16 @@ public class QuestManager : MonoBehaviour
     }
 
     public void AddQuest(Quest newQuest) {
-        activeQuests.Add(newQuest);
+        Quest questClone = newQuest.Clone();
+        activeQuests.Add(questClone);
         QuestUI newQuestUI = Instantiate(questUIPrefab, questContainer).GetComponent<QuestUI>();
-        newQuestUI.SetQuest(newQuest);
+        newQuestUI.SetQuest(questClone);
+        questClone.questUI = newQuestUI;
+    }
+
+    public void RemoveQuest(Quest quest) {
+        activeQuests.Remove(quest);
+        Destroy(quest.questUI.gameObject);
     }
 
     // Quest progress functions
@@ -93,13 +143,16 @@ public class QuestManager : MonoBehaviour
             foreach (QuestTask task in quest.tasks) {
                 if ((task.type != QuestType.Kill) || (task.creatureType != creatureType)) continue;
                 task.currAmount += 1;
-                task.taskUI.SetText();
 
                 // TODO: set on complete function
                 if (task.currAmount >= task.amount) {
                     task.isComplete = true;
-                    task.taskUI.SetColor(completeColor);
+                    task.taskUI.CompleteTask();
+
+                    quest.CheckComplete();
                 }
+
+                task.taskUI.SetText();
             }
         }
     }
@@ -111,22 +164,112 @@ public class QuestManager : MonoBehaviour
                 if ((task.type != QuestType.Collect) || (task.item != item)) continue;
 
                 task.currAmount += amount;
-                task.taskUI.SetText();
 
                 // TODO: set on complete function
                 if (task.currAmount >= task.amount) {
                     task.isComplete = true;
-                    task.taskUI.SetColor(completeColor);
+                    task.taskUI.CompleteTask();
+
+                    quest.CheckComplete();
                 }
+
+                task.taskUI.SetText();
             }
         }
     }
 
-    public void PlantCrop(CropType crop) {
+    public void PlantCrop(CropType cropType) {
+        foreach (Quest quest in activeQuests) {
+            foreach (QuestTask task in quest.tasks) {
+                if ((task.type != QuestType.Plant) || (task.cropType != cropType)) continue;
+                task.currAmount += 1;
 
+                // TODO: set on complete function
+                if (task.currAmount >= task.amount) {
+                    task.isComplete = true;
+                    task.taskUI.CompleteTask();
+
+                    quest.CheckComplete();
+                }
+
+                task.taskUI.SetText();
+            }
+        }
     }
 
-    public void CaptureCreature(CreatureType creature) {
-        
+    public void CaptureCreature(CreatureType creatureType) {
+        foreach (Quest quest in activeQuests) {
+            foreach (QuestTask task in quest.tasks) {
+                if ((task.type != QuestType.Capture) || (task.creatureType != creatureType)) continue;
+                task.currAmount += 1;
+
+                // TODO: set on complete function
+                if (task.currAmount >= task.amount) {
+                    task.isComplete = true;
+                    task.taskUI.CompleteTask();
+
+                    quest.CheckComplete();
+                }
+
+                task.taskUI.SetText();
+            }
+        }
+    }
+
+    public void PurchaseUnit(UnitType unitType) {
+        foreach (Quest quest in activeQuests) {
+            foreach (QuestTask task in quest.tasks) {
+                if ((task.type != QuestType.Purchase) || (task.unitType != unitType)) continue;
+                task.currAmount += 1;
+
+                // TODO: set on complete function
+                if (task.currAmount >= task.amount) {
+                    task.isComplete = true;
+                    task.taskUI.CompleteTask();
+
+                    quest.CheckComplete();
+                }
+
+                task.taskUI.SetText();
+            }
+        }
+    }
+
+    public void PrimaryWeapon() {
+        foreach (Quest quest in activeQuests) {
+            foreach (QuestTask task in quest.tasks) {
+                if (task.type != QuestType.PrimaryWeapon) continue;
+                task.currAmount += 1;
+
+                // TODO: set on complete function
+                if (task.currAmount >= task.amount) {
+                    task.isComplete = true;
+                    task.taskUI.CompleteTask();
+
+                    quest.CheckComplete();
+                }
+
+                task.taskUI.SetText();
+            }
+        }
+    }
+
+    public void SecondaryWeapon() {
+        foreach (Quest quest in activeQuests) {
+            foreach (QuestTask task in quest.tasks) {
+                if (task.type != QuestType.SecondaryWeapon) continue;
+                task.currAmount += 1;
+
+                // TODO: set on complete function
+                if (task.currAmount >= task.amount) {
+                    task.isComplete = true;
+                    task.taskUI.CompleteTask();
+
+                    quest.CheckComplete();
+                }
+
+                task.taskUI.SetText();
+            }
+        }
     }
 }

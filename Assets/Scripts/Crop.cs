@@ -12,6 +12,8 @@ public enum CropState {
 }
 public class Crop : MonoBehaviour
 {
+    public CropType type;
+
     public CropState state;
     private int totalStates;
     private SpriteRenderer spriteRenderer;
@@ -56,6 +58,7 @@ public class Crop : MonoBehaviour
         if (state == CropState.Dry) {
             SetState(CropState.Watered);
             if (building != null) building.RemoveTask(new Task(transform, TaskType.Water));
+            QuestManager.Instance.PlantCrop(type);
         }
     }
 

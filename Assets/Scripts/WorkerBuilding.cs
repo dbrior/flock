@@ -5,12 +5,13 @@ using TMPro;
 
 [System.Serializable]
 public enum UnitType {
-    None,
-    Farmhand,
-    Knight,
-    Hunter,
-    Healer,
-    Miner
+    None = 0,
+    Farmhand = 1,
+    Knight = 2,
+    Hunter = 3,
+    Healer = 4,
+    Miner = 5,
+    Shepard = 6
 }
 
 
@@ -163,6 +164,7 @@ public class WorkerBuilding : MonoBehaviour
 
     public void IncreaseWorkerCount(int amount) {
         workerSlots += 1;
+        QuestManager.Instance.PurchaseUnit(unitType);
         SpawnWorker();
     }
 

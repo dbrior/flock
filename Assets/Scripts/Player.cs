@@ -198,6 +198,9 @@ public class Player : MonoBehaviour
 
     public void OnAttack() {
         if (isAttacking || inMenu) return;
+
+        QuestManager.Instance.PrimaryWeapon();
+
         Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(transform.position, attackRadius);
         if (collidersInRange.Length > 0) {
             foreach (Collider2D col in collidersInRange) {
@@ -222,6 +225,8 @@ public class Player : MonoBehaviour
             secondaryActive = false;
         }
         // ropeTool.angularVelocity = 10f;
+
+        QuestManager.Instance.SecondaryWeapon();
     }
     // public void OnSecondaryAttackCanceled() {
     //     // toolBelt.UseSlingshot();

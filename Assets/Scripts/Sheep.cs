@@ -98,6 +98,7 @@ public class Sheep : MonoBehaviour
     public void Capture() {
         audioSource.PlayOneShot(captureSound);
         isCaptured = true;
+        QuestManager.Instance.CaptureCreature(CreatureType.Sheep);
         StartCoroutine("FeedTimer");
     }
 

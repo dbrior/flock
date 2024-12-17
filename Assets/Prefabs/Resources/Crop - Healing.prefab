@@ -12,13 +12,17 @@ PrefabInstance:
       propertyPath: itemSpawns.Array.data[0].itemPrefab
       value: 
       objectReference: {fileID: 4465506323250089622, guid: 091ca80e080e34dca98c04d4f962c7ae, type: 3}
+    - target: {fileID: 1006552844284749274, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3749822279074914586, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -191456974, guid: 55b8937eeed7540638eada3704a9ce5f, type: 3}
     - target: {fileID: 4984600077904589487, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
       propertyPath: m_Name
-      value: cropWheat Variant
+      value: Crop - Healing
       objectReference: {fileID: 0}
     - target: {fileID: 5103345412117349618, guid: a0d51f2fe621442f8bdebd358a7cb0ed, type: 3}
       propertyPath: m_LocalPosition.x

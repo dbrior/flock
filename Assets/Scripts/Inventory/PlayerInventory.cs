@@ -10,4 +10,9 @@ public class PlayerInventory : Inventory
         
         base.Awake();
     }
+
+    public override void AddItem(Item item, int count) {
+        base.AddItem(item, count);
+        QuestManager.Instance.CollectItem(item, count);
+    }
 }

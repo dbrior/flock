@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7dd5f742bde24eb88442d358932ea37, type: 3}
   m_Name: CropBundle - Wheat
   m_EditorClassIdentifier: 
-  itemName: CropBundle - Wheat
+  itemName: Wheat
   sprite: {fileID: 21300000, guid: 8ec8931b3f8b9469287096472abc54b0, type: 3}
