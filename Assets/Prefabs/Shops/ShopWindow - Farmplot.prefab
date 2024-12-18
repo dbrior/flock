@@ -404,6 +404,8 @@ MonoBehaviour:
   onPurchasePlayer:
     m_PersistentCalls:
       m_Calls: []
+  maxPurchaseCount: 0
+  nextShopEntry: {fileID: 0}
 --- !u!114 &1666302313821322303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,7 +731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 683155960815341684, guid: a240dc1623f1243f8ada72cab588d98f, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 998500105977890043, guid: a240dc1623f1243f8ada72cab588d98f, type: 3}
       propertyPath: m_AnchorMax.y

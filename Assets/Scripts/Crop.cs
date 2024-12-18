@@ -20,6 +20,7 @@ public class Crop : MonoBehaviour
     private Animator animator;
     private ItemSpawner itemSpawner;
     public bool isWildCrop = false;
+    private float growthTimeSec = 30f;
 
     private WorkerBuilding building;
 
@@ -97,6 +98,14 @@ public class Crop : MonoBehaviour
         }
     }
 
+    public float GetGrowthTimeSec() {
+        return growthTimeSec;
+    }
+
+    public void SetGrowthTimeSec(float newGrowthTimeSec) {
+        growthTimeSec = newGrowthTimeSec;
+    }
+
     private void OnTriggerStay2D(Collider2D col) {
         if (col.gameObject.TryGetComponent<CropTools>(out CropTools cropTools)) {
             WorkCrop();
@@ -105,7 +114,7 @@ public class Crop : MonoBehaviour
 
     IEnumerator GrowthTimer() {
         while (true) {
-            yield return new WaitForSeconds(30f);
+            yield return new WaitForSeconds(growthTimeSec);
             NextState();
         }
     }

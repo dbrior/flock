@@ -34,6 +34,8 @@ public class ShopEntry : MonoBehaviour
     [SerializeField] private float costScaling;
     [SerializeField] private UnityEvent onPurchase;
     [SerializeField] private UnityEvent<Player> onPurchasePlayer;
+    [SerializeField] private int maxPurchaseCount;
+    [SerializeField] private GameObject nextShopEntry;
 
     private Shop shop;
     private Button button;
@@ -73,6 +75,12 @@ public class ShopEntry : MonoBehaviour
             
             // Important: Update the list with the modified cost
             costs[i] = currentCost;
+        }
+
+        // Destroy if at max purchase count
+        if (maxPurchaseCount != 0 && purchaseCount >= maxPurchaseCount) {
+            if (nextShopEntry != null) nextShopEntry.SetActive(true);
+            Destroy(gameObject);
         }
     }
 

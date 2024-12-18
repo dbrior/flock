@@ -11,6 +11,8 @@ public class FarmPlot : MonoBehaviour
     public List<Vector2> plotPoints;
 
     private WorkerBuilding building;
+    private List<Crop> crops = new List<Crop>();
+    private float growthTimeSec = 30f;
 
     void Awake() {
         building = GetComponent<WorkerBuilding>();
@@ -79,6 +81,16 @@ public class FarmPlot : MonoBehaviour
         foreach (Vector2 position in checklist.Except(seenLocations).ToList()) {
             Crop newCrop = CropManager.Instance.PlantCrop(position, cropType);
             newCrop.SetBuilding(building);
+            crops.Add(newCrop);
+            newCrop.SetGrowthTimeSec(growthTimeSec);
+        }
+    }
+
+    public void IncreaseGrowthRate() {
+        growthTimeSec *= 0.8f;
+        ScanCrops();
+        for (int i=0; i<crops.Count; i++) {
+            crops[i].SetGrowthTimeSec(growthTimeSec);
         }
     }
 
