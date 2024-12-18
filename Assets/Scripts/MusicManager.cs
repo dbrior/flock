@@ -37,6 +37,7 @@ public class MusicManager : MonoBehaviour
 
     public void GameOver()
     {
+        gameObject.AddComponent<AudioListener>();
         audioSource.Stop();
         audioSource.volume = 1f;
         audioSource.PlayOneShot(gameOverMusic);
