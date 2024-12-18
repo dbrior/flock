@@ -21,11 +21,12 @@ public class MusicManager : MonoBehaviour
     {
         if (Instance == null) { Instance = this; }
         else { Destroy(gameObject); }
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         if (startingMusic != null) {
             audioSource.clip = startingMusic;
             audioSource.Play();
@@ -33,6 +34,14 @@ public class MusicManager : MonoBehaviour
 
         normalVolume = audioSource.volume;
         normalFadeDuration = fadeDuration;
+    }
+
+    public void PauseMusic() {
+        audioSource.Pause();
+    }
+
+    public void ResumeMusic() {
+        audioSource.Play();
     }
 
     public void GameOver()
