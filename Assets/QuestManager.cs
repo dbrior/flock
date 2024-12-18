@@ -59,6 +59,7 @@ public class QuestTask {
 
 [CreateAssetMenu()]
 public class Quest : ScriptableObject {
+    public int questId;
     public string title;
     public List<QuestTask> tasks;
     public Item reward;
@@ -78,6 +79,8 @@ public class Quest : ScriptableObject {
 
     private void CompleteQuest() {
         isComplete = true;
+        string prefPath = "Quest-" + questId.ToString() + "-IsComplete";
+        PlayerPrefs.SetInt(prefPath, 1);
         questUI.CompleteQuest();
         if (nextQuest != null) {
             QuestManager.Instance.AddQuest(nextQuest);
@@ -116,11 +119,19 @@ public class QuestManager : MonoBehaviour
     
     [SerializeField] private GameObject questUIPrefab;
 
+    [SerializeField] private List<Quest> allQuests;
+
     void Awake() {
         if (Instance == null) {Instance = this;}
         else {Destroy(gameObject);}
 
-        AddQuest(startingQuest);
+        for (int i=0; i<allQuests.Count; i++) {
+            string prefPath = "Quest-" + i.ToString() + "-IsComplete";
+            if (PlayerPrefs.GetInt(prefPath, 0) == 0) {
+                AddQuest(allQuests[i]);
+                break;
+            }
+        }
     }
 
     public void AddQuest(Quest newQuest) {

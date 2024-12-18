@@ -28,9 +28,16 @@ public class QuestUI : MonoBehaviour
         rewardCount.text = rewardCount.text.Replace("1", quest.amount.ToString());
 
         rewardButton.onClick.AddListener(() => PlayerInventory.Instance.AddItem(quest.reward, quest.amount));
-        rewardButton.onClick.AddListener(() => QuestManager.Instance.RemoveQuest(quest));
+        rewardButton.onClick.AddListener(RemoveQuest);
 
         rewardIcon.sprite = quest.reward.sprite;
+    }
+
+    public void RemoveQuest() {
+        if (quest.isComplete) {
+            PlayerInventory.Instance.AddItem(quest.reward, quest.amount);
+        }
+        QuestManager.Instance.RemoveQuest(quest);
     }
 
     public void CompleteQuest() {

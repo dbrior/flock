@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Tutorial 1
   m_EditorClassIdentifier: Assembly-CSharp::Quest
+  questId: 1
   title: A    MAN    AND    HIS    FLOCK
   tasks:
   - type: 2

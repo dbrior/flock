@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Tutorial 2
   m_EditorClassIdentifier: Assembly-CSharp::Quest
+  questId: 2
   title: THE    MORE    THE    MERRIER
   tasks:
   - type: 6
@@ -55,7 +56,7 @@ MonoBehaviour:
     isComplete: 0
     taskUI: {fileID: 0}
   reward: {fileID: 11400000, guid: f3129a8bc4c154da2969105b8b8350bf, type: 2}
-  amount: 25
+  amount: 50
   nextQuest: {fileID: 0}
   isComplete: 0
   questUI: {fileID: 0}
