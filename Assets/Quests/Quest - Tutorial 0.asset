@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Tutorial 0
-  m_EditorClassIdentifier: Assembly-CSharp::Quest
+  m_Script: {fileID: 11500000, guid: a0b5527cecbbe413fb07015cfcfb73b7, type: 3}
+  m_Name: Quest - Tutorial 0
+  m_EditorClassIdentifier: 
+  questId: 0
   title: LEARNING    THE    ROPES
   tasks:
   - type: 0
@@ -36,5 +37,6 @@ MonoBehaviour:
     taskUI: {fileID: 0}
   reward: {fileID: 11400000, guid: 69557dbb986374ee6a4a0ad397736a43, type: 2}
   amount: 5
-  nextQuest: {fileID: 11400000, guid: fae35ff34f65d44b99e934a85752ec2b, type: 2}
+  nextQuest: {fileID: 11400000, guid: b202942e62e77404caeb24237b64cf59, type: 2}
+  isComplete: 0
   questUI: {fileID: 0}

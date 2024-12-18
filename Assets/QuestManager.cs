@@ -57,65 +57,12 @@ public class QuestTask {
     }
 }
 
-[CreateAssetMenu()]
-public class Quest : ScriptableObject {
-    public int questId;
-    public string title;
-    public List<QuestTask> tasks;
-    public Item reward;
-    public int amount;
-    public Quest nextQuest;
-
-    public bool isComplete;
-    public QuestUI questUI;
-
-    public void CheckComplete() {
-        foreach (QuestTask task in tasks) {
-            if (!task.isComplete) return;
-        }
-
-        if (!isComplete) CompleteQuest();
-    }
-
-    private void CompleteQuest() {
-        isComplete = true;
-        string prefPath = "Quest-" + questId.ToString() + "-IsComplete";
-        PlayerPrefs.SetInt(prefPath, 1);
-        questUI.CompleteQuest();
-        if (nextQuest != null) {
-            QuestManager.Instance.AddQuest(nextQuest);
-        }
-    }
-
-    public Quest Clone() {
-        Quest clone = Instantiate(this);
-        clone.tasks = new List<QuestTask>();
-        foreach (var task in tasks) {
-            QuestTask taskCopy = new QuestTask {
-                type = task.type,
-                amount = task.amount,
-                item = task.item,
-                creatureType = task.creatureType,
-                unitType = task.unitType,
-                cropType = task.cropType,
-                currAmount = 0, // Reset progress
-                isComplete = false,
-                textOverride = task.textOverride,
-                taskUI = null // UI not cloned
-            };
-            clone.tasks.Add(taskCopy);
-        }
-        return clone;
-    }
-}
-
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance {get; private set;}
 
     [SerializeField] private Transform questContainer;
     [SerializeField] private List<Quest> activeQuests = new List<Quest>();
-    [SerializeField] private Quest startingQuest;
     
     [SerializeField] private GameObject questUIPrefab;
 
@@ -124,7 +71,9 @@ public class QuestManager : MonoBehaviour
     void Awake() {
         if (Instance == null) {Instance = this;}
         else {Destroy(gameObject);}
+    }
 
+    void Start() {
         for (int i=0; i<allQuests.Count; i++) {
             string prefPath = "Quest-" + i.ToString() + "-IsComplete";
             if (PlayerPrefs.GetInt(prefPath, 0) == 0) {

@@ -9,54 +9,54 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Tutorial 2
-  m_EditorClassIdentifier: Assembly-CSharp::Quest
-  questId: 2
-  title: THE    MORE    THE    MERRIER
+  m_Script: {fileID: 11500000, guid: a0b5527cecbbe413fb07015cfcfb73b7, type: 3}
+  m_Name: Quest - Tutorial 1
+  m_EditorClassIdentifier: 
+  questId: 1
+  title: A    MAN    AND    HIS    FLOCK
   tasks:
-  - type: 6
-    amount: 1
+  - type: 2
+    amount: 5
     item: {fileID: 0}
-    creatureType: 0
-    unitType: 2
+    creatureType: 1
+    unitType: 0
     cropType: 0
     textOverride: 
     currAmount: 0
     isComplete: 0
     taskUI: {fileID: 0}
-  - type: 6
-    amount: 1
+  - type: 4
+    amount: 8
     item: {fileID: 0}
     creatureType: 0
-    unitType: 1
+    unitType: 0
+    cropType: 1
+    textOverride: 
+    currAmount: 0
+    isComplete: 0
+    taskUI: {fileID: 0}
+  - type: 3
+    amount: 10
+    item: {fileID: 11400000, guid: 69557dbb986374ee6a4a0ad397736a43, type: 2}
+    creatureType: 0
+    unitType: 0
     cropType: 0
     textOverride: 
     currAmount: 0
     isComplete: 0
     taskUI: {fileID: 0}
-  - type: 6
-    amount: 1
-    item: {fileID: 0}
+  - type: 3
+    amount: 20
+    item: {fileID: 11400000, guid: a27554d8a44d04a2cafb58ac9c285c3a, type: 2}
     creatureType: 0
-    unitType: 6
+    unitType: 0
     cropType: 0
     textOverride: 
     currAmount: 0
     isComplete: 0
     taskUI: {fileID: 0}
-  - type: 6
-    amount: 1
-    item: {fileID: 0}
-    creatureType: 0
-    unitType: 4
-    cropType: 0
-    textOverride: 
-    currAmount: 0
-    isComplete: 0
-    taskUI: {fileID: 0}
-  reward: {fileID: 11400000, guid: f3129a8bc4c154da2969105b8b8350bf, type: 2}
-  amount: 50
-  nextQuest: {fileID: 0}
+  reward: {fileID: 11400000, guid: a27554d8a44d04a2cafb58ac9c285c3a, type: 2}
+  amount: 20
+  nextQuest: {fileID: 11400000, guid: 9665af69a1d6545f0be47778e028d41a, type: 2}
   isComplete: 0
   questUI: {fileID: 0}

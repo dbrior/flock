@@ -131594,12 +131594,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questContainer: {fileID: 2077005414}
   activeQuests: []
-  startingQuest: {fileID: 11400000, guid: 42816ed2ec0ae463d9c09f84603aa4f4, type: 2}
   questUIPrefab: {fileID: 8361017172354574704, guid: 503df3cece7ee4cb3b71ad2145681e67, type: 3}
   allQuests:
-  - {fileID: 11400000, guid: 42816ed2ec0ae463d9c09f84603aa4f4, type: 2}
-  - {fileID: 11400000, guid: fae35ff34f65d44b99e934a85752ec2b, type: 2}
-  - {fileID: 11400000, guid: 650d8864864f346d38ee119afe891b4e, type: 2}
+  - {fileID: 11400000, guid: 83f54befb0d0446e99a48cf712b88c1b, type: 2}
+  - {fileID: 11400000, guid: b202942e62e77404caeb24237b64cf59, type: 2}
+  - {fileID: 11400000, guid: 9665af69a1d6545f0be47778e028d41a, type: 2}
 --- !u!114 &2077005416
 MonoBehaviour:
   m_ObjectHideFlags: 0
