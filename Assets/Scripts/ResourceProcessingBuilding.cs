@@ -37,10 +37,11 @@ public class ResourceProcessingBuilding : MonoBehaviour
     }
 
     public void SubmitProcessingJob() {
-        if (PlayerInventory.Instance.GetItemCount(inputItem) == 0) return;
+        int itemCount = PlayerInventory.Instance.GetItemCount(inputItem);
+        if (itemCount == 0) return;
 
-        PlayerInventory.Instance.RemoveItem(inputItem, 1);
-        inventory.AddItem(inputItem, 1);
+        PlayerInventory.Instance.RemoveItem(inputItem, itemCount);
+        inventory.AddItem(inputItem, itemCount);
         if (!isProcessing) StartCoroutine("Process");
     }
 
