@@ -127,6 +127,13 @@ public class WorkerBuilding : MonoBehaviour
         respawnCooldownUI.text = respawnCooldownSec.ToString();
     }
 
+    public void SetWanderAnchor(Transform newWanderAnchor) {
+        wanderAnchor = newWanderAnchor;
+        for (int i=0; i<workers.Count; i++) {
+            workers[i].SetWanderAnchor(wanderAnchor);
+        }
+    }
+
     public void ChangeWorkerMaxHealth(float pct) {
         workerMaxHealth *= pct;
         UpdateStatUI();
