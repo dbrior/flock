@@ -4,10 +4,22 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 
+[System.Serializable]
+public struct PathfindingInterval {
+    public float dist;
+    public float intervalSec;
+
+    public PathfindingInterval(float dist, float intervalSec) {
+        this.dist = dist;
+        this.intervalSec = intervalSec;
+    }
+}
+
 public class CharacterMover : MonoBehaviour
 {
     // [SerializeField] private float moveSpeed;
     [SerializeField] private float pathfindingIntervalSec = 3f;
+    [SerializeField] private PathfindingInterval[] pathfindingIntervals; // Assume sorted descending
 
     // Wandering
     [SerializeField] private bool anchoredWandering;
@@ -21,6 +33,7 @@ public class CharacterMover : MonoBehaviour
     
     private NavMeshAgent agent;
     private bool shouldNavigate;
+    [SerializeField] private Transform currentTarget;
 
     void Awake() {
         agent = GetComponent<NavMeshAgent>();
@@ -50,6 +63,15 @@ public class CharacterMover : MonoBehaviour
 
         onReachDestination = null;
         onAbandonDestination = null;
+        currentTarget = null;
+    }
+
+    public void SetPathfindingInterval(float newIntervalSec) {
+        pathfindingIntervalSec = newIntervalSec;
+    }
+
+    public Transform GetCurrentTarget() {
+        return currentTarget;
     }
 
     public void CancelNavigation() {
@@ -60,37 +82,58 @@ public class CharacterMover : MonoBehaviour
 
         onReachDestination = null;
         onAbandonDestination = null;
+        currentTarget = null;
     }
 
     public bool TryNavigateTo(Vector3 worldPosition) {
         StopWandering();
         StopCoroutine("Navigate");
-        shouldNavigate = true;
+        // shouldNavigate = true;
         return agent.SetDestination(worldPosition);
     }
     public void NavigateTo(Vector3 worldPosition) {
         StopWandering();
         StopCoroutine("Navigate");
-        shouldNavigate = true;
+        // shouldNavigate = true;
         agent.SetDestination(worldPosition);
     }
     public void NavigateTo(Transform targetTransform) {
+        if (targetTransform == currentTarget) return;
         StopWandering();
-        StopCoroutine("Navigate");
-        shouldNavigate = true;
-        StartCoroutine(Navigate(targetTransform));
+        currentTarget = targetTransform;
+        if (!shouldNavigate) {
+            shouldNavigate = true;
+            StartCoroutine("Navigate");
+        }
     }
 
-    IEnumerator Navigate(Transform target) {
+    IEnumerator Navigate() {
         while (shouldNavigate) {
-            if (target == null) {
+            if (currentTarget == null) {
                 CancelNavigation();
                 break;
-            };
+            }
 
-            agent.SetDestination(target.position);
-            
-            yield return new WaitForSeconds(pathfindingIntervalSec);
+            agent.SetDestination(currentTarget.position);
+    
+            float elapsedTime = 0;
+            while (elapsedTime < pathfindingIntervalSec) {
+                if (currentTarget == null) {
+                    CancelNavigation();
+                    break;
+                }
+
+                float distance = Vector2.Distance(transform.position, currentTarget.position);
+                for (int i=0; i<pathfindingIntervals.Length; i++) {
+                    if (distance >= pathfindingIntervals[i].dist) {
+                        pathfindingIntervalSec = pathfindingIntervals[i].intervalSec;
+                        break;
+                    }
+                }
+
+                yield return new WaitForSeconds(0.1f);
+                elapsedTime += 0.1f;
+            }
         }
     }
 

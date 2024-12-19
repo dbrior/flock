@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: -635717810568679761}
   - component: {fileID: 1529811932095763846}
   - component: {fileID: 6559339846366153363}
+  - component: {fileID: 5691792173490467906}
   m_Layer: 14
   m_Name: Hunter
   m_TagString: Untagged
@@ -248,6 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathfindingIntervalSec: 3
+  pathfindingIntervals: []
   anchoredWandering: 1
   wanderingAnchor: {fileID: 0}
   wanderRadius: 0.4
@@ -430,6 +432,18 @@ MonoBehaviour:
     item: {fileID: 0}
     amount: 0
     isPositionTask: 0
+--- !u!114 &5691792173490467906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375127763543933279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc1995a44b244f9290ea61ad7521e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5933440314247674594
 GameObject:
   m_ObjectHideFlags: 0

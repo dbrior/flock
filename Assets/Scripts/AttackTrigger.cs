@@ -5,21 +5,19 @@ using UnityEngine;
 public class AttackTrigger : MonoBehaviour
 {
     private Attacker attacker;
-    private LayerMask targetLayer;
-    private LayerMask ignoreLayer;
+    [SerializeField] private LayerMask targetLayer;
 
     private List<Damagable> targets = new List<Damagable>();
     private List<Transform> targetsTransforms = new List<Transform>();
 
     void Start() {
         attacker = GetComponentInParent<Attacker>();
-        targetLayer = attacker.GetTargetLayer();
-        ignoreLayer = attacker.GetIgnoreLayer();
     }
 
     void Update() {
-        for (int i=0; i<targets.Count; i++) {
-            attacker.AttackStart(targets[i]);
+        for (int i=0; i<targetsTransforms.Count; i++) {
+            attacker.SetTarget(targetsTransforms[i]);
+            attacker.StartAttack();
         }
     }
 

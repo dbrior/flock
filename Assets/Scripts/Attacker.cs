@@ -5,34 +5,84 @@ using UnityEngine;
 
 public class Attacker : MonoBehaviour
 {
-    [SerializeField] private LayerMask targetLayer;
-    [SerializeField] private LayerMask ignoreLayer;
-    [SerializeField] private Animator attackAnimator;
-    [SerializeField] private float damage;
-    [SerializeField] private float knockbackForce;
-    [SerializeField] private float hitCooldownSec;
-    [SerializeField] private Collider2D attackZone;
-    [SerializeField] private bool indiscriminantDamage;
-    [SerializeField] private AudioClip attackLandSound;
-    [SerializeField] private UnityEvent onAttackLand;
+    [Header("Target Settings")]
+    [SerializeField] private float attackTriggerDist;
+    [SerializeField] private float attackLandDist;
     [SerializeField] private bool isImmediateAttack;
     [SerializeField] private bool isUnblockable;
     [SerializeField] private bool canHitSelf;
-    private bool readyToAttack = true;
-    private Damagable currentTarget;
+    [SerializeField] private bool isIndiscriminantDamage;
+    [SerializeField] private LayerMask indiscriminantTargetLayers;
 
+    [Header("Attack Stats")]
+    [SerializeField] private float damage;
+    [SerializeField] private float hitCooldownSec;
+    [SerializeField] private float knockbackForce;
+
+    [Header("Post-Attack")]
+    [SerializeField] private AudioClip attackLandSound;
+    [SerializeField] private UnityEvent onAttackLand;
+    
+
+    [SerializeField] private Transform currentTarget;
+    private Damagable currentTargetDamagable;
+    [SerializeField] private float currentTargetDist;
+    private bool readyToAttack = true;
     private AudioSource audioSource;
+    private Animator animator;
 
     void Start() {
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
-    public LayerMask GetTargetLayer() {
-        return targetLayer;
+    void Update() {
+        if (currentTarget == null) return;
+
+        currentTargetDist = Vector2.Distance(currentTarget.position, transform.position);
+        if (currentTargetDist <= attackTriggerDist) {
+            StartAttack();
+        }
     }
 
-    public LayerMask GetIgnoreLayer() {
-        return ignoreLayer;
+    public void SetTarget(Transform newTarget) {
+        if (newTarget == currentTarget) return;
+
+        currentTarget = newTarget;
+        if (currentTarget.TryGetComponent<Damagable>(out Damagable damagable)) {
+            currentTargetDamagable = damagable;
+        } else {
+            currentTargetDamagable = null;
+        }
+    }
+
+    public void StartAttack() {
+        if (readyToAttack) {
+            readyToAttack = false;
+            StartCoroutine(HitTimer(hitCooldownSec));
+            if (isImmediateAttack) AttackLand();
+            if (animator != null) animator.SetTrigger("Attack");
+        }
+    }
+
+    public void AttackLand() {
+        if (isIndiscriminantDamage) {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackLandDist, indiscriminantTargetLayers);
+            for (int i=0; i<colliders.Length; i++) {
+                Collider2D col = colliders[i];
+                if (!canHitSelf && col.gameObject == gameObject) continue;
+
+                if (col.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
+                    damagable.Hit(transform.position, damage, knockbackForce, isUnblockable: isUnblockable);
+                }
+            }
+        } else if (currentTargetDist <= attackLandDist) {
+            currentTargetDamagable.Hit(transform.position, damage, knockbackForce, isUnblockable: isUnblockable);
+        }
+        if (audioSource != null && attackLandSound != null) {
+            audioSource.PlayOneShot(attackLandSound);
+        }
+        onAttackLand?.Invoke();
     }
 
     public void SetAttackCooldownSec(float newAttackCooldownSec) {
@@ -41,43 +91,6 @@ public class Attacker : MonoBehaviour
 
     public void SetDamage(float newDamage) {
         damage = newDamage;
-    }
-
-    public void AttackStart(Damagable damagable) {
-        if (readyToAttack) {
-            currentTarget = damagable;
-            readyToAttack = false;
-            if (attackAnimator != null) {
-                attackAnimator.SetTrigger("Attack");
-            } else {
-                AttackLand();
-            }
-        }
-    }
-
-    public void AttackLand() {
-        if (indiscriminantDamage) {
-            List<Collider2D> results = new List<Collider2D>();
-            ContactFilter2D filter = new ContactFilter2D().NoFilter();
-
-            int overlapCount = attackZone.OverlapCollider(filter, results);
-
-            foreach (Collider2D collider in results)
-            {
-                if (((1 << collider.gameObject.layer) & ignoreLayer) != 0) continue;
-
-                if ((canHitSelf || collider.gameObject != gameObject) && collider.gameObject.TryGetComponent<Damagable>(out Damagable damagable)) {
-                    damagable.Hit(transform.position, damage, knockbackForce, isUnblockable: isUnblockable);
-                }
-            }
-        } else if (currentTarget.GetComponent<Collider2D>().IsTouching(attackZone)) {
-            currentTarget.Hit(transform.position, damage, knockbackForce, isUnblockable: isUnblockable);
-        }
-        if (audioSource != null && attackLandSound != null) {
-            audioSource.PlayOneShot(attackLandSound);
-        }
-        StartCoroutine(HitTimer(hitCooldownSec));
-        onAttackLand?.Invoke();
     }
 
     IEnumerator HitTimer(float cooldown) {

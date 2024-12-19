@@ -20,9 +20,10 @@ GameObject:
   - component: {fileID: 4338390866426657169}
   - component: {fileID: 6894556829955426314}
   - component: {fileID: 3579503823551153897}
-  - component: {fileID: 1048031402830437064}
   - component: {fileID: 973340065568177022}
   - component: {fileID: 3161028704171599477}
+  - component: {fileID: 1852289409979562262}
+  - component: {fileID: 2267652719959507561}
   m_Layer: 14
   m_Name: Knight
   m_TagString: Untagged
@@ -328,12 +329,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathfindingIntervalSec: 3
+  pathfindingIntervals: []
   anchoredWandering: 1
   wanderingAnchor: {fileID: 0}
   wanderRadius: 0.4
   wanderingWaitTimeSec:
     min: 1
     max: 4
+  currentTarget: {fileID: 0}
 --- !u!114 &4338390866426657169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,9 +356,9 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
-  regenEnabled: 0
-  regenPerSecond: 0
-  regenDelay: 0
+  regenEnabled: 1
+  regenPerSecond: 20
+  regenDelay: 5
   hitSound: {fileID: 8300000, guid: 5ef2e071b515b41e0a5253e608427903, type: 3}
   blockSound: {fileID: 8300000, guid: 1ccd0c85c293e4bc8973ae50b1baa6e2, type: 3}
   critSound: {fileID: 0}
@@ -390,42 +393,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586090dee1e8f42a49b0fd76621b3255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayer:
+  attackTriggerDist: 0.32
+  attackLandDist: 0.32
+  isImmediateAttack: 0
+  isUnblockable: 0
+  canHitSelf: 0
+  isIndiscriminantDamage: 1
+  indiscriminantTargetLayers:
     serializedVersion: 2
     m_Bits: 1024
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 49352
-  attackAnimator: {fileID: 2967777482990497887}
-  damage: 25
-  knockbackForce: 1000
+  damage: 45
   hitCooldownSec: 1
-  attackZone: {fileID: 3881596293600573918}
-  indiscriminantDamage: 1
+  knockbackForce: 1000
   attackLandSound: {fileID: 8300000, guid: 7800f7e1890984bb1bd25fab19afab03, type: 3}
   onAttackLand:
     m_PersistentCalls:
       m_Calls: []
-  isImmediateAttack: 0
-  isUnblockable: 0
-  canHitSelf: 0
---- !u!114 &1048031402830437064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11373409921329751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d32d4b0bbc5492a81be3e0f8e5de0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  detectionRadius: 0.5
-  scanIntervalSec: 1
+  currentTarget: {fileID: 0}
+  currentTargetDist: 0
 --- !u!114 &973340065568177022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +446,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePct: 0.75
+--- !u!114 &1852289409979562262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11373409921329751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc1995a44b244f9290ea61ad7521e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2267652719959507561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11373409921329751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06dc9571cb49148a083ce2fab17ada80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scanIntervalSec: 1
+  detectionRadius: 0.5
+  findEnemyUnits: 1
 --- !u!1 &2349305984119604212
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3732643580719472624
 Transform:
   m_ObjectHideFlags: 0
@@ -757,7 +769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &121925982219797065
 Transform:
   m_ObjectHideFlags: 0
@@ -785,6 +797,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e22a28b024a4960b1498e932ba8198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!58 &1075841052446651490
 CircleCollider2D:
   m_ObjectHideFlags: 0
