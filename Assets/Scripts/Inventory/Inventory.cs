@@ -23,7 +23,7 @@ public class Inventory : MonoBehaviour
     private void UpdateItemUI(Item item, int count)
     {
         if (uiMappings.TryGetValue(item, out TextMeshProUGUI uiElement)) {
-            uiElement.text = count.ToString();
+            uiElement.text = UIManager.FormatNumber(count);
         }
     }
 

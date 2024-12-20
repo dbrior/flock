@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CropBundle - Healing
   m_EditorClassIdentifier: 
   itemName: CropBundle - Healing
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 06b26ce0b86ba4963bb66b53a5c481d1, type: 3}

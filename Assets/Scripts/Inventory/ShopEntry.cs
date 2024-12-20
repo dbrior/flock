@@ -23,13 +23,17 @@ public struct Cost {
     public void SetPrice(int newPrice) {
         this.amount = newPrice;
         if (this.costText != null) {
-            this.costText.text = amount.ToString();
+            this.costText.text = UIManager.FormatNumber(amount);
         }
     }
 }
 
+[System.Serializable]
 public class ShopEntry : MonoBehaviour
 {
+    [SerializeField] private GameObject currencyPrefab;
+    public GameObject currencyContainer;
+    public TextMeshProUGUI entryText;
     [SerializeField] private List<Cost> costs;
     [SerializeField] private float costScaling;
     [SerializeField] private UnityEvent onPurchase;
@@ -48,6 +52,24 @@ public class ShopEntry : MonoBehaviour
     void Start() {
         shop = GetComponentInParent<Shop>();
         button.onClick.AddListener(AttemptPurchase);
+    }
+
+    public void SetShopEntryData(ShopEntryData newData) {
+        entryText.text = newData.entryName;
+        costs = newData.costs;
+        costScaling = newData.costScaling;
+        onPurchase = newData.onPurchase;
+        onPurchasePlayer = newData.onPurchasePlayer;
+        maxPurchaseCount = newData.maxPurchaseCount;
+        nextShopEntry = newData.nextShopEntry;
+
+        for  (int i=0; i<costs.Count; i++) {
+            Cost cost = costs[i];
+            CurrencyUI currencyUI = Instantiate(currencyPrefab, currencyContainer.transform).GetComponent<CurrencyUI>();
+            currencyUI.SetCostData(cost);
+            cost.costText = currencyUI.costText;
+            costs[i] = cost;
+        }
     }
 
     private bool CanAfford(Item currency, int cost) {

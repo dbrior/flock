@@ -370,6 +370,7 @@ MonoBehaviour:
   wanderingWaitTimeSec:
     min: 1
     max: 4
+  currentTarget: {fileID: 0}
 --- !u!114 &578102641265504759
 MonoBehaviour:
   m_ObjectHideFlags: 0

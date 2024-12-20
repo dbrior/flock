@@ -120,11 +120,11 @@ public class WorkerBuilding : MonoBehaviour
     }   
 
     private void UpdateStatUI() {
-        maxHealthUI.text = workerMaxHealth.ToString();
-        blockChanceUI.text = workerBlockChance.ToString();
-        damageUI.text = workerDamage.ToString();
-        attackCooldownUI.text = workerAttackCooldownSec.ToString();
-        respawnCooldownUI.text = respawnCooldownSec.ToString();
+        maxHealthUI.text = UIManager.FormatNumber(workerMaxHealth);
+        blockChanceUI.text = UIManager.FormatNumber(workerBlockChance);
+        damageUI.text = UIManager.FormatNumber(workerDamage);
+        attackCooldownUI.text = UIManager.FormatNumber(workerAttackCooldownSec);
+        respawnCooldownUI.text = UIManager.FormatNumber(respawnCooldownSec);
     }
 
     public void SetWanderAnchor(Transform newWanderAnchor) {

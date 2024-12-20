@@ -460,6 +460,7 @@ MonoBehaviour:
   wanderingWaitTimeSec:
     min: 1
     max: 4
+  currentTarget: {fileID: 0}
 --- !u!114 &7976057255103563284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,6 +485,7 @@ MonoBehaviour:
   damage: 20
   hitCooldownSec: 0.5
   knockbackForce: 150
+  doesNotHaveAttackAnimation: 1
   attackLandSound: {fileID: 0}
   onAttackLand:
     m_PersistentCalls:

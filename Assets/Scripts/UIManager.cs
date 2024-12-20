@@ -46,4 +46,34 @@ public class UIManager : MonoBehaviour
     public void UpdateDay(int dayValue) {
         day.text = "DAY    " + dayValue.ToString("");
     }
+
+    public static string FormatNumber(float number) {
+        if (number < 0.01f)
+            return "0";
+            
+        if (number < 1f)
+            return number.ToString("0.00").TrimEnd('0').TrimEnd('.');
+            
+        if (number < 100f)
+            return number.ToString("0.0").TrimEnd('0').TrimEnd('.');
+            
+        if (number < 1000f)
+            return number.ToString("0");
+            
+        if (number < 1000000f)
+        {
+            float thousands = number / 1000f;
+            return thousands.ToString("0.00").TrimEnd('0').TrimEnd('.') + "K";
+        }
+        
+        if (number < 1000000000f)
+        {
+            float millions = number / 1000000f;
+            return millions.ToString("0.00").TrimEnd('0').TrimEnd('.') + "M";
+        }
+        
+        float billions = number / 1000000000f;
+        return billions.ToString("0.00").TrimEnd('0').TrimEnd('.') + "B";
+    }
+
 }

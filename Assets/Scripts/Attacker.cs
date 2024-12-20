@@ -20,6 +20,7 @@ public class Attacker : MonoBehaviour
     [SerializeField] private float knockbackForce;
 
     [Header("Post-Attack")]
+    [SerializeField] private bool doesNotHaveAttackAnimation;
     [SerializeField] private AudioClip attackLandSound;
     [SerializeField] private UnityEvent onAttackLand;
     
@@ -61,7 +62,7 @@ public class Attacker : MonoBehaviour
             readyToAttack = false;
             StartCoroutine(HitTimer(hitCooldownSec));
             if (isImmediateAttack) AttackLand();
-            if (animator != null) animator.SetTrigger("Attack");
+            if (animator != null && !doesNotHaveAttackAnimation) animator.SetTrigger("Attack");
         }
     }
 
