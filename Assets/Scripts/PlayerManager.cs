@@ -18,11 +18,11 @@ public class PlayerManager : MonoBehaviour
         currentPlayer.spinner.SpawnRadialInstances();
     }
 
-    public void IncreaseMagicSpeed(float pctIncrease) {
-        currentPlayer.spinner.SetSpeed(currentPlayer.spinner.rotateSpeed * (1f + pctIncrease));
+    public void ChangeMagicSpeed(float pctChange) {
+        currentPlayer.spinner.SetSpeed(currentPlayer.spinner.rotateSpeed * pctChange);
     }
 
-    public void IncreaseMagicDamage(float pctIncrease) {
-        currentPlayer.spinner.IncreaseDamage(pctIncrease);
+    public void ChangeMagicDamage(float pctChange) {
+        currentPlayer.spinner.IncreaseDamage(pctChange);
     }
 }
