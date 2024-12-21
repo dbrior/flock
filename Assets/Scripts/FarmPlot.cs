@@ -14,8 +14,14 @@ public class FarmPlot : MonoBehaviour
     private List<Crop> crops = new List<Crop>();
     private float growthTimeSec = 30f;
 
+    private float farmplotX;
+    private float farmplotY;
+
     void Awake() {
         building = GetComponent<WorkerBuilding>();
+
+        farmplotX = Mathf.Round(transform.position.x*100f)/100f;
+        farmplotY = Mathf.Round(transform.position.y*100f)/100f;
     }
 
     void Start() {
@@ -40,8 +46,11 @@ public class FarmPlot : MonoBehaviour
 
         for (float x=minX; x<=maxX; x+=gridStep) {
             for (float y=minY; y<=maxY; y+=gridStep) {
-                if (x == transform.position.x && y == transform.position.y) continue;
-                points.Add(new Vector2(Mathf.Round(x*100f)/100f, Mathf.Round(y*100f)/100f));
+                float xPos = Mathf.Round(x*100f)/100f;
+                float yPos = Mathf.Round(y*100f)/100f;
+
+                if (xPos == farmplotX && yPos == farmplotY) continue;
+                points.Add(new Vector2(xPos, yPos));
             }
         }
 
@@ -86,8 +95,8 @@ public class FarmPlot : MonoBehaviour
         }
     }
 
-    public void IncreaseGrowthRate() {
-        growthTimeSec *= 0.8f;
+    public void IncreaseGrowthRate(float pctChange) {
+        growthTimeSec *= pctChange;
         ScanCrops();
         for (int i=0; i<crops.Count; i++) {
             crops[i].SetGrowthTimeSec(growthTimeSec);
