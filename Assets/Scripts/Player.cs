@@ -47,6 +47,8 @@ public class Player : MonoBehaviour
     public Spinner spinner;
     [SerializeField] private LayerMask attackLayer;
     private MinionSpawner spawner;
+    private bool isFlippingSprite = false;
+    private SpriteRenderer spriteRenderer;
     
     void Awake()
     {
@@ -57,6 +59,7 @@ public class Player : MonoBehaviour
         damagable = GetComponent<Damagable>();
         toolBelt = GetComponent<ToolBelt>();
         spawner = GetComponent<MinionSpawner>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         heading = Vector2.down;
     }
 
@@ -82,6 +85,11 @@ public class Player : MonoBehaviour
         { Vector2.left, 4 }
     };
     void Update() {
+        if (isFlippingSprite) {
+            spriteRenderer.flipX = rb.velocity.x > 0;
+            return;
+        }
+
         Vector2 newMoveCardinal;
         if (moveVec == Vector2.zero) {
             newMoveCardinal = Vector2.zero;
@@ -114,6 +122,13 @@ public class Player : MonoBehaviour
 
         float rotateSpeed = 0.05f;
         flashlight.transform.rotation = Quaternion.Lerp(flashlight.transform.rotation, Quaternion.Euler(0, 0, zRotation), rotateSpeed);
+    }
+
+    public void EnableFlipSprite() {
+        isFlippingSprite = true;
+    }
+    public void DisableFlipSprite() {
+        isFlippingSprite = false;
     }
 
     private void SetHeading(Vector2 newHeading) {
