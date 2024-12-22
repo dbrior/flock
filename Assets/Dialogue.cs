@@ -1,12 +1,15 @@
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
+    public static Dialogue Instance {get; private set;}
+
     [Tooltip("Text component where the dialogue will be displayed")]
     public TextMeshProUGUI dialogueText;
 
@@ -29,10 +32,49 @@ public class Dialogue : MonoBehaviour
     // Regex for detecting pause and formatting commands
     private static readonly Regex SpecialCommandRegex = new Regex(@"\[(pause:[^]]+)\]|<[^>]+>");
 
+    private List<string> upcomingDialogue;
+    private bool isDialogueWriting;
+    private string currentDialogue;
+
+    void Awake() {
+        if (Instance == null) {Instance = this;}
+        else {Destroy(gameObject);}
+    }
+
     void Start() {
         Time.timeScale = 0;
         MusicManager.Instance.PauseMusic();
-        DisplayDialogue("Breath again young one[pause:0.5].[pause:0.5].[pause:0.5].[pause:0.5]\n Your time has not yet come.\n[pause:1.0]Protect the bearer of the <color=#FFD700>golden wool</color>.".Replace(" ", "    ").ToUpper());
+        SetUpcomingDialogue(new List<string>(){
+            "Breathe again young one[pause:0.5].[pause:0.5].[pause:0.5].[pause:0.5]\n Your time has not yet come.".Replace(" ", "    ").ToUpper(),
+            "Capture sheep and hire minions to survive.".Replace(" ", "    ").ToUpper(),
+            "Beware the calamity on the <color=#0043b0>fifth night</color>.[pause:1.0]\nProtect the bearer of the <color=#c9aa02>golden wool</color>.".Replace(" ", "    ").ToUpper()
+        });
+        NextDialogue();
+    }
+
+    public void SetUpcomingDialogue(List<string> newDialoguge) {
+        upcomingDialogue = newDialoguge;
+    }
+
+    public void OnInteract() {
+        if (isDialogueWriting) SkipToFullText(currentDialogue);
+        else NextDialogue();
+    }
+
+    public void NextDialogue() {
+        if (upcomingDialogue.Count == 0) {
+            EndDialogue();
+            return;
+        }
+
+        DisplayDialogue(upcomingDialogue[0]);
+        upcomingDialogue.RemoveAt(0);
+    }
+
+    private void EndDialogue() {
+        Time.timeScale = 1f;
+        transform.parent.gameObject.SetActive(false);
+        MusicManager.Instance.ResumeMusic();
     }
 
     /// <summary>
@@ -53,6 +95,8 @@ public class Dialogue : MonoBehaviour
 
     private IEnumerator RevealLetters(string dialogue)
     {
+        currentDialogue = dialogue;
+        isDialogueWriting = true;
         // Prepare for letter-by-letter reveal
         dialogueText.text = "";
 
@@ -111,6 +155,7 @@ public class Dialogue : MonoBehaviour
 
             currentIndex++;
         }
+        isDialogueWriting = false;
     }
 
     private void PlayLetterSound(char letter)
@@ -130,12 +175,15 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// Quickly display the full text without letter-by-letter reveal
+    /// Quickly display the full text without letter-by-letter reveal, removing pause markers but keeping formatting
     /// </summary>
     public void SkipToFullText(string dialogue)
     {
         StopAllCoroutines();
-        // Remove pause markers for final display
-        dialogueText.text = Regex.Replace(dialogue, @"\[pause:[^]]+\]", "");
+        // Remove only pause markers while preserving formatting tags
+        string cleanText = Regex.Replace(dialogue, @"\[pause:[^]]+\]", "", RegexOptions.IgnoreCase);
+        dialogueText.text = cleanText;
+        isDialogueWriting = false;
     }
+
 }
