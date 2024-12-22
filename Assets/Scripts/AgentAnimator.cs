@@ -53,4 +53,8 @@ public class AgentAnimator : MonoBehaviour
             animator.SetInteger("Direction", cardinalIntMappings[animationDirection]);
         }
     }
+
+    public void SetFlipSprite(bool state) {
+        isFlippingSprite = state;
+    }
 }

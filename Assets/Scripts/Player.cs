@@ -2,8 +2,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
+public enum Character {
+    Shepard,
+    Ninja,
+    Witch
+}
+
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Character character;
     [SerializeField] private int playerId;
     private Rigidbody2D rb;
     private Animator animator;
@@ -39,6 +46,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip stepSound;
     public Spinner spinner;
     [SerializeField] private LayerMask attackLayer;
+    private MinionSpawner spawner;
     
     void Awake()
     {
@@ -48,6 +56,7 @@ public class Player : MonoBehaviour
         interactionHints = GetComponent<InteractionHints>();
         damagable = GetComponent<Damagable>();
         toolBelt = GetComponent<ToolBelt>();
+        spawner = GetComponent<MinionSpawner>();
         heading = Vector2.down;
     }
 
@@ -59,6 +68,10 @@ public class Player : MonoBehaviour
 
         ropeWeapon.damage = attackDamange;
         ropeWeapon.knockbackForce = knockbackForce;
+    }
+
+    public void SetMoveSpeed(float newSpeed) {
+        moveSpeed = newSpeed;
     }
 
     private Dictionary<Vector2, int> cardinalIntMappings = new Dictionary<Vector2, int>{
@@ -218,11 +231,19 @@ public class Player : MonoBehaviour
     public void OnSecondaryAttack(InputValue value) {
         // toolBelt.UseSlingshot();
         if (value.isPressed) {
-            ropeWeapon.EnableDamage();
-            secondaryActive = true;
+            if (character == Character.Witch) {
+                spawner.SpawnMinions(3);
+            } else {
+                ropeWeapon.EnableDamage();
+                secondaryActive = true;
+            }
         } else {
-            ropeWeapon.DisableDamage();
-            secondaryActive = false;
+            if (character == Character.Witch) {
+                {}
+            } else {
+                ropeWeapon.DisableDamage();
+                secondaryActive = false;
+            }
         }
         // ropeTool.angularVelocity = 10f;
 
@@ -291,6 +312,10 @@ public class Player : MonoBehaviour
         } else {
             GameManager.Instance.UnpauseGame();
         }
+    }
+
+    public void OnDash() {
+        animator.SetTrigger("Dash");
     }
 
     // void OnCollisionEnter2D(Collision2D col) {

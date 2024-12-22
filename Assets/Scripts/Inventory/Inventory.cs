@@ -1,15 +1,27 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
+
+[System.Serializable]
+public struct ItemAction {
+    public Item item;
+    public UnityEvent onGet;
+    public UnityEvent onEmpty;
+}
 
 public class Inventory : MonoBehaviour
 {
     private Dictionary<Item, int> inventory = new Dictionary<Item, int>();
 
+
+    // TODO: move to custom struct
     [SerializeField] private List<Item> items = new List<Item>();
     [SerializeField] private List<TextMeshProUGUI> uiElements = new List<TextMeshProUGUI>();
+    [SerializeField] private List<ItemAction> itemActionsList;
 
     private Dictionary<Item, TextMeshProUGUI> uiMappings = new Dictionary<Item, TextMeshProUGUI>();
+    private Dictionary<Item, ItemAction> itemActions = new Dictionary<Item, ItemAction>();
 
     private Worker worker;
 
@@ -17,6 +29,10 @@ public class Inventory : MonoBehaviour
         worker = GetComponent<Worker>();
         for (int i = 0; i < items.Count && i < uiElements.Count; i++) {
             uiMappings[items[i]] = uiElements[i];
+        }
+        for (int i=0; i<itemActionsList.Count; i++) {
+            ItemAction itemAction = itemActionsList[i];
+            itemActions[itemAction.item] = itemAction;
         }
     }
 
@@ -41,6 +57,10 @@ public class Inventory : MonoBehaviour
         int newCount = count;
         if (inventory.TryGetValue(item, out int currCount)) {
             newCount += inventory[item];
+        } else {
+            if (itemActions.TryGetValue(item, out ItemAction itemAction)) {
+                itemAction.onGet?.Invoke();
+            }
         }
         inventory[item] = newCount;
         UpdateItemUI(item, newCount);
@@ -58,6 +78,9 @@ public class Inventory : MonoBehaviour
 
             if (newCount == 0) {
                 inventory.Remove(item);
+                if (itemActions.TryGetValue(item, out ItemAction itemAction)) {
+                    itemAction.onEmpty?.Invoke();
+                }
             } else {
                 inventory[item] = newCount;
             }

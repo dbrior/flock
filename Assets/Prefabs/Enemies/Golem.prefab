@@ -140,6 +140,7 @@ MonoBehaviour:
   wanderingWaitTimeSec:
     min: 1
     max: 4
+  currentTarget: {fileID: 0}
 --- !u!50 &3425862654931926368
 Rigidbody2D:
   serializedVersion: 4
@@ -268,11 +269,13 @@ MonoBehaviour:
   damage: 50
   hitCooldownSec: 3
   knockbackForce: 200
+  doesNotHaveAttackAnimation: 0
   attackLandSound: {fileID: 8300000, guid: 054eef66f34474c458849cc1fadfa682, type: 3}
   onAttackLand:
     m_PersistentCalls:
       m_Calls: []
   currentTarget: {fileID: 0}
+  currentTargetDist: 0
 --- !u!114 &6309903587458223624
 MonoBehaviour:
   m_ObjectHideFlags: 0
