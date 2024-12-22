@@ -247,13 +247,17 @@ public class Player : MonoBehaviour
         // toolBelt.UseSlingshot();
         if (value.isPressed) {
             if (character == Character.Witch) {
-                spawner.SpawnMinions(3);
+                spawner.SpawnMinions(ropeRb.transform);
+            } else if (character == Character.Ninja) {
+                spawner.SpawnMinions(ropeRb.transform, hasSpawnOffset:false);
+                // Vector2 force = (Pointer.Instance.transform.position - transform.position).normalized * 200f;
+                // ropeRb.velocity = force;
             } else {
                 ropeWeapon.EnableDamage();
                 secondaryActive = true;
             }
         } else {
-            if (character == Character.Witch) {
+            if (character == Character.Witch || character == Character.Ninja) {
                 {}
             } else {
                 ropeWeapon.DisableDamage();
