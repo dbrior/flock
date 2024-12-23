@@ -7,11 +7,13 @@ using System.Collections.Generic;
 public struct CharacterConfig {
     public Character character;
     public RuntimeAnimatorController animatorController;
+    public Sprite ropeToolSprite;
     public GameObject ropeWeaponPrefab;
 
-    public CharacterConfig(Character character, RuntimeAnimatorController animatorController, GameObject ropeWeaponPrefab) {
+    public CharacterConfig(Character character, RuntimeAnimatorController animatorController, Sprite ropeToolSprite, GameObject ropeWeaponPrefab) {
         this.character = character;
         this.animatorController = animatorController;
+        this.ropeToolSprite = ropeToolSprite;
         this.ropeWeaponPrefab = ropeWeaponPrefab;
     }
 }
@@ -84,6 +86,8 @@ public class Player : MonoBehaviour
             CharacterConfig config = characterConfigs[i];
             if (config.character == character) {
                 animator.runtimeAnimatorController = config.animatorController;
+                ropeRb.gameObject.GetComponent<SpriteRenderer>().sprite = config.ropeToolSprite;
+                spawner.SetPrefab(config.ropeWeaponPrefab);
             }
         }
     }
