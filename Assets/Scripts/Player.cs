@@ -67,6 +67,8 @@ public class Player : MonoBehaviour
     private MinionSpawner spawner;
     private bool isFlippingSprite = false;
     private SpriteRenderer spriteRenderer;
+    [SerializeField] private GameObject dashTrigger;
+    [SerializeField] private AudioClip dashSound;
     
     void Awake()
     {
@@ -104,6 +106,21 @@ public class Player : MonoBehaviour
 
     public void SetMoveSpeed(float newSpeed) {
         moveSpeed = newSpeed;
+    }
+
+    public void DashStart() {
+        moveSpeed = 3.5f;
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Wolf"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Rope"), LayerMask.NameToLayer("Wolf"), true);
+        audioSource.PlayOneShot(dashSound);
+        dashTrigger.SetActive(true);
+    }
+
+    public void DashEnd() {
+        moveSpeed = 1f;
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Wolf"), false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Rope"), LayerMask.NameToLayer("Wolf"), false);
+        dashTrigger.SetActive(false);
     }
 
     private Dictionary<Vector2, int> cardinalIntMappings = new Dictionary<Vector2, int>{
