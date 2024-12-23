@@ -11,4 +11,8 @@ public class MainMenu : MonoBehaviour
     public void ExitGame() {
         Application.Quit();
     }
+
+    public void SelectCharacter(Character character) {
+        PlayerPrefs.SetInt("CurrentCharacter", (int) character);
+    }
 }

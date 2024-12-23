@@ -2,10 +2,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
+[System.Serializable]
 public enum Character {
-    Shepard,
-    Ninja,
-    Witch
+    Shepard = 0,
+    Ninja = 1,
+    Witch = 2
 }
 
 public class Player : MonoBehaviour

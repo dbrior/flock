@@ -42,6 +42,10 @@ public class CharacterMover : MonoBehaviour
         agent.updateUpAxis = false;
     }
 
+    void Start() {
+        StartWandering();
+    }
+
     void Update() {
         if(shouldNavigate && IsAtDestination()) {
             ReachedDestination();
