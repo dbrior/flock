@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         heading = Vector2.down;
 
         // Load character
-        Character character = (Character) PlayerPrefs.GetInt("SelectedCharacter", 0);
+        character = (Character) PlayerPrefs.GetInt("SelectedCharacter", 0);
         for (int i=0; i<characterConfigs.Count; i++) {
             CharacterConfig config = characterConfigs[i];
             if (config.character == character) {
@@ -154,6 +154,7 @@ public class Player : MonoBehaviour
     }
     public void DisableFlipSprite() {
         isFlippingSprite = false;
+        spriteRenderer.flipX = false;
     }
 
     private void SetHeading(Vector2 newHeading) {
@@ -254,17 +255,21 @@ public class Player : MonoBehaviour
 
         QuestManager.Instance.PrimaryWeapon();
 
-        Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(transform.position, attackRadius);
-        if (collidersInRange.Length > 0) {
-            foreach (Collider2D col in collidersInRange) {
-                GameObject obj = col.gameObject;
-                if (((1 << obj.layer) & attackLayer) != 0 && obj != gameObject && obj.TryGetComponent<Damagable>(out Damagable damagable)) {
-                    damagable.Hit(transform.position, attackDamange, knockbackForce);
+        if (character == Character.Ninja) {
+            animator.SetTrigger("Dash");
+        } else {
+            Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(transform.position, attackRadius);
+            if (collidersInRange.Length > 0) {
+                foreach (Collider2D col in collidersInRange) {
+                    GameObject obj = col.gameObject;
+                    if (((1 << obj.layer) & attackLayer) != 0 && obj != gameObject && obj.TryGetComponent<Damagable>(out Damagable damagable)) {
+                        damagable.Hit(transform.position, attackDamange, knockbackForce);
+                    }
                 }
             }
+            animator.SetTrigger("Attack");
+            isAttacking = true;
         }
-        animator.SetTrigger("Attack");
-        isAttacking = true;
     }
 
     private bool secondaryActive = false;
@@ -358,9 +363,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnDash() {
-        animator.SetTrigger("Dash");
-    }
+    // public void OnDash() {
+    //     animator.SetTrigger("Dash");
+    // }
 
     // void OnCollisionEnter2D(Collision2D col) {
     //     if (col.gameObject.TryGetComponent<Interactable>(out Interactable interactable)) {
