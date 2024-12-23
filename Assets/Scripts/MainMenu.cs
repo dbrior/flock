@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void SelectCharacter(Character character) {
-        PlayerPrefs.SetInt("CurrentCharacter", (int) character);
+    public void SelectCharacter(int character) {
+        PlayerPrefs.SetInt("SelectedCharacter", character);
     }
 }

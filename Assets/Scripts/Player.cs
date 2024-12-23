@@ -1,6 +1,20 @@
 using UnityEngine;
+using UnityEditor.Animations;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+
+[System.Serializable]
+public struct CharacterConfig {
+    public Character character;
+    public RuntimeAnimatorController animatorController;
+    public GameObject ropeWeaponPrefab;
+
+    public CharacterConfig(Character character, RuntimeAnimatorController animatorController, GameObject ropeWeaponPrefab) {
+        this.character = character;
+        this.animatorController = animatorController;
+        this.ropeWeaponPrefab = ropeWeaponPrefab;
+    }
+}
 
 [System.Serializable]
 public enum Character {
@@ -11,7 +25,8 @@ public enum Character {
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Character character;
+    [SerializeField] private List<CharacterConfig> characterConfigs;
+    private Character character;
     [SerializeField] private int playerId;
     private Rigidbody2D rb;
     private Animator animator;
@@ -62,6 +77,15 @@ public class Player : MonoBehaviour
         spawner = GetComponent<MinionSpawner>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         heading = Vector2.down;
+
+        // Load character
+        Character character = (Character) PlayerPrefs.GetInt("SelectedCharacter", 0);
+        for (int i=0; i<characterConfigs.Count; i++) {
+            CharacterConfig config = characterConfigs[i];
+            if (config.character == character) {
+                animator.runtimeAnimatorController = config.animatorController;
+            }
+        }
     }
 
     void Start() {
