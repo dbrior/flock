@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcfba6bf47df1478d9991795ba22385d
-      internalID: -274956975
+      spriteID: 2320da9bb8e4c45dc9775cc26ce618ad
+      internalID: -946968165
       vertices: []
       indices: 
       edges: []
@@ -171,8 +171,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33463d6992a1145fda3fd1011e16ddc6
-      internalID: 260650094
+      spriteID: 52f7a3551079e4f0a9ab942fe0dbfeef
+      internalID: 135917372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: golemBossWalk_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 240
+      alignment: 9
+      pivot: {x: 0.5, y: 0.26}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cf591a25670d4d1aa688e5077ddb8dd
+      internalID: 1499843409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: golemBossWalk_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 240
+      alignment: 9
+      pivot: {x: 0.5, y: 0.26}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b6c8c0d88c82452caa0e05657fe1651
+      internalID: -379420079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: golemBossWalk_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 240
+      alignment: 9
+      pivot: {x: 0.5, y: 0.26}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bb68cfdcd672477fa3e131c58385029
+      internalID: -1239871538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: golemBossWalk_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 240
+      alignment: 9
+      pivot: {x: 0.5, y: 0.26}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87d25c48af0ed40d3b804fe79ae79b8e
+      internalID: -1358840292
       vertices: []
       indices: 
       edges: []
@@ -188,8 +272,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      golemBossWalk_0: -274956975
-      golemBossWalk_1: 260650094
+      golemBossWalk_0: -946968165
+      golemBossWalk_1: 135917372
+      golemBossWalk_2: 1499843409
+      golemBossWalk_3: -379420079
+      golemBossWalk_4: -1239871538
+      golemBossWalk_5: -1358840292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a005d153c12ff41b3bfaef8ad302195c
-      internalID: -1801448052
+      spriteID: 0305be50829034e4eb58824dc88b312e
+      internalID: 1314725250
       vertices: []
       indices: 
       edges: []
@@ -160,7 +160,7 @@ TextureImporter:
       name: golemBossIdle_1
       rect:
         serializedVersion: 2
-        x: 256
+        x: 257
         y: 0
         width: 256
         height: 240
@@ -171,8 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 197c5b4840f2d49a48306e81ebb98741
-      internalID: 1347860275
+      spriteID: 20ab364e0a94b4cd289efcc85bec5e7f
+      internalID: 2074491781
       vertices: []
       indices: 
       edges: []
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bc6264e3d9744aa991d4bc1ef720950
-      internalID: 344486265
+      spriteID: 9449a9a214f034da1b739bb1edaf6520
+      internalID: -397781233
       vertices: []
       indices: 
       edges: []
@@ -209,9 +209,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      golemBossIdle_0: -1801448052
-      golemBossIdle_1: 1347860275
-      golemBossIdle_2: 344486265
+      golemBossIdle_0: 1314725250
+      golemBossIdle_1: 2074491781
+      golemBossIdle_2: -397781233
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

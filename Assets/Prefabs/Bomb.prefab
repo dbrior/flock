@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8775037957251108584}
   - component: {fileID: 4498923615463179794}
   - component: {fileID: 2302285116088058087}
+  - component: {fileID: 3044624766868969454}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -45,13 +46,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02df0dd866cf5412bb0f90b3a70552ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
+  radius: 0.5
   detonationTimeSec: 3
-  damage: 100
+  damage: 50
   knockback: 200
   targetLayers:
     serializedVersion: 2
     m_Bits: 1024
+  fuseSound: {fileID: 8300000, guid: 6170f7dfeb1e84a74904d40495e49f1b, type: 3}
+  explosionSound: {fileID: 8300000, guid: b69bf6160e8c64e3bad24c29766fd1e7, type: 3}
 --- !u!212 &2302285116088058087
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -104,3 +107,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3044624766868969454
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4664119843662552226}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b2434029c76f14ee8884797ee8e83f97, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

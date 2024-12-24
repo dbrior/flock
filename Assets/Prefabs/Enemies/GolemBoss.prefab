@@ -151,7 +151,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ARCANE    OCCULTIST    -    LVL     1
+  m_text: CRYSTAL    KING    -    LVL     1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccb9183842ee44d23b41c2848b89a29a, type: 2}
   m_sharedMaterial: {fileID: 4296451056064825846, guid: ccb9183842ee44d23b41c2848b89a29a, type: 2}
@@ -220,6 +220,73 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1432072787758643415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6700328063455273766}
+  - component: {fileID: 6489757974816921131}
+  m_Layer: 10
+  m_Name: AttackTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6700328063455273766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432072787758643415}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7360231137557716060}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &6489757974816921131
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432072787758643415}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!1 &1797563144728037556
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,6 +399,90 @@ MonoBehaviour:
   hasDynamicRadius: 1
   radiusChangeSpeed: 0.1
   timeOffset: 20
+--- !u!1 &2678409734434264539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3501265852441858689}
+  - component: {fileID: 9090917412948670187}
+  m_Layer: 10
+  m_Name: Telegraph
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3501265852441858689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2678409734434264539}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.07982337}
+  m_LocalScale: {x: 0.61, y: 0.61, z: 0.61}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7360231137557716060}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &9090917412948670187
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2678409734434264539}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Color: {r: 1, g: 0, b: 0.39358997, a: 0.4392157}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &3656700303313406413
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,6 +977,7 @@ GameObject:
   - component: {fileID: 2097858592455802065}
   - component: {fileID: 5678801641073703940}
   - component: {fileID: 3695472489975768234}
+  - component: {fileID: 2707491287644969287}
   m_Layer: 10
   m_Name: GolemBoss
   m_TagString: Untagged
@@ -854,6 +1006,8 @@ Transform:
   - {fileID: 8360836711252633619}
   - {fileID: 6613273035752127866}
   - {fileID: 828636957640428386}
+  - {fileID: 6700328063455273766}
+  - {fileID: 3501265852441858689}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9189589132102354879
@@ -897,12 +1051,12 @@ SpriteRenderer:
   m_SortingLayerID: 1918353767
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -274956975, guid: 515beaa45be584280b33c3e4e823a7be, type: 3}
+  m_Sprite: {fileID: 1314725250, guid: 063910956ab1c45f2b1e2cae81339fb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.8, y: 0.64}
+  m_Size: {x: 2.56, y: 2.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -924,7 +1078,7 @@ MonoBehaviour:
   pathfindingIntervals: []
   anchoredWandering: 0
   wanderingAnchor: {fileID: 0}
-  wanderRadius: 0.6
+  wanderRadius: 1.2
   wanderingWaitTimeSec:
     min: 3
     max: 7
@@ -970,7 +1124,7 @@ MonoBehaviour:
   hitAnimator: {fileID: 0}
   isBoss: 1
   randomizePitch: 0
-  isIndestructible: 0
+  isIndestructible: 1
 --- !u!70 &4547316724178631916
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1265,7 +1419,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7499820971116816511}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06dc9571cb49148a083ce2fab17ada80, type: 3}
   m_Name: 
@@ -1286,6 +1440,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSound: {fileID: 8300000, guid: 054eef66f34474c458849cc1fadfa682, type: 3}
+--- !u!114 &2707491287644969287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7499820971116816511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87b6e347ca9f7472b9743d85b48c052c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crystalPrefab: {fileID: 4041950285223271405, guid: 87ef2e6bf36ac44d7b5095b924e90346, type: 3}
+  attackCooldownSec: 30
+  smashChargeSec: 10
+  chargeSound: {fileID: 8300000, guid: 3901bd12202664b9eb2b527e07de5b32, type: 3}
+  slamSound: {fileID: 8300000, guid: 1904c818e06124d53a166d18f6d7beb9, type: 3}
+  crystalSound: {fileID: 8300000, guid: c526bc9f21b4d48c0968bac81cf864d5, type: 3}
+  crystalCompleteSound: {fileID: 8300000, guid: 1e663fbe6da8f47a3a2a00dd15e7473c, type: 3}
+  healthBar: {fileID: 4972895157372123956}
+  telegraph: {fileID: 3501265852441858689}
 --- !u!1 &8127882452300496315
 GameObject:
   m_ObjectHideFlags: 0
