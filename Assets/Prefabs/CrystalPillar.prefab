@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6182356565530325849}
   - component: {fileID: 8675015546235474677}
   - component: {fileID: 6088520615777649738}
-  m_Layer: 18
+  m_Layer: 10
   m_Name: CrystalPillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,15 +343,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5461340269042030209, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
       propertyPath: m_Layer
-      value: 18
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5798769129649130649, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
       propertyPath: m_Layer
-      value: 18
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7049090427213801753, guid: 9ab0d62c4137e4febaea63c62e0a6a3a, type: 3}
       propertyPath: m_Layer
-      value: 18
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

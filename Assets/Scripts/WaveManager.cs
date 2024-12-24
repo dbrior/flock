@@ -91,7 +91,7 @@ public class WaveManager : MonoBehaviour
         bossHealth.RestoreHealth();
 
         // Set onDeath
-        bossHealth.onDeath = onBossDeath;
+        bossHealth.onDeath.AddListener(() => onBossDeath?.Invoke()); 
         bossHealth.onDeath.AddListener(() => ChromaticAberrationRandomizer.Instance.DisableRandomization());
 
         // Increase boss damage
@@ -205,7 +205,7 @@ public class WaveManager : MonoBehaviour
             }
 
             // Spawn boss
-            if (shouldSpawnBoss && currentTime >= 19f) {
+            if (shouldSpawnBoss && currentTime >= 20f) {
                 Debug.Log("Starting boss spawn");
                 StartCoroutine("SpawnBoss");
             }
