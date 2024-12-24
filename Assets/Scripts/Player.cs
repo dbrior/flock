@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEditor.Animations;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
