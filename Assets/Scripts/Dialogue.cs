@@ -4,11 +4,15 @@ using System.Collections;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-    public static Dialogue Instance {get; private set;}
+    [SerializeField] private List<string> dialogueLines;
+    [SerializeField] private UnityEvent onDialogueEnd;
+
+    // public static Dialogue Instance {get; private set;}
 
     [Tooltip("Text component where the dialogue will be displayed")]
     public TextMeshProUGUI dialogueText;
@@ -36,19 +40,24 @@ public class Dialogue : MonoBehaviour
     private bool isDialogueWriting;
     private string currentDialogue;
 
-    void Awake() {
-        if (Instance == null) {Instance = this;}
-        else {Destroy(gameObject);}
-    }
+    // void Awake() {
+    //     if (Instance == null) {Instance = this;}
+    //     else {Destroy(gameObject);}
+    // }
 
     void Start() {
         Time.timeScale = 0;
-        MusicManager.Instance.PauseMusic();
-        SetUpcomingDialogue(new List<string>(){
-            "Breathe again young one[pause:0.5].[pause:0.5].[pause:0.5].[pause:0.5]\n Your time has not yet come.".Replace(" ", "    ").ToUpper(),
-            "Capture sheep and hire minions to survive.".Replace(" ", "    ").ToUpper(),
-            "Beware the calamity on the <color=#0043b0>fifth night</color>.[pause:1.0]\nProtect the bearer of the <color=#c9aa02>golden wool</color>.".Replace(" ", "    ").ToUpper()
-        });
+        for (int i=0; i<dialogueLines.Count; i++) {
+            dialogueLines[i] = dialogueLines[i].Replace(" ", "    ").ToUpper();
+        }
+        // MusicManager.Instance.PauseMusic();
+        SetUpcomingDialogue(dialogueLines);
+        // SetUpcomingDialogue(new List<string>(){
+
+        //     "Dead again I see[pause:0.5].[pause:0.5].[pause:0.5].[pause:0.5]\n Worry not, I'll send you back once more.",
+        //     // "Make sheep and hire minions to survive.".Replace(" ", "    ").ToUpper(),
+        //     // "Beware the calamity on the <color=#0043b0>fifth night</color>.[pause:1.0]\nProtect the bearer of the <color=#c9aa02>golden wool</color>.".Replace(" ", "    ").ToUpper()
+        // });
         NextDialogue();
     }
 
@@ -73,8 +82,9 @@ public class Dialogue : MonoBehaviour
 
     private void EndDialogue() {
         Time.timeScale = 1f;
+        onDialogueEnd?.Invoke();
         transform.parent.gameObject.SetActive(false);
-        MusicManager.Instance.ResumeMusic();
+        // MusicManager.Instance.ResumeMusic();
     }
 
     /// <summary>

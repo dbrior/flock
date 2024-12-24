@@ -82,7 +82,7 @@ public class WaveManager : MonoBehaviour
 
         float multiplier = Mathf.Pow(2, (currDay/bossSpawnDayInterval)-1);
 
-        GameObject prefab = bossList[Random.Range(0, bossList.Count)];
+        GameObject prefab = bossList[((currDay/bossSpawnDayInterval)-1) % bossList.Count];
         GameObject bossObj = Instantiate(prefab, bossSpawnLocation.position, bossSpawnLocation.rotation);
 
         // Increase boss health
