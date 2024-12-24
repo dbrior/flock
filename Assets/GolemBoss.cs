@@ -5,7 +5,8 @@ using UnityEngine;
 public class GolemBoss : MonoBehaviour
 {
     [SerializeField] private GameObject crystalPrefab;
-    [SerializeField] private float attackCooldownSec;
+    [SerializeField] private float crystalCooldownSec;
+    [SerializeField] private float smashCooldownSec;
     [SerializeField] private float smashChargeSec;
     [SerializeField] private AudioClip chargeSound;
     [SerializeField] private AudioClip slamSound;
@@ -14,7 +15,8 @@ public class GolemBoss : MonoBehaviour
     [SerializeField] private GameObject healthBar;
     [SerializeField] private Transform telegraph;
     [SerializeField] private GameObject shadow;
-    private bool isReadyToAttack;
+    private bool isReadyToCrystal;
+    private bool isReadyToSmash;
     private Animator animator;
     private AudioSource audioSource;
     private Damagable damagable;
@@ -27,15 +29,22 @@ public class GolemBoss : MonoBehaviour
         damagable = GetComponent<Damagable>();
         characterMover = GetComponent<CharacterMover>();
         physicalCollider = GetComponent<Collider2D>();
-        isReadyToAttack = true;
+        isReadyToCrystal = true;
+        isReadyToSmash = true;
 
         damagable.onDeath.AddListener(() => StartDeath());
     }
 
-    void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.tag == "Player" && isReadyToAttack) {
+    void OnTriggerStay2D(Collider2D col) {
+        if (col.gameObject.tag != "Player") return;
+
+        if (isReadyToCrystal) {
+            isReadyToCrystal = false;
             animator.SetTrigger("Attack");
-            isReadyToAttack = false;
+        }
+        if (isReadyToSmash) {
+            isReadyToSmash = false;
+            StartCoroutine("ChargeSmash");
         }
     }
 
@@ -55,14 +64,6 @@ public class GolemBoss : MonoBehaviour
 
     public void SpawnCrystals() {
         StartCoroutine("CrystalSpawning");
-        // float radius = 1.25f;
-        // SpawnPrefabsRadially(crystalPrefab, transform.position, 40, radius);
-        // for (int i=0; i<Random.Range(2, 5); i++) {
-        //     Vector3 offset = new Vector3(Random.Range(-radius*0.75f, radius*0.75f), Random.Range(-radius*0.75f, radius*0.75f));
-        //     Instantiate(crystalPrefab, transform.position + offset, Quaternion.identity);
-        // }
-        // StartCoroutine("AttackCooldown");
-        // StartCoroutine("ChargeSmash");
     }
 
     public void SmashAttack() {
@@ -80,6 +81,7 @@ public class GolemBoss : MonoBehaviour
                 damagable.Hit(transform.position, damage, knockbackForce);
             }
         }
+        StartCoroutine("SmashCooldown");
     }
 
     IEnumerator ScaleTelegraph() {
@@ -113,8 +115,7 @@ public class GolemBoss : MonoBehaviour
         }
         yield return new WaitForSeconds(0.1f);
         AudioSource.PlayClipAtPoint(crystalCompleteSound, transform.position);
-        StartCoroutine("AttackCooldown");
-        StartCoroutine("ChargeSmash");
+        StartCoroutine("CrystalCooldown");
     }
 
     IEnumerator SpawnPrefabsRadially(GameObject prefab, Vector2 centerPosition, int numberOfPrefabs, float radius, float startAngle = 0f)
@@ -142,9 +143,14 @@ public class GolemBoss : MonoBehaviour
         }
     }
 
-    IEnumerator AttackCooldown() {
-        yield return new WaitForSeconds(attackCooldownSec);
-        isReadyToAttack = true;
+    IEnumerator CrystalCooldown() {
+        yield return new WaitForSeconds(crystalCooldownSec);
+        isReadyToCrystal = true;
+    }
+
+    IEnumerator SmashCooldown() {
+        yield return new WaitForSeconds(smashCooldownSec);
+        isReadyToSmash = true;
     }
 
     IEnumerator ChargeSound() {

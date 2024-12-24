@@ -1453,14 +1453,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crystalPrefab: {fileID: 4041950285223271405, guid: 87ef2e6bf36ac44d7b5095b924e90346, type: 3}
-  attackCooldownSec: 30
-  smashChargeSec: 10
+  crystalCooldownSec: 15
+  smashCooldownSec: 5
+  smashChargeSec: 5
   chargeSound: {fileID: 8300000, guid: 3901bd12202664b9eb2b527e07de5b32, type: 3}
   slamSound: {fileID: 8300000, guid: 1904c818e06124d53a166d18f6d7beb9, type: 3}
   crystalSound: {fileID: 8300000, guid: c526bc9f21b4d48c0968bac81cf864d5, type: 3}
   crystalCompleteSound: {fileID: 8300000, guid: 1e663fbe6da8f47a3a2a00dd15e7473c, type: 3}
   healthBar: {fileID: 4972895157372123956}
   telegraph: {fileID: 3501265852441858689}
+  shadow: {fileID: 5749616566574096961}
 --- !u!1 &8127882452300496315
 GameObject:
   m_ObjectHideFlags: 0
