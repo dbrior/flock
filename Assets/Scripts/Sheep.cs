@@ -140,6 +140,7 @@ public class Sheep : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D col) {
         // Any character with shears can shear sheep on contact
         if (!isCaptured && col.gameObject.TryGetComponent<Shepard>(out Shepard shepard)) {
+            shepard.AddSheep(gameObject);
             characterMover.SetWanderAnchor(shepard.transform);
         }
         if (isCaptured && !isSheared && col.gameObject.TryGetComponent<Shears>(out Shears shears)) {

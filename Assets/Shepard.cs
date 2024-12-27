@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Shepard : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private int capturedSheepCount;
+    private List<GameObject> sheepList = new List<GameObject>();
+
+    public void AddSheep(GameObject newSheep) {
+        capturedSheepCount += 1;
+        sheepList.Add(newSheep);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public GameObject DepositSheep() {
+        for (int i=capturedSheepCount-1; i>=0; i--) {
+            GameObject sheep = sheepList[i];
+            sheepList.RemoveAt(i);
+            capturedSheepCount -= 1;
+            if (sheep != null) return sheep;
+        }
+        return null;
     }
 }
