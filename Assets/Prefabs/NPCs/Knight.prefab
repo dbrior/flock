@@ -45,9 +45,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5575810447227125562}
+  - {fileID: 7716284360900869387}
   - {fileID: 121925982219797065}
   - {fileID: 3732643580719472624}
-  - {fileID: 7716284360900869387}
   - {fileID: 7031777780109225755}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -303,7 +303,7 @@ NavMeshAgent:
   m_Height: 0.48
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &7584686681191996191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,7 +492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7031777780109225755
 Transform:
   m_ObjectHideFlags: 0

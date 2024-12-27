@@ -18,19 +18,27 @@ public class MoveTowardsPointer : MonoBehaviour
 
     void FixedUpdate() {
         if (active) {
-            Vector2 targetDirection = (Vector2)(Pointer.Instance.transform.position - transform.position);
-            float distance = targetDirection.magnitude;
-
-            if (distance > minDistance) {
-                Vector2 desiredVelocity = targetDirection.normalized * moveSpeed;
-                Vector2 smoothVelocity = Vector2.Lerp(rb.velocity, desiredVelocity, Time.fixedDeltaTime * damping);
-                rb.velocity = smoothVelocity;
-            } else {
-                rb.velocity = Vector2.zero;
-            }
-        } else {
-            rb.velocity = Vector2.zero;
+            float maxDistance = moveSpeed * Time.fixedDeltaTime;
+            Vector3 newPosition = Vector3.MoveTowards(transform.position, Pointer.Instance.transform.position, maxDistance);
+            rb.MovePosition(newPosition);
         }
     }
+
+    // void FixedUpdate() {
+    //     if (active) {
+    //         Vector2 targetDirection = (Vector2)(Pointer.Instance.transform.position - transform.position);
+    //         float distance = targetDirection.magnitude;
+
+    //         if (distance > minDistance) {
+    //             Vector2 desiredVelocity = targetDirection.normalized * moveSpeed;
+    //             Vector2 smoothVelocity = Vector2.Lerp(rb.velocity, desiredVelocity, Time.fixedDeltaTime * damping);
+    //             rb.velocity = smoothVelocity;
+    //         } else {
+    //             rb.velocity = Vector2.zero;
+    //         }
+    //     } else {
+    //         rb.velocity = Vector2.zero;
+    //     }
+    // }
 
 }

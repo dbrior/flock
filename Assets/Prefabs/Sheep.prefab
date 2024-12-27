@@ -332,18 +332,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe1f2cad814042b181556928df508ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  regularController: {fileID: 22100000, guid: c90c1f2118dbd4490a6c89746e6def28, type: 2}
+  shearedController: {fileID: 22100000, guid: f55920196e9c44753aecd684b4083dc5, type: 2}
   sheepFood: {fileID: 11400000, guid: 69557dbb986374ee6a4a0ad397736a43, type: 2}
   captureSound: {fileID: 8300000, guid: a9584a770c05e46939be5190f5e26003, type: 3}
   missingFoodIcon: {fileID: 5085486181988897437}
   isDying: 0
   woolPrefab: {fileID: 4465506323250089622, guid: 3259a041dd2ac4574abbdf5d477fad31, type: 3}
-  moveSpeed: 0.2
-  detectionRadius: 2
-  maxAcceleration: 0
-  minMoveTime: 1
-  maxMoveTime: 2
-  minWaitTime: 2
-  maxWaitTime: 5
 --- !u!114 &-386509838923392108
 MonoBehaviour:
   m_ObjectHideFlags: 0
