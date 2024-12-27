@@ -11,6 +11,7 @@ public class Dialogue : MonoBehaviour
 {
     [SerializeField] private List<string> dialogueLines;
     [SerializeField] private UnityEvent onDialogueEnd;
+    [SerializeField] private bool shouldStayRealtime;
 
     // public static Dialogue Instance {get; private set;}
 
@@ -46,7 +47,7 @@ public class Dialogue : MonoBehaviour
     // }
 
     void Start() {
-        Time.timeScale = 0;
+        if (!shouldStayRealtime) Time.timeScale = 0;
         for (int i=0; i<dialogueLines.Count; i++) {
             dialogueLines[i] = dialogueLines[i].Replace(" ", "    ").ToUpper();
         }

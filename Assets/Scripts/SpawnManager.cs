@@ -8,6 +8,7 @@ public class CreatureSpawn {
     public IntRange spawnAmount;
     public FloatRange spawnInterval;
     public List<FloatRange> spawnTimeRanges;
+    public int startSpawnDay;
 }
 
 public class SpawnManager : MonoBehaviour
@@ -60,6 +61,13 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator CreatureSpawner(CreatureSpawn creatureSpawn) {
         while (true) {
+            // Only spawn if >= startSpawnDay
+            if (WaveManager.Instance.GetCurrentDay() < creatureSpawn.startSpawnDay) {
+                yield return new WaitForSeconds(30f);
+                continue;
+            }
+
+
             // Check if in valid spawning time
             float currentTime = WaveManager.Instance.getCurrentTime();
             bool shouldSpawn = false;

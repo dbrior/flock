@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbf97350c38340e7a28097a822a7ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 250
+  maxHealth: 50
   healthUI: {fileID: 3007532003062231122}
   hitNumberLocation: {fileID: 7716284360900869387}
   blockChance: 0.25
@@ -402,9 +402,10 @@ MonoBehaviour:
   indiscriminantTargetLayers:
     serializedVersion: 2
     m_Bits: 1024
-  damage: 45
+  damage: 10
   hitCooldownSec: 1
   knockbackForce: 1000
+  doesNotHaveAttackAnimation: 0
   attackLandSound: {fileID: 8300000, guid: 7800f7e1890984bb1bd25fab19afab03, type: 3}
   onAttackLand:
     m_PersistentCalls:
@@ -470,8 +471,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06dc9571cb49148a083ce2fab17ada80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanIntervalSec: 1
-  detectionRadius: 0.5
+  scanIntervalSec: 4
+  detectionRadius: 0
   findEnemyUnits: 1
 --- !u!1 &2349305984119604212
 GameObject:

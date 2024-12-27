@@ -11,6 +11,7 @@ public class SheepManager : MonoBehaviour
     [SerializeField] private Transform releasePoint;
     [SerializeField] private float exitSpeed;
     [SerializeField] private Item sheepFood;
+    [SerializeField] private Transform tameWanderPoint;
     private bool isReleasing;
     private int deadSheepCount;
     private int wildSheepCount;
@@ -111,6 +112,7 @@ public class SheepManager : MonoBehaviour
     public void TameSheep(GameObject sheepObj) {
         sheepObj.layer = LayerMask.NameToLayer("TameSheep");
 
+        sheepObj.GetComponent<CharacterMover>().SetWanderAnchor(tameWanderPoint);
         Sheep sheep = sheepObj.GetComponent<Sheep>();
         wildSheepCount -= 1;
         tameSheepCount += 1;

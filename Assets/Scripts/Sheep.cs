@@ -42,8 +42,13 @@ public class Sheep : MonoBehaviour
 
     private float normalVolume;
 
+    private CharacterMover characterMover;
+
+
 
     void Awake() {
+        characterMover = GetComponent<CharacterMover>();
+
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -55,7 +60,8 @@ public class Sheep : MonoBehaviour
     }
 
     void Start() {
-        StartCoroutine(Wander());
+        characterMover.StartWandering();
+        // StartCoroutine(Wander());
         SetState(SheepState.Healthy);
     }
 
@@ -80,12 +86,12 @@ public class Sheep : MonoBehaviour
     }
 
     void FixedUpdate() {
-        Vector2 targetVel = heading * moveSpeed;
-        Vector2 velDelta = targetVel - rb.velocity;
-        Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
+        // Vector2 targetVel = heading * moveSpeed;
+        // Vector2 velDelta = targetVel - rb.velocity;
+        // Vector2 requiredAccel = velDelta / Time.fixedDeltaTime;
 
-        float maxForce = rb.mass * 9.81f;
-        rb.AddForce(Vector2.ClampMagnitude(requiredAccel * rb.mass, maxForce));
+        // float maxForce = rb.mass * 9.81f;
+        // rb.AddForce(Vector2.ClampMagnitude(requiredAccel * rb.mass, maxForce));
         // rb.MovePosition((Vector2) transform.position + heading * moveSpeed * Time.fixedDeltaTime);
     }
 
@@ -159,6 +165,9 @@ public class Sheep : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col) {
         // Any character with shears can shear sheep on contact
+        if (!isCaptured && col.gameObject.TryGetComponent<Shepard>(out Shepard shepard)) {
+            characterMover.SetWanderAnchor(shepard.transform);
+        }
         if (!isSheared && col.gameObject.TryGetComponent<Shears>(out Shears shears)) {
             Shear();
         }
