@@ -405,8 +405,8 @@ MonoBehaviour:
   regenPerSecond: 0
   regenDelay: 5
   hitSound: {fileID: 8300000, guid: 5ef2e071b515b41e0a5253e608427903, type: 3}
-  blockSound: {fileID: 8300000, guid: 1ccd0c85c293e4bc8973ae50b1baa6e2, type: 3}
-  critSound: {fileID: 8300000, guid: bf14a966baaf84a86b7432f312b97173, type: 3}
+  blockSound: {fileID: 8300000, guid: 2319b182da478b545992255b9f385dc7, type: 3}
+  critSound: {fileID: 8300000, guid: 446066e620bd50b4e8593db4709da94a, type: 3}
   deathSound: {fileID: 0}
   hitAnimator: {fileID: 7144021653032942544}
   isBoss: 0

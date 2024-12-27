@@ -359,8 +359,8 @@ MonoBehaviour:
   regenEnabled: 0
   regenPerSecond: 20
   regenDelay: 5
-  hitSound: {fileID: 8300000, guid: 5ef2e071b515b41e0a5253e608427903, type: 3}
-  blockSound: {fileID: 8300000, guid: 1ccd0c85c293e4bc8973ae50b1baa6e2, type: 3}
+  hitSound: {fileID: 8300000, guid: 00a5ee6ea19831d4aacc845ce3cedaf2, type: 3}
+  blockSound: {fileID: 8300000, guid: af7585eaac5686749af3f2bdb22fa45a, type: 3}
   critSound: {fileID: 0}
   deathSound: {fileID: 0}
   hitAnimator: {fileID: 2967777482990497887}
@@ -406,7 +406,7 @@ MonoBehaviour:
   hitCooldownSec: 1
   knockbackForce: 1000
   doesNotHaveAttackAnimation: 0
-  attackLandSound: {fileID: 8300000, guid: 7800f7e1890984bb1bd25fab19afab03, type: 3}
+  attackLandSound: {fileID: 8300000, guid: 3fdc812de52cf404e94bb15d6be819b6, type: 3}
   onAttackLand:
     m_PersistentCalls:
       m_Calls: []
