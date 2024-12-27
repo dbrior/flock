@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sheepFood: {fileID: 11400000, guid: 69557dbb986374ee6a4a0ad397736a43, type: 2}
-  captureSound: {fileID: 8300000, guid: a9584a770c05e46939be5190f5e26003, type: 3}
+  captureSound: {fileID: 8300000, guid: 6dac88f6dc41e8a4692cc1f0ea38ea00, type: 3}
   missingFoodIcon: {fileID: 5085486181988897437}
   isDying: 0
   woolPrefab: {fileID: 4465506323250089622, guid: 3259a041dd2ac4574abbdf5d477fad31, type: 3}
@@ -559,7 +559,7 @@ MonoBehaviour:
   regenPerSecond: 0
   regenDelay: 0
   hitSound: {fileID: 8300000, guid: 5ef2e071b515b41e0a5253e608427903, type: 3}
-  blockSound: {fileID: 8300000, guid: 1ccd0c85c293e4bc8973ae50b1baa6e2, type: 3}
+  blockSound: {fileID: 8300000, guid: af7585eaac5686749af3f2bdb22fa45a, type: 3}
   critSound: {fileID: 8300000, guid: bf14a966baaf84a86b7432f312b97173, type: 3}
   deathSound: {fileID: 0}
   hitAnimator: {fileID: 0}

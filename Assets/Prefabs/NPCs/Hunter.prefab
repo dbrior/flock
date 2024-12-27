@@ -229,8 +229,8 @@ MonoBehaviour:
   regenPerSecond: 0
   regenDelay: 0
   hitSound: {fileID: 8300000, guid: 5ef2e071b515b41e0a5253e608427903, type: 3}
-  blockSound: {fileID: 8300000, guid: 1ccd0c85c293e4bc8973ae50b1baa6e2, type: 3}
-  critSound: {fileID: 8300000, guid: bf14a966baaf84a86b7432f312b97173, type: 3}
+  blockSound: {fileID: 8300000, guid: af7585eaac5686749af3f2bdb22fa45a, type: 3}
+  critSound: {fileID: 8300000, guid: b9d840ae26f679549a3aef214f870371, type: 3}
   deathSound: {fileID: 0}
   hitAnimator: {fileID: 7901907450694209735}
   isBoss: 0
@@ -256,6 +256,7 @@ MonoBehaviour:
   wanderingWaitTimeSec:
     min: 1
     max: 4
+  currentTarget: {fileID: 0}
 --- !u!114 &2265273921202675211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +396,7 @@ MonoBehaviour:
   projectileSpeed: 3
   cooldownSec: 1
   projectilePrefab: {fileID: 6302693463734982198, guid: 8bdbbbcc8fc7944d0ab90eb1d4cbb3ce, type: 3}
-  shootSound: {fileID: 8300000, guid: ff49bcf0c4b5e4354ab6a8724ef2057d, type: 3}
+  shootSound: {fileID: 8300000, guid: cf5c46a05d787ce4993703e1e3abb1a0, type: 3}
   randomizePitch: 1
 --- !u!114 &1529811932095763846
 MonoBehaviour:
