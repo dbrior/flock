@@ -356,7 +356,7 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
-  regenEnabled: 1
+  regenEnabled: 0
   regenPerSecond: 20
   regenDelay: 5
   hitSound: {fileID: 8300000, guid: 5ef2e071b515b41e0a5253e608427903, type: 3}
