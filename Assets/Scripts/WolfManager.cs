@@ -6,6 +6,7 @@ public class WolfManager : MonoBehaviour
 {
     public static WolfManager Instance { get; private set; }
 
+    [SerializeField] private Collider2D spawnZone;
     [SerializeField] private GameObject wolfPrefab;
     private IntRange spawnCount;
     private FloatRange spawnInterval;
@@ -48,7 +49,7 @@ public class WolfManager : MonoBehaviour
 
     public void SpawnWolves() {
         for (int i = 0; i < Random.Range(spawnCount.min, spawnCount.max); i++) {
-            GameObject wolfObj = SpawnManager.Instance.SpawnObject(wolfPrefab);
+            GameObject wolfObj = SpawnManager.Instance.SpawnObject(wolfPrefab, newSpawnZone: spawnZone);
             IncreaseWolfCount();
 
             Wolf wolf = wolfObj.GetComponent<Wolf>();

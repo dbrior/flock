@@ -8,6 +8,7 @@ public class SheepManager : MonoBehaviour
 
     private IntRange spawnCount;
     private FloatRange spawnInterval;
+    [SerializeField] private Collider2D spawnZone;
     [SerializeField] private Transform releasePoint;
     [SerializeField] private float exitSpeed;
     [SerializeField] private Item sheepFood;
@@ -102,7 +103,7 @@ public class SheepManager : MonoBehaviour
     }
     public void SpawnSheep() {
         for (int i=0; i<Random.Range(spawnCount.min, spawnCount.max); i++) {
-            Sheep sheep = SpawnManager.Instance.SpawnObject(sheepPrefab).GetComponent<Sheep>();
+            Sheep sheep = SpawnManager.Instance.SpawnObject(sheepPrefab, newSpawnZone: spawnZone).GetComponent<Sheep>();
             wildSheepList.Add(sheep);
             wildSheepCount += 1;
         }

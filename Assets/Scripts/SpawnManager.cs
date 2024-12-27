@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class CreatureSpawn {
     public GameObject creaturePrefab;
+    public Collider2D spawnZone;
     public IntRange spawnAmount;
     public FloatRange spawnInterval;
     public List<FloatRange> spawnTimeRanges;
@@ -15,7 +16,7 @@ public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager Instance { get; private set; }
 
-    [SerializeField] private PolygonCollider2D spawnZone;
+    [SerializeField] private Collider2D spawnZone;
     [SerializeField] private Transform backupSpawnPoint;
     [SerializeField] private int maxAttempts;
     [SerializeField] private List<CreatureSpawn> creatureSpawns;
@@ -31,7 +32,10 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public GameObject SpawnObject(GameObject obj) {
+    public GameObject SpawnObject(GameObject obj, Collider2D newSpawnZone = null) {
+        if (newSpawnZone != null) {
+            spawnZone = newSpawnZone;
+        }
         Vector2 spawnPoint = GetSpawnPoint();
         if (spawnPoint != Vector2.zero) {
             return Instantiate(obj, spawnPoint, Quaternion.identity);
@@ -80,6 +84,7 @@ public class SpawnManager : MonoBehaviour
 
             // Spawn creatures
             if (shouldSpawn) {
+                spawnZone = creatureSpawn.spawnZone;
                 int spawnAmount = Random.Range(creatureSpawn.spawnAmount.min, creatureSpawn.spawnAmount.max);
                 for (int i=0; i<spawnAmount; i++) {
                     SpawnObject(creatureSpawn.creaturePrefab);
