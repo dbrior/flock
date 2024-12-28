@@ -19,6 +19,7 @@ public class Sheep : MonoBehaviour
     [SerializeField] private RuntimeAnimatorController shearedController;
     [SerializeField] private Item sheepFood;
     [SerializeField] private AudioClip captureSound;
+    [SerializeField] private AudioClip followSound;
     [SerializeField] private GameObject missingFoodIcon;
     private AudioSource audioSource;
     private Rigidbody2D rb;
@@ -80,6 +81,7 @@ public class Sheep : MonoBehaviour
         audioSource.PlayOneShot(captureSound);
         isCaptured = true;
         QuestManager.Instance.CaptureCreature(CreatureType.Sheep);
+        PlayerManager.Instance.currentPlayer.GetComponent<Shepard>().RemoveSheep(gameObject);
         StartCoroutine("FeedTimer");
         // Destroy(gameObject, 30f);
     }
@@ -140,8 +142,12 @@ public class Sheep : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D col) {
         // Any character with shears can shear sheep on contact
         if (!isCaptured && col.gameObject.TryGetComponent<Shepard>(out Shepard shepard)) {
-            shepard.AddSheep(gameObject);
-            characterMover.SetWanderAnchor(shepard.transform);
+            if (!shepard.ContainsSheep(gameObject)) {
+                audioSource.PlayOneShot(followSound);
+                shepard.AddSheep(gameObject);
+                DamageNumberSpawner.Instance.SpawnStatusIcon(transform.position + (new Vector3(0, 0.16f, 0)), StatusIconType.Tame);
+                characterMover.SetWanderAnchor(shepard.transform);
+            }
         }
         if (isCaptured && !isSheared && col.gameObject.TryGetComponent<Shears>(out Shears shears)) {
             Shear();

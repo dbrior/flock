@@ -4,13 +4,13 @@ public class Shop : MonoBehaviour
 {
     [SerializeField] private GameObject shopWindow;
     public Player lastActivePlayer;
+    private bool isShopUnlocked;
 
     void Start() {
         // shopWindow = transform.GetChild(0).gameObject;
     }
 
     public void OpenShop(GameObject playerObj) {
-        Debug.Log("ShopOpen");
         Player player = playerObj.GetComponent<Player>();
         Debug.Log(player.gameObject.name);
         player.OpenMenu();
@@ -18,10 +18,18 @@ public class Shop : MonoBehaviour
 
         shopWindow.SetActive(true);
     }
+    public void OpenShop() {
+        if (isShopUnlocked) shopWindow.SetActive(true);
+    }
 
     public void CloseShop() {
-        lastActivePlayer.CloseMenu();
+        if (lastActivePlayer != null) lastActivePlayer.CloseMenu();
         shopWindow.SetActive(false);
+    }
+
+    public void UnlockShop() {
+        isShopUnlocked = true;
+        OpenShop();
     }
 
     // private bool CanAfford(Item currency, int cost) {

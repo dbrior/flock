@@ -13,8 +13,9 @@ public enum DamageNumberType {
 
 [System.Serializable]
 public enum StatusIconType {
-    Block,
-    Death
+    Block = 0,
+    Death = 1,
+    Tame = 2
 }
 
 [System.Serializable]

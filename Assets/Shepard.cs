@@ -21,4 +21,17 @@ public class Shepard : MonoBehaviour
         }
         return null;
     }
+
+    public void RemoveSheep(GameObject sheep) {
+        for (int i=capturedSheepCount-1; i>=0; i--) {
+            if (sheepList[i] != sheep) continue;
+
+            sheepList.RemoveAt(i);
+            capturedSheepCount -= 1;
+        }
+    }
+
+    public bool ContainsSheep(GameObject sheep) {
+        return sheepList.Contains(sheep);
+    }
 }

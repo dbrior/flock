@@ -303,7 +303,7 @@ NavMeshAgent:
   m_Height: 0.48
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 1
 --- !u!114 &7584686681191996191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06dc9571cb49148a083ce2fab17ada80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanIntervalSec: 4
+  scanIntervalSec: 1
   detectionRadius: 0
   findEnemyUnits: 1
 --- !u!1 &2349305984119604212

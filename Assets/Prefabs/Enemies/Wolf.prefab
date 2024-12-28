@@ -483,7 +483,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   damage: 20
-  hitCooldownSec: 0.5
+  hitCooldownSec: 1
   knockbackForce: 150
   doesNotHaveAttackAnimation: 1
   attackLandSound: {fileID: 0}

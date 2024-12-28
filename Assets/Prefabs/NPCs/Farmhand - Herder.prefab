@@ -350,12 +350,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathfindingIntervalSec: 1
+  pathfindingIntervals: []
   anchoredWandering: 1
   wanderingAnchor: {fileID: 0}
   wanderRadius: 0.3
   wanderingWaitTimeSec:
     min: 3
     max: 5
+  currentTarget: {fileID: 0}
 --- !u!95 &7741454669388821338
 Animator:
   serializedVersion: 5
@@ -391,14 +393,14 @@ NavMeshAgent:
   m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 10
-  m_StoppingDistance: 0.08
+  m_StoppingDistance: 0.01
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 0.48
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &2089514592421782831
 MonoBehaviour:
   m_ObjectHideFlags: 0

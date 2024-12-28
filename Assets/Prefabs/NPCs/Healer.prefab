@@ -144,6 +144,7 @@ MonoBehaviour:
   damage: -500
   hitCooldownSec: 3
   knockbackForce: 0
+  doesNotHaveAttackAnimation: 0
   attackLandSound: {fileID: 8300000, guid: 1c96868fcc862465dad345a9e474412b, type: 3}
   onAttackLand:
     m_PersistentCalls:
@@ -414,7 +415,7 @@ NavMeshAgent:
   m_Height: 0.48
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &1338214045955909088
 MonoBehaviour:
   m_ObjectHideFlags: 0

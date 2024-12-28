@@ -13,6 +13,7 @@ public class SheepManager : MonoBehaviour
     [SerializeField] private float exitSpeed;
     [SerializeField] private Item sheepFood;
     [SerializeField] private Transform tameWanderPoint;
+    [SerializeField] private int penCapacity;
     private bool isReleasing;
     private int deadSheepCount;
     private int wildSheepCount;
@@ -111,6 +112,8 @@ public class SheepManager : MonoBehaviour
     }
 
     public void TameSheep(GameObject sheepObj) {
+        if (tameSheepCount >= penCapacity) return;
+
         sheepObj.layer = LayerMask.NameToLayer("TameSheep");
 
         sheepObj.GetComponent<CharacterMover>().SetWanderAnchor(tameWanderPoint);
@@ -121,6 +124,10 @@ public class SheepManager : MonoBehaviour
         tameSheepList.Add(sheep);
         wildSheepList.Remove(sheep);
         OnSheepCountChange();
+    }
+
+    public void IncreasePenCapacity(int amount) {
+        penCapacity += amount;
     }
 
     public void ReleaseAllSheep() {

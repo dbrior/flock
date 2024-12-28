@@ -638,7 +638,7 @@ NavMeshAgent:
   m_Height: 0.48
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!114 &4912041910249825255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,6 +689,7 @@ MonoBehaviour:
   damage: 500
   hitCooldownSec: 1
   knockbackForce: 0
+  doesNotHaveAttackAnimation: 0
   attackLandSound: {fileID: 8300000, guid: c06999793211442e68ab6ac44367b204, type: 3}
   onAttackLand:
     m_PersistentCalls:
@@ -709,6 +710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items: []
   uiElements: []
+  itemActionsList: []
 --- !u!114 &24450899826725169
 MonoBehaviour:
   m_ObjectHideFlags: 0

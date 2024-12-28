@@ -335,7 +335,8 @@ MonoBehaviour:
   regularController: {fileID: 22100000, guid: c90c1f2118dbd4490a6c89746e6def28, type: 2}
   shearedController: {fileID: 22100000, guid: f55920196e9c44753aecd684b4083dc5, type: 2}
   sheepFood: {fileID: 11400000, guid: 69557dbb986374ee6a4a0ad397736a43, type: 2}
-  captureSound: {fileID: 8300000, guid: 6dac88f6dc41e8a4692cc1f0ea38ea00, type: 3}
+  captureSound: {fileID: 8300000, guid: fdd90a17542cc4a038b35dde8cd63c11, type: 3}
+  followSound: {fileID: 8300000, guid: 13343b4805ce3444e847dc38d03da8c0, type: 3}
   missingFoodIcon: {fileID: 5085486181988897437}
   isDying: 0
   woolPrefab: {fileID: 4465506323250089622, guid: 3259a041dd2ac4574abbdf5d477fad31, type: 3}
@@ -656,7 +657,7 @@ NavMeshAgent:
   m_Height: 0.48
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!114 &7159259020184125200
 MonoBehaviour:
   m_ObjectHideFlags: 0
