@@ -5,7 +5,7 @@ using UnityEngine;
 public class ResourceProcessingBuilding : MonoBehaviour
 {
     private Inventory inventory;
-    private WorkerBuilding workerBuilding;
+    [SerializeField] private WorkerBuilding workerBuilding;
     private Animator animator;
     [SerializeField] private Item inputItem;
     [SerializeField] private Item outputItem;
@@ -18,7 +18,7 @@ public class ResourceProcessingBuilding : MonoBehaviour
     
     void Awake() {
         inventory = GetComponent<Inventory>();
-        workerBuilding = GetComponent<WorkerBuilding>();
+        // workerBuilding = GetComponent<WorkerBuilding>();
         animator = GetComponent<Animator>();
         isProcessing = false;
     }

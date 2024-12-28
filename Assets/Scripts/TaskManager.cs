@@ -92,6 +92,8 @@ public class TaskManager : MonoBehaviour
     }
 
     public void RemoveTask(Task task) {
+        if (task == null) return;
+        
         if (taskBuildings.ContainsKey(task.type)) {
             List<WorkerBuilding> buildings = taskBuildings[task.type];
             foreach (WorkerBuilding building in buildings) {

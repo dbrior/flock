@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbf97350c38340e7a28097a822a7ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 125
   healthUI: {fileID: 4552732137194930554}
   hitNumberLocation: {fileID: 2993830529566165664}
   blockChance: 0

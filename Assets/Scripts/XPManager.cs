@@ -46,7 +46,7 @@ public class XPManager : MonoBehaviour
         currLevel += 1;
         levelText.text = "LVL    -    " + currLevel;
         xpGoal = CalculateXpGoal();
-        CardManager.Instance.ShowCards();
+        // CardManager.Instance.ShowCards();
     }
 
     private void SetXpBar() {

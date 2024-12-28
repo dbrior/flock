@@ -21,6 +21,7 @@ public class CropManager : MonoBehaviour
     [SerializeField] private GameObject cropPrefab;
     [SerializeField] private List<CropTypePrefab> cropPrefabList;
     [SerializeField] private IntRange dailySpawnAmount;
+    [SerializeField] private Collider2D spawnZone;
 
     private Dictionary<CropType,GameObject> cropPrefabs = new Dictionary<CropType,GameObject>();
     private List<Crop> crops;
@@ -67,7 +68,7 @@ public class CropManager : MonoBehaviour
     public void SpawnRandomCrops() {
         int spawnAmount = Random.Range(dailySpawnAmount.min, dailySpawnAmount.max);
         for (int i=0; i<spawnAmount; i++) {
-            Crop crop = SpawnManager.Instance.SpawnObject(cropPrefab).GetComponent<Crop>();
+            Crop crop = SpawnManager.Instance.SpawnObject(cropPrefab, newSpawnZone: spawnZone).GetComponent<Crop>();
             crop.isWildCrop = true;
             crop.SetState(CropState.Ready);
             crops.Add(crop);

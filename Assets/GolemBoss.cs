@@ -40,10 +40,12 @@ public class GolemBoss : MonoBehaviour
 
         if (isReadyToCrystal) {
             isReadyToCrystal = false;
+            Debug.Log("Boss - triggering crystal");
             animator.SetTrigger("Attack");
         }
         if (isReadyToSmash) {
             isReadyToSmash = false;
+            Debug.Log("Boss - triggering smash");
             StartCoroutine("ChargeSmash");
         }
     }
@@ -67,6 +69,7 @@ public class GolemBoss : MonoBehaviour
     }
 
     public void SmashAttack() {
+        Debug.Log("Boss - smashing");
         float radius = 1.25f;
         float damage = 500f;
         float knockbackForce = 200f;
@@ -149,7 +152,9 @@ public class GolemBoss : MonoBehaviour
     }
 
     IEnumerator SmashCooldown() {
+        Debug.Log("Boss - Smash cooldown");
         yield return new WaitForSeconds(smashCooldownSec);
+        Debug.Log("Boss - Smash cooldown complete");
         isReadyToSmash = true;
     }
 
@@ -159,6 +164,7 @@ public class GolemBoss : MonoBehaviour
     }
 
     IEnumerator ChargeSmash() {
+        Debug.Log("Boss - Charging smash");
         StartCoroutine("ChargeSound");
         StartCoroutine("ScaleTelegraph");
         yield return new WaitForSeconds(smashChargeSec);

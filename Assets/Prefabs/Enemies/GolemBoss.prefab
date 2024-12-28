@@ -1095,7 +1095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbf97350c38340e7a28097a822a7ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10000
+  maxHealth: 5000
   healthUI: {fileID: 5793633657170289174}
   hitNumberLocation: {fileID: 2123612967852499083}
   blockChance: 0.1
@@ -1115,7 +1115,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   regenEnabled: 1
-  regenPerSecond: 150
+  regenPerSecond: 50
   regenDelay: 5
   hitSound: {fileID: 8300000, guid: 5456f8848b45c4d3586d0c390644670e, type: 3}
   blockSound: {fileID: 8300000, guid: 1ccd0c85c293e4bc8973ae50b1baa6e2, type: 3}
