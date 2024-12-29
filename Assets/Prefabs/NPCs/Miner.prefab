@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f76a9236f1664ce7a7973dde690e31b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 6079194072480041945}
+  inventory: {fileID: 0}
   pullSpeed: 2
   collectSound: {fileID: 8300000, guid: 2665dea3f1c554e9a8aa7bcf292a627e, type: 3}
   filter:
@@ -283,7 +283,6 @@ GameObject:
   - component: {fileID: 4912041910249825255}
   - component: {fileID: 1879083392117255206}
   - component: {fileID: 6676727319160803280}
-  - component: {fileID: 6079194072480041945}
   - component: {fileID: 24450899826725169}
   - component: {fileID: -8068745355964585978}
   m_Layer: 14
@@ -696,21 +695,6 @@ MonoBehaviour:
       m_Calls: []
   currentTarget: {fileID: 0}
   currentTargetDist: 0
---- !u!114 &6079194072480041945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2398171259501374333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b717af909f9e6437db38e96e0398f756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items: []
-  uiElements: []
-  itemActionsList: []
 --- !u!114 &24450899826725169
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -114,6 +114,7 @@ public class WaveManager : MonoBehaviour
 
     private void TurnOffLights() {
         foreach (Light2D light in toggleableLights) {
+            if (light == null) continue;
             light.enabled = false;
         }
         lightsOn = false;
@@ -121,6 +122,7 @@ public class WaveManager : MonoBehaviour
 
     private void TurnOnLights() {
         foreach (Light2D light in toggleableLights) {
+            if (light == null) continue;
             light.enabled = true;
         }
         lightsOn = true;

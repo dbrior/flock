@@ -37,7 +37,10 @@ public class Damagable : MonoBehaviour
 
     void Start()
     {
-        originalPitch = audioSource.pitch;
+        if (audioSource != null) {
+            originalPitch = audioSource.pitch;
+        }
+        
         currHealth = maxHealth;
         if (regenEnabled) {
             StartCoroutine(Regen());
@@ -54,10 +57,14 @@ public class Damagable : MonoBehaviour
     }
 
     public void HideHealthBar() {
+        if (healthUI == null) return;
+
         healthUI.transform.parent.gameObject.SetActive(false);
     }
 
     public void ShowHealthBar() {
+        if (healthUI == null) return;
+
         healthUI.transform.parent.gameObject.SetActive(true);
     }
 
@@ -85,7 +92,10 @@ public class Damagable : MonoBehaviour
 
         currHealth += delta;
         currHealth = Mathf.Min(currHealth, maxHealth);
-        healthUI.fillAmount = currHealth / maxHealth;
+
+        if (healthUI != null) {
+            healthUI.fillAmount = currHealth / maxHealth;
+        }
 
         // Spawn healing numbers
         if (hitNumberLocation != null && delta > 0) {
@@ -159,7 +169,7 @@ public class Damagable : MonoBehaviour
 
         // Death
         if(currHealth <= 0) {
-            DamageNumberSpawner.Instance.SpawnStatusIcon(hitNumberLocation.position, StatusIconType.Death);
+            if (hitNumberLocation != null) DamageNumberSpawner.Instance.SpawnStatusIcon(hitNumberLocation.position, StatusIconType.Death);
             if (deathSound != null) {
                 PlayerManager.Instance.currentPlayer.audioSource.PlayOneShot(deathSound);
                 // audioSource.PlayOneShot(deathSound);
